@@ -1,6 +1,8 @@
-# notion-nextjs-lib
+# 🍒 notion-nextjs-lib
 
-A collection of basic blocks/renderer/components for building nextjs site based on notion and tailwind.
+A collection of basic blocks/renderer/components for building nextjs site based on [Notion](https://tsup.egoist.dev/) and [Tailwind CSS](https://tailwindcss.com/).
+
+🚧 **Work under progress and need document, tests,...**
 
 ## Dev
 
@@ -60,3 +62,7 @@ export default {
   ]
 }
 ```
+
+## More?
+
+- Use [`tsup`](https://tsup.egoist.dev/).
