@@ -1,6 +1,9 @@
+import * as react_jsx_runtime from 'react/jsx-runtime';
 import { StaticImageData } from 'next/image';
+
 type ScrollToTopProps = {
     image?: StaticImageData;
 };
-export default function ScrollToTop(props: ScrollToTopProps): import("react/jsx-runtime").JSX.Element;
-export {};
+declare function ScrollToTop(props: ScrollToTopProps): react_jsx_runtime.JSX.Element;
+
+export { ScrollToTop as default };

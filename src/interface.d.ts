@@ -187,8 +187,8 @@ export type BookmarkPreview = {
   imageSrc: string | null
 }
 
-declare module '*.png'
-declare module '*.svg'
-declare module '*.jpeg'
-declare module '*.jpg'
-declare module '*.webp'
+// declare module '*.png'
+// declare module '*.svg'
+// declare module '*.jpeg'
+// declare module '*.jpg'
+// declare module '*.webp'

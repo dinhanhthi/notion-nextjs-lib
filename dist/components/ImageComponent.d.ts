@@ -1,5 +1,7 @@
-import { ImageType } from '@src/interface';
-import { ImageProps, StaticImageData } from 'next/image';
+import * as react_jsx_runtime from 'react/jsx-runtime';
+import { I as ImageType } from '../interface.d-45d1a809.js';
+import { StaticImageData, ImageProps } from 'next/image';
+
 type ImageComponentProps = {
     image: ImageType;
     defaultImage?: StaticImageData;
@@ -11,5 +13,6 @@ type ImageComponentProps = {
  * This component is used for all image-related purposes.
  * For example, featured images, book cover image, notion-block's images, etc.
  */
-export default function ImageComponent(props: ImageComponentProps): import("react/jsx-runtime").JSX.Element;
-export {};
+declare function ImageComponent(props: ImageComponentProps): react_jsx_runtime.JSX.Element;
+
+export { ImageComponent as default };

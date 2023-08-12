@@ -1,3 +1,5 @@
+import * as react_jsx_runtime from 'react/jsx-runtime';
+
 type PaginationProps = {
     path: string;
     total: number;
@@ -5,5 +7,6 @@ type PaginationProps = {
     className?: string;
     pageAlias?: string;
 };
-export default function Pagination(props: PaginationProps): import("react/jsx-runtime").JSX.Element;
-export {};
+declare function Pagination(props: PaginationProps): react_jsx_runtime.JSX.Element;
+
+export { Pagination as default };

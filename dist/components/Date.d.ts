@@ -1,3 +1,7 @@
-export default function Date({ dateString }: {
+import * as react_jsx_runtime from 'react/jsx-runtime';
+
+declare function Date({ dateString }: {
     dateString: string;
-}): import("react/jsx-runtime").JSX.Element;
+}): react_jsx_runtime.JSX.Element;
+
+export { Date as default };
