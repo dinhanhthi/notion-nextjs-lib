@@ -4528,6 +4528,11 @@ react-property@2.0.0:
   resolved "https://registry.yarnpkg.com/react-property/-/react-property-2.0.0.tgz#2156ba9d85fa4741faf1918b38efc1eae3c6a136"
   integrity sha512-kzmNjIgU32mO4mmH5+iUyrqlpFQhF8K2k7eZ4fdLSOPFrD1XgEuSBv9LDEgxRXTMBqMd8ppT0x6TIzqE5pdGdw==
 
+react-snap-carousel@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/react-snap-carousel/-/react-snap-carousel-0.3.2.tgz#91bad605692cb41c88181cb6f1217e97c65ce875"
+  integrity sha512-3o4pA+k/OhphCNWt3gVxddSzp98XQ3e9+JtVeU3js2cStfysBQDj45L1dhO0kSh4PBAnuhXB+gsQjDDzIVU10g==
+
 react-syntax-highlighter@^15.5.0:
   version "15.5.0"
   resolved "https://registry.yarnpkg.com/react-syntax-highlighter/-/react-syntax-highlighter-15.5.0.tgz#4b3eccc2325fa2ec8eff1e2d6c18fa4a9e07ab20"

@@ -2,22 +2,6 @@
 
 A collection of basic blocks/renderer/components for building nextjs site based on notion and tailwind.
 
-## Install
-
-```bash
-yarn add https://github.com/dinhanhthi/notion-nextjs-lib.git
-```
-
-Put the following to `tailwind.config.ts`,
-
-```ts
-export default {
-  content: [
-    './node_modules/notion-nextjs-lib/dist/**/*.{js,ts,jsx,tsx,mdx}'
-  ]
-}
-```
-
 ## Dev
 
 ```bash
@@ -59,4 +43,20 @@ yarn unlink notion-nextjs-lib
 
 rm yarn.lock
 yarn install --check-files
+```
+
+## Install in other projects
+
+```bash
+yarn add https://github.com/dinhanhthi/notion-nextjs-lib.git
+```
+
+Put the following to `tailwind.config.ts`,
+
+```ts
+export default {
+  content: [
+    './node_modules/notion-nextjs-lib/dist/**/*.{js,ts,jsx,tsx,mdx}'
+  ]
+}
 ```

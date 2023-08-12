@@ -1,10 +1,6 @@
 import { RichTextItemResponse } from '@notionhq/client/build/src/api-endpoints'
 import { StaticImageData } from 'next/image'
 
-export type SiteTheme = 'dark' | 'light'
-
-export type EnvMode = 'dev' | 'prod'
-
 export type ImageType = {
   sourceUrl?: string | null
   sizes?: string
@@ -15,11 +11,6 @@ export type ImageType = {
   staticImageData?: StaticImageData // for default featured images
   imgur?: string // image uploaded to imgur
 } | null
-
-export type OptionalCatchAllProps = { params: OptionalCatchAllParams }
-export type OptionalCatchAllParams = { slug: string[] }
-export type DynamicSegmentParamsProps = { params: DynamicSegmentParams }
-export type DynamicSegmentParams = { slug: string }
 
 export type NotionTagData = {
   id: string
@@ -53,10 +44,6 @@ export type Tag = {
   uri?: string
 }
 
-export type PostAndPageACF = {
-  excerpt?: string
-}
-
 export type PostHeaderType = {
   title: string
   featuredImage: ImageType
@@ -77,50 +64,14 @@ export interface Post extends PostHeaderType {
   excerpt?: RichTextItemResponse[]
 }
 
-export type Author = {
-  slug?: string | null
-  id: string
-  name?: string | null
-  uri: string
-  description?: string | null
-  avatarUrl?: string | null
-  icon?: string | null
-  role?: string | null
-  email?: string | null
-  website?: string | null
-  posts?: Post[] | null
-}
-
-export type Page = {
-  id?: string
-  title: string
-  uri: string
-  slug?: string
-}
+/**
+ * NOTION DATA
+ */
 
 export type NotionSorts = {
   property: string
   direction: 'ascending' | 'descending'
 }
-
-export type SlugTypeLabels =
-  | 'author'
-  | 'category'
-  | 'tag'
-  | 'selected'
-  | 'all'
-  | 'singlePost'
-  | 'about'
-  | 'thanks'
-  | 'privacy'
-  | 'viet-bai'
-  | 'newsletter'
-  | 'page'
-export type GroupTypeReturn = { categories: Category[] } | { tags: Tag[] } | { authors: Author[] }
-
-/**
- * NOTION DATA
- */
 
 export type NotionPost = {
   id: string
