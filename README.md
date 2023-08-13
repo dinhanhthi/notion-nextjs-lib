@@ -1,15 +1,15 @@
 # 🍒 notion-nextjs-lib
 
-A collection of basic blocks/renderer/components for building nextjs site based on [Notion](https://tsup.egoist.dev/) and [Tailwind CSS](https://tailwindcss.com/).
+A collection of basic blocks/renderer/components for building nextjs site based on [Notion](https://www.notion.so/) and [Tailwind CSS](https://tailwindcss.com/).
 
 🚧 **Work under progress and need document, tests,...**
 
 ## Tech specs
 
-- Notion API.
-- Tailwind CSS.
-- NextJS.
-- Dev Mode: `tsub`, prettier, eslint, yarn.
+- [Official Notion API](https://developers.notion.com/).
+- [Tailwind CSS](https://tailwindcss.com/).
+- [NextJS](https://nextjs.org/).
+- Dev: [tsub](https://tsup.egoist.dev/), [prettier](https://prettier.io/), [eslint](https://eslint.org/), [yarn](https://yarnpkg.com/), [VSCode](https://code.visualstudio.com/) settings.
 
 ## Dev
 
