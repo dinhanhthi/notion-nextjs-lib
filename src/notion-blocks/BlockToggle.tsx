@@ -5,7 +5,7 @@ import { ToggleBlockObjectResponse } from '@notionhq/client/build/src/api-endpoi
 import cn from 'classnames'
 import { BsFillCaretRightFill } from 'react-icons/bs'
 
-import { mapColorClass } from '../lib/block-helpers'
+import { mapColorClass } from '../helpers/block-helpers'
 import BlockRichText from './BlockRichText'
 
 export default function BlockToggle(props: {

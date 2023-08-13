@@ -2,7 +2,7 @@ import { CalloutBlockObjectResponse } from '@notionhq/client/build/src/api-endpo
 import cn from 'classnames'
 import { get } from 'lodash'
 
-import { mapColorClass } from '../lib/block-helpers'
+import { mapColorClass } from '../helpers/block-helpers'
 import BlockRichText from './BlockRichText'
 
 export default function BlockCallout(props: {

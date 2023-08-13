@@ -3,9 +3,9 @@ import {
   RichTextItemResponse,
   TextRichTextItemResponse
 } from '@notionhq/client/build/src/api-endpoints'
-import { TextIgnoreField } from '@src/interface'
 import dynamic from 'next/dynamic'
 
+import { TextIgnoreField } from '../interface'
 import BlockText from './BlockText'
 
 const DynamicInlineEquation = dynamic(() => import('./BlockInlineEquation'))

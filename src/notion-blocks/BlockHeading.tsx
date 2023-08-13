@@ -10,7 +10,7 @@ import cn from 'classnames'
 import { get } from 'lodash'
 import { useContext } from 'react'
 
-import { convertHeadingIdToSlug, mapColorClass } from '../lib/block-helpers'
+import { convertHeadingIdToSlug, mapColorClass } from '../helpers/block-helpers'
 import { BlockOptionContext } from '../lib/context'
 import BlockHeadingToggle from './BlockHeadingToggle'
 import BlockRichText from './BlockRichText'

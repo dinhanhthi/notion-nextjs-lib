@@ -2,11 +2,11 @@ import cn from 'classnames'
 import Link from 'next/link'
 
 import { Post } from '../interface'
-import { comfortaa } from '../lib/fonts'
 
 type PostCardWaveProps = {
   post: Post
   colorIndex?: number
+  fontClassName?: string
 }
 
 export default function PostCardWave(props: PostCardWaveProps) {
@@ -15,7 +15,7 @@ export default function PostCardWave(props: PostCardWaveProps) {
       <div className="post-card-wave group">
         <span
           className={cn(
-            comfortaa.className,
+            props.fontClassName,
             'card-title font-semibold group-hover:m2it-link-hover text-slate-800',
             'leading-[1.35] text-[0.95rem]'
           )}

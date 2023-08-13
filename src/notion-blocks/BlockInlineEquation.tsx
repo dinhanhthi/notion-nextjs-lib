@@ -3,7 +3,7 @@
 import Katex from '@matejmazur/react-katex'
 import { EquationRichTextItemResponse } from '@notionhq/client/build/src/api-endpoints'
 
-import { generateTextAnnotationClasses } from '../lib/block-helpers'
+import { generateTextAnnotationClasses } from '../helpers/block-helpers'
 import { mathFontSize } from './BlockEquation'
 
 type BlockInlineEquationProps = {

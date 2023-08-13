@@ -1,12 +1,15 @@
 import { defineConfig } from 'tsup'
 
 export default defineConfig({
-  entry: ['src/index.tsx', 'src/components/*.tsx'],
+  entry: ['src/index.tsx', 'src/components/*.tsx', 'src/helpers/*.ts', 'src/styles.css'],
   outDir: 'dist',
   target: 'es2017',
-  platform: 'browser',
+  platform: 'node',
   splitting: false,
   shims: false,
   sourcemap: true,
-  dts: true
+  dts: true,
+  loader: {
+    '.css': 'css'
+  }
 })

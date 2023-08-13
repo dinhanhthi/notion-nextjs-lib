@@ -1,3 +1,5 @@
+'use client'
+
 import {
   BlockObjectResponse,
   BookmarkBlockObjectResponse
@@ -6,31 +8,29 @@ import cn from 'classnames'
 import { get } from 'lodash'
 import dynamic from 'next/dynamic'
 
-import { BookmarkPreview } from './interface'
-import { getIndentLevelClass } from './lib/block-helpers'
-import BlockBookmark from './notion-blocks/BlockBookmark'
+import { getIndentLevelClass } from '../helpers/block-helpers'
+import { BookmarkPreview } from '../interface'
+import BlockBookmark from '../notion-blocks/BlockBookmark'
 import BlockBulletedListItem, {
   BlockBulletedListItemType
-} from './notion-blocks/BlockBulletedListItem'
-import BlockCallout from './notion-blocks/BlockCallout'
-import BlockColumnList, { BlockColumnListType } from './notion-blocks/BlockColumnList'
-import BlockHeading from './notion-blocks/BlockHeading'
+} from '../notion-blocks/BlockBulletedListItem'
+import BlockCallout from '../notion-blocks/BlockCallout'
+import BlockColumnList, { BlockColumnListType } from '../notion-blocks/BlockColumnList'
+import BlockHeading from '../notion-blocks/BlockHeading'
 import BlockNumberedListItem, {
   BlockNumberedListItemType
-} from './notion-blocks/BlockNumberedListItem'
-import BlockParagraph from './notion-blocks/BlockParagraph'
-import BlockQuote from './notion-blocks/BlockQuote'
-import { BlockTableType } from './notion-blocks/BlockTable'
-import BlockToDo from './notion-blocks/BlockToDo'
-import BlockToggle from './notion-blocks/BlockToggle'
+} from '../notion-blocks/BlockNumberedListItem'
+import BlockParagraph from '../notion-blocks/BlockParagraph'
+import BlockQuote from '../notion-blocks/BlockQuote'
+import { BlockTableType } from '../notion-blocks/BlockTable'
+import BlockToDo from '../notion-blocks/BlockToDo'
+import BlockToggle from '../notion-blocks/BlockToggle'
 
-import React = require('react')
-
-const DynamicImage = dynamic(() => import('./notion-blocks/BlockImage'))
-const DynamicCode = dynamic(() => import('./notion-blocks/BlockCode'))
-const DynamicEquation = dynamic(() => import('./notion-blocks/BlockEquation'))
-const DynamicTable = dynamic(() => import('./notion-blocks/BlockTable'))
-const DynamicVideo = dynamic(() => import('./notion-blocks/BlockVideo'))
+const DynamicImage = dynamic(() => import('../notion-blocks/BlockImage'))
+const DynamicCode = dynamic(() => import('../notion-blocks/BlockCode'))
+const DynamicEquation = dynamic(() => import('../notion-blocks/BlockEquation'))
+const DynamicTable = dynamic(() => import('../notion-blocks/BlockTable'))
+const DynamicVideo = dynamic(() => import('../notion-blocks/BlockVideo'))
 
 type BlockRenderProps = {
   block: BlockObjectResponse

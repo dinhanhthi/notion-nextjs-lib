@@ -4,6 +4,13 @@ A collection of basic blocks/renderer/components for building nextjs site based 
 
 🚧 **Work under progress and need document, tests,...**
 
+## Tech specs
+
+- Notion API.
+- Tailwind CSS.
+- NextJS.
+- Dev Mode: `tsub`, prettier, eslint, yarn.
+
 ## Dev
 
 ```bash
@@ -53,6 +60,14 @@ yarn install --check-files
 yarn add https://github.com/dinhanhthi/notion-nextjs-lib.git
 ```
 
+You have to [install Tailwind CSS to your project](https://tailwindcss.com/docs/installation).
+
+Add the following style to your main project,
+
+```css
+import 'notion-nextjs-lib/dist/styles.css'
+```
+
 Put the following to `tailwind.config.ts`,
 
 ```ts
@@ -63,6 +78,15 @@ export default {
 }
 ```
 
-## More?
+How to import a component?
 
-- Use [`tsup`](https://tsup.egoist.dev/).
+```tsx
+import BlockRender from 'notion-nextjs-lib/dist/components/BlockRender'
+```
+
+How to import an exported method?
+
+```tsx
+import getJoinedRichText from 'notion-nextjs-lib/dist/helpers/getJoinedRichText'
+```
+

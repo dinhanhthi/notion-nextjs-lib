@@ -1,7 +1,8 @@
 'use client'
 
-import { ImageType } from '@src/interface'
 import Image, { ImageProps, StaticImageData } from 'next/image'
+
+import { ImageType } from '../interface'
 
 type ImageComponentProps = {
   image: ImageType

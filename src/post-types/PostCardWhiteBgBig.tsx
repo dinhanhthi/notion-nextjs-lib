@@ -1,15 +1,16 @@
-import { comfortaa } from '@app/lib/fonts'
-import PostFeaturedImage from '@c/PostFeaturedImage'
-import { Post } from '@src/interface'
 import cn from 'classnames'
 import Link from 'next/link'
-import Date from 'notion-nextjs-lib/dist/components/Date'
-import Excerpt from 'notion-nextjs-lib/dist/components/Excerpt'
+
+import Date from '../components/Date'
+import Excerpt from '../components/Excerpt'
+import PostFeaturedImage from '../components/PostFeaturedImage'
+import { Post } from '../interface'
 
 export type PostCardWhiteBgBigOpts = {
   hideDate?: boolean
   hideAuthor?: boolean
   hideExcerpt?: boolean
+  fontClassName?: string
 }
 
 type PostTitleCateDateProps = {
@@ -19,11 +20,12 @@ type PostTitleCateDateProps = {
 
 export const CWBBHeightClass = 'h-36'
 
-export default function PostCardWhiteBgBig({ post, options }: PostTitleCateDateProps) {
-  const { title, featuredImage, date, uri, excerpt, authors } = post
+export default function PostCardWhiteBgBig(props: PostTitleCateDateProps) {
+  const { title, featuredImage, date, uri, excerpt, authors } = props.post
+  const options = props.options
   return (
     <div className="group overflow-hidden rounded-md bg-white shadow-lg h-full">
-      <Link className={cn(comfortaa.className, 'text-center')} href={uri || '/'}>
+      <Link className={cn(options?.fontClassName, 'text-center')} href={uri || '/'}>
         <div className="flex flex-col justify-center">
           <div className={cn('relative w-full overflow-hidden', CWBBHeightClass)}>
             <PostFeaturedImage featuredImage={featuredImage} title={title} />

@@ -29,7 +29,7 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-// src/lib/block-helpers.ts
+// src/helpers/block-helpers.ts
 function generateTextAnnotationClasses(annotations, ignore) {
   return (0, import_classnames.default)({
     "font-semibold": annotations.bold && !(ignore == null ? void 0 : ignore.includes("bold")),
@@ -84,7 +84,7 @@ function mapColorClass(color) {
 }
 var import_classnames;
 var init_block_helpers = __esm({
-  "src/lib/block-helpers.ts"() {
+  "src/helpers/block-helpers.ts"() {
     import_classnames = __toESM(require("classnames"));
   }
 });

@@ -106,4 +106,9 @@ var CarouselItem = ({ isSnapPoint, children, widthClass }) => /* @__PURE__ */ (0
     children
   }
 );
+// Annotate the CommonJS export names for ESM import in node:
+0 && (module.exports = {
+  Carousel,
+  CarouselItem
+});
 //# sourceMappingURL=Carousel.js.map

@@ -5,7 +5,7 @@ import {
 } from '@notionhq/client/build/src/api-endpoints'
 import cn from 'classnames'
 
-import BlockRender from '../BlockRender'
+import BlockRender from '../components/BlockRender'
 
 /**
  * TODO: Current version of Notion API doesn't support different column widths!

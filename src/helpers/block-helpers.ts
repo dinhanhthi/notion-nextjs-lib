@@ -2,8 +2,9 @@ import {
   RichTextItemResponse,
   TextRichTextItemResponse
 } from '@notionhq/client/build/src/api-endpoints'
-import { AnnotationIgnoreField } from '@src/interface'
 import cn from 'classnames'
+
+import { AnnotationIgnoreField } from '../interface'
 
 export function generateTextAnnotationClasses(
   annotations: TextRichTextItemResponse['annotations'],
@@ -18,6 +19,12 @@ export function generateTextAnnotationClasses(
       annotations.code && !ignore?.includes('code'),
     [mapColorClass(annotations.color)]: true && !ignore?.includes('color')
   })
+}
+
+export function getJoinedRichText(richTextArr?: RichTextItemResponse[]): string {
+  if (!richTextArr || !richTextArr.length) return ''
+  const textArr = richTextArr.map((richText: RichTextItemResponse) => richText.plain_text)
+  return textArr.join('')
 }
 
 export function mapColorClass(color: string): string {
@@ -85,12 +92,6 @@ export function getIndentLevelClass(
         'my-1.5': isList
       })
   }
-}
-
-export function getJoinedRichText(richTextArr?: RichTextItemResponse[]): string {
-  if (!richTextArr || !richTextArr.length) return ''
-  const textArr = richTextArr.map((richText: RichTextItemResponse) => richText.plain_text)
-  return textArr.join('')
 }
 
 export function convertHeadingIdToSlug(

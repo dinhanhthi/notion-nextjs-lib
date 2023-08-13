@@ -8,7 +8,7 @@ import { useState } from 'react'
 // https://github.com/rpearce/react-medium-image-zoom
 import Zoom from 'react-medium-image-zoom'
 
-import { getJoinedRichText } from '../lib/block-helpers'
+import { getJoinedRichText } from '../helpers/block-helpers'
 import { defaultBlurDataURL } from '../lib/config'
 import BlockRichText from './BlockRichText'
 

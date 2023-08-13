@@ -2,12 +2,12 @@ import {
   MentionRichTextItemResponse,
   TextRichTextItemResponse
 } from '@notionhq/client/build/src/api-endpoints'
-import { AnnotationIgnoreField, TextIgnoreField } from '@src/interface'
 import cn from 'classnames'
 import { get } from 'lodash'
 import Link from 'next/link'
 
-import { generateTextAnnotationClasses } from '../lib/block-helpers'
+import { AnnotationIgnoreField, TextIgnoreField } from '../interface'
+import { generateTextAnnotationClasses } from '../helpers/block-helpers'
 
 type TextProps = {
   richText: TextRichTextItemResponse | MentionRichTextItemResponse

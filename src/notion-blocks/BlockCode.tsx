@@ -11,7 +11,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { dracula } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
 import Mermaid from '../components/Mermaid'
-import { getJoinedRichText } from '../lib/block-helpers'
+import { getJoinedRichText } from '../helpers/block-helpers'
 import { defaultCodeLanguage } from '../lib/config'
 import BlockRichText from './BlockRichText'
 

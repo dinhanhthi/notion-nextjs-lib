@@ -1,7 +1,7 @@
 import { ParagraphBlockObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 import cn from 'classnames'
 
-import { mapColorClass } from '../lib/block-helpers'
+import { mapColorClass } from '../helpers/block-helpers'
 import BlockRichText from './BlockRichText'
 
 export default function BlockParagraph(props: {

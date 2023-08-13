@@ -1,30 +1,33 @@
-import { defaultCategoryBgColor, defaultCategoryTextColor } from '@app/lib/config'
-import { comfortaa } from '@app/lib/fonts'
-import PostFeaturedImage from '@c/PostFeaturedImage'
-import { Post } from '@src/interface'
 import cn from 'classnames'
 import Link from 'next/link'
-import Date from 'notion-nextjs-lib/dist/components/Date'
 import { IoBookOutline } from 'react-icons/io5'
+
+import Date from '../components/Date'
+import PostFeaturedImage from '../components/PostFeaturedImage'
+import { Post } from '../interface'
 
 export type PostTitleCateDateOpts = {
   hideCategory?: boolean
   hideDate?: boolean
+  fontClassName?: string
 }
 
 type PostTitleCateDateProps = {
   post: Post
   options?: PostTitleCateDateOpts
+  defaultCategoryBgColor?: string
+  defaultCategoryTextColor?: string
 }
 
 export const TCDFIHeightClass = 'h-28'
 
-export default function PostTitleCateDate({ post, options }: PostTitleCateDateProps) {
-  const { title, featuredImage, date, categories, uri } = post
+export default function PostTitleCateDate(props: PostTitleCateDateProps) {
+  const { title, featuredImage, date, categories, uri } = props.post
+  const options = props.options
   const category = categories ? categories[0] : null
   return (
     <div className="group">
-      <Link className={cn(comfortaa.className, 'text-center')} href={uri || '/'}>
+      <Link className={cn(options?.fontClassName, 'text-center')} href={uri || '/'}>
         <div
           className={cn('flex flex-col justify-center overflow-hidden rounded-t-md shadow-sm', {
             'rounded-b-md': !category || options?.hideCategory
@@ -40,8 +43,10 @@ export default function PostTitleCateDate({ post, options }: PostTitleCateDatePr
           {!options?.hideCategory && category && (
             <div
               style={{
-                backgroundColor: `${category.style?.bgColor || defaultCategoryBgColor}`,
-                color: `${category.style?.textColor || defaultCategoryTextColor}`
+                backgroundColor: `${
+                  category.style?.bgColor || props.defaultCategoryBgColor || '#eee'
+                }`,
+                color: `${category.style?.textColor || props.defaultCategoryTextColor || '#222'}`
               }}
               className={cn('rounded-b-md px-2 py-1 text-xs font-semibold')}
             >
@@ -55,7 +60,7 @@ export default function PostTitleCateDate({ post, options }: PostTitleCateDatePr
           )}
         >
           {title}
-          {!!post.bookCover && (
+          {!!props.post.bookCover && (
             <IoBookOutline className="group-hover:m2it-link-hover mb-[2px] ml-2 inline text-sm text-slate-700" />
           )}
         </div>

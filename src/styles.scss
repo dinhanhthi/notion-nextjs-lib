@@ -1,8 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import 'katex/dist/katex.min.css';
 
-// For embedded youtube video
 .w-full > iframe {
   width: 100%;
   height: -webkit-fill-available;
@@ -16,16 +16,16 @@
   font-size: 1.2rem;
 }
 
-.m2it-inside-box {
-  & > *:first-child {
-    margin-top: 0;
-  }
-  & > *:last-child {
-    margin-bottom: 0;
-  }
-}
-
 @layer base {
+  .m2it-inside-box {
+    & > *:first-child {
+      margin-top: 0;
+    }
+    & > *:last-child {
+      margin-bottom: 0;
+    }
+  }
+
   .m2it-link-hover {
     @apply text-pink-600;
   }
@@ -170,7 +170,8 @@
   -webkit-box-shadow: inset 0 1px 0 #0f76b4;
   -moz-box-shadow: inset 0 1px 0 #0f76b4;
 
-  h1, .xem-them {
+  h1,
+  .xem-them {
     color: #fff;
   }
 

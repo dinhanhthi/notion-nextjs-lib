@@ -1,11 +1,16 @@
-import { comfortaa } from '@app/lib/fonts'
-import PostFeaturedImage from '@c/PostFeaturedImage'
-import { Post } from '@src/interface'
 import cn from 'classnames'
 import Link from 'next/link'
 
+import PostFeaturedImage from '../components/PostFeaturedImage'
+import { Post } from '../interface'
+
+export type PostImageBackgroundOpts = {
+  fontClassName?: string
+}
+
 type PostImageBackgroundProps = {
   post: Post
+  options?: PostImageBackgroundOpts
 }
 
 export const PIBHeightClass = 'h-36'
@@ -14,7 +19,7 @@ export default function PostImageBackground(props: PostImageBackgroundProps) {
   const { title, featuredImage, uri } = props.post
   return (
     <div className="group overflow-hidden rounded-md shadow-lg">
-      <Link className={cn(comfortaa.className, 'text-center')} href={uri || '/'}>
+      <Link className={cn(props.options?.fontClassName, 'text-center')} href={uri || '/'}>
         <div className="flex flex-col justify-center">
           <div className={cn('relative w-full overflow-hidden mix-blend-overlay', PIBHeightClass)}>
             <PostFeaturedImage featuredImage={featuredImage} title={title} />
