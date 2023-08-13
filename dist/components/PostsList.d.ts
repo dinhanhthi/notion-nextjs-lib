@@ -3,6 +3,11 @@ import { P as Post } from '../interface.d-c1bc20fa.js';
 import '@notionhq/client/build/src/api-endpoints';
 import 'next/image';
 
+type PostCardWaveOpts = {
+    fontClassName?: string;
+    colorIndex?: number;
+};
+
 type PostCardWhiteBgOpts = {
     hideDate?: boolean;
     fontClassName?: string;
@@ -27,7 +32,7 @@ type PostTitleCateDateOpts = {
 
 type PostType = 'PostTitleCateDate' | 'PostCardWhiteBg' | 'PostCardWhiteBgBig' | 'PostImageBackground' | 'PostCardWave';
 type PostListStyle = 'default' | 'carousel';
-type PostTypeOpts = PostTitleCateDateOpts | PostCardWhiteBgOpts | PostCardWhiteBgBigOpts | PostImageBackgroundOpts;
+type PostTypeOpts = PostTitleCateDateOpts | PostCardWhiteBgOpts | PostCardWhiteBgBigOpts | PostImageBackgroundOpts | PostCardWaveOpts;
 type PostListProps = {
     listStyle?: PostListStyle;
     posts: Post[];

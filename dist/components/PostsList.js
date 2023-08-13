@@ -1,7 +1,9 @@
 "use client";
 var __create = Object.create;
 var __defProp = Object.defineProperty;
+var __defProps = Object.defineProperties;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getOwnPropSymbols = Object.getOwnPropertySymbols;
 var __getProtoOf = Object.getPrototypeOf;
@@ -19,6 +21,7 @@ var __spreadValues = (a, b) => {
     }
   return a;
 };
+var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
 var __esm = (fn, res) => function __init() {
   return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
 };
@@ -161,12 +164,13 @@ var import_classnames = __toESM(require("classnames"));
 var import_link = __toESM(require("next/link"));
 var import_jsx_runtime = require("react/jsx-runtime");
 function PostCardWave(props) {
+  var _a, _b, _c, _d, _e;
   return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_link.default, { href: props.post.uri || "/", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "post-card-wave group", children: [
     /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
       "span",
       {
         className: (0, import_classnames.default)(
-          props.fontClassName,
+          (_a = props.options) == null ? void 0 : _a.fontClassName,
           "card-title font-semibold group-hover:m2it-link-hover text-slate-800",
           "leading-[1.35] text-[0.95rem]"
         ),
@@ -194,7 +198,7 @@ function PostCardWave(props) {
             /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
               "use",
               {
-                fill: `rgba(${waveColors[props.colorIndex || 0]}, 0.1)`,
+                fill: `rgba(${waveColors[((_b = props.options) == null ? void 0 : _b.colorIndex) || 0]}, 0.1)`,
                 x: "48",
                 xlinkHref: "#gentle-wave",
                 y: "0"
@@ -203,7 +207,7 @@ function PostCardWave(props) {
             /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
               "use",
               {
-                fill: `rgba(${waveColors[props.colorIndex || 0]}, 0.05)`,
+                fill: `rgba(${waveColors[((_c = props.options) == null ? void 0 : _c.colorIndex) || 0]}, 0.05)`,
                 x: "48",
                 xlinkHref: "#gentle-wave",
                 y: "3"
@@ -212,7 +216,7 @@ function PostCardWave(props) {
             /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
               "use",
               {
-                fill: `rgba(${waveColors[props.colorIndex || 0]}, 0.01)`,
+                fill: `rgba(${waveColors[((_d = props.options) == null ? void 0 : _d.colorIndex) || 0]}, 0.01)`,
                 x: "48",
                 xlinkHref: "#gentle-wave",
                 y: "5"
@@ -221,7 +225,7 @@ function PostCardWave(props) {
             /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
               "use",
               {
-                fill: `rgba(${waveColors[props.colorIndex || 0]}, 0.005)`,
+                fill: `rgba(${waveColors[((_e = props.options) == null ? void 0 : _e.colorIndex) || 0]}, 0.005)`,
                 x: "48",
                 xlinkHref: "#gentle-wave",
                 y: "7"
@@ -682,9 +686,9 @@ function getPostTypeElement(postType, post, postTypeOpts, index) {
     case "PostCardWhiteBgBig":
       return /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(PostCardWhiteBgBig, { post, options: postTypeOpts });
     case "PostImageBackground":
-      return /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(PostImageBackground, { post });
+      return /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(PostImageBackground, { post, options: postTypeOpts });
     case "PostCardWave":
-      return /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(PostCardWave, { post, colorIndex: index });
+      return /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(PostCardWave, { post, options: __spreadProps(__spreadValues({}, postTypeOpts), { colorIndex: index }) });
   }
 }
 // Annotate the CommonJS export names for ESM import in node:

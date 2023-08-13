@@ -4,7 +4,7 @@ import cn from 'classnames'
 import React from 'react'
 
 import { Post } from '../interface'
-import PostCardWave from '../post-types/PostCardWave'
+import PostCardWave, { PostCardWaveOpts } from '../post-types/PostCardWave'
 import PostCardWhiteBg, { PostCardWhiteBgOpts } from '../post-types/PostCardWhiteBg'
 import PostCardWhiteBgBig, { PostCardWhiteBgBigOpts } from '../post-types/PostCardWhiteBgBig'
 import PostImageBackground, { PostImageBackgroundOpts } from '../post-types/PostImageBackground'
@@ -25,6 +25,7 @@ export type PostTypeOpts =
   | PostCardWhiteBgOpts
   | PostCardWhiteBgBigOpts
   | PostImageBackgroundOpts
+  | PostCardWaveOpts
 
 type PostListProps = {
   listStyle?: PostListStyle
@@ -82,8 +83,8 @@ function getPostTypeElement(
     case 'PostCardWhiteBgBig':
       return <PostCardWhiteBgBig post={post} options={postTypeOpts} />
     case 'PostImageBackground':
-      return <PostImageBackground post={post} />
+      return <PostImageBackground post={post} options={postTypeOpts} />
     case 'PostCardWave':
-      return <PostCardWave post={post} colorIndex={index} />
+      return <PostCardWave post={post} options={{ ...postTypeOpts, colorIndex: index }} />
   }
 }

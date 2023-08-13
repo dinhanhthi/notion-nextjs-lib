@@ -3,10 +3,14 @@ import Link from 'next/link'
 
 import { Post } from '../interface'
 
+export type PostCardWaveOpts = {
+  fontClassName?: string
+  colorIndex?: number
+}
+
 type PostCardWaveProps = {
   post: Post
-  colorIndex?: number
-  fontClassName?: string
+  options?: PostCardWaveOpts
 }
 
 export default function PostCardWave(props: PostCardWaveProps) {
@@ -15,7 +19,7 @@ export default function PostCardWave(props: PostCardWaveProps) {
       <div className="post-card-wave group">
         <span
           className={cn(
-            props.fontClassName,
+            props.options?.fontClassName,
             'card-title font-semibold group-hover:m2it-link-hover text-slate-800',
             'leading-[1.35] text-[0.95rem]'
           )}
@@ -39,25 +43,25 @@ export default function PostCardWave(props: PostCardWaveProps) {
             </defs>
             <g className="parallax">
               <use
-                fill={`rgba(${waveColors[props.colorIndex || 0]}, 0.1)`}
+                fill={`rgba(${waveColors[props.options?.colorIndex || 0]}, 0.1)`}
                 x="48"
                 xlinkHref="#gentle-wave"
                 y="0"
               ></use>
               <use
-                fill={`rgba(${waveColors[props.colorIndex || 0]}, 0.05)`}
+                fill={`rgba(${waveColors[props.options?.colorIndex || 0]}, 0.05)`}
                 x="48"
                 xlinkHref="#gentle-wave"
                 y="3"
               ></use>
               <use
-                fill={`rgba(${waveColors[props.colorIndex || 0]}, 0.01)`}
+                fill={`rgba(${waveColors[props.options?.colorIndex || 0]}, 0.01)`}
                 x="48"
                 xlinkHref="#gentle-wave"
                 y="5"
               ></use>
               <use
-                fill={`rgba(${waveColors[props.colorIndex || 0]}, 0.005)`}
+                fill={`rgba(${waveColors[props.options?.colorIndex || 0]}, 0.005)`}
                 x="48"
                 xlinkHref="#gentle-wave"
                 y="7"
