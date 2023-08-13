@@ -10,8 +10,8 @@ import cn from 'classnames'
 import { get } from 'lodash'
 import { useContext } from 'react'
 
+import { BlockOptionContext } from '../components/BlockRender'
 import { convertHeadingIdToSlug, mapColorClass } from '../helpers/block-helpers'
-import { BlockOptionContext } from '../lib/context'
 import BlockHeadingToggle from './BlockHeadingToggle'
 import BlockRichText from './BlockRichText'
 
@@ -25,7 +25,7 @@ export default function BlockHeading(props: {
   // 👇 in case headings are inside another block, we need this to style the spacing for the entire heading block
   outerClassName?: string
 }) {
-  const ctx = useContext(BlockOptionContext)
+  const ctx = useContext(BlockOptionContext) as any
 
   const { type, block, className, children } = props
   let heading: { rich_text: RichTextItemResponse[]; color: string }
@@ -86,7 +86,7 @@ export default function BlockHeading(props: {
     <div className={props.outerClassName}>
       <div
         className={cn(mapColorClass(heading?.color), className, {
-          'flex items-start gap-2': !get(heading, 'is_toggleable') && !ctx.disableAnchorHeading
+          'flex items-start gap-2': !get(heading, 'is_toggleable') && !ctx?.disableAnchorHeading
         })}
       >
         {get(heading, 'is_toggleable') && children && (
@@ -94,7 +94,7 @@ export default function BlockHeading(props: {
         )}
         {!get(heading, 'is_toggleable') && (
           <>
-            {!ctx.disableAnchorHeading && anchorElement}
+            {!ctx?.disableAnchorHeading && anchorElement}
             {headingElement}
           </>
         )}

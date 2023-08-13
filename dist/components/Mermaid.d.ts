@@ -1,7 +1,7 @@
 import * as react_jsx_runtime from 'react/jsx-runtime';
-import React from 'react';
+import React__default from 'react';
 
-declare class Mermaid extends React.Component<{
+declare class Mermaid extends React__default.Component<{
     chart: string;
 }> {
     componentDidMount(): void;

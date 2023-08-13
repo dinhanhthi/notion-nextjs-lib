@@ -84,9 +84,9 @@ How to import a component?
 import BlockRender from 'notion-nextjs-lib/dist/components/BlockRender'
 ```
 
-How to import an exported method?
+How to import a helper?
 
 ```tsx
-import getJoinedRichText from 'notion-nextjs-lib/dist/helpers/getJoinedRichText'
+import { getJoinedRichText } from 'notion-nextjs-lib/dist/helpers/block-helpers'
 ```
 
