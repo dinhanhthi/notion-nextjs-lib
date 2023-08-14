@@ -1,3 +1,5 @@
+import { Post } from '../interface'
+
 export function cleanText(text?: string) {
   if (!text) return undefined
   return text.replace(/\n/g, ' ').replace(/\s+/g, ' ').trim()
@@ -45,4 +47,24 @@ export function makeSlugText(text?: string | null): string | undefined {
     .split(' ')
     .join('-')
     .replace(/^\/|\/$/g, '') // remove "/" at the beginning and the end
+}
+
+/**
+ * Get a right start_cursor for pagination based on current page and posts
+ * @param posts
+ * @param postsPerPage
+ * @param currentPage
+ * @returns next_cursor or `undefined` (it has to be `undefined`, not `null` because
+ * Notion API doesn't accept `null` value for `start_cursor`)
+ */
+export function getStartCursorForCurrentPage(
+  currentPage: number,
+  posts: Post[],
+  postsPerPage: number
+): string | undefined {
+  if (posts?.length === 0) return undefined
+  if (currentPage === 1) return undefined
+  const numPages = Math.ceil(posts.length / postsPerPage)
+  if (currentPage > numPages) return undefined
+  return posts[(currentPage - 1) * postsPerPage]?.id
 }

@@ -20,6 +20,7 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 var helpers_exports = {};
 __export(helpers_exports, {
   cleanText: () => cleanText,
+  getStartCursorForCurrentPage: () => getStartCursorForCurrentPage,
   idToUuid: () => idToUuid,
   makeSlugText: () => makeSlugText
 });
@@ -52,9 +53,21 @@ function makeSlugText(text) {
     return void 0;
   return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d").replace(/Đ/g, "D").replace(":", "").split(" ").join("-").replace(/^\/|\/$/g, "");
 }
+function getStartCursorForCurrentPage(currentPage, posts, postsPerPage) {
+  var _a;
+  if ((posts == null ? void 0 : posts.length) === 0)
+    return void 0;
+  if (currentPage === 1)
+    return void 0;
+  const numPages = Math.ceil(posts.length / postsPerPage);
+  if (currentPage > numPages)
+    return void 0;
+  return (_a = posts[(currentPage - 1) * postsPerPage]) == null ? void 0 : _a.id;
+}
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   cleanText,
+  getStartCursorForCurrentPage,
   idToUuid,
   makeSlugText
 });
