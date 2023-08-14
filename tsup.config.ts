@@ -6,7 +6,8 @@ export default defineConfig({
     'src/components/*.tsx',
     'src/helpers/*.ts',
     'src/styles.css',
-    'src/lib/db.ts'
+    'src/lib/db.ts',
+    'src/interface.ts'
   ],
   outDir: 'dist',
   target: 'es2017',

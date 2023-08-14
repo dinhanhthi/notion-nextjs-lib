@@ -1,5 +1,5 @@
 import { QueryDatabaseParameters, QueryDatabaseResponse, ListBlockChildrenResponse } from '@notionhq/client/build/src/api-endpoints';
-import { N as NotionSorts } from '../interface.d-1ae9c039.js';
+import { NotionSorts } from '../interface.js';
 import 'next/image';
 
 /**

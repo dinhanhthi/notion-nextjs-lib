@@ -1,6 +1,6 @@
 import * as react_jsx_runtime from 'react/jsx-runtime';
 import { PostType, PostListStyle } from './PostsList.js';
-import '../interface.d-1ae9c039.js';
+import '../interface.js';
 import '@notionhq/client/build/src/api-endpoints';
 import 'next/image';
 
