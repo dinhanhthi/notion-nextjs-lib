@@ -6,11 +6,13 @@ import { createContext } from 'react'
 import Renderer from './Renderer'
 
 export type BlockOptionsContextType = {
-  disableAnchorHeading?: boolean
+  disableAnchorHeading?: boolean // used in BlockHeading
+  siteDomain?: string // used in BlockText to recognize external links (eg. math2it.com -> alike @mention)
 }
 
 const defaultBlockOptionContext: BlockOptionsContextType = {
-  disableAnchorHeading: false
+  disableAnchorHeading: false,
+  siteDomain: 'dinhanhthi.com'
 }
 
 export type BlockRenderProps = {

@@ -4,6 +4,7 @@ import { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 
 type BlockOptionsContextType = {
     disableAnchorHeading?: boolean;
+    siteDomain?: string;
 };
 type BlockRenderProps = {
     block: BlockObjectResponse;

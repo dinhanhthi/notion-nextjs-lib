@@ -2,7 +2,7 @@
 
 A collection of basic blocks/renderer/components for building nextjs site based on [Notion](https://www.notion.so/) and [Tailwind CSS](https://tailwindcss.com/).
 
-🚧 **Work under progress and need document, tests,...**
+🚧 **Work under progress and need document, tests, notion template,...**
 
 ## Tech specs
 

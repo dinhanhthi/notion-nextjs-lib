@@ -5,9 +5,11 @@ import {
 import cn from 'classnames'
 import { get } from 'lodash'
 import Link from 'next/link'
+import { useContext } from 'react'
 
-import { AnnotationIgnoreField, TextIgnoreField } from '../interface'
+import { BlockOptionContext } from '../components/BlockRender'
 import { generateTextAnnotationClasses } from '../helpers/block-helpers'
+import { AnnotationIgnoreField, TextIgnoreField } from '../interface'
 
 type TextProps = {
   richText: TextRichTextItemResponse | MentionRichTextItemResponse
@@ -15,6 +17,8 @@ type TextProps = {
 }
 
 export default function BlockText(props: TextProps) {
+  const ctx = useContext(BlockOptionContext) as any
+
   if (props.richText.plain_text.includes('\n')) {
     const lines = props.richText.plain_text.split('\n')
     return (
@@ -35,9 +39,9 @@ export default function BlockText(props: TextProps) {
     !props.ignore?.includes('hyperlink') &&
     props.richText.href
   ) {
-    // Link contains "math2it.com"
-    // This is the link coming from the current version of math2it, not the old ones
-    if (props.richText.href.includes('math2it.com') && !props.richText.href.includes('@')) {
+    // Link contains "domain.com" and does not contain "@
+    // This is the link coming from the current version of domain, not the old ones
+    if (props.richText.href.includes(ctx?.siteDomain) && !props.richText.href.includes('@')) {
       const uri = getUriFromUrl(props.richText.href)
       return (
         <Link
@@ -75,7 +79,7 @@ export default function BlockText(props: TextProps) {
     !props.ignore?.includes('hyperlink') &&
     props.richText.type === 'mention' &&
     props.richText.mention?.type === 'page' &&
-    get(props.richText, 'mention.page.uri') // "uri" is a custom property defined by Math2IT
+    get(props.richText, 'mention.page.uri') // "uri" is a custom property
   ) {
     return (
       <Link

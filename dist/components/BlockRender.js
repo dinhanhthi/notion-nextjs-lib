@@ -138,9 +138,45 @@ var init_block_helpers = __esm({
   }
 });
 
+// src/notion-blocks/BlockBookmark.tsx
+function BlockBookmark(props) {
+  const data = props.block.bookmark;
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_jsx_runtime.Fragment, { children: data && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+    "a",
+    {
+      className: (0, import_classnames2.default)(
+        "flex w-full overflow-hidden rounded-md border border-slate-200 p-3",
+        "hover:cursor-pointer hover:border-sky-300 hover:shadow-sm"
+      ),
+      children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "flex flex-[4_1_180px] flex-col justify-between gap-4 overflow-hidden", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "flex flex-col gap-1.5", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "truncate font-normal", children: data.title }),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "truncate text-sm font-normal text-slate-600", children: data.description })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "flex items-center gap-1", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "relative h-4 w-4", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { className: "h-full w-full", src: data.favicon, alt: data.title }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "text-sm font-normal text-slate-500", children: data.url })
+          ] })
+        ] }),
+        data.imageSrc && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "relative hidden flex-[1_1_100px] sm:block", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { className: "h-full w-full", src: data.imageSrc, alt: data.title }) })
+      ]
+    }
+  ) });
+}
+var import_classnames2, import_jsx_runtime;
+var init_BlockBookmark = __esm({
+  "src/notion-blocks/BlockBookmark.tsx"() {
+    "use client";
+    import_classnames2 = __toESM(require("classnames"));
+    import_jsx_runtime = require("react/jsx-runtime");
+  }
+});
+
 // src/notion-blocks/BlockText.tsx
 function BlockText(props) {
   var _a, _b, _c, _d;
+  const ctx = (0, import_react.useContext)(BlockOptionContext);
   if (props.richText.plain_text.includes("\n")) {
     const lines = props.richText.plain_text.split("\n");
     return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_jsx_runtime2.Fragment, { children: lines.map((line, index) => /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { children: [
@@ -149,7 +185,7 @@ function BlockText(props) {
     ] }, index)) });
   }
   if (props.richText.type === "text" && !((_a = props.ignore) == null ? void 0 : _a.includes("hyperlink")) && props.richText.href) {
-    if (props.richText.href.includes("math2it.com") && !props.richText.href.includes("@")) {
+    if (props.richText.href.includes(ctx == null ? void 0 : ctx.siteDomain) && !props.richText.href.includes("@")) {
       const uri = getUriFromUrl(props.richText.href);
       return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
         import_link.default,
@@ -233,12 +269,14 @@ function formatDate(inputString) {
   const formattedDate = `${day}/${month}/${year}`;
   return formattedDate;
 }
-var import_classnames3, import_lodash, import_link, import_jsx_runtime2;
+var import_classnames3, import_lodash, import_link, import_react, import_jsx_runtime2;
 var init_BlockText = __esm({
   "src/notion-blocks/BlockText.tsx"() {
     import_classnames3 = __toESM(require("classnames"));
     import_lodash = require("lodash");
     import_link = __toESM(require("next/link"));
+    import_react = require("react");
+    init_BlockRender();
     init_block_helpers();
     import_jsx_runtime2 = require("react/jsx-runtime");
   }
@@ -335,6 +373,340 @@ var init_BlockRichText = __esm({
   }
 });
 
+// src/notion-blocks/BlockBulletedListItem.tsx
+function BlockBulletedListItem(props) {
+  var _a;
+  const { block, className, children } = props;
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: (0, import_classnames5.default)(className), children: [
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "flex items-start gap-1", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "flex items-center justify-center", children: bulletType(block["list_item"]) }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "block", children: (_a = block == null ? void 0 : block.bulleted_list_item) == null ? void 0 : _a.rich_text.map((richText, index) => /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(BlockRichText, { richText }, index)) })
+    ] }),
+    children
+  ] });
+}
+function bulletType(level) {
+  switch (level) {
+    case "1":
+      return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(import_rx.RxDotFilled, { className: "mt-0.5 text-xl text-slate-600" });
+    case "2":
+      return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(import_rx.RxDot, { className: "mt-1 text-lg" });
+    case "3":
+      return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(import_go.GoSquareFill, { className: "mr-1 mt-1.5 text-xs" });
+  }
+}
+var import_classnames5, import_go, import_rx, import_jsx_runtime6;
+var init_BlockBulletedListItem = __esm({
+  "src/notion-blocks/BlockBulletedListItem.tsx"() {
+    import_classnames5 = __toESM(require("classnames"));
+    import_go = require("react-icons/go");
+    import_rx = require("react-icons/rx");
+    init_BlockRichText();
+    import_jsx_runtime6 = require("react/jsx-runtime");
+  }
+});
+
+// src/notion-blocks/BlockCallout.tsx
+function BlockCallout(props) {
+  var _a, _b;
+  const { block, children, className } = props;
+  return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: (0, import_classnames6.default)(className), children: /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { className: (0, import_classnames6.default)("flex rounded-md", mapColorClass((_a = block == null ? void 0 : block.callout) == null ? void 0 : _a.color)), children: [
+    (0, import_lodash2.get)(block, "callout.icon.emoji") && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: "text-2xl pl-4 pr-2 py-3", children: (0, import_lodash2.get)(block, "callout.icon.emoji") }),
+    /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { className: "py-4 pl-2 pr-4 w-full", children: [
+      (_b = block == null ? void 0 : block.callout) == null ? void 0 : _b.rich_text.map((richText, index) => /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(BlockRichText, { richText }, index)),
+      !!children && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: "-ml-4 pt-3 m2it-inside-box", children })
+    ] })
+  ] }) });
+}
+var import_classnames6, import_lodash2, import_jsx_runtime7;
+var init_BlockCallout = __esm({
+  "src/notion-blocks/BlockCallout.tsx"() {
+    import_classnames6 = __toESM(require("classnames"));
+    import_lodash2 = require("lodash");
+    init_block_helpers();
+    init_BlockRichText();
+    import_jsx_runtime7 = require("react/jsx-runtime");
+  }
+});
+
+// src/notion-blocks/BlockColumnList.tsx
+function BlockColumnList(props) {
+  const { block, className } = props;
+  const children = block["children"];
+  if ((children == null ? void 0 : children.length) === 0)
+    return null;
+  return /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("div", { className: (0, import_classnames7.default)("w-full grid gap-3", parseColumnClasses(children.length), className), children: children.map((col, index1) => {
+    return /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("div", { className: (0, import_classnames7.default)("w-full flex flex-col"), children: col["children"].map((child, index2) => /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(BlockRender, { block: child, level: 0 }, index2)) }, index1);
+  }) });
+}
+function parseColumnClasses(numCols) {
+  switch (numCols) {
+    case 1:
+      return "grid-cols-1";
+    case 2:
+      return "grid-cols-1 md:grid-cols-2";
+    case 3:
+      return "grid-cols-1 md:grid-cols-2 lg:grid-cols-3";
+    case 4:
+      return "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4";
+    default:
+      return "grid-cols-1";
+  }
+}
+var import_classnames7, import_jsx_runtime8;
+var init_BlockColumnList = __esm({
+  "src/notion-blocks/BlockColumnList.tsx"() {
+    import_classnames7 = __toESM(require("classnames"));
+    init_BlockRender();
+    import_jsx_runtime8 = require("react/jsx-runtime");
+  }
+});
+
+// src/notion-blocks/BlockHeadingToggle.tsx
+function BlockHeadingToggle(props) {
+  return /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(import_react2.Disclosure, { defaultOpen: false, children: ({ open }) => /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)(import_jsx_runtime9.Fragment, { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { className: "flex w-full items-center py-1 ml-[-10px]", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(import_react2.Disclosure.Button, { className: "rounded-md p-1 hover:bg-[#99989824]", children: /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
+        import_bs.BsFillCaretRightFill,
+        {
+          className: (0, import_classnames8.default)("transform ease-in-out transition-all duration-[400ms] text-lg", {
+            "rotate-90": open,
+            "rotate-0": !open
+          })
+        }
+      ) }),
+      props.headingElement
+    ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(import_react2.Disclosure.Panel, { children: /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("div", { children: props.children }) })
+  ] }) });
+}
+var import_react2, import_classnames8, import_bs, import_jsx_runtime9;
+var init_BlockHeadingToggle = __esm({
+  "src/notion-blocks/BlockHeadingToggle.tsx"() {
+    "use client";
+    import_react2 = require("@headlessui/react");
+    import_classnames8 = __toESM(require("classnames"));
+    import_bs = require("react-icons/bs");
+    import_jsx_runtime9 = require("react/jsx-runtime");
+  }
+});
+
+// src/notion-blocks/BlockHeading.tsx
+function BlockHeading(props) {
+  var _a;
+  const ctx = (0, import_react3.useContext)(BlockOptionContext);
+  const { type, block, className, children } = props;
+  let heading;
+  let headingElement;
+  let anchorElement;
+  const h1Size = "text-3xl";
+  const h2Size = "text-2xl";
+  const h3Size = "text-xl";
+  const headingClass = "scroll-mt-[70px] mt-0";
+  const id = convertHeadingIdToSlug(block.id, (_a = block[`${block.type}`]) == null ? void 0 : _a.rich_text);
+  switch (type) {
+    case "h1":
+      heading = block == null ? void 0 : block.heading_1;
+      headingElement = /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("h1", { id, className: (0, import_classnames9.default)(h1Size, headingClass), children: insideHeading(heading) });
+      anchorElement = /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("a", { href: `#${id}`, className: (0, import_classnames9.default)("text-sky-600 lg:-ml-6", h1Size), children: "#" });
+      break;
+    case "h2":
+      heading = block == null ? void 0 : block.heading_2;
+      headingElement = /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("h2", { id, className: (0, import_classnames9.default)(h2Size, headingClass), children: insideHeading(heading) });
+      anchorElement = /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("a", { href: `#${id}`, className: (0, import_classnames9.default)("text-sky-600 lg:-ml-6", h2Size), children: "#" });
+      break;
+    case "h3":
+      heading = block == null ? void 0 : block.heading_3;
+      headingElement = /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("h3", { id, className: (0, import_classnames9.default)(h3Size, headingClass), children: insideHeading(heading) });
+      anchorElement = /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("a", { href: `#${id}`, className: (0, import_classnames9.default)("text-orange-700 lg:-ml-8", h3Size), children: "##" });
+      break;
+  }
+  return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { className: props.outerClassName, children: /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)(
+    "div",
+    {
+      className: (0, import_classnames9.default)(mapColorClass(heading == null ? void 0 : heading.color), className, {
+        "flex items-start gap-2": !(0, import_lodash3.get)(heading, "is_toggleable") && !(ctx == null ? void 0 : ctx.disableAnchorHeading)
+      }),
+      children: [
+        (0, import_lodash3.get)(heading, "is_toggleable") && children && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(BlockHeadingToggle, { headingElement, children }),
+        !(0, import_lodash3.get)(heading, "is_toggleable") && /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)(import_jsx_runtime10.Fragment, { children: [
+          !(ctx == null ? void 0 : ctx.disableAnchorHeading) && anchorElement,
+          headingElement
+        ] })
+      ]
+    }
+  ) });
+}
+function insideHeading(heading) {
+  return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(import_jsx_runtime10.Fragment, { children: heading == null ? void 0 : heading.rich_text.map((richText, index) => /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(BlockRichText, { richText }, index)) });
+}
+var import_classnames9, import_lodash3, import_react3, import_jsx_runtime10;
+var init_BlockHeading = __esm({
+  "src/notion-blocks/BlockHeading.tsx"() {
+    "use client";
+    import_classnames9 = __toESM(require("classnames"));
+    import_lodash3 = require("lodash");
+    import_react3 = require("react");
+    init_BlockRender();
+    init_block_helpers();
+    init_BlockHeadingToggle();
+    init_BlockRichText();
+    import_jsx_runtime10 = require("react/jsx-runtime");
+  }
+});
+
+// src/notion-blocks/BlockNumberedListItem.tsx
+function BlockNumberedListItem(props) {
+  var _a;
+  const { block, className, children } = props;
+  return /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: (0, import_classnames10.default)(className), children: [
+    /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "flex items-baseline gap-2", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: "flex items-center justify-center", children: block["list_item"] }),
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: "block", children: (_a = block == null ? void 0 : block.numbered_list_item) == null ? void 0 : _a.rich_text.map((richText, index) => /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(BlockRichText, { richText }, index)) })
+    ] }),
+    children
+  ] });
+}
+var import_classnames10, import_jsx_runtime11;
+var init_BlockNumberedListItem = __esm({
+  "src/notion-blocks/BlockNumberedListItem.tsx"() {
+    import_classnames10 = __toESM(require("classnames"));
+    init_BlockRichText();
+    import_jsx_runtime11 = require("react/jsx-runtime");
+  }
+});
+
+// src/notion-blocks/BlockParagraph.tsx
+function BlockParagraph(props) {
+  var _a, _b;
+  const { block, children, className } = props;
+  return (
+    // We don't use <p> here because there may be other not-supported tags in the <p> tag.
+    /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: (0, import_classnames11.default)(mapColorClass((_a = block == null ? void 0 : block.paragraph) == null ? void 0 : _a.color), className), children: [
+      (_b = block == null ? void 0 : block.paragraph) == null ? void 0 : _b.rich_text.map((richText, index) => /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(BlockRichText, { richText }, index)),
+      children
+    ] })
+  );
+}
+var import_classnames11, import_jsx_runtime12;
+var init_BlockParagraph = __esm({
+  "src/notion-blocks/BlockParagraph.tsx"() {
+    import_classnames11 = __toESM(require("classnames"));
+    init_block_helpers();
+    init_BlockRichText();
+    import_jsx_runtime12 = require("react/jsx-runtime");
+  }
+});
+
+// src/notion-blocks/BlockQuote.tsx
+function BlockQuote(props) {
+  var _a, _b;
+  const { block, children, className } = props;
+  return /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("div", { className: (0, import_classnames12.default)(className), children: /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)(
+    "div",
+    {
+      className: (0, import_classnames12.default)(
+        mapColorClass((_a = block == null ? void 0 : block.quote) == null ? void 0 : _a.color),
+        "border border-y-0 border-r-0 border-l-4 border-slate-500"
+      ),
+      children: [
+        /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("div", { className: (0, import_classnames12.default)("py-1 pl-4"), children: (_b = block == null ? void 0 : block.quote) == null ? void 0 : _b.rich_text.map((richText, index) => /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(BlockRichText, { richText }, index)) }),
+        children
+      ]
+    }
+  ) });
+}
+var import_classnames12, import_jsx_runtime13;
+var init_BlockQuote = __esm({
+  "src/notion-blocks/BlockQuote.tsx"() {
+    import_classnames12 = __toESM(require("classnames"));
+    init_block_helpers();
+    init_BlockRichText();
+    import_jsx_runtime13 = require("react/jsx-runtime");
+  }
+});
+
+// src/notion-blocks/BlockToDo.tsx
+function BlockToDo(props) {
+  var _a, _b, _c;
+  const { block, className, children } = props;
+  return /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("div", { className: (0, import_classnames13.default)(className), children: [
+    /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("div", { className: "flex items-center gap-2", children: [
+      ((_a = block == null ? void 0 : block.to_do) == null ? void 0 : _a.checked) && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(import_bs2.BsCheckSquare, {}),
+      !((_b = block == null ? void 0 : block.to_do) == null ? void 0 : _b.checked) && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(import_bs2.BsSquare, {}),
+      (_c = block == null ? void 0 : block.to_do) == null ? void 0 : _c.rich_text.map((richText, index) => /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(BlockRichText, { richText }, index))
+    ] }),
+    children
+  ] });
+}
+var import_classnames13, import_bs2, import_jsx_runtime14;
+var init_BlockToDo = __esm({
+  "src/notion-blocks/BlockToDo.tsx"() {
+    import_classnames13 = __toESM(require("classnames"));
+    import_bs2 = require("react-icons/bs");
+    init_BlockRichText();
+    import_jsx_runtime14 = require("react/jsx-runtime");
+  }
+});
+
+// src/notion-blocks/BlockToggle.tsx
+function BlockToggle(props) {
+  var _a;
+  const { block, children, className } = props;
+  return /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
+    "div",
+    {
+      className: (0, import_classnames14.default)(
+        mapColorClass((_a = block == null ? void 0 : block.toggle) == null ? void 0 : _a.color),
+        "rounded-md border-[0.5px] border-slate-200",
+        className
+      ),
+      children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(import_react4.Disclosure, { defaultOpen: false, children: ({ open }) => {
+        var _a2;
+        return /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(import_jsx_runtime15.Fragment, { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(
+            import_react4.Disclosure.Button,
+            {
+              className: (0, import_classnames14.default)("flex gap-2 w-full items-start p-2 rounded-md", {
+                "bg-gray-100 hover:bg-gray-200": open,
+                "bg-gray-50 hover:bg-gray-100": !open
+              }),
+              children: [
+                /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
+                  import_bs3.BsFillCaretRightFill,
+                  {
+                    className: (0, import_classnames14.default)(
+                      "text-base transform ease-in-out transition-all duration-[400ms] mt-[4px]",
+                      {
+                        "rotate-90": open,
+                        "rotate-0": !open
+                      }
+                    )
+                  }
+                ),
+                /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: "text-start", children: (_a2 = block == null ? void 0 : block.toggle) == null ? void 0 : _a2.rich_text.map((richText, index) => /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(BlockRichText, { richText }, index)) })
+              ]
+            }
+          ),
+          !!children && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(import_react4.Disclosure.Panel, { className: "rounded-b-md py-4 pr-4 m2it-inside-box", children })
+        ] });
+      } })
+    }
+  );
+}
+var import_react4, import_classnames14, import_bs3, import_jsx_runtime15;
+var init_BlockToggle = __esm({
+  "src/notion-blocks/BlockToggle.tsx"() {
+    "use client";
+    import_react4 = require("@headlessui/react");
+    import_classnames14 = __toESM(require("classnames"));
+    import_bs3 = require("react-icons/bs");
+    init_block_helpers();
+    init_BlockRichText();
+    import_jsx_runtime15 = require("react/jsx-runtime");
+  }
+});
+
 // src/lib/config.ts
 var defaultBlurDataURL, defaultCodeLanguage;
 var init_config = __esm({
@@ -351,7 +723,7 @@ __export(BlockImage_exports, {
 });
 function BlockImage(props) {
   var _a, _b;
-  const [isImageReady, setIsImageReady] = (0, import_react4.useState)(false);
+  const [isImageReady, setIsImageReady] = (0, import_react5.useState)(false);
   const { block, className } = props;
   const width = Math.min((0, import_lodash4.get)(block, "imageInfo.width", 1e3), 1e3);
   const height = Math.min((0, import_lodash4.get)(block, "imageInfo.height", 700), 700);
@@ -378,14 +750,14 @@ function BlockImage(props) {
     caption && caption.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { className: "text-sm italic opacity-90", children: caption.map((richText, index) => /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(BlockRichText, { richText }, index)) })
   ] });
 }
-var import_classnames15, import_lodash4, import_image, import_react4, import_react_medium_image_zoom, import_jsx_runtime16;
+var import_classnames15, import_lodash4, import_image, import_react5, import_react_medium_image_zoom, import_jsx_runtime16;
 var init_BlockImage = __esm({
   "src/notion-blocks/BlockImage.tsx"() {
     "use client";
     import_classnames15 = __toESM(require("classnames"));
     import_lodash4 = require("lodash");
     import_image = __toESM(require("next/image"));
-    import_react4 = require("react");
+    import_react5 = require("react");
     import_react_medium_image_zoom = __toESM(require("react-medium-image-zoom"));
     init_block_helpers();
     init_config();
@@ -395,19 +767,19 @@ var init_BlockImage = __esm({
 });
 
 // src/components/Mermaid.tsx
-var import_mermaid, import_react5, import_jsx_runtime17, Mermaid;
+var import_mermaid, import_react6, import_jsx_runtime17, Mermaid;
 var init_Mermaid = __esm({
   "src/components/Mermaid.tsx"() {
     "use client";
     import_mermaid = __toESM(require("mermaid"));
-    import_react5 = __toESM(require("react"));
+    import_react6 = __toESM(require("react"));
     import_jsx_runtime17 = require("react/jsx-runtime");
     import_mermaid.default.initialize({
       startOnLoad: true,
       theme: "default",
       securityLevel: "loose"
     });
-    Mermaid = class extends import_react5.default.Component {
+    Mermaid = class extends import_react6.default.Component {
       componentDidMount() {
         import_mermaid.default.contentLoaded();
       }
@@ -427,7 +799,7 @@ function BlockCode(props) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _i;
   const { block, className } = props;
   const language = ((_b = (_a = block == null ? void 0 : block.code) == null ? void 0 : _a.language) == null ? void 0 : _b.toLowerCase()) || defaultCodeLanguage;
-  const [copied, setCopied] = (0, import_react7.useState)(false);
+  const [copied, setCopied] = (0, import_react8.useState)(false);
   const onSuccess = () => {
     setCopied(true);
     setTimeout(() => setCopied(false), 1e3);
@@ -445,7 +817,7 @@ function BlockCode(props) {
         }
       ),
       /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(
-        import_react6.default,
+        import_react7.default,
         {
           content: copied ? "\u0110\xE3 sao ch\xE9p" : "Sao ch\xE9p \u0111o\u1EA1n code",
           arrow: false,
@@ -480,13 +852,13 @@ function BlockCode(props) {
     ((_h = block == null ? void 0 : block.code) == null ? void 0 : _h.language) === "mermaid" && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(Mermaid, { chart: getJoinedRichText((_i = block == null ? void 0 : block.code) == null ? void 0 : _i.rich_text) })
   ] });
 }
-var import_react6, import_classnames16, import_react7, import_react_clipboard, import_fi, import_rx2, import_react_syntax_highlighter, import_prism, import_jsx_runtime18, formatCodeLang;
+var import_react7, import_classnames16, import_react8, import_react_clipboard, import_fi, import_rx2, import_react_syntax_highlighter, import_prism, import_jsx_runtime18, formatCodeLang;
 var init_BlockCode = __esm({
   "src/notion-blocks/BlockCode.tsx"() {
     "use client";
-    import_react6 = __toESM(require("@tippyjs/react"));
+    import_react7 = __toESM(require("@tippyjs/react"));
     import_classnames16 = __toESM(require("classnames"));
-    import_react7 = require("react");
+    import_react8 = require("react");
     import_react_clipboard = __toESM(require("react-clipboard.js"));
     import_fi = require("react-icons/fi");
     import_rx2 = require("react-icons/rx");
@@ -614,337 +986,7 @@ var init_BlockVideo = __esm({
   }
 });
 
-// src/components/BlockRender.tsx
-var BlockRender_exports = {};
-__export(BlockRender_exports, {
-  BlockOptionContext: () => BlockOptionContext,
-  default: () => BlockRender
-});
-module.exports = __toCommonJS(BlockRender_exports);
-var import_react8 = require("react");
-
 // src/components/Renderer.tsx
-var import_classnames19 = __toESM(require("classnames"));
-var import_lodash6 = require("lodash");
-var import_dynamic2 = __toESM(require("next/dynamic"));
-init_block_helpers();
-
-// src/notion-blocks/BlockBookmark.tsx
-var import_classnames2 = __toESM(require("classnames"));
-var import_jsx_runtime = require("react/jsx-runtime");
-function BlockBookmark(props) {
-  const data = props.block.bookmark;
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_jsx_runtime.Fragment, { children: data && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
-    "a",
-    {
-      className: (0, import_classnames2.default)(
-        "flex w-full overflow-hidden rounded-md border border-slate-200 p-3",
-        "hover:cursor-pointer hover:border-sky-300 hover:shadow-sm"
-      ),
-      children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "flex flex-[4_1_180px] flex-col justify-between gap-4 overflow-hidden", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "flex flex-col gap-1.5", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "truncate font-normal", children: data.title }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "truncate text-sm font-normal text-slate-600", children: data.description })
-          ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "flex items-center gap-1", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "relative h-4 w-4", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { className: "h-full w-full", src: data.favicon, alt: data.title }) }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "text-sm font-normal text-slate-500", children: data.url })
-          ] })
-        ] }),
-        data.imageSrc && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "relative hidden flex-[1_1_100px] sm:block", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { className: "h-full w-full", src: data.imageSrc, alt: data.title }) })
-      ]
-    }
-  ) });
-}
-
-// src/notion-blocks/BlockBulletedListItem.tsx
-var import_classnames5 = __toESM(require("classnames"));
-var import_go = require("react-icons/go");
-var import_rx = require("react-icons/rx");
-init_BlockRichText();
-var import_jsx_runtime6 = require("react/jsx-runtime");
-function BlockBulletedListItem(props) {
-  var _a;
-  const { block, className, children } = props;
-  return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: (0, import_classnames5.default)(className), children: [
-    /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "flex items-start gap-1", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "flex items-center justify-center", children: bulletType(block["list_item"]) }),
-      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "block", children: (_a = block == null ? void 0 : block.bulleted_list_item) == null ? void 0 : _a.rich_text.map((richText, index) => /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(BlockRichText, { richText }, index)) })
-    ] }),
-    children
-  ] });
-}
-function bulletType(level) {
-  switch (level) {
-    case "1":
-      return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(import_rx.RxDotFilled, { className: "mt-0.5 text-xl text-slate-600" });
-    case "2":
-      return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(import_rx.RxDot, { className: "mt-1 text-lg" });
-    case "3":
-      return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(import_go.GoSquareFill, { className: "mr-1 mt-1.5 text-xs" });
-  }
-}
-
-// src/notion-blocks/BlockCallout.tsx
-var import_classnames6 = __toESM(require("classnames"));
-var import_lodash2 = require("lodash");
-init_block_helpers();
-init_BlockRichText();
-var import_jsx_runtime7 = require("react/jsx-runtime");
-function BlockCallout(props) {
-  var _a, _b;
-  const { block, children, className } = props;
-  return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: (0, import_classnames6.default)(className), children: /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { className: (0, import_classnames6.default)("flex rounded-md", mapColorClass((_a = block == null ? void 0 : block.callout) == null ? void 0 : _a.color)), children: [
-    (0, import_lodash2.get)(block, "callout.icon.emoji") && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: "text-2xl pl-4 pr-2 py-3", children: (0, import_lodash2.get)(block, "callout.icon.emoji") }),
-    /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { className: "py-4 pl-2 pr-4 w-full", children: [
-      (_b = block == null ? void 0 : block.callout) == null ? void 0 : _b.rich_text.map((richText, index) => /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(BlockRichText, { richText }, index)),
-      !!children && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: "-ml-4 pt-3 m2it-inside-box", children })
-    ] })
-  ] }) });
-}
-
-// src/notion-blocks/BlockColumnList.tsx
-var import_classnames7 = __toESM(require("classnames"));
-var import_jsx_runtime8 = require("react/jsx-runtime");
-function BlockColumnList(props) {
-  const { block, className } = props;
-  const children = block["children"];
-  if ((children == null ? void 0 : children.length) === 0)
-    return null;
-  return /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("div", { className: (0, import_classnames7.default)("w-full grid gap-3", parseColumnClasses(children.length), className), children: children.map((col, index1) => {
-    return /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("div", { className: (0, import_classnames7.default)("w-full flex flex-col"), children: col["children"].map((child, index2) => /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(BlockRender, { block: child, level: 0 }, index2)) }, index1);
-  }) });
-}
-function parseColumnClasses(numCols) {
-  switch (numCols) {
-    case 1:
-      return "grid-cols-1";
-    case 2:
-      return "grid-cols-1 md:grid-cols-2";
-    case 3:
-      return "grid-cols-1 md:grid-cols-2 lg:grid-cols-3";
-    case 4:
-      return "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4";
-    default:
-      return "grid-cols-1";
-  }
-}
-
-// src/notion-blocks/BlockHeading.tsx
-var import_classnames9 = __toESM(require("classnames"));
-var import_lodash3 = require("lodash");
-var import_react2 = require("react");
-init_block_helpers();
-
-// src/notion-blocks/BlockHeadingToggle.tsx
-var import_react = require("@headlessui/react");
-var import_classnames8 = __toESM(require("classnames"));
-var import_bs = require("react-icons/bs");
-var import_jsx_runtime9 = require("react/jsx-runtime");
-function BlockHeadingToggle(props) {
-  return /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(import_react.Disclosure, { defaultOpen: false, children: ({ open }) => /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)(import_jsx_runtime9.Fragment, { children: [
-    /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { className: "flex w-full items-center py-1 ml-[-10px]", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(import_react.Disclosure.Button, { className: "rounded-md p-1 hover:bg-[#99989824]", children: /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
-        import_bs.BsFillCaretRightFill,
-        {
-          className: (0, import_classnames8.default)("transform ease-in-out transition-all duration-[400ms] text-lg", {
-            "rotate-90": open,
-            "rotate-0": !open
-          })
-        }
-      ) }),
-      props.headingElement
-    ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(import_react.Disclosure.Panel, { children: /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("div", { children: props.children }) })
-  ] }) });
-}
-
-// src/notion-blocks/BlockHeading.tsx
-init_BlockRichText();
-var import_jsx_runtime10 = require("react/jsx-runtime");
-function BlockHeading(props) {
-  var _a;
-  const ctx = (0, import_react2.useContext)(BlockOptionContext);
-  const { type, block, className, children } = props;
-  let heading;
-  let headingElement;
-  let anchorElement;
-  const h1Size = "text-3xl";
-  const h2Size = "text-2xl";
-  const h3Size = "text-xl";
-  const headingClass = "scroll-mt-[70px] mt-0";
-  const id = convertHeadingIdToSlug(block.id, (_a = block[`${block.type}`]) == null ? void 0 : _a.rich_text);
-  switch (type) {
-    case "h1":
-      heading = block == null ? void 0 : block.heading_1;
-      headingElement = /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("h1", { id, className: (0, import_classnames9.default)(h1Size, headingClass), children: insideHeading(heading) });
-      anchorElement = /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("a", { href: `#${id}`, className: (0, import_classnames9.default)("text-sky-600 lg:-ml-6", h1Size), children: "#" });
-      break;
-    case "h2":
-      heading = block == null ? void 0 : block.heading_2;
-      headingElement = /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("h2", { id, className: (0, import_classnames9.default)(h2Size, headingClass), children: insideHeading(heading) });
-      anchorElement = /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("a", { href: `#${id}`, className: (0, import_classnames9.default)("text-sky-600 lg:-ml-6", h2Size), children: "#" });
-      break;
-    case "h3":
-      heading = block == null ? void 0 : block.heading_3;
-      headingElement = /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("h3", { id, className: (0, import_classnames9.default)(h3Size, headingClass), children: insideHeading(heading) });
-      anchorElement = /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("a", { href: `#${id}`, className: (0, import_classnames9.default)("text-orange-700 lg:-ml-8", h3Size), children: "##" });
-      break;
-  }
-  return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { className: props.outerClassName, children: /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)(
-    "div",
-    {
-      className: (0, import_classnames9.default)(mapColorClass(heading == null ? void 0 : heading.color), className, {
-        "flex items-start gap-2": !(0, import_lodash3.get)(heading, "is_toggleable") && !(ctx == null ? void 0 : ctx.disableAnchorHeading)
-      }),
-      children: [
-        (0, import_lodash3.get)(heading, "is_toggleable") && children && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(BlockHeadingToggle, { headingElement, children }),
-        !(0, import_lodash3.get)(heading, "is_toggleable") && /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)(import_jsx_runtime10.Fragment, { children: [
-          !(ctx == null ? void 0 : ctx.disableAnchorHeading) && anchorElement,
-          headingElement
-        ] })
-      ]
-    }
-  ) });
-}
-function insideHeading(heading) {
-  return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(import_jsx_runtime10.Fragment, { children: heading == null ? void 0 : heading.rich_text.map((richText, index) => /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(BlockRichText, { richText }, index)) });
-}
-
-// src/notion-blocks/BlockNumberedListItem.tsx
-var import_classnames10 = __toESM(require("classnames"));
-init_BlockRichText();
-var import_jsx_runtime11 = require("react/jsx-runtime");
-function BlockNumberedListItem(props) {
-  var _a;
-  const { block, className, children } = props;
-  return /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: (0, import_classnames10.default)(className), children: [
-    /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "flex items-baseline gap-2", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: "flex items-center justify-center", children: block["list_item"] }),
-      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: "block", children: (_a = block == null ? void 0 : block.numbered_list_item) == null ? void 0 : _a.rich_text.map((richText, index) => /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(BlockRichText, { richText }, index)) })
-    ] }),
-    children
-  ] });
-}
-
-// src/notion-blocks/BlockParagraph.tsx
-var import_classnames11 = __toESM(require("classnames"));
-init_block_helpers();
-init_BlockRichText();
-var import_jsx_runtime12 = (
-  // We don't use <p> here because there may be other not-supported tags in the <p> tag.
-  require("react/jsx-runtime")
-);
-function BlockParagraph(props) {
-  var _a, _b;
-  const { block, children, className } = props;
-  return /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: (0, import_classnames11.default)(mapColorClass((_a = block == null ? void 0 : block.paragraph) == null ? void 0 : _a.color), className), children: [
-    (_b = block == null ? void 0 : block.paragraph) == null ? void 0 : _b.rich_text.map((richText, index) => /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(BlockRichText, { richText }, index)),
-    children
-  ] });
-}
-
-// src/notion-blocks/BlockQuote.tsx
-var import_classnames12 = __toESM(require("classnames"));
-init_block_helpers();
-init_BlockRichText();
-var import_jsx_runtime13 = require("react/jsx-runtime");
-function BlockQuote(props) {
-  var _a, _b;
-  const { block, children, className } = props;
-  return /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("div", { className: (0, import_classnames12.default)(className), children: /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)(
-    "div",
-    {
-      className: (0, import_classnames12.default)(
-        mapColorClass((_a = block == null ? void 0 : block.quote) == null ? void 0 : _a.color),
-        "border border-y-0 border-r-0 border-l-4 border-slate-500"
-      ),
-      children: [
-        /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("div", { className: (0, import_classnames12.default)("py-1 pl-4"), children: (_b = block == null ? void 0 : block.quote) == null ? void 0 : _b.rich_text.map((richText, index) => /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(BlockRichText, { richText }, index)) }),
-        children
-      ]
-    }
-  ) });
-}
-
-// src/notion-blocks/BlockToDo.tsx
-var import_classnames13 = __toESM(require("classnames"));
-var import_bs2 = require("react-icons/bs");
-init_BlockRichText();
-var import_jsx_runtime14 = require("react/jsx-runtime");
-function BlockToDo(props) {
-  var _a, _b, _c;
-  const { block, className, children } = props;
-  return /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("div", { className: (0, import_classnames13.default)(className), children: [
-    /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("div", { className: "flex items-center gap-2", children: [
-      ((_a = block == null ? void 0 : block.to_do) == null ? void 0 : _a.checked) && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(import_bs2.BsCheckSquare, {}),
-      !((_b = block == null ? void 0 : block.to_do) == null ? void 0 : _b.checked) && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(import_bs2.BsSquare, {}),
-      (_c = block == null ? void 0 : block.to_do) == null ? void 0 : _c.rich_text.map((richText, index) => /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(BlockRichText, { richText }, index))
-    ] }),
-    children
-  ] });
-}
-
-// src/notion-blocks/BlockToggle.tsx
-var import_react3 = require("@headlessui/react");
-var import_classnames14 = __toESM(require("classnames"));
-var import_bs3 = require("react-icons/bs");
-init_block_helpers();
-init_BlockRichText();
-var import_jsx_runtime15 = require("react/jsx-runtime");
-function BlockToggle(props) {
-  var _a;
-  const { block, children, className } = props;
-  return /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
-    "div",
-    {
-      className: (0, import_classnames14.default)(
-        mapColorClass((_a = block == null ? void 0 : block.toggle) == null ? void 0 : _a.color),
-        "rounded-md border-[0.5px] border-slate-200",
-        className
-      ),
-      children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(import_react3.Disclosure, { defaultOpen: false, children: ({ open }) => {
-        var _a2;
-        return /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(import_jsx_runtime15.Fragment, { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(
-            import_react3.Disclosure.Button,
-            {
-              className: (0, import_classnames14.default)("flex gap-2 w-full items-start p-2 rounded-md", {
-                "bg-gray-100 hover:bg-gray-200": open,
-                "bg-gray-50 hover:bg-gray-100": !open
-              }),
-              children: [
-                /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
-                  import_bs3.BsFillCaretRightFill,
-                  {
-                    className: (0, import_classnames14.default)(
-                      "text-base transform ease-in-out transition-all duration-[400ms] mt-[4px]",
-                      {
-                        "rotate-90": open,
-                        "rotate-0": !open
-                      }
-                    )
-                  }
-                ),
-                /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: "text-start", children: (_a2 = block == null ? void 0 : block.toggle) == null ? void 0 : _a2.rich_text.map((richText, index) => /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(BlockRichText, { richText }, index)) })
-              ]
-            }
-          ),
-          !!children && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(import_react3.Disclosure.Panel, { className: "rounded-b-md py-4 pr-4 m2it-inside-box", children })
-        ] });
-      } })
-    }
-  );
-}
-
-// src/components/Renderer.tsx
-var import_jsx_runtime21 = require("react/jsx-runtime");
-var DynamicImage = (0, import_dynamic2.default)(() => Promise.resolve().then(() => (init_BlockImage(), BlockImage_exports)));
-var DynamicCode = (0, import_dynamic2.default)(() => Promise.resolve().then(() => (init_BlockCode(), BlockCode_exports)));
-var DynamicEquation = (0, import_dynamic2.default)(() => Promise.resolve().then(() => (init_BlockEquation(), BlockEquation_exports)));
-var DynamicTable = (0, import_dynamic2.default)(() => Promise.resolve().then(() => (init_BlockTable(), BlockTable_exports)));
-var DynamicVideo = (0, import_dynamic2.default)(() => Promise.resolve().then(() => (init_BlockVideo(), BlockVideo_exports)));
 function Renderer(props) {
   var _a;
   const { block, level } = props;
@@ -1053,16 +1095,57 @@ function Renderer(props) {
       return null;
   }
 }
+var import_classnames19, import_lodash6, import_dynamic2, import_jsx_runtime21, DynamicImage, DynamicCode, DynamicEquation, DynamicTable, DynamicVideo;
+var init_Renderer = __esm({
+  "src/components/Renderer.tsx"() {
+    "use client";
+    import_classnames19 = __toESM(require("classnames"));
+    import_lodash6 = require("lodash");
+    import_dynamic2 = __toESM(require("next/dynamic"));
+    init_block_helpers();
+    init_BlockBookmark();
+    init_BlockBulletedListItem();
+    init_BlockCallout();
+    init_BlockColumnList();
+    init_BlockHeading();
+    init_BlockNumberedListItem();
+    init_BlockParagraph();
+    init_BlockQuote();
+    init_BlockToDo();
+    init_BlockToggle();
+    import_jsx_runtime21 = require("react/jsx-runtime");
+    DynamicImage = (0, import_dynamic2.default)(() => Promise.resolve().then(() => (init_BlockImage(), BlockImage_exports)));
+    DynamicCode = (0, import_dynamic2.default)(() => Promise.resolve().then(() => (init_BlockCode(), BlockCode_exports)));
+    DynamicEquation = (0, import_dynamic2.default)(() => Promise.resolve().then(() => (init_BlockEquation(), BlockEquation_exports)));
+    DynamicTable = (0, import_dynamic2.default)(() => Promise.resolve().then(() => (init_BlockTable(), BlockTable_exports)));
+    DynamicVideo = (0, import_dynamic2.default)(() => Promise.resolve().then(() => (init_BlockVideo(), BlockVideo_exports)));
+  }
+});
 
 // src/components/BlockRender.tsx
-var import_jsx_runtime22 = require("react/jsx-runtime");
-var defaultBlockOptionContext = {
-  disableAnchorHeading: false
-};
-var BlockOptionContext = (0, import_react8.createContext)(defaultBlockOptionContext);
+var BlockRender_exports = {};
+__export(BlockRender_exports, {
+  BlockOptionContext: () => BlockOptionContext,
+  default: () => BlockRender
+});
+module.exports = __toCommonJS(BlockRender_exports);
 function BlockRender(props) {
   return /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(BlockOptionContext.Provider, { value: props.blockOptionsContext, children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Renderer, { block: props.block, level: props.level, isInsideList: props.isInsideList }) });
 }
+var import_react9, import_jsx_runtime22, defaultBlockOptionContext, BlockOptionContext;
+var init_BlockRender = __esm({
+  "src/components/BlockRender.tsx"() {
+    import_react9 = require("react");
+    init_Renderer();
+    import_jsx_runtime22 = require("react/jsx-runtime");
+    defaultBlockOptionContext = {
+      disableAnchorHeading: false,
+      siteDomain: "dinhanhthi.com"
+    };
+    BlockOptionContext = (0, import_react9.createContext)(defaultBlockOptionContext);
+  }
+});
+init_BlockRender();
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   BlockOptionContext
