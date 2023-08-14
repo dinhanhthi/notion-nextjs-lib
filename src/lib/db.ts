@@ -1,9 +1,16 @@
 import {
+  BlockObjectResponse,
+  ListBlockChildrenResponse,
   QueryDatabaseParameters,
-  QueryDatabaseResponse
+  QueryDatabaseResponse,
+  RichTextItemResponse
 } from '@notionhq/client/build/src/api-endpoints'
+import { get, set } from 'lodash'
+import { getPlaiceholder } from 'plaiceholder'
+import { unfurl } from 'unfurl.js'
 
-import { NotionSorts } from '../interface'
+import { cleanText } from '../helpers/helpers'
+import { BookmarkPreview, NotionSorts } from '../interface'
 
 /**
  * We needs this method to be used in outside-nextjs environment. For example, in ./scripts/ud_images.ts
@@ -115,4 +122,162 @@ export async function retrieveNotionDatabaseWithoutCache(
     }
   })
   return res.json()
+}
+
+/**
+ * Get all nested blocks (in all levels) of a block.
+ *
+ */
+export async function getBlocks(
+  blockId: string,
+  notionToken: string,
+  notionVersion: string,
+  initNumbering?: string,
+  getPageUri?: (pageId: string) => Promise<string | undefined>,
+  parseImgurUrl?: (url: string) => string
+): Promise<ListBlockChildrenResponse['results']> {
+  let data = await getNotionBlocksWithoutCache(blockId, notionToken, notionVersion)
+  let blocks = data?.results as
+    | (BlockObjectResponse & {
+        list_item?: string
+        children?: ListBlockChildrenResponse['results']
+        imageInfo?: any
+        imgUrl?: string
+        bookmark?: BookmarkPreview
+      })[]
+    | []
+
+  if (!blocks?.length) return []
+
+  if (data && data['has_more']) {
+    while (data!['has_more']) {
+      const startCursor = data!['next_cursor'] as string
+      data = await getNotionBlocksWithoutCache(
+        blockId,
+        notionToken,
+        notionVersion,
+        undefined,
+        startCursor
+      )
+      if (get(data, 'results') && get(data, 'results').length) {
+        const lst = data!['results'] as any[]
+        blocks = [...blocks, ...lst]
+      }
+    }
+  }
+
+  let number = 1
+  for (const block of blocks) {
+    /**
+     * Remark: Consider 2 cases:
+     * ++ First:
+     * 1. Item 1
+     * Paragraph
+     * 1. Item 2
+     *
+     * ++ Second:
+     * 1. Item 1
+     * 2. Item 2
+     *
+     * The Notion API doesn't give any information in that Item 1 and Item 2 of the first case are
+     * in diffrent uls while in the second case, they are in the same ul.
+     *
+     * They are both in the same structure.
+     * Check: https://developers.notion.com/reference/block#numbered-list-item-blocks
+     *
+     * That's why we add some additional information to the block.
+     */
+    if (block.type === 'numbered_list_item') {
+      if (initNumbering && ['1', '2', '3'].includes(initNumbering)) initNumbering = undefined
+      block['list_item'] = (initNumbering ?? '') + `${number}.`
+      number++
+    } else {
+      number = 1
+    }
+
+    if (block.type === 'bulleted_list_item') {
+      block['list_item'] = !initNumbering ? '1' : initNumbering === '1' ? '2' : '3'
+    }
+
+    if (get(block, `${block.type}.rich_text`) && !!getPageUri) {
+      const parsedMention = await parseMention(
+        get(block, `${block.type}.rich_text`) as RichTextItemResponse[],
+        getPageUri
+      )
+      set(block, `${block.type}.rich_text`, parsedMention)
+    }
+
+    if (block.has_children) {
+      const children = await getBlocks(
+        block.id,
+        block['list_item'],
+        notionToken,
+        notionVersion,
+        getPageUri,
+        parseImgurUrl
+      )
+      block['children'] = children
+    }
+
+    // Get real image size (width and height) of an image block
+    if (block.type === 'image') {
+      const url = get(block, 'image.file.url') || get(block, 'image.external.url')
+      if (url) {
+        // Resize the image to 1024x1024 max, except for gif and png (with transparent background)
+        if (parseImgurUrl) block['imgUrl'] = parseImgurUrl(url)
+        block['imageInfo'] = await getPlaceholderImage(url) // { base64, width, height }
+      }
+    }
+
+    // bookmark
+    if (block.type === 'bookmark') {
+      const url = get(block, 'bookmark.url')
+      if (url) {
+        const unfurled = await unfurl(url)
+        const bookmark: BookmarkPreview = {
+          url,
+          title: cleanText(unfurled.title),
+          description: cleanText(unfurled.description) ?? null,
+          favicon: unfurled.favicon,
+          imageSrc: unfurled.open_graph?.images?.[0]?.url ?? null
+        }
+        block['bookmark'] = bookmark as any
+      }
+    }
+  }
+
+  return blocks
+}
+
+async function parseMention(
+  richText: RichTextItemResponse[] | [],
+  getPageUri?: (pageId: string) => Promise<string | undefined>
+): Promise<any> {
+  if (!richText?.length) return []
+  const newRichText = [] as RichTextItemResponse[]
+  for (const block of richText) {
+    if (block.type === 'mention' && block.mention?.type === 'page') {
+      const pageId = get(block, 'mention.page.id')
+      if (pageId) {
+        const pageUri = await getPageUri(pageId)
+        set(block, 'mention.page.uri', pageUri)
+      }
+      newRichText.push(block)
+    } else {
+      newRichText.push(block)
+    }
+  }
+  return newRichText
+}
+
+/**
+ * Get blurDataURL (base64) of an image
+ *
+ * REMARK: This method MUST be placed in this file, otherwise, there will be an error of "Can't resolve 'fs'"
+ */
+export const getPlaceholderImage = async function getPlaceholderImage(src: string) {
+  const buffer = await fetch(src).then(async res => Buffer.from(await res.arrayBuffer()))
+
+  const { base64, metadata } = await getPlaiceholder(buffer)
+  return { base64, width: metadata.width, height: metadata.height }
 }
