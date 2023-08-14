@@ -20,7 +20,7 @@ export default function BlockTable(props: { block: BlockTableType; className?: s
         {block?.table?.has_row_header && (
           <thead>
             {trBlock({
-              cells: block?.['children']?.[0].table_row?.cells,
+              cells: block?.['children']?.[0]?.table_row?.cells,
               isRowHeader: true,
               key: 0
             })}
@@ -29,7 +29,7 @@ export default function BlockTable(props: { block: BlockTableType; className?: s
         <tbody>
           {bodyRows?.map((row, index) =>
             trBlock({
-              cells: row.table_row?.cells,
+              cells: row?.table_row?.cells,
               isRowHeader: false,
               key: index,
               hasColumnHeader: block?.table?.has_column_header
@@ -48,6 +48,7 @@ function trBlock(options: {
   hasColumnHeader?: boolean
 }) {
   const { cells, isRowHeader, key, hasColumnHeader } = options
+  if (!cells) return null
   return (
     <tr key={key}>
       {cells.map((cell, index, _cells) => {

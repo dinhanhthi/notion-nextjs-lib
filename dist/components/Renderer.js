@@ -516,12 +516,12 @@ __export(BlockTable_exports, {
   default: () => BlockTable
 });
 function BlockTable(props) {
-  var _a, _b, _c, _d;
+  var _a, _b, _c, _d, _e;
   const { block, className } = props;
   const bodyRows = (block == null ? void 0 : block.table.has_row_header) ? (_a = block == null ? void 0 : block["children"]) == null ? void 0 : _a.slice(1) : block == null ? void 0 : block["children"];
   return /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("div", { className: (0, import_classnames17.default)(className, "w-full overflow-auto md:overflow-visible"), children: /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("table", { className: "table-auto", children: [
     ((_b = block == null ? void 0 : block.table) == null ? void 0 : _b.has_row_header) && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("thead", { children: trBlock({
-      cells: (_d = (_c = block == null ? void 0 : block["children"]) == null ? void 0 : _c[0].table_row) == null ? void 0 : _d.cells,
+      cells: (_e = (_d = (_c = block == null ? void 0 : block["children"]) == null ? void 0 : _c[0]) == null ? void 0 : _d.table_row) == null ? void 0 : _e.cells,
       isRowHeader: true,
       key: 0
     }) }),
@@ -529,7 +529,7 @@ function BlockTable(props) {
       (row, index) => {
         var _a2, _b2;
         return trBlock({
-          cells: (_a2 = row.table_row) == null ? void 0 : _a2.cells,
+          cells: (_a2 = row == null ? void 0 : row.table_row) == null ? void 0 : _a2.cells,
           isRowHeader: false,
           key: index,
           hasColumnHeader: (_b2 = block == null ? void 0 : block.table) == null ? void 0 : _b2.has_column_header
@@ -540,6 +540,8 @@ function BlockTable(props) {
 }
 function trBlock(options) {
   const { cells, isRowHeader, key, hasColumnHeader } = options;
+  if (!cells)
+    return null;
   return /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("tr", { children: cells.map((cell, index, _cells) => {
     if (hasColumnHeader && index === 0) {
       return cellBlock({
