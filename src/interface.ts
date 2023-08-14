@@ -19,7 +19,7 @@ export type ImageType = {
 
 export type PostHeaderType = {
   title: string
-  featuredImage: ImageType
+  featuredImage?: ImageType
   date?: string
   categories?: Category[]
   tags?: Tag[]
@@ -28,6 +28,10 @@ export type PostHeaderType = {
   bookCover?: ImageType
   showToc?: boolean
   contentCheck?: boolean // content of this post has been checked after v4?
+  icon?: {
+    emoji?: string
+    img?: ImageType
+  }
 }
 
 export type Page = {

@@ -25,7 +25,7 @@ type ImageType = {
 } | null;
 type PostHeaderType = {
     title: string;
-    featuredImage: ImageType;
+    featuredImage?: ImageType;
     date?: string;
     categories?: Category[];
     tags?: Tag[];
@@ -34,6 +34,10 @@ type PostHeaderType = {
     bookCover?: ImageType;
     showToc?: boolean;
     contentCheck?: boolean;
+    icon?: {
+        emoji?: string;
+        img?: ImageType;
+    };
 };
 type Page = {
     id?: string;
