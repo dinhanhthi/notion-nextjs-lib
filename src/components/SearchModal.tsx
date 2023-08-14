@@ -16,7 +16,7 @@ import useSWR from 'swr'
 import { SearchResult } from '../interface'
 
 type SearchModalProps = {
-  url: string
+  url: string // Cannot use process.env because it will be undefined in the client side
   isOpen: boolean
   closeModal: () => void
   slugPrefix?: string

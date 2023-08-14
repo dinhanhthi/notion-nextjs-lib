@@ -210,9 +210,9 @@ export async function getBlocks(
     if (block.has_children) {
       const children = await getBlocks(
         block.id,
-        block['list_item'],
         notionToken,
         notionVersion,
+        block['list_item'],
         getPageUri,
         parseImgurUrl
       )

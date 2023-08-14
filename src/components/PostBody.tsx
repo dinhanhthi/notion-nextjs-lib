@@ -1,3 +1,5 @@
+'use client'
+
 import { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 import cn from 'classnames'
 
