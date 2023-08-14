@@ -1,5 +1,5 @@
 import { TextRichTextItemResponse, RichTextItemResponse } from '@notionhq/client/build/src/api-endpoints';
-import { A as AnnotationIgnoreField } from '../interface.d-c1bc20fa.js';
+import { A as AnnotationIgnoreField } from '../interface.d-1ae9c039.js';
 import 'next/image';
 
 declare function generateTextAnnotationClasses(annotations: TextRichTextItemResponse['annotations'], ignore?: AnnotationIgnoreField[]): string;

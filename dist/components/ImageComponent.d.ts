@@ -1,6 +1,6 @@
 import * as react_jsx_runtime from 'react/jsx-runtime';
 import { StaticImageData, ImageProps } from 'next/image';
-import { I as ImageType } from '../interface.d-c1bc20fa.js';
+import { I as ImageType } from '../interface.d-1ae9c039.js';
 import '@notionhq/client/build/src/api-endpoints';
 
 type ImageComponentProps = {

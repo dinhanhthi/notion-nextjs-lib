@@ -72,9 +72,7 @@ Put the following to `tailwind.config.ts`,
 
 ```ts
 export default {
-  content: [
-    './node_modules/notion-nextjs-lib/dist/**/*.{js,ts,jsx,tsx,mdx}'
-  ]
+  content: ['./node_modules/notion-nextjs-lib/dist/**/*.{js,ts,jsx,tsx,mdx}']
 }
 ```
 
@@ -84,9 +82,11 @@ How to import a component?
 import BlockRender from 'notion-nextjs-lib/dist/components/BlockRender'
 ```
 
-How to import a helper?
+How to import a helper/lib?
 
 ```tsx
 import { getJoinedRichText } from 'notion-nextjs-lib/dist/helpers/block-helpers'
+import { makeSlugText } from 'notion-nextjs-lib/dist/helpers/helpers'
+// or a lib
+import { getNotionDatabaseWithoutCache } from 'notion-nextjs-lib/dist/lib/db'
 ```
-

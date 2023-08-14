@@ -1,5 +1,5 @@
 import * as react_jsx_runtime from 'react/jsx-runtime';
-import { P as Post } from '../interface.d-c1bc20fa.js';
+import { P as Post } from '../interface.d-1ae9c039.js';
 import '@notionhq/client/build/src/api-endpoints';
 import 'next/image';
 

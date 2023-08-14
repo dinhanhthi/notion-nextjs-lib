@@ -1,7 +1,13 @@
 import { defineConfig } from 'tsup'
 
 export default defineConfig({
-  entry: ['src/index.tsx', 'src/components/*.tsx', 'src/helpers/*.ts', 'src/styles.css'],
+  entry: [
+    'src/index.tsx',
+    'src/components/*.tsx',
+    'src/helpers/*.ts',
+    'src/styles.css',
+    'src/lib/db.ts'
+  ],
   outDir: 'dist',
   target: 'es2017',
   platform: 'node',

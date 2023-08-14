@@ -58,6 +58,15 @@ interface Post extends PostHeaderType {
   excerpt?: RichTextItemResponse[]
 }
 
+/**
+ * NOTION DATA
+ */
+
+type NotionSorts = {
+  property: string
+  direction: 'ascending' | 'descending'
+}
+
 type AnnotationIgnoreField =
   | 'bold'
   | 'italic'
@@ -66,4 +75,4 @@ type AnnotationIgnoreField =
   | 'code'
   | 'color'
 
-export { AnnotationIgnoreField as A, ImageType as I, Post as P };
+export { AnnotationIgnoreField as A, ImageType as I, NotionSorts as N, Post as P };
