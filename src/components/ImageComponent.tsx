@@ -5,7 +5,7 @@ import Image, { ImageProps, StaticImageData } from 'next/image'
 import { ImageType } from '../interface'
 
 type ImageComponentProps = {
-  image: ImageType
+  image?: ImageType
   defaultImage?: StaticImageData
   alt?: string
   className?: string

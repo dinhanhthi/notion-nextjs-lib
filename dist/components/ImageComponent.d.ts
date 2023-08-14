@@ -4,7 +4,7 @@ import { ImageType } from '../interface.js';
 import '@notionhq/client/build/src/api-endpoints';
 
 type ImageComponentProps = {
-    image: ImageType;
+    image?: ImageType;
     defaultImage?: StaticImageData;
     alt?: string;
     className?: string;
