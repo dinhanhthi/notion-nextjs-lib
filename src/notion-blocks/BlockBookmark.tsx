@@ -21,6 +21,9 @@ export default function BlockBookmark(props: {
             'flex w-full overflow-hidden rounded-md border border-slate-200 p-3',
             'hover:cursor-pointer hover:border-sky-300 hover:shadow-sm'
           )}
+          href={data.url}
+          target="_blank"
+          rel="noreferrer"
         >
           <div className="flex flex-[4_1_180px] flex-col justify-between gap-4 overflow-hidden">
             <div className="flex flex-col gap-1.5">

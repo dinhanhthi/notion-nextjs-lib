@@ -148,6 +148,9 @@ function BlockBookmark(props) {
         "flex w-full overflow-hidden rounded-md border border-slate-200 p-3",
         "hover:cursor-pointer hover:border-sky-300 hover:shadow-sm"
       ),
+      href: data.url,
+      target: "_blank",
+      rel: "noreferrer",
       children: [
         /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "flex flex-[4_1_180px] flex-col justify-between gap-4 overflow-hidden", children: [
           /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "flex flex-col gap-1.5", children: [
