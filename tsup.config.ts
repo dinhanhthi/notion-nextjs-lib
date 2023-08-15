@@ -7,6 +7,7 @@ export default defineConfig({
     'src/helpers/*.ts',
     'src/styles.css',
     'src/lib/db.ts',
+    'src/lib/dbWeb.ts',
     'src/interface.ts'
   ],
   outDir: 'dist',
