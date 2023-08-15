@@ -1,4 +1,5 @@
 @import "katex/dist/katex.min.css";
+@import "react-medium-image-zoom/dist/styles.css";
 
 /* src/styles.css */
 @tailwind base;

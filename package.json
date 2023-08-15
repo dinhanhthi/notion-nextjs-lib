@@ -1,6 +1,6 @@
 {
   "name": "notion-nextjs-lib",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A basic blocks/renderer/components for building nextjs site based on notion and tailwind.",
   "main": "./dist/index.js",
   "scripts": {
@@ -39,17 +39,17 @@
     "mermaid": "^10.2.3",
     "moment": "^2.29.4",
     "next": "13.4.4",
+    "plaiceholder": "^3.0.0",
     "react": "18.2.0",
     "react-clipboard.js": "^2.0.16",
     "react-icons": "^4.9.0",
-    "react-medium-image-zoom": "^5.1.6",
+    "react-medium-image-zoom": "^5.1.8",
     "react-snap-carousel": "^0.3.2",
     "react-syntax-highlighter": "^15.5.0",
     "react-youtube": "^10.1.0",
     "swr": "^2.1.5",
     "tailwindcss": "3.3.2",
     "typescript": "5.1.3",
-    "plaiceholder": "^3.0.0",
     "unfurl.js": "^6.3.2"
   },
   "devDependencies": {
