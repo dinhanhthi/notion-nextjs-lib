@@ -65,7 +65,7 @@ export default function BlockCode(props: BlockCodeProps) {
             </button>
           </CopyToClipboard>
         </div>
-        <Tooltip id="block-code-tooltip" noArrow={true} />
+        <Tooltip id="block-code-tooltip" noArrow={true} className="text-sm" />
       </div>
 
       {block?.code?.caption && (

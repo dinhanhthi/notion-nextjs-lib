@@ -65,7 +65,7 @@ function BadgeSocial(props) {
         )
       }
     ),
-    /* @__PURE__ */ jsx2(Tooltip, { id: "badge-social-tooltip", noArrow: true })
+    /* @__PURE__ */ jsx2(Tooltip, { id: "badge-social-tooltip", noArrow: true, className: "text-sm" })
   ] });
 }
 export {

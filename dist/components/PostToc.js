@@ -369,7 +369,7 @@ function BlockCode(props) {
           ] }) })
         }
       ),
-      /* @__PURE__ */ jsx14(Tooltip, { id: "block-code-tooltip", noArrow: true })
+      /* @__PURE__ */ jsx14(Tooltip, { id: "block-code-tooltip", noArrow: true, className: "text-sm" })
     ] }),
     block?.code?.caption && /* @__PURE__ */ jsx14("div", { className: "italic opacity-60", children: block?.code?.caption?.map((richText, index) => /* @__PURE__ */ jsx14(BlockRichText, { richText }, index)) }),
     block?.code?.language === "mermaid" && /* @__PURE__ */ jsx14(Mermaid, { chart: getJoinedRichText(block?.code?.rich_text) })

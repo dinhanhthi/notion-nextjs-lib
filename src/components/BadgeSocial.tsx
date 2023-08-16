@@ -35,7 +35,7 @@ export default function BadgeSocial(props: BadgeSocialProps) {
           imageProps={{ width: 64, height: 64 }}
         />
       </a>
-      <Tooltip id="badge-social-tooltip" noArrow={true} />
+      <Tooltip id="badge-social-tooltip" noArrow={true} className="text-sm" />
     </>
   )
 }
