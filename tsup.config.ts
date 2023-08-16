@@ -10,8 +10,9 @@ export default defineConfig({
     'src/interface.ts'
   ],
   outDir: 'dist',
-  target: 'es2017',
+  target: 'node18',
   platform: 'node',
+  format: 'esm',
   splitting: false,
   shims: false,
   sourcemap: true,

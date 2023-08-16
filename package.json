@@ -10,7 +10,8 @@
     "lint": "eslint --ext .js,.jsx,.ts,.tsx src/**",
     "prettier": "prettier --write \"**/*.{tsx,ts,css,scss}\"",
     "css:build": "node-sass src/styles.scss src/styles.css",
-    "css:watch": "rimraf src/css/main.css && yarn css:build && node-sass -w src/styles.scss src/styles.css"
+    "css:watch": "rimraf src/css/main.css && yarn css:build && node-sass -w src/styles.scss src/styles.css",
+    "reinstall": "rimraf node_modules && rimraf yarn.lock && yarn install"
   },
   "repository": {
     "type": "git",
@@ -36,14 +37,14 @@
     "html-react-parser": "^4.0.0",
     "katex": "^0.16.8",
     "lodash": "^4.17.21",
-    "mermaid": "^10.2.3",
+    "medium-zoom": "^1.0.8",
+    "mermaid": "^10.3.1",
     "moment": "^2.29.4",
     "next": "13.4.4",
     "plaiceholder": "^3.0.0",
     "react": "18.2.0",
     "react-clipboard.js": "^2.0.16",
     "react-icons": "^4.9.0",
-    "react-medium-image-zoom": "^5.1.8",
     "react-snap-carousel": "^0.3.2",
     "react-syntax-highlighter": "^15.5.0",
     "react-youtube": "^10.1.0",
