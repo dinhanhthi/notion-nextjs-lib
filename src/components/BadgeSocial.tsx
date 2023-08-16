@@ -1,5 +1,6 @@
 'use client'
 
+import cn from 'classnames'
 import { Tooltip } from 'react-tooltip'
 
 import { ImageType } from '../interface'
@@ -31,7 +32,10 @@ export default function BadgeSocial(props: BadgeSocialProps) {
         <ImageComponent
           image={props.icon}
           alt={props.title}
-          className="w-16 h-16 rounded-full bg-slate-100"
+          className={cn(
+            'w-16 h-16 rounded-full transition-transform duration-200 group-hover:-translate-y-0.5',
+            props.imgClass
+          )}
           imageProps={{ width: 64, height: 64 }}
         />
       </a>

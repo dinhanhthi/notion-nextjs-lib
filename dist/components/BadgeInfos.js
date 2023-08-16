@@ -1,10 +1,16 @@
 // src/components/BadgeInfos.tsx
+import cn from "classnames";
 import Link from "next/link";
 import { jsx, jsxs } from "react/jsx-runtime";
 function BadgeInfos(props) {
-  const aLinkClass = `
-    block py-2.5 bg-transparent text-main-dark rounded-3xl border-gray-600 text-sm
-    uppercase font-bold tracking-widest${props?.className ? ` ${props.className}` : " px-5 hover:bg-gray-700"} transition duration-300 shadow-md md:shadow-none`;
+  const aLinkClass = cn(
+    "block py-2.5 text-main-dark rounded-3xl border-gray-600 text-sm uppercase",
+    "tracking-widest transition duration-300 shadow-md md:shadow-none",
+    {
+      "bg-transparent px-5 hover:bg-gray-700": !props?.className,
+      [props?.className]: !!props?.className
+    }
+  );
   if (props.external || props.url.includes("//")) {
     return /* @__PURE__ */ jsxs(
       "a",
