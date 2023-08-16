@@ -21,6 +21,10 @@ type SearchModalProps = {
   closeModal: () => void
   slugPrefix?: string
   className?: string
+  errorMessage?: string
+  noResultsMessage?: string
+  foundResultsMessage?: string // should be in the format of 'Found {{count}} results'
+  placeholder?: string
 }
 
 export default function SearchModal(props: SearchModalProps) {
@@ -174,7 +178,7 @@ export default function SearchModal(props: SearchModalProps) {
                     )}
                     id="search"
                     type="search"
-                    placeholder="Tìm bài viết..."
+                    placeholder={props.placeholder || 'Search...'}
                     autoComplete="off"
                     value={query}
                     onChange={e => handleOnchangeInput(e)}
@@ -190,14 +194,14 @@ export default function SearchModal(props: SearchModalProps) {
                 {/* Search results */}
                 {error && (
                   <div className="p-4 text-center text-base">
-                    Có lỗi trong quá trình tải dữ liệu, vui lòng thử lại hoặc liên hệ Math2IT!
+                    {props.errorMessage || 'There was an error fetching the search results.'}
                   </div>
                 )}
                 {data && !data?.[0]?.isFake && query && (
                   <>
                     {data.length === 0 && (
                       <div className="p-4 text-center text-base">
-                        Không tìm thấy bài viết phù hợp!
+                        {props.noResultsMessage || 'No results found.'}
                       </div>
                     )}
                     {data.length > 0 && (
@@ -264,9 +268,9 @@ export default function SearchModal(props: SearchModalProps) {
                         </div>
                         {query && (
                           <div className="p-3 pl-4 text-sm font-normal text-slate-500">
-                            Tìm thấy{' '}
-                            <span className="font-semibold text-slate-900">{data.length}</span> kết
-                            quả.
+                            {props.foundResultsMessage?.split('{{count}}')[0] || 'Found '}
+                            <span className="font-semibold text-slate-900">{data.length}</span>
+                            {props.foundResultsMessage?.split('{{count}}')[1] || ' results'}
                           </div>
                         )}
                       </div>

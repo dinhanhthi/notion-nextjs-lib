@@ -47,7 +47,7 @@ var import_io5 = require("react-icons/io5");
 var import_swr = __toESM(require("swr"));
 var import_jsx_runtime = require("react/jsx-runtime");
 function SearchModal(props) {
-  var _a;
+  var _a, _b, _c;
   const inputRef = (0, import_react2.useRef)(null);
   const containerRef = (0, import_react2.useRef)(null);
   const [query, setQuery] = (0, import_react2.useState)("");
@@ -176,7 +176,7 @@ function SearchModal(props) {
                     ),
                     id: "search",
                     type: "search",
-                    placeholder: "T\xECm b\xE0i vi\u1EBFt...",
+                    placeholder: props.placeholder || "Search...",
                     autoComplete: "off",
                     value: query,
                     onChange: (e) => handleOnchangeInput(e),
@@ -185,9 +185,9 @@ function SearchModal(props) {
                 ),
                 query && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { onClick: () => setQuery(""), children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_io5.IoCloseCircle, { className: "h-5 w-5 text-slate-500" }) })
               ] }),
-              error && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "p-4 text-center text-base", children: "C\xF3 l\u1ED7i trong qu\xE1 tr\xECnh t\u1EA3i d\u1EEF li\u1EC7u, vui l\xF2ng th\u1EED l\u1EA1i ho\u1EB7c li\xEAn h\u1EC7 Math2IT!" }),
+              error && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "p-4 text-center text-base", children: props.errorMessage || "There was an error fetching the search results." }),
               data && !((_a = data == null ? void 0 : data[0]) == null ? void 0 : _a.isFake) && query && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-                data.length === 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "p-4 text-center text-base", children: "Kh\xF4ng t\xECm th\u1EA5y b\xE0i vi\u1EBFt ph\xF9 h\u1EE3p!" }),
+                data.length === 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "p-4 text-center text-base", children: props.noResultsMessage || "No results found." }),
                 data.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: (0, import_classnames.default)("flex flex-col divide-y overflow-hidden"), children: [
                   /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
                     "div",
@@ -252,10 +252,9 @@ function SearchModal(props) {
                     }
                   ),
                   query && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "p-3 pl-4 text-sm font-normal text-slate-500", children: [
-                    "T\xECm th\u1EA5y",
-                    " ",
+                    ((_b = props.foundResultsMessage) == null ? void 0 : _b.split("{{count}}")[0]) || "Found ",
                     /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "font-semibold text-slate-900", children: data.length }),
-                    " k\u1EBFt qu\u1EA3."
+                    ((_c = props.foundResultsMessage) == null ? void 0 : _c.split("{{count}}")[1]) || " results"
                   ] })
                 ] })
               ] })

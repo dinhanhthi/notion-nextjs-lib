@@ -6,6 +6,10 @@ type SearchModalProps = {
     closeModal: () => void;
     slugPrefix?: string;
     className?: string;
+    errorMessage?: string;
+    noResultsMessage?: string;
+    foundResultsMessage?: string;
+    placeholder?: string;
 };
 declare function SearchModal(props: SearchModalProps): react_jsx_runtime.JSX.Element;
 
