@@ -1,21 +1,28 @@
 'use client'
 
 import { CodeBlockObjectResponse } from '@notionhq/client/build/src/api-endpoints'
-import Tippy from '@tippyjs/react'
 import cn from 'classnames'
-import { useState } from 'react'
-import Clipboard from 'react-clipboard.js'
+import { useContext, useState } from 'react'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { FiCheck } from 'react-icons/fi'
 import { RxCopy } from 'react-icons/rx'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { dracula } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { Tooltip } from 'react-tooltip'
 
+import { BlockOptionContext } from '../components/BlockRender'
 import Mermaid from '../components/Mermaid'
 import { getJoinedRichText } from '../helpers/block-helpers'
 import { defaultCodeLanguage } from '../lib/config'
 import BlockRichText from './BlockRichText'
 
-export default function BlockCode(props: { block: CodeBlockObjectResponse; className?: string }) {
+type BlockCodeProps = {
+  block: CodeBlockObjectResponse
+  className?: string
+}
+
+export default function BlockCode(props: BlockCodeProps) {
+  const ctx = useContext(BlockOptionContext) as any
   const { block, className } = props
   const language = block?.code?.language?.toLowerCase() || defaultCodeLanguage
 
@@ -37,32 +44,28 @@ export default function BlockCode(props: { block: CodeBlockObjectResponse; class
           {/* We don't use <BlockRichText> because the package react-syntax-highlighter requires a string. */}
           {getJoinedRichText(block?.code?.rich_text)}
         </SyntaxHighlighter>
-
-        <Tippy
-          content={copied ? 'Đã sao chép' : 'Sao chép đoạn code'}
-          arrow={false}
-          placement="top"
+        <div
+          className={cn(
+            'absolute right-2 top-2 duration-100 hover:cursor-pointer',
+            {
+              'opacity-0': !copied
+            },
+            'group-hover:opacity-100'
+          )}
+          data-tooltip-id="block-code-tooltip"
+          data-tooltip-content={
+            copied ? ctx?.blockCodeCopiedText || 'Copied' : ctx?.blockCodeCopyText || 'Copy'
+          }
+          data-tooltip-place="top"
         >
-          <div
-            className={cn(
-              'absolute right-2 top-2 duration-100 hover:cursor-pointer',
-              {
-                'opacity-0': !copied
-              },
-              'group-hover:opacity-100'
-            )}
-          >
-            <Clipboard
-              data-clipboard-text={getJoinedRichText(block?.code?.rich_text)}
-              onSuccess={onSuccess}
-            >
-              <>
-                {!copied && <RxCopy className="text-lg text-slate-200 hover:text-pink-300" />}
-                {copied && <FiCheck className="text-lg text-green-300" />}
-              </>
-            </Clipboard>
-          </div>
-        </Tippy>
+          <CopyToClipboard text={getJoinedRichText(block?.code?.rich_text)} onCopy={onSuccess}>
+            <button>
+              {!copied && <RxCopy className="text-lg text-slate-200 hover:text-pink-300" />}
+              {copied && <FiCheck className="text-lg text-green-300" />}
+            </button>
+          </CopyToClipboard>
+        </div>
+        <Tooltip id="block-code-tooltip" noArrow={true} />
       </div>
 
       {block?.code?.caption && (

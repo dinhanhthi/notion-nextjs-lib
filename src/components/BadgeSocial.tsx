@@ -1,6 +1,6 @@
 'use client'
 
-import Tippy from '@tippyjs/react'
+import { Tooltip } from 'react-tooltip'
 
 import { ImageType } from '../interface'
 import ImageComponent from './ImageComponent'
@@ -15,15 +15,18 @@ export type BadgeSocialProps = {
 
 export default function BadgeSocial(props: BadgeSocialProps) {
   return (
-    <Tippy content={props.title} placement="bottom" arrow={false}>
+    <>
       <a
         className={`
-          group block h-12 w-12 rounded-2xl bg-gray-700 p-2
-          shadow-none md:h-10 md:w-10 md:p-1.5
-        `}
+        group block h-12 w-12 rounded-2xl bg-gray-700 p-2
+        shadow-none md:h-10 md:w-10 md:p-1.5
+      `}
         href={props.url}
         target="_blank"
         rel="noopener noreferrer"
+        data-tooltip-id="badge-social-tooltip"
+        data-tooltip-content={props.title}
+        data-tooltip-place="bottom"
       >
         <ImageComponent
           image={props.icon}
@@ -32,6 +35,7 @@ export default function BadgeSocial(props: BadgeSocialProps) {
           imageProps={{ width: 64, height: 64 }}
         />
       </a>
-    </Tippy>
+      <Tooltip id="badge-social-tooltip" noArrow={true} />
+    </>
   )
 }

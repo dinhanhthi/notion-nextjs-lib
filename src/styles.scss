@@ -3,7 +3,7 @@
 @tailwind utilities;
 @import 'katex/dist/katex.min.css';
 @import 'prismjs/themes/prism-tomorrow.css';
-@import 'tippy.js/dist/tippy.css';
+@import 'react-tooltip/dist/react-tooltip.css';
 
 .w-full > iframe {
   width: 100%;

@@ -8,6 +8,8 @@ import Renderer from './Renderer'
 export type BlockOptionsContextType = {
   disableAnchorHeading?: boolean // used in BlockHeading
   siteDomain?: string // used in BlockText to recognize external links (eg. math2it.com -> alike @mention)
+  blockCodeCopyText?: string // used in BlockCode to customize copy text
+  blockCodeCopiedText?: string // used in BlockCode to customize copied text
 }
 
 const defaultBlockOptionContext: BlockOptionsContextType = {

@@ -1,10 +1,6 @@
 "use client";
-var __create = Object.create;
 var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
-var __getProtoOf = Object.getPrototypeOf;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __esm = (fn, res) => function __init() {
   return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
 };
@@ -12,33 +8,17 @@ var __export = (target, all) => {
   for (var name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc) => {
-  if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
-      if (!__hasOwnProp.call(to, key) && key !== except)
-        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
-  }
-  return to;
-};
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
-  // If the importer is in node compatibility mode or this is not an ESM
-  // file that has been converted to a CommonJS file using a Babel-
-  // compatible transform (i.e. "__esModule" has not been set), then set
-  // "default" to the CommonJS "module.exports" for node compatibility.
-  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
-  mod
-));
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/helpers/block-helpers.ts
+import cn from "classnames";
 function generateTextAnnotationClasses(annotations, ignore) {
-  return (0, import_classnames.default)({
-    "font-semibold": annotations.bold && !(ignore == null ? void 0 : ignore.includes("bold")),
-    italic: annotations.italic && !(ignore == null ? void 0 : ignore.includes("italic")),
-    "underline underline-offset-4": annotations.underline && !(ignore == null ? void 0 : ignore.includes("underline")),
-    "line-through": annotations.strikethrough && !(ignore == null ? void 0 : ignore.includes("strikethrough")),
-    "font-mono text-[85%] bg-slate-200 text-rose-500 px-1 py-0 rounded": annotations.code && !(ignore == null ? void 0 : ignore.includes("code")),
-    [mapColorClass(annotations.color)]: !(ignore == null ? void 0 : ignore.includes("color"))
+  return cn({
+    "font-semibold": annotations.bold && !ignore?.includes("bold"),
+    italic: annotations.italic && !ignore?.includes("italic"),
+    "underline underline-offset-4": annotations.underline && !ignore?.includes("underline"),
+    "line-through": annotations.strikethrough && !ignore?.includes("strikethrough"),
+    "font-mono text-[85%] bg-slate-200 text-rose-500 px-1 py-0 rounded": annotations.code && !ignore?.includes("code"),
+    [mapColorClass(annotations.color)]: !ignore?.includes("color")
   });
 }
 function getJoinedRichText(richTextArr) {
@@ -113,140 +93,126 @@ function getYoutubeVideoId(url) {
   }
   return videoId;
 }
-var import_classnames;
 var init_block_helpers = __esm({
   "src/helpers/block-helpers.ts"() {
-    import_classnames = __toESM(require("classnames"));
   }
 });
 
 // src/notion-blocks/BlockBookmark.tsx
-var import_classnames2, import_jsx_runtime;
+import cn2 from "classnames";
+import { Fragment, jsx, jsxs } from "react/jsx-runtime";
 var init_BlockBookmark = __esm({
   "src/notion-blocks/BlockBookmark.tsx"() {
     "use client";
-    import_classnames2 = __toESM(require("classnames"));
-    import_jsx_runtime = require("react/jsx-runtime");
   }
 });
 
 // src/notion-blocks/BlockBulletedListItem.tsx
-var import_classnames3, import_go, import_rx, import_jsx_runtime2;
+import cn3 from "classnames";
+import { GoSquareFill } from "react-icons/go";
+import { RxDot, RxDotFilled } from "react-icons/rx";
+import { jsx as jsx2, jsxs as jsxs2 } from "react/jsx-runtime";
 var init_BlockBulletedListItem = __esm({
   "src/notion-blocks/BlockBulletedListItem.tsx"() {
-    import_classnames3 = __toESM(require("classnames"));
-    import_go = require("react-icons/go");
-    import_rx = require("react-icons/rx");
     init_BlockRichText();
-    import_jsx_runtime2 = require("react/jsx-runtime");
   }
 });
 
 // src/notion-blocks/BlockCallout.tsx
-var import_classnames4, import_lodash, import_jsx_runtime3;
+import cn4 from "classnames";
+import { get } from "lodash";
+import { jsx as jsx3, jsxs as jsxs3 } from "react/jsx-runtime";
 var init_BlockCallout = __esm({
   "src/notion-blocks/BlockCallout.tsx"() {
-    import_classnames4 = __toESM(require("classnames"));
-    import_lodash = require("lodash");
     init_block_helpers();
     init_BlockRichText();
-    import_jsx_runtime3 = require("react/jsx-runtime");
   }
 });
 
 // src/notion-blocks/BlockColumnList.tsx
-var import_classnames5, import_jsx_runtime4;
+import cn5 from "classnames";
+import { jsx as jsx4 } from "react/jsx-runtime";
 var init_BlockColumnList = __esm({
   "src/notion-blocks/BlockColumnList.tsx"() {
-    import_classnames5 = __toESM(require("classnames"));
     init_BlockRender();
-    import_jsx_runtime4 = require("react/jsx-runtime");
   }
 });
 
 // src/notion-blocks/BlockHeadingToggle.tsx
-var import_react2, import_classnames6, import_bs, import_jsx_runtime5;
+import { Disclosure } from "@headlessui/react";
+import cn6 from "classnames";
+import { BsFillCaretRightFill } from "react-icons/bs";
+import { Fragment as Fragment2, jsx as jsx5, jsxs as jsxs4 } from "react/jsx-runtime";
 var init_BlockHeadingToggle = __esm({
   "src/notion-blocks/BlockHeadingToggle.tsx"() {
     "use client";
-    import_react2 = require("@headlessui/react");
-    import_classnames6 = __toESM(require("classnames"));
-    import_bs = require("react-icons/bs");
-    import_jsx_runtime5 = require("react/jsx-runtime");
   }
 });
 
 // src/notion-blocks/BlockHeading.tsx
-var import_classnames7, import_lodash2, import_react3, import_jsx_runtime6;
+import cn7 from "classnames";
+import { get as get2 } from "lodash";
+import { useContext } from "react";
+import { Fragment as Fragment3, jsx as jsx6, jsxs as jsxs5 } from "react/jsx-runtime";
 var init_BlockHeading = __esm({
   "src/notion-blocks/BlockHeading.tsx"() {
     "use client";
-    import_classnames7 = __toESM(require("classnames"));
-    import_lodash2 = require("lodash");
-    import_react3 = require("react");
     init_BlockRender();
     init_block_helpers();
     init_BlockHeadingToggle();
     init_BlockRichText();
-    import_jsx_runtime6 = require("react/jsx-runtime");
   }
 });
 
 // src/notion-blocks/BlockNumberedListItem.tsx
-var import_classnames8, import_jsx_runtime7;
+import cn8 from "classnames";
+import { jsx as jsx7, jsxs as jsxs6 } from "react/jsx-runtime";
 var init_BlockNumberedListItem = __esm({
   "src/notion-blocks/BlockNumberedListItem.tsx"() {
-    import_classnames8 = __toESM(require("classnames"));
     init_BlockRichText();
-    import_jsx_runtime7 = require("react/jsx-runtime");
   }
 });
 
 // src/notion-blocks/BlockParagraph.tsx
-var import_classnames9, import_jsx_runtime8;
+import cn9 from "classnames";
+import { jsx as jsx8, jsxs as jsxs7 } from "react/jsx-runtime";
 var init_BlockParagraph = __esm({
   "src/notion-blocks/BlockParagraph.tsx"() {
-    import_classnames9 = __toESM(require("classnames"));
     init_block_helpers();
     init_BlockRichText();
-    // We don't use <p> here because there may be other not-supported tags in the <p> tag.
-    import_jsx_runtime8 = require("react/jsx-runtime");
   }
 });
 
 // src/notion-blocks/BlockQuote.tsx
-var import_classnames10, import_jsx_runtime9;
+import cn10 from "classnames";
+import { jsx as jsx9, jsxs as jsxs8 } from "react/jsx-runtime";
 var init_BlockQuote = __esm({
   "src/notion-blocks/BlockQuote.tsx"() {
-    import_classnames10 = __toESM(require("classnames"));
     init_block_helpers();
     init_BlockRichText();
-    import_jsx_runtime9 = require("react/jsx-runtime");
   }
 });
 
 // src/notion-blocks/BlockToDo.tsx
-var import_classnames11, import_bs2, import_jsx_runtime10;
+import cn11 from "classnames";
+import { BsCheckSquare, BsSquare } from "react-icons/bs";
+import { jsx as jsx10, jsxs as jsxs9 } from "react/jsx-runtime";
 var init_BlockToDo = __esm({
   "src/notion-blocks/BlockToDo.tsx"() {
-    import_classnames11 = __toESM(require("classnames"));
-    import_bs2 = require("react-icons/bs");
     init_BlockRichText();
-    import_jsx_runtime10 = require("react/jsx-runtime");
   }
 });
 
 // src/notion-blocks/BlockToggle.tsx
-var import_react4, import_classnames12, import_bs3, import_jsx_runtime11;
+import { Disclosure as Disclosure2 } from "@headlessui/react";
+import cn12 from "classnames";
+import { BsFillCaretRightFill as BsFillCaretRightFill2 } from "react-icons/bs";
+import { Fragment as Fragment4, jsx as jsx11, jsxs as jsxs10 } from "react/jsx-runtime";
 var init_BlockToggle = __esm({
   "src/notion-blocks/BlockToggle.tsx"() {
     "use client";
-    import_react4 = require("@headlessui/react");
-    import_classnames12 = __toESM(require("classnames"));
-    import_bs3 = require("react-icons/bs");
     init_block_helpers();
     init_BlockRichText();
-    import_jsx_runtime11 = require("react/jsx-runtime");
   }
 });
 
@@ -264,70 +230,86 @@ var BlockImage_exports = {};
 __export(BlockImage_exports, {
   default: () => BlockImage
 });
+import cn13 from "classnames";
+import { get as get3 } from "lodash";
+import mediumZoom from "medium-zoom";
+import Image from "next/image";
+import { useRef as useRef2, useState as useState2 } from "react";
+import { jsx as jsx12, jsxs as jsxs11 } from "react/jsx-runtime";
 function BlockImage(props) {
-  var _a, _b;
-  const [isImageReady, setIsImageReady] = (0, import_react5.useState)(false);
+  const [isImageReady, setIsImageReady] = useState2(false);
   const { block, className } = props;
-  const width = Math.min((0, import_lodash3.get)(block, "imageInfo.width", 1e3), 1e3);
-  const height = Math.min((0, import_lodash3.get)(block, "imageInfo.height", 700), 700);
-  const blurDataURL = (0, import_lodash3.get)(block, "imageInfo.base64", defaultBlurDataURL);
-  const caption = (_a = block == null ? void 0 : block.image) == null ? void 0 : _a.caption;
-  return /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: (0, import_classnames13.default)(className, "flex flex-col justify-center items-center gap-2"), children: [
-    block.imgUrl && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { className: "relative flex w-full items-center justify-center overflow-hidden", children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(import_react_medium_image_zoom.default, { zoomMargin: 30, children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
-      import_image.default,
+  const width = Math.min(get3(block, "imageInfo.width", 1e3), 1e3);
+  const height = Math.min(get3(block, "imageInfo.height", 700), 700);
+  const blurDataURL = get3(block, "imageInfo.base64", defaultBlurDataURL);
+  const caption = block?.image?.caption;
+  const zoomRef = useRef2(null);
+  function getZoom() {
+    if (zoomRef.current === null) {
+      zoomRef.current = mediumZoom({
+        background: "#00000080"
+      });
+    }
+    return zoomRef.current;
+  }
+  function attachZoom(image) {
+    const zoom = getZoom();
+    if (image) {
+      zoom.attach(image);
+    } else {
+      zoom.detach();
+    }
+  }
+  return /* @__PURE__ */ jsxs11("div", { className: cn13(className, "flex flex-col justify-center items-center gap-2"), children: [
+    block.imgUrl && /* @__PURE__ */ jsx12("div", { className: "relative flex w-full items-center justify-center overflow-hidden", children: /* @__PURE__ */ jsx12(
+      Image,
       {
-        className: (0, import_classnames13.default)({
+        className: cn13({
           "blur-lg": !isImageReady,
           "blur-0": isImageReady
         }),
         src: block.imgUrl,
-        alt: getJoinedRichText((_b = block == null ? void 0 : block.image) == null ? void 0 : _b.caption),
+        alt: getJoinedRichText(block?.image?.caption),
         width,
         height,
         blurDataURL,
         placeholder: "blur",
         onLoadingComplete: () => setIsImageReady(true),
-        "data-zoomable": true
+        "data-zoomable": true,
+        ref: attachZoom
       }
-    ) }) }),
-    caption && caption.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { className: "text-sm italic opacity-90", children: caption.map((richText, index) => /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(BlockRichText, { richText }, index)) })
+    ) }),
+    caption && caption.length > 0 && /* @__PURE__ */ jsx12("div", { className: "text-sm italic opacity-90", children: caption.map((richText, index) => /* @__PURE__ */ jsx12(BlockRichText, { richText }, index)) })
   ] });
 }
-var import_classnames13, import_lodash3, import_image, import_react5, import_react_medium_image_zoom, import_jsx_runtime12;
 var init_BlockImage = __esm({
   "src/notion-blocks/BlockImage.tsx"() {
     "use client";
-    import_classnames13 = __toESM(require("classnames"));
-    import_lodash3 = require("lodash");
-    import_image = __toESM(require("next/image"));
-    import_react5 = require("react");
-    import_react_medium_image_zoom = __toESM(require("react-medium-image-zoom"));
     init_block_helpers();
     init_config();
     init_BlockRichText();
-    import_jsx_runtime12 = require("react/jsx-runtime");
   }
 });
 
 // src/components/Mermaid.tsx
-var import_mermaid, import_react6, import_jsx_runtime13, Mermaid;
+import mermaid from "mermaid";
+import React from "react";
+import { jsx as jsx13 } from "react/jsx-runtime";
+var Mermaid;
 var init_Mermaid = __esm({
   "src/components/Mermaid.tsx"() {
     "use client";
-    import_mermaid = __toESM(require("mermaid"));
-    import_react6 = __toESM(require("react"));
-    import_jsx_runtime13 = require("react/jsx-runtime");
-    import_mermaid.default.initialize({
+    mermaid.initialize({
       startOnLoad: true,
       theme: "default",
       securityLevel: "loose"
     });
-    Mermaid = class extends import_react6.default.Component {
+    Mermaid = class extends React.Component {
       componentDidMount() {
-        import_mermaid.default.contentLoaded();
+        mermaid.contentLoaded();
       }
       render() {
-        return /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("div", { className: "mermaid flex justify-center", children: this.props.chart });
+        return /* @__PURE__ */ jsx13("div", { className: "mermaid flex justify-center", children: this.props.chart });
       }
     };
   }
@@ -338,80 +320,70 @@ var BlockCode_exports = {};
 __export(BlockCode_exports, {
   default: () => BlockCode
 });
+import cn14 from "classnames";
+import { useContext as useContext2, useState as useState3 } from "react";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { FiCheck } from "react-icons/fi";
+import { RxCopy } from "react-icons/rx";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { Tooltip } from "react-tooltip";
+import { jsx as jsx14, jsxs as jsxs12 } from "react/jsx-runtime";
 function BlockCode(props) {
-  var _a, _b, _c, _d, _e, _f, _g, _h, _i;
+  const ctx = useContext2(BlockOptionContext);
   const { block, className } = props;
-  const language = ((_b = (_a = block == null ? void 0 : block.code) == null ? void 0 : _a.language) == null ? void 0 : _b.toLowerCase()) || defaultCodeLanguage;
-  const [copied, setCopied] = (0, import_react8.useState)(false);
+  const language = block?.code?.language?.toLowerCase() || defaultCodeLanguage;
+  const [copied, setCopied] = useState3(false);
   const onSuccess = () => {
     setCopied(true);
     setTimeout(() => setCopied(false), 1e3);
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("div", { className: (0, import_classnames14.default)(className, "group"), children: [
-    /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("div", { className: `language-${formatCodeLang(language)} syntax-highlighter relative`, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(
-        import_react_syntax_highlighter.Prism,
+  return /* @__PURE__ */ jsxs12("div", { className: cn14(className, "group"), children: [
+    /* @__PURE__ */ jsxs12("div", { className: `language-${formatCodeLang(language)} syntax-highlighter relative`, children: [
+      /* @__PURE__ */ jsx14(
+        SyntaxHighlighter,
         {
           language: formatCodeLang(language),
-          style: import_prism.dracula,
+          style: dracula,
           className: "syntax-highlighter-pre text-sm",
           showLineNumbers: true,
-          children: getJoinedRichText((_c = block == null ? void 0 : block.code) == null ? void 0 : _c.rich_text)
+          children: getJoinedRichText(block?.code?.rich_text)
         }
       ),
-      /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(
-        import_react7.default,
+      /* @__PURE__ */ jsx14(
+        "div",
         {
-          content: copied ? "\u0110\xE3 sao ch\xE9p" : "Sao ch\xE9p \u0111o\u1EA1n code",
-          arrow: false,
-          placement: "top",
-          children: /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(
-            "div",
+          className: cn14(
+            "absolute right-2 top-2 duration-100 hover:cursor-pointer",
             {
-              className: (0, import_classnames14.default)(
-                "absolute right-2 top-2 duration-100 hover:cursor-pointer",
-                {
-                  "opacity-0": !copied
-                },
-                "group-hover:opacity-100"
-              ),
-              children: /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(
-                import_react_clipboard.default,
-                {
-                  "data-clipboard-text": getJoinedRichText((_d = block == null ? void 0 : block.code) == null ? void 0 : _d.rich_text),
-                  onSuccess,
-                  children: /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)(import_jsx_runtime14.Fragment, { children: [
-                    !copied && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(import_rx2.RxCopy, { className: "text-lg text-slate-200 hover:text-pink-300" }),
-                    copied && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(import_fi.FiCheck, { className: "text-lg text-green-300" })
-                  ] })
-                }
-              )
-            }
-          )
+              "opacity-0": !copied
+            },
+            "group-hover:opacity-100"
+          ),
+          "data-tooltip-id": "block-code-tooltip",
+          "data-tooltip-content": copied ? ctx?.blockCodeCopiedText || "Copied" : ctx?.blockCodeCopyText || "Copy",
+          "data-tooltip-place": "top",
+          children: /* @__PURE__ */ jsx14(CopyToClipboard, { text: getJoinedRichText(block?.code?.rich_text), onCopy: onSuccess, children: /* @__PURE__ */ jsxs12("button", { children: [
+            !copied && /* @__PURE__ */ jsx14(RxCopy, { className: "text-lg text-slate-200 hover:text-pink-300" }),
+            copied && /* @__PURE__ */ jsx14(FiCheck, { className: "text-lg text-green-300" })
+          ] }) })
         }
-      )
+      ),
+      /* @__PURE__ */ jsx14(Tooltip, { id: "block-code-tooltip", noArrow: true })
     ] }),
-    ((_e = block == null ? void 0 : block.code) == null ? void 0 : _e.caption) && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("div", { className: "italic opacity-60", children: (_g = (_f = block == null ? void 0 : block.code) == null ? void 0 : _f.caption) == null ? void 0 : _g.map((richText, index) => /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(BlockRichText, { richText }, index)) }),
-    ((_h = block == null ? void 0 : block.code) == null ? void 0 : _h.language) === "mermaid" && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(Mermaid, { chart: getJoinedRichText((_i = block == null ? void 0 : block.code) == null ? void 0 : _i.rich_text) })
+    block?.code?.caption && /* @__PURE__ */ jsx14("div", { className: "italic opacity-60", children: block?.code?.caption?.map((richText, index) => /* @__PURE__ */ jsx14(BlockRichText, { richText }, index)) }),
+    block?.code?.language === "mermaid" && /* @__PURE__ */ jsx14(Mermaid, { chart: getJoinedRichText(block?.code?.rich_text) })
   ] });
 }
-var import_react7, import_classnames14, import_react8, import_react_clipboard, import_fi, import_rx2, import_react_syntax_highlighter, import_prism, import_jsx_runtime14, formatCodeLang;
+var formatCodeLang;
 var init_BlockCode = __esm({
   "src/notion-blocks/BlockCode.tsx"() {
     "use client";
-    import_react7 = __toESM(require("@tippyjs/react"));
-    import_classnames14 = __toESM(require("classnames"));
-    import_react8 = require("react");
-    import_react_clipboard = __toESM(require("react-clipboard.js"));
-    import_fi = require("react-icons/fi");
-    import_rx2 = require("react-icons/rx");
-    import_react_syntax_highlighter = require("react-syntax-highlighter");
-    import_prism = require("react-syntax-highlighter/dist/esm/styles/prism");
+    init_BlockRender();
     init_Mermaid();
     init_block_helpers();
     init_config();
     init_BlockRichText();
-    import_jsx_runtime14 = require("react/jsx-runtime");
     formatCodeLang = (lang) => {
       switch (lang) {
         case "plain text":
@@ -431,14 +403,16 @@ __export(BlockEquation_exports, {
   default: () => BlockEquation,
   mathFontSize: () => mathFontSize
 });
+import Katex from "@matejmazur/react-katex";
+import cn15 from "classnames";
+import { jsx as jsx15 } from "react/jsx-runtime";
 function BlockEquation(props) {
-  var _a;
   const { block, className } = props;
-  return /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: (0, import_classnames15.default)(className, "text-center overflow-auto md:overflow-visible"), children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
-    import_react_katex.default,
+  return /* @__PURE__ */ jsx15("div", { className: cn15(className, "text-center overflow-auto md:overflow-visible"), children: /* @__PURE__ */ jsx15(
+    Katex,
     {
       className: mathFontSize,
-      math: (_a = block == null ? void 0 : block.equation) == null ? void 0 : _a.expression,
+      math: block?.equation?.expression,
       settings: {
         throwOnError: false,
         strict: false
@@ -447,13 +421,10 @@ function BlockEquation(props) {
     }
   ) });
 }
-var import_react_katex, import_classnames15, import_jsx_runtime15, mathFontSize;
+var mathFontSize;
 var init_BlockEquation = __esm({
   "src/notion-blocks/BlockEquation.tsx"() {
     "use client";
-    import_react_katex = __toESM(require("@matejmazur/react-katex"));
-    import_classnames15 = __toESM(require("classnames"));
-    import_jsx_runtime15 = require("react/jsx-runtime");
     mathFontSize = "text-base";
   }
 });
@@ -463,26 +434,24 @@ var BlockTable_exports = {};
 __export(BlockTable_exports, {
   default: () => BlockTable
 });
+import cn16 from "classnames";
+import { jsx as jsx16, jsxs as jsxs13 } from "react/jsx-runtime";
 function BlockTable(props) {
-  var _a, _b, _c, _d, _e;
   const { block, className } = props;
-  const bodyRows = (block == null ? void 0 : block.table.has_row_header) ? (_a = block == null ? void 0 : block["children"]) == null ? void 0 : _a.slice(1) : block == null ? void 0 : block["children"];
-  return /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { className: (0, import_classnames16.default)(className, "w-full overflow-auto md:overflow-visible"), children: /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("table", { className: "table-auto", children: [
-    ((_b = block == null ? void 0 : block.table) == null ? void 0 : _b.has_row_header) && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("thead", { children: trBlock({
-      cells: (_e = (_d = (_c = block == null ? void 0 : block["children"]) == null ? void 0 : _c[0]) == null ? void 0 : _d.table_row) == null ? void 0 : _e.cells,
+  const bodyRows = block?.table.has_row_header ? block?.["children"]?.slice(1) : block?.["children"];
+  return /* @__PURE__ */ jsx16("div", { className: cn16(className, "w-full overflow-auto md:overflow-visible"), children: /* @__PURE__ */ jsxs13("table", { className: "table-auto", children: [
+    block?.table?.has_row_header && /* @__PURE__ */ jsx16("thead", { children: trBlock({
+      cells: block?.["children"]?.[0]?.table_row?.cells,
       isRowHeader: true,
       key: 0
     }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("tbody", { children: bodyRows == null ? void 0 : bodyRows.map(
-      (row, index) => {
-        var _a2, _b2;
-        return trBlock({
-          cells: (_a2 = row == null ? void 0 : row.table_row) == null ? void 0 : _a2.cells,
-          isRowHeader: false,
-          key: index,
-          hasColumnHeader: (_b2 = block == null ? void 0 : block.table) == null ? void 0 : _b2.has_column_header
-        });
-      }
+    /* @__PURE__ */ jsx16("tbody", { children: bodyRows?.map(
+      (row, index) => trBlock({
+        cells: row?.table_row?.cells,
+        isRowHeader: false,
+        key: index,
+        hasColumnHeader: block?.table?.has_column_header
+      })
     ) })
   ] }) });
 }
@@ -490,7 +459,7 @@ function trBlock(options) {
   const { cells, isRowHeader, key, hasColumnHeader } = options;
   if (!cells)
     return null;
-  return /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("tr", { children: cells.map((cell, index, _cells) => {
+  return /* @__PURE__ */ jsx16("tr", { children: cells.map((cell, index, _cells) => {
     if (hasColumnHeader && index === 0) {
       return cellBlock({
         cell,
@@ -518,17 +487,14 @@ function cellBlock(options) {
       "bg-sky-100": headerType === "row",
       "bg-gray-100": headerType === "column"
     };
-    return /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("th", { className: (0, import_classnames16.default)(cellClass, headerClass), children: cell.map((richText, index2) => /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(BlockRichText, { richText }, index2)) }, key);
+    return /* @__PURE__ */ jsx16("th", { className: cn16(cellClass, headerClass), children: cell.map((richText, index2) => /* @__PURE__ */ jsx16(BlockRichText, { richText }, index2)) }, key);
   } else {
-    return /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("td", { className: (0, import_classnames16.default)(cellClass), children: cell.map((richText, index2) => /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(BlockRichText, { richText }, index2)) }, key);
+    return /* @__PURE__ */ jsx16("td", { className: cn16(cellClass), children: cell.map((richText, index2) => /* @__PURE__ */ jsx16(BlockRichText, { richText }, index2)) }, key);
   }
 }
-var import_classnames16, import_jsx_runtime16;
 var init_BlockTable = __esm({
   "src/notion-blocks/BlockTable.tsx"() {
-    import_classnames16 = __toESM(require("classnames"));
     init_BlockRichText();
-    import_jsx_runtime16 = require("react/jsx-runtime");
   }
 });
 
@@ -537,39 +503,39 @@ var BlockVideo_exports = {};
 __export(BlockVideo_exports, {
   default: () => BlockVideo
 });
+import cn17 from "classnames";
+import { get as get4 } from "lodash";
+import YouTube from "react-youtube";
+import { jsx as jsx17, jsxs as jsxs14 } from "react/jsx-runtime";
 function BlockVideo(props) {
-  const videoUrl = (0, import_lodash4.get)(props.block, "video.external.url");
+  const videoUrl = get4(props.block, "video.external.url");
   const videoId = getYoutubeVideoId(videoUrl);
   if (!videoId)
     return null;
-  const caption = (0, import_lodash4.get)(props.block, "video.caption");
+  const caption = get4(props.block, "video.caption");
   const title = caption ? getJoinedRichText(caption) : "";
-  return /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: (0, import_classnames17.default)(props.className, "flex flex-col justify-center items-center gap-2"), children: [
-    /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("div", { className: "w-full", children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(import_react_youtube.default, { videoId, title, className: "aspect-video w-full" }) }),
-    caption && caption.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("div", { className: "text-sm italic opacity-90", children: caption.map((richText, index) => /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(BlockRichText, { richText }, index)) })
+  return /* @__PURE__ */ jsxs14("div", { className: cn17(props.className, "flex flex-col justify-center items-center gap-2"), children: [
+    /* @__PURE__ */ jsx17("div", { className: "w-full", children: /* @__PURE__ */ jsx17(YouTube, { videoId, title, className: "aspect-video w-full" }) }),
+    caption && caption.length > 0 && /* @__PURE__ */ jsx17("div", { className: "text-sm italic opacity-90", children: caption.map((richText, index) => /* @__PURE__ */ jsx17(BlockRichText, { richText }, index)) })
   ] });
 }
-var import_classnames17, import_lodash4, import_react_youtube, import_jsx_runtime17;
 var init_BlockVideo = __esm({
   "src/notion-blocks/BlockVideo.tsx"() {
     "use client";
-    import_classnames17 = __toESM(require("classnames"));
-    import_lodash4 = require("lodash");
-    import_react_youtube = __toESM(require("react-youtube"));
     init_block_helpers();
     init_BlockRichText();
-    import_jsx_runtime17 = require("react/jsx-runtime");
   }
 });
 
 // src/components/Renderer.tsx
-var import_classnames18, import_lodash5, import_dynamic, import_jsx_runtime18, DynamicImage, DynamicCode, DynamicEquation, DynamicTable, DynamicVideo;
+import cn18 from "classnames";
+import { get as get5 } from "lodash";
+import dynamic from "next/dynamic";
+import { Fragment as Fragment5, jsx as jsx18 } from "react/jsx-runtime";
+var DynamicImage, DynamicCode, DynamicEquation, DynamicTable, DynamicVideo;
 var init_Renderer = __esm({
   "src/components/Renderer.tsx"() {
     "use client";
-    import_classnames18 = __toESM(require("classnames"));
-    import_lodash5 = require("lodash");
-    import_dynamic = __toESM(require("next/dynamic"));
     init_block_helpers();
     init_BlockBookmark();
     init_BlockBulletedListItem();
@@ -581,47 +547,50 @@ var init_Renderer = __esm({
     init_BlockQuote();
     init_BlockToDo();
     init_BlockToggle();
-    import_jsx_runtime18 = require("react/jsx-runtime");
-    DynamicImage = (0, import_dynamic.default)(() => Promise.resolve().then(() => (init_BlockImage(), BlockImage_exports)));
-    DynamicCode = (0, import_dynamic.default)(() => Promise.resolve().then(() => (init_BlockCode(), BlockCode_exports)));
-    DynamicEquation = (0, import_dynamic.default)(() => Promise.resolve().then(() => (init_BlockEquation(), BlockEquation_exports)));
-    DynamicTable = (0, import_dynamic.default)(() => Promise.resolve().then(() => (init_BlockTable(), BlockTable_exports)));
-    DynamicVideo = (0, import_dynamic.default)(() => Promise.resolve().then(() => (init_BlockVideo(), BlockVideo_exports)));
+    DynamicImage = dynamic(() => Promise.resolve().then(() => (init_BlockImage(), BlockImage_exports)));
+    DynamicCode = dynamic(() => Promise.resolve().then(() => (init_BlockCode(), BlockCode_exports)));
+    DynamicEquation = dynamic(() => Promise.resolve().then(() => (init_BlockEquation(), BlockEquation_exports)));
+    DynamicTable = dynamic(() => Promise.resolve().then(() => (init_BlockTable(), BlockTable_exports)));
+    DynamicVideo = dynamic(() => Promise.resolve().then(() => (init_BlockVideo(), BlockVideo_exports)));
   }
 });
 
 // src/components/BlockRender.tsx
-var import_react9, import_jsx_runtime19, defaultBlockOptionContext, BlockOptionContext;
+import { createContext } from "react";
+import { jsx as jsx19 } from "react/jsx-runtime";
+var defaultBlockOptionContext, BlockOptionContext;
 var init_BlockRender = __esm({
   "src/components/BlockRender.tsx"() {
     "use client";
-    import_react9 = require("react");
     init_Renderer();
-    import_jsx_runtime19 = require("react/jsx-runtime");
     defaultBlockOptionContext = {
       disableAnchorHeading: false,
       siteDomain: "dinhanhthi.com"
     };
-    BlockOptionContext = (0, import_react9.createContext)(defaultBlockOptionContext);
+    BlockOptionContext = createContext(defaultBlockOptionContext);
   }
 });
 
 // src/notion-blocks/BlockText.tsx
+import cn19 from "classnames";
+import { get as get6 } from "lodash";
+import Link from "next/link";
+import { useContext as useContext3 } from "react";
+import { Fragment as Fragment6, jsx as jsx20, jsxs as jsxs15 } from "react/jsx-runtime";
 function BlockText(props) {
-  var _a, _b, _c, _d;
-  const ctx = (0, import_react10.useContext)(BlockOptionContext);
+  const ctx = useContext3(BlockOptionContext);
   if (props.richText.plain_text.includes("\n")) {
     const lines = props.richText.plain_text.split("\n");
-    return /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(import_jsx_runtime20.Fragment, { children: lines.map((line, index) => /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("span", { children: [
+    return /* @__PURE__ */ jsx20(Fragment6, { children: lines.map((line, index) => /* @__PURE__ */ jsxs15("span", { children: [
       line,
-      index !== lines.length - 1 && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("br", {})
+      index !== lines.length - 1 && /* @__PURE__ */ jsx20("br", {})
     ] }, index)) });
   }
-  if (props.richText.type === "text" && !((_a = props.ignore) == null ? void 0 : _a.includes("hyperlink")) && props.richText.href) {
-    if (props.richText.href.includes(ctx == null ? void 0 : ctx.siteDomain) && !props.richText.href.includes("@")) {
+  if (props.richText.type === "text" && !props.ignore?.includes("hyperlink") && props.richText.href) {
+    if (props.richText.href.includes(ctx?.siteDomain) && !props.richText.href.includes("@")) {
       const uri = getUriFromUrl(props.richText.href);
-      return /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(
-        import_link.default,
+      return /* @__PURE__ */ jsx20(
+        Link,
         {
           className: generateTextAnnotationClasses(
             props.richText.annotations,
@@ -632,10 +601,10 @@ function BlockText(props) {
         }
       );
     } else {
-      return /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(
+      return /* @__PURE__ */ jsx20(
         "a",
         {
-          className: (0, import_classnames19.default)(
+          className: cn19(
             "m2it-link",
             generateTextAnnotationClasses(
               props.richText.annotations,
@@ -650,21 +619,21 @@ function BlockText(props) {
       );
     }
   }
-  if (!((_b = props.ignore) == null ? void 0 : _b.includes("hyperlink")) && props.richText.type === "mention" && ((_c = props.richText.mention) == null ? void 0 : _c.type) === "page" && (0, import_lodash6.get)(props.richText, "mention.page.uri")) {
-    return /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(
-      import_link.default,
+  if (!props.ignore?.includes("hyperlink") && props.richText.type === "mention" && props.richText.mention?.type === "page" && get6(props.richText, "mention.page.uri")) {
+    return /* @__PURE__ */ jsx20(
+      Link,
       {
         className: generateTextAnnotationClasses(
           props.richText.annotations,
           props.ignore
         ),
-        href: (0, import_lodash6.get)(props.richText, "mention.page.uri", "/"),
+        href: get6(props.richText, "mention.page.uri", "/"),
         children: props.richText.plain_text
       }
     );
   }
-  if (props.richText.type === "mention" && ((_d = props.richText.mention) == null ? void 0 : _d.type) === "date") {
-    return /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(
+  if (props.richText.type === "mention" && props.richText.mention?.type === "date") {
+    return /* @__PURE__ */ jsx20(
       "span",
       {
         className: generateTextAnnotationClasses(
@@ -678,7 +647,7 @@ function BlockText(props) {
   const noDecoration = !props.richText.annotations.bold && !props.richText.annotations.italic && !props.richText.annotations.underline && !props.richText.annotations.strikethrough && !props.richText.annotations.code && props.richText.annotations.color === "default" && !props.richText.href;
   if (noDecoration)
     return props.richText.plain_text;
-  return /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(
+  return /* @__PURE__ */ jsx20(
     "span",
     {
       className: generateTextAnnotationClasses(
@@ -702,16 +671,10 @@ function formatDate(inputString) {
   const formattedDate = `${day}/${month}/${year}`;
   return formattedDate;
 }
-var import_classnames19, import_lodash6, import_link, import_react10, import_jsx_runtime20;
 var init_BlockText = __esm({
   "src/notion-blocks/BlockText.tsx"() {
-    import_classnames19 = __toESM(require("classnames"));
-    import_lodash6 = require("lodash");
-    import_link = __toESM(require("next/link"));
-    import_react10 = require("react");
     init_BlockRender();
     init_block_helpers();
-    import_jsx_runtime20 = require("react/jsx-runtime");
   }
 });
 
@@ -720,12 +683,13 @@ var BlockInlineEquation_exports = {};
 __export(BlockInlineEquation_exports, {
   default: () => BlockInlineEquation
 });
+import Katex2 from "@matejmazur/react-katex";
+import { jsx as jsx21 } from "react/jsx-runtime";
 function BlockInlineEquation(props) {
-  var _a;
-  return /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { className: generateTextAnnotationClasses(props.equation.annotations), children: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(
-    import_react_katex2.default,
+  return /* @__PURE__ */ jsx21("span", { className: generateTextAnnotationClasses(props.equation.annotations), children: /* @__PURE__ */ jsx21(
+    Katex2,
     {
-      className: (_a = props.fontSize) != null ? _a : mathFontSize,
+      className: props.fontSize ?? mathFontSize,
       math: props.equation.plain_text,
       settings: {
         throwOnError: false,
@@ -734,25 +698,24 @@ function BlockInlineEquation(props) {
     }
   ) });
 }
-var import_react_katex2, import_jsx_runtime21;
 var init_BlockInlineEquation = __esm({
   "src/notion-blocks/BlockInlineEquation.tsx"() {
     "use client";
-    import_react_katex2 = __toESM(require("@matejmazur/react-katex"));
     init_block_helpers();
     init_BlockEquation();
-    import_jsx_runtime21 = require("react/jsx-runtime");
   }
 });
 
 // src/notion-blocks/BlockRichText.tsx
+import dynamic2 from "next/dynamic";
+import { jsx as jsx22 } from "react/jsx-runtime";
 function BlockRichText(props) {
   switch (props.richText.type) {
     case "text":
     case "mention":
-      return /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(BlockText, { richText: props.richText, ignore: props.ignore });
+      return /* @__PURE__ */ jsx22(BlockText, { richText: props.richText, ignore: props.ignore });
     case "equation":
-      return /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(
+      return /* @__PURE__ */ jsx22(
         DynamicInlineEquation,
         {
           equation: props.richText,
@@ -760,39 +723,32 @@ function BlockRichText(props) {
         }
       );
     default:
-      return /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(BlockText, { richText: props.richText });
+      return /* @__PURE__ */ jsx22(BlockText, { richText: props.richText });
   }
 }
-var import_dynamic2, import_jsx_runtime22, DynamicInlineEquation;
+var DynamicInlineEquation;
 var init_BlockRichText = __esm({
   "src/notion-blocks/BlockRichText.tsx"() {
-    import_dynamic2 = __toESM(require("next/dynamic"));
     init_BlockText();
-    import_jsx_runtime22 = require("react/jsx-runtime");
-    DynamicInlineEquation = (0, import_dynamic2.default)(() => Promise.resolve().then(() => (init_BlockInlineEquation(), BlockInlineEquation_exports)));
+    DynamicInlineEquation = dynamic2(() => Promise.resolve().then(() => (init_BlockInlineEquation(), BlockInlineEquation_exports)));
   }
 });
 
 // src/components/PostToc.tsx
-var PostToc_exports = {};
-__export(PostToc_exports, {
-  default: () => PostToc
-});
-module.exports = __toCommonJS(PostToc_exports);
-var import_classnames20 = __toESM(require("classnames"));
-var import_react11 = require("react");
-var import_io = require("react-icons/io");
 init_block_helpers();
+import cn20 from "classnames";
+import { useState as useState4 } from "react";
+import { IoIosArrowDown } from "react-icons/io";
 
 // src/lib/hooks.ts
-var import_react = require("react");
+import { useEffect, useRef, useState } from "react";
 function useHeadsObserver() {
-  const observer = (0, import_react.useRef)(null);
-  const [activeId, setActiveId] = (0, import_react.useState)("");
-  (0, import_react.useEffect)(() => {
+  const observer = useRef(null);
+  const [activeId, setActiveId] = useState("");
+  useEffect(() => {
     const handleObsever = (entries) => {
       entries.forEach((entry) => {
-        if (entry == null ? void 0 : entry.isIntersecting) {
+        if (entry?.isIntersecting) {
           setActiveId(entry.target.id);
         }
       });
@@ -801,23 +757,17 @@ function useHeadsObserver() {
       rootMargin: "-100px 0% -80% 0px"
     });
     const elements = document.querySelectorAll("h2, h3");
-    elements.forEach((elem) => {
-      var _a;
-      return (_a = observer == null ? void 0 : observer.current) == null ? void 0 : _a.observe(elem);
-    });
-    return () => {
-      var _a;
-      return (_a = observer.current) == null ? void 0 : _a.disconnect();
-    };
+    elements.forEach((elem) => observer?.current?.observe(elem));
+    return () => observer.current?.disconnect();
   }, []);
   return { activeId };
 }
 
 // src/components/PostToc.tsx
 init_BlockRichText();
-var import_jsx_runtime23 = require("react/jsx-runtime");
+import { jsx as jsx23, jsxs as jsxs16 } from "react/jsx-runtime";
 function PostToc(props) {
-  const [showContent, setShowContent] = (0, import_react11.useState)(true);
+  const [showContent, setShowContent] = useState4(true);
   const headingBlocks = props.contentBlocks.filter(
     (block) => block.type === "heading_2" || block.type === "heading_3"
   );
@@ -825,10 +775,10 @@ function PostToc(props) {
   const { activeId } = useHeadsObserver();
   if (!showToc)
     return null;
-  return /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)(
+  return /* @__PURE__ */ jsxs16(
     "nav",
     {
-      className: (0, import_classnames20.default)("h-fit w-full flex gap-2 flex-col px-4 py-3", {
+      className: cn20("h-fit w-full flex gap-2 flex-col px-4 py-3", {
         "2xl:hidden": props.inPost,
         // hide on large screens
         "max-h-full p-3": !props.inPost,
@@ -838,19 +788,19 @@ function PostToc(props) {
       }),
       "aria-label": "Table of contents",
       children: [
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)(
+        /* @__PURE__ */ jsxs16(
           "button",
           {
-            className: (0, import_classnames20.default)(
+            className: cn20(
               "flex items-center justify-between text-md font-semibold text-slate-700 pb-0"
             ),
             onClick: () => setShowContent(!showContent),
             children: [
-              /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("div", { children: "Trong b\xE0i n\xE0y" }),
-              /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("div", { children: /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(
-                import_io.IoIosArrowDown,
+              /* @__PURE__ */ jsx23("div", { children: "Trong b\xE0i n\xE0y" }),
+              /* @__PURE__ */ jsx23("div", { children: /* @__PURE__ */ jsx23(
+                IoIosArrowDown,
                 {
-                  className: (0, import_classnames20.default)("text-2xl ease-in-out transition-all duration-[400ms]", {
+                  className: cn20("text-2xl ease-in-out transition-all duration-[400ms]", {
                     "rotate-0": showContent,
                     "rotate-[-90deg]": !showContent
                   })
@@ -859,33 +809,32 @@ function PostToc(props) {
             ]
           }
         ),
-        showContent && /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(
+        showContent && /* @__PURE__ */ jsx23(
           "div",
           {
-            className: (0, import_classnames20.default)("pt-3 pl-1 overflow-auto m2it-scrollbar m2it-scrollbar-small border-t", {
+            className: cn20("pt-3 pl-1 overflow-auto m2it-scrollbar m2it-scrollbar-small border-t", {
               "columns-1 md:columns-2": props.inPost
             }),
             children: headingBlocks.map((block) => {
-              var _a;
               const anchor = convertHeadingIdToSlug(
                 block.id,
-                (_a = block[`${block.type}`]) == null ? void 0 : _a.rich_text
+                block[`${block.type}`]?.rich_text
               );
-              return /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)(
+              return /* @__PURE__ */ jsxs16(
                 "a",
                 {
                   href: `#${anchor}`,
-                  className: (0, import_classnames20.default)("flex items-baseline gap-2 hover:m2it-link text-sm py-1", {
+                  className: cn20("flex items-baseline gap-2 hover:m2it-link text-sm py-1", {
                     "pl-4 border-l": block.type === "heading_3",
                     "-ml-1": block.type === "heading_2",
                     "m2it-link-hover": activeId === anchor && !props.inPost,
                     "text-slate-700": activeId !== anchor || props.inPost
                   }),
                   children: [
-                    block.type === "heading_2" && /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("span", { className: "text-[0.7rem] text-slate-400", children: "\u25C6" }),
-                    block.type === "heading_3" && /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("span", { className: "text-[0.6rem] text-slate-400", children: "\u25CB" }),
-                    /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("span", { className: "block", children: block[`${block.type}`].rich_text.map(
-                      (richText, index) => /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(
+                    block.type === "heading_2" && /* @__PURE__ */ jsx23("span", { className: "text-[0.7rem] text-slate-400", children: "\u25C6" }),
+                    block.type === "heading_3" && /* @__PURE__ */ jsx23("span", { className: "text-[0.6rem] text-slate-400", children: "\u25CB" }),
+                    /* @__PURE__ */ jsx23("span", { className: "block", children: block[`${block.type}`].rich_text.map(
+                      (richText, index) => /* @__PURE__ */ jsx23(
                         BlockRichText,
                         {
                           richText,
@@ -906,4 +855,7 @@ function PostToc(props) {
     }
   );
 }
+export {
+  PostToc as default
+};
 //# sourceMappingURL=PostToc.js.map

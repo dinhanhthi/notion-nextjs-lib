@@ -1,5 +1,6 @@
 @import url(katex/dist/katex.min.css);
-@import url(react-medium-image-zoom/dist/styles.css);
+@import url(prismjs/themes/prism-tomorrow.css);
+@import url(react-tooltip/dist/react-tooltip.css);
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
