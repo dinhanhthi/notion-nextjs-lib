@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 @import 'katex/dist/katex.min.css';
+@import 'prismjs/themes/prism-tomorrow.css';
+@import 'tippy.js/dist/tippy.css';
 
 .w-full > iframe {
   width: 100%;
