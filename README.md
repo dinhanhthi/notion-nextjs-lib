@@ -2,9 +2,7 @@
 
 A collection of basic blocks/renderer/components for building nextjs site based on [Notion](https://www.notion.so/) and [Tailwind CSS](https://tailwindcss.com/).
 
-> --\--\--
 > 🚨 I created this library for building my 2 websites - math2it.com (a Vietnamese website for math and IT) and dinhanhthi.com (my personal website for taking notes). This library isn't for public use...yet! I don't have enough time to help you use this library. Please forgive me if I don't answer your questions.
-> --\--\--
 
 ## Tech specs
 
@@ -56,7 +54,7 @@ rm yarn.lock
 yarn install --check-files
 ```
 
-## Install in other projects
+## How to use?
 
 ```bash
 yarn add https://github.com/dinhanhthi/notion-nextjs-lib.git

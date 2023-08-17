@@ -3,7 +3,6 @@
 @tailwind utilities;
 @import 'katex/dist/katex.min.css';
 @import 'prismjs/themes/prism-tomorrow.css';
-@import 'react-tooltip/dist/react-tooltip.css';
 
 .w-full > iframe {
   width: 100%;
@@ -16,6 +15,38 @@
 
 .katex {
   font-size: 1.2rem;
+}
+
+// First used for tech badge tooltip in about page
+.tooltip-auto {
+  position: relative;
+
+  &:not(&:hover) {
+    z-index: 0;
+  }
+
+  &:hover {
+    z-index: 1;
+    &:before {
+      opacity: 1;
+    }
+  }
+
+  &:before {
+    display: block;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.75);
+    border-radius: 5px;
+    color: #fff;
+    content: attr(data-title);
+    font-size: 0.85rem;
+    padding: 2px 8px;
+    bottom: -35px;
+    left: 0;
+    white-space: nowrap;
+  }
 }
 
 @layer base {

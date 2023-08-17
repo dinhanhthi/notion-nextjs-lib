@@ -323,7 +323,6 @@ import { FiCheck } from "react-icons/fi";
 import { RxCopy } from "react-icons/rx";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { Tooltip } from "react-tooltip";
 import { jsx as jsx19, jsxs as jsxs14 } from "react/jsx-runtime";
 function BlockCode(props) {
   const ctx = useContext2(BlockOptionContext);
@@ -350,22 +349,19 @@ function BlockCode(props) {
         "div",
         {
           className: cn17(
-            "absolute right-2 top-2 duration-100 hover:cursor-pointer",
+            "absolute right-2 top-2 duration-100 hover:cursor-pointer group-hover:opacity-100",
             {
               "opacity-0": !copied
             },
-            "group-hover:opacity-100"
+            "tooltip-auto"
           ),
-          "data-tooltip-id": "block-code-tooltip",
-          "data-tooltip-content": copied ? ctx?.blockCodeCopiedText || "Copied" : ctx?.blockCodeCopyText || "Copy",
-          "data-tooltip-place": "top",
+          "data-title": copied ? ctx?.blockCodeCopiedText || "Copied" : ctx?.blockCodeCopyText || "Copy",
           children: /* @__PURE__ */ jsx19(CopyToClipboard, { text: getJoinedRichText(block?.code?.rich_text), onCopy: onSuccess, children: /* @__PURE__ */ jsxs14("button", { children: [
             !copied && /* @__PURE__ */ jsx19(RxCopy, { className: "text-lg text-slate-200 hover:text-pink-300" }),
             copied && /* @__PURE__ */ jsx19(FiCheck, { className: "text-lg text-green-300" })
           ] }) })
         }
-      ),
-      /* @__PURE__ */ jsx19(Tooltip, { id: "block-code-tooltip", noArrow: true, className: "text-sm" })
+      )
     ] }),
     block?.code?.caption && /* @__PURE__ */ jsx19("div", { className: "italic opacity-60", children: block?.code?.caption?.map((richText, index) => /* @__PURE__ */ jsx19(BlockRichText, { richText }, index)) }),
     block?.code?.language === "mermaid" && /* @__PURE__ */ jsx19(Mermaid, { chart: getJoinedRichText(block?.code?.rich_text) })

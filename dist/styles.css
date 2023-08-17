@@ -1,5 +1,4 @@
 @import "katex/dist/katex.min.css";
-@import "react-tooltip/dist/react-tooltip.css";
 
 /* node_modules/prismjs/themes/prism-tomorrow.css */
 code[class*=language-],
@@ -117,6 +116,33 @@ pre[class*=language-] {
 }
 .katex {
   font-size: 1.2rem;
+}
+.tooltip-auto {
+  position: relative;
+}
+.tooltip-auto:not(.tooltip-auto:hover) {
+  z-index: 0;
+}
+.tooltip-auto:hover {
+  z-index: 1;
+}
+.tooltip-auto:hover:before {
+  opacity: 1;
+}
+.tooltip-auto:before {
+  display: block;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.75);
+  border-radius: 5px;
+  color: #fff;
+  content: attr(data-title);
+  font-size: 0.85rem;
+  padding: 2px 8px;
+  bottom: -35px;
+  left: 0;
+  white-space: nowrap;
 }
 @layer base {
   .m2it-inside-box > *:first-child {

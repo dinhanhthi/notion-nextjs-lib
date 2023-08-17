@@ -8,7 +8,6 @@ import { FiCheck } from 'react-icons/fi'
 import { RxCopy } from 'react-icons/rx'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { dracula } from 'react-syntax-highlighter/dist/esm/styles/prism'
-import { Tooltip } from 'react-tooltip'
 
 import { BlockOptionContext } from '../components/BlockRender'
 import Mermaid from '../components/Mermaid'
@@ -46,17 +45,15 @@ export default function BlockCode(props: BlockCodeProps) {
         </SyntaxHighlighter>
         <div
           className={cn(
-            'absolute right-2 top-2 duration-100 hover:cursor-pointer',
+            'absolute right-2 top-2 duration-100 hover:cursor-pointer group-hover:opacity-100',
             {
               'opacity-0': !copied
             },
-            'group-hover:opacity-100'
+            'tooltip-auto'
           )}
-          data-tooltip-id="block-code-tooltip"
-          data-tooltip-content={
+          data-title={
             copied ? ctx?.blockCodeCopiedText || 'Copied' : ctx?.blockCodeCopyText || 'Copy'
           }
-          data-tooltip-place="top"
         >
           <CopyToClipboard text={getJoinedRichText(block?.code?.rich_text)} onCopy={onSuccess}>
             <button>
@@ -65,7 +62,6 @@ export default function BlockCode(props: BlockCodeProps) {
             </button>
           </CopyToClipboard>
         </div>
-        <Tooltip id="block-code-tooltip" noArrow={true} className="text-sm" />
       </div>
 
       {block?.code?.caption && (
