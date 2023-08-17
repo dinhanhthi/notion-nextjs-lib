@@ -1,5 +1,9 @@
 import * as react_jsx_runtime from 'react/jsx-runtime';
 
-declare function WaveSplit(): react_jsx_runtime.JSX.Element;
+type WaveSplitProps = {
+    topColorClass?: string;
+    bottomColorClass?: string;
+};
+declare function WaveSplit(props: WaveSplitProps): react_jsx_runtime.JSX.Element;
 
 export { WaveSplit as default };

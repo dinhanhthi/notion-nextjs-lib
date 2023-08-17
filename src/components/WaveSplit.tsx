@@ -1,12 +1,17 @@
 import cn from 'classnames'
 
-export default function WaveSplit() {
+type WaveSplitProps = {
+  topColorClass?: string
+  bottomColorClass?: string
+}
+
+export default function WaveSplit(props: WaveSplitProps) {
   return (
     <>
       <div
-        className={cn('after:block after:h-8 after:w-full after:bg-wave dark:after:bg-wave-dark')}
+        className={cn(props.topColorClass || 'after:bg-wave after:block after:h-8 after:w-full')}
       ></div>
-      <div className={cn('h-8 bg-white')}></div>
+      <div className={cn('h-8', props.bottomColorClass || 'bg-white')}></div>
     </>
   )
 }
