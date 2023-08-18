@@ -22,8 +22,8 @@ export default function BadgeTech(props: BadgeTechProps) {
   return (
     <>
       <a
-        className={`flex h-6 w-fit items-center justify-center rounded-md border bg-stone-100 px-1
-        align-baseline text-base text-[#1e293b] shadow-sm transition transition-colors duration-200
+        className={`flex h-6 w-fit items-center justify-center rounded-md border bg-[#ededed] px-1
+        align-baseline text-base text-[#1e293b] shadow-sm transition duration-200
         duration-200 ease-in-out ease-in-out hover:-translate-y-0.5 dark:border-[#3b3e54]
         dark:bg-[#343e4c] dark:text-[#f8fafc] tooltip-auto`}
         href={props.tech.url}
@@ -36,7 +36,7 @@ export default function BadgeTech(props: BadgeTechProps) {
           imageProps={{ width: 32, height: 32 }}
         />
         {!props.hideText && (
-          <span className="ml-1.5 whitespace-nowrap text-[85%] tracking-wide">
+          <span className="ml-1.5 whitespace-nowrap text-[81%] tracking-wide">
             {props.tech.name}
           </span>
         )}

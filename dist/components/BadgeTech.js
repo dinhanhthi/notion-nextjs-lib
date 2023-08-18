@@ -43,8 +43,8 @@ function BadgeTech(props) {
   return /* @__PURE__ */ jsx2(Fragment2, { children: /* @__PURE__ */ jsxs(
     "a",
     {
-      className: `flex h-6 w-fit items-center justify-center rounded-md border bg-stone-100 px-1
-        align-baseline text-base text-[#1e293b] shadow-sm transition transition-colors duration-200
+      className: `flex h-6 w-fit items-center justify-center rounded-md border bg-[#ededed] px-1
+        align-baseline text-base text-[#1e293b] shadow-sm transition duration-200
         duration-200 ease-in-out ease-in-out hover:-translate-y-0.5 dark:border-[#3b3e54]
         dark:bg-[#343e4c] dark:text-[#f8fafc] tooltip-auto`,
       href: props.tech.url,
@@ -59,7 +59,7 @@ function BadgeTech(props) {
             imageProps: { width: 32, height: 32 }
           }
         ),
-        !props.hideText && /* @__PURE__ */ jsx2("span", { className: "ml-1.5 whitespace-nowrap text-[85%] tracking-wide", children: props.tech.name })
+        !props.hideText && /* @__PURE__ */ jsx2("span", { className: "ml-1.5 whitespace-nowrap text-[81%] tracking-wide", children: props.tech.name })
       ]
     }
   ) });

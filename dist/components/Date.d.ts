@@ -1,7 +1,9 @@
 import * as react_jsx_runtime from 'react/jsx-runtime';
 
-declare function Date({ dateString }: {
+type DateProps = {
     dateString: string;
-}): react_jsx_runtime.JSX.Element;
+    format?: string;
+};
+declare function Date(props: DateProps): react_jsx_runtime.JSX.Element;
 
 export { Date as default };

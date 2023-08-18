@@ -828,8 +828,8 @@ import Link2 from "next/link";
 // src/components/Date.tsx
 import Moment from "moment";
 import { jsx as jsx2 } from "react/jsx-runtime";
-function Date({ dateString }) {
-  const date = Moment(dateString).format("DD/MM/YYYY");
+function Date(props) {
+  const date = Moment(props.dateString).format(props.format || "DD/MM/YYYY");
   return /* @__PURE__ */ jsx2("span", { children: date });
 }
 

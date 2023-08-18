@@ -39,7 +39,7 @@ export default function ScrollToTop(props: ScrollToTopProps) {
       ref={buttonRef}
       className={cn(
         'fixed right-10 bottom-8 rounded-full p-2 opacity-0 transition-all duration-300',
-        'z-50 group bg-[#c0c0c066] hover:bg-[#c0c0c099]'
+        'z-50 group bg-[#c0c0c066] hover:bg-[#c0c0c099] w-12 h-12'
       )}
     >
       {props.image && (
@@ -51,7 +51,7 @@ export default function ScrollToTop(props: ScrollToTopProps) {
           height={32}
         />
       )}
-      {!props.image && <span>☝</span>}
+      {!props.image && <span className="text-3xl group-hover:animate-toTop">☝</span>}
     </button>
   )
 }
