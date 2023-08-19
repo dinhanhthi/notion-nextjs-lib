@@ -43,7 +43,7 @@ function PostHeaderTopics(props) {
     usedTags.length > 0 && usedTags.map((tag) => /* @__PURE__ */ jsx(
       Link,
       {
-        className: cn(topTagClass, "boder-slate-300 border text-slate-600"),
+        className: cn(topTagClass, "boder-slate-300 border text-slate-600 bg-white"),
         href: tag.uri || "/",
         children: tag.name
       },

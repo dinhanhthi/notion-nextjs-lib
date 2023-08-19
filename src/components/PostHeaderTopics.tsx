@@ -58,7 +58,7 @@ export default function PostHeaderTopics(props: PostHeaderTopicsProps) {
       {usedTags.length > 0 &&
         usedTags.map(tag => (
           <Link
-            className={cn(topTagClass, 'boder-slate-300 border text-slate-600')}
+            className={cn(topTagClass, 'boder-slate-300 border text-slate-600 bg-white')}
             key={tag.uri}
             href={tag.uri || '/'}
           >

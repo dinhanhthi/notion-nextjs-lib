@@ -907,6 +907,27 @@ var init_BlockTable = __esm({
   }
 });
 
+// src/components/YoutubeEmbed.tsx
+import { jsx as jsx20 } from "react/jsx-runtime";
+function YoutubeEmbed(props) {
+  return /* @__PURE__ */ jsx20("div", { className: props.className, children: /* @__PURE__ */ jsx20(
+    "iframe",
+    {
+      width: props.width || 853,
+      height: props.height || 480,
+      src: `https://www.youtube.com/embed/${props.id}`,
+      allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
+      allowFullScreen: true,
+      title: props.title || "A video from YouTube",
+      className: "border-0"
+    }
+  ) });
+}
+var init_YoutubeEmbed = __esm({
+  "src/components/YoutubeEmbed.tsx"() {
+  }
+});
+
 // src/notion-blocks/BlockVideo.tsx
 var BlockVideo_exports = {};
 __export(BlockVideo_exports, {
@@ -914,8 +935,7 @@ __export(BlockVideo_exports, {
 });
 import cn18 from "classnames";
 import { get as get5 } from "lodash";
-import YouTube from "react-youtube";
-import { jsx as jsx20, jsxs as jsxs15 } from "react/jsx-runtime";
+import { jsx as jsx21, jsxs as jsxs15 } from "react/jsx-runtime";
 function BlockVideo(props) {
   const videoUrl = get5(props.block, "video.external.url");
   const videoId = getYoutubeVideoId(videoUrl);
@@ -924,8 +944,8 @@ function BlockVideo(props) {
   const caption = get5(props.block, "video.caption");
   const title = caption ? getJoinedRichText(caption) : "";
   return /* @__PURE__ */ jsxs15("div", { className: cn18(props.className, "flex flex-col justify-center items-center gap-2"), children: [
-    /* @__PURE__ */ jsx20("div", { className: "w-full", children: /* @__PURE__ */ jsx20(YouTube, { videoId, title, className: "aspect-video w-full" }) }),
-    caption && caption.length > 0 && /* @__PURE__ */ jsx20("div", { className: "text-sm italic opacity-90", children: caption.map((richText, index) => /* @__PURE__ */ jsx20(BlockRichText, { richText }, index)) })
+    /* @__PURE__ */ jsx21("div", { className: "w-full", children: /* @__PURE__ */ jsx21(YoutubeEmbed, { id: videoId, title, className: "aspect-video w-full" }) }),
+    caption && caption.length > 0 && /* @__PURE__ */ jsx21("div", { className: "text-sm italic opacity-90", children: caption.map((richText, index) => /* @__PURE__ */ jsx21(BlockRichText, { richText }, index)) })
   ] });
 }
 var init_BlockVideo = __esm({
@@ -933,6 +953,7 @@ var init_BlockVideo = __esm({
     "use client";
     init_block_helpers();
     init_BlockRichText();
+    init_YoutubeEmbed();
   }
 });
 
@@ -940,13 +961,13 @@ var init_BlockVideo = __esm({
 import cn19 from "classnames";
 import { get as get6 } from "lodash";
 import dynamic2 from "next/dynamic";
-import { Fragment as Fragment6, jsx as jsx21 } from "react/jsx-runtime";
+import { Fragment as Fragment6, jsx as jsx22 } from "react/jsx-runtime";
 function Renderer(props) {
   const { block, level } = props;
   let children;
   const isList = block.type === "bulleted_list_item" || block.type === "numbered_list_item";
   if (block.has_children) {
-    children = get6(block, "children", [])?.map((childBlock) => /* @__PURE__ */ jsx21(
+    children = get6(block, "children", [])?.map((childBlock) => /* @__PURE__ */ jsx22(
       Renderer,
       {
         block: childBlock,
@@ -960,13 +981,13 @@ function Renderer(props) {
   const basicBlockGapHeading = "mt-6";
   switch (block.type) {
     case "synced_block":
-      return /* @__PURE__ */ jsx21(Fragment6, { children });
+      return /* @__PURE__ */ jsx22(Fragment6, { children });
     case "divider":
-      return /* @__PURE__ */ jsx21("hr", { className: basicBlockGap });
+      return /* @__PURE__ */ jsx22("hr", { className: basicBlockGap });
     case "paragraph":
-      return /* @__PURE__ */ jsx21(BlockParagraph, { block, className: cn19(basicBlockGap), children });
+      return /* @__PURE__ */ jsx22(BlockParagraph, { block, className: cn19(basicBlockGap), children });
     case "numbered_list_item":
-      return /* @__PURE__ */ jsx21(
+      return /* @__PURE__ */ jsx22(
         BlockNumberedListItem,
         {
           block,
@@ -975,7 +996,7 @@ function Renderer(props) {
         }
       );
     case "bulleted_list_item":
-      return /* @__PURE__ */ jsx21(
+      return /* @__PURE__ */ jsx22(
         BlockBulletedListItem,
         {
           block,
@@ -984,9 +1005,9 @@ function Renderer(props) {
         }
       );
     case "to_do":
-      return /* @__PURE__ */ jsx21(BlockToDo, { block, className: cn19(basicBlockGap), children });
+      return /* @__PURE__ */ jsx22(BlockToDo, { block, className: cn19(basicBlockGap), children });
     case "heading_1":
-      return /* @__PURE__ */ jsx21(
+      return /* @__PURE__ */ jsx22(
         BlockHeading,
         {
           type: "h1",
@@ -997,7 +1018,7 @@ function Renderer(props) {
         }
       );
     case "heading_2":
-      return /* @__PURE__ */ jsx21(
+      return /* @__PURE__ */ jsx22(
         BlockHeading,
         {
           type: "h2",
@@ -1008,7 +1029,7 @@ function Renderer(props) {
         }
       );
     case "heading_3":
-      return /* @__PURE__ */ jsx21(
+      return /* @__PURE__ */ jsx22(
         BlockHeading,
         {
           type: "h3",
@@ -1019,25 +1040,25 @@ function Renderer(props) {
         }
       );
     case "quote":
-      return /* @__PURE__ */ jsx21(BlockQuote, { block, className: cn19(basicBlockGap), children });
+      return /* @__PURE__ */ jsx22(BlockQuote, { block, className: cn19(basicBlockGap), children });
     case "code":
-      return /* @__PURE__ */ jsx21(DynamicCode, { block, className: cn19(basicBlockGap) });
+      return /* @__PURE__ */ jsx22(DynamicCode, { block, className: cn19(basicBlockGap) });
     case "equation":
-      return /* @__PURE__ */ jsx21(DynamicEquation, { block, className: cn19(basicBlockGap) });
+      return /* @__PURE__ */ jsx22(DynamicEquation, { block, className: cn19(basicBlockGap) });
     case "column_list":
-      return /* @__PURE__ */ jsx21(BlockColumnList, { block, className: cn19(basicBlockGap) });
+      return /* @__PURE__ */ jsx22(BlockColumnList, { block, className: cn19(basicBlockGap) });
     case "table":
-      return /* @__PURE__ */ jsx21(DynamicTable, { block, className: cn19(basicBlockGap) });
+      return /* @__PURE__ */ jsx22(DynamicTable, { block, className: cn19(basicBlockGap) });
     case "toggle":
-      return /* @__PURE__ */ jsx21(BlockToggle, { block, className: cn19(basicBlockGap), children });
+      return /* @__PURE__ */ jsx22(BlockToggle, { block, className: cn19(basicBlockGap), children });
     case "callout":
-      return /* @__PURE__ */ jsx21(BlockCallout, { block, className: cn19(basicBlockGap), children });
+      return /* @__PURE__ */ jsx22(BlockCallout, { block, className: cn19(basicBlockGap), children });
     case "image":
-      return /* @__PURE__ */ jsx21(DynamicImage, { block, className: cn19(basicBlockGap) });
+      return /* @__PURE__ */ jsx22(DynamicImage, { block, className: cn19(basicBlockGap) });
     case "video":
-      return /* @__PURE__ */ jsx21(DynamicVideo, { block, className: cn19(basicBlockGap) });
+      return /* @__PURE__ */ jsx22(DynamicVideo, { block, className: cn19(basicBlockGap) });
     case "bookmark":
-      return /* @__PURE__ */ jsx21(
+      return /* @__PURE__ */ jsx22(
         BlockBookmark,
         {
           block,
@@ -1073,9 +1094,9 @@ var init_Renderer = __esm({
 
 // src/components/BlockRender.tsx
 import { createContext } from "react";
-import { jsx as jsx22 } from "react/jsx-runtime";
+import { jsx as jsx23 } from "react/jsx-runtime";
 function BlockRender(props) {
-  return /* @__PURE__ */ jsx22(BlockOptionContext.Provider, { value: props.blockOptionsContext, children: /* @__PURE__ */ jsx22(Renderer, { block: props.block, level: props.level, isInsideList: props.isInsideList }) });
+  return /* @__PURE__ */ jsx23(BlockOptionContext.Provider, { value: props.blockOptionsContext, children: /* @__PURE__ */ jsx23(Renderer, { block: props.block, level: props.level, isInsideList: props.isInsideList }) });
 }
 var defaultBlockOptionContext, BlockOptionContext;
 var init_BlockRender = __esm({
@@ -1125,7 +1146,7 @@ function useHeadsObserver() {
 
 // src/components/PostToc.tsx
 init_BlockRichText();
-import { jsx as jsx23, jsxs as jsxs16 } from "react/jsx-runtime";
+import { jsx as jsx24, jsxs as jsxs16 } from "react/jsx-runtime";
 function PostToc(props) {
   const [showContent, setShowContent] = useState4(true);
   const headingBlocks = props.contentBlocks.filter(
@@ -1156,8 +1177,8 @@ function PostToc(props) {
             ),
             onClick: () => setShowContent(!showContent),
             children: [
-              /* @__PURE__ */ jsx23("div", { children: "Trong b\xE0i n\xE0y" }),
-              /* @__PURE__ */ jsx23("div", { children: /* @__PURE__ */ jsx23(
+              /* @__PURE__ */ jsx24("div", { children: "Trong b\xE0i n\xE0y" }),
+              /* @__PURE__ */ jsx24("div", { children: /* @__PURE__ */ jsx24(
                 IoIosArrowDown,
                 {
                   className: cn20("text-2xl ease-in-out transition-all duration-[400ms]", {
@@ -1169,7 +1190,7 @@ function PostToc(props) {
             ]
           }
         ),
-        showContent && /* @__PURE__ */ jsx23(
+        showContent && /* @__PURE__ */ jsx24(
           "div",
           {
             className: cn20("pt-3 pl-1 overflow-auto m2it-scrollbar m2it-scrollbar-small border-t", {
@@ -1191,10 +1212,10 @@ function PostToc(props) {
                     "text-slate-700": activeId !== anchor || props.inPost
                   }),
                   children: [
-                    block.type === "heading_2" && /* @__PURE__ */ jsx23("span", { className: "text-[0.7rem] text-slate-400", children: "\u25C6" }),
-                    block.type === "heading_3" && /* @__PURE__ */ jsx23("span", { className: "text-[0.6rem] text-slate-400", children: "\u25CB" }),
-                    /* @__PURE__ */ jsx23("span", { className: "block", children: block[`${block.type}`].rich_text.map(
-                      (richText, index) => /* @__PURE__ */ jsx23(
+                    block.type === "heading_2" && /* @__PURE__ */ jsx24("span", { className: "text-[0.7rem] text-slate-400", children: "\u25C6" }),
+                    block.type === "heading_3" && /* @__PURE__ */ jsx24("span", { className: "text-[0.6rem] text-slate-400", children: "\u25CB" }),
+                    /* @__PURE__ */ jsx24("span", { className: "block", children: block[`${block.type}`].rich_text.map(
+                      (richText, index) => /* @__PURE__ */ jsx24(
                         BlockRichText,
                         {
                           richText,
@@ -1217,12 +1238,12 @@ function PostToc(props) {
 }
 
 // src/components/PostBody.tsx
-import { jsx as jsx24, jsxs as jsxs17 } from "react/jsx-runtime";
+import { jsx as jsx25, jsxs as jsxs17 } from "react/jsx-runtime";
 var postBodyContainerClass = "mx-auto container pb-8 pt-4";
 function PostBody(props) {
   const { contentBlocks, className } = props;
   return /* @__PURE__ */ jsxs17("div", { className: cn21("m2it-prose", postBodyContainerClass, className), children: [
-    /* @__PURE__ */ jsx24(
+    /* @__PURE__ */ jsx25(
       PostToc,
       {
         showToc: props.showToc,
@@ -1230,7 +1251,7 @@ function PostBody(props) {
         contentBlocks
       }
     ),
-    !!contentBlocks.length && contentBlocks.map((block) => /* @__PURE__ */ jsx24(
+    !!contentBlocks.length && contentBlocks.map((block) => /* @__PURE__ */ jsx25(
       BlockRender,
       {
         blockOptionsContext: props.blockOptionsContext,
@@ -1239,7 +1260,7 @@ function PostBody(props) {
       },
       block.id
     )),
-    !contentBlocks.length && /* @__PURE__ */ jsx24("p", { children: props.noContentMessage || "B\xE0i vi\u1EBFt n\xE0y ch\u01B0a c\xF3 n\u1ED9i dung." })
+    !contentBlocks.length && /* @__PURE__ */ jsx25("p", { children: props.noContentMessage || "B\xE0i vi\u1EBFt n\xE0y ch\u01B0a c\xF3 n\u1ED9i dung." })
   ] });
 }
 export {

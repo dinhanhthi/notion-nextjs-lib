@@ -3,10 +3,11 @@
 import { VideoBlockObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 import cn from 'classnames'
 import { get } from 'lodash'
-import YouTube from 'react-youtube'
+// import YouTube from 'react-youtube'
 
 import { getJoinedRichText, getYoutubeVideoId } from '../helpers/block-helpers'
 import BlockRichText from './BlockRichText'
+import YoutubeEmbed from '../components/YoutubeEmbed'
 
 type BlockVideoProps = {
   block: VideoBlockObjectResponse
@@ -22,7 +23,8 @@ export default function BlockVideo(props: BlockVideoProps) {
   return (
     <div className={cn(props.className, 'flex flex-col justify-center items-center gap-2')}>
       <div className="w-full">
-        <YouTube videoId={videoId} title={title} className="aspect-video w-full" />
+        {/* <YouTube videoId={videoId} title={title} className="aspect-video w-full" /> */}
+        <YoutubeEmbed id={videoId} title={title} className="aspect-video w-full" />
       </div>
       {caption && caption.length > 0 && (
         <div className="text-sm italic opacity-90">

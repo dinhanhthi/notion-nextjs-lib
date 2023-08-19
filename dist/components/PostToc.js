@@ -494,6 +494,27 @@ var init_BlockTable = __esm({
   }
 });
 
+// src/components/YoutubeEmbed.tsx
+import { jsx as jsx17 } from "react/jsx-runtime";
+function YoutubeEmbed(props) {
+  return /* @__PURE__ */ jsx17("div", { className: props.className, children: /* @__PURE__ */ jsx17(
+    "iframe",
+    {
+      width: props.width || 853,
+      height: props.height || 480,
+      src: `https://www.youtube.com/embed/${props.id}`,
+      allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
+      allowFullScreen: true,
+      title: props.title || "A video from YouTube",
+      className: "border-0"
+    }
+  ) });
+}
+var init_YoutubeEmbed = __esm({
+  "src/components/YoutubeEmbed.tsx"() {
+  }
+});
+
 // src/notion-blocks/BlockVideo.tsx
 var BlockVideo_exports = {};
 __export(BlockVideo_exports, {
@@ -501,8 +522,7 @@ __export(BlockVideo_exports, {
 });
 import cn17 from "classnames";
 import { get as get4 } from "lodash";
-import YouTube from "react-youtube";
-import { jsx as jsx17, jsxs as jsxs14 } from "react/jsx-runtime";
+import { jsx as jsx18, jsxs as jsxs14 } from "react/jsx-runtime";
 function BlockVideo(props) {
   const videoUrl = get4(props.block, "video.external.url");
   const videoId = getYoutubeVideoId(videoUrl);
@@ -511,8 +531,8 @@ function BlockVideo(props) {
   const caption = get4(props.block, "video.caption");
   const title = caption ? getJoinedRichText(caption) : "";
   return /* @__PURE__ */ jsxs14("div", { className: cn17(props.className, "flex flex-col justify-center items-center gap-2"), children: [
-    /* @__PURE__ */ jsx17("div", { className: "w-full", children: /* @__PURE__ */ jsx17(YouTube, { videoId, title, className: "aspect-video w-full" }) }),
-    caption && caption.length > 0 && /* @__PURE__ */ jsx17("div", { className: "text-sm italic opacity-90", children: caption.map((richText, index) => /* @__PURE__ */ jsx17(BlockRichText, { richText }, index)) })
+    /* @__PURE__ */ jsx18("div", { className: "w-full", children: /* @__PURE__ */ jsx18(YoutubeEmbed, { id: videoId, title, className: "aspect-video w-full" }) }),
+    caption && caption.length > 0 && /* @__PURE__ */ jsx18("div", { className: "text-sm italic opacity-90", children: caption.map((richText, index) => /* @__PURE__ */ jsx18(BlockRichText, { richText }, index)) })
   ] });
 }
 var init_BlockVideo = __esm({
@@ -520,6 +540,7 @@ var init_BlockVideo = __esm({
     "use client";
     init_block_helpers();
     init_BlockRichText();
+    init_YoutubeEmbed();
   }
 });
 
@@ -527,7 +548,7 @@ var init_BlockVideo = __esm({
 import cn18 from "classnames";
 import { get as get5 } from "lodash";
 import dynamic from "next/dynamic";
-import { Fragment as Fragment5, jsx as jsx18 } from "react/jsx-runtime";
+import { Fragment as Fragment5, jsx as jsx19 } from "react/jsx-runtime";
 var DynamicImage, DynamicCode, DynamicEquation, DynamicTable, DynamicVideo;
 var init_Renderer = __esm({
   "src/components/Renderer.tsx"() {
@@ -553,7 +574,7 @@ var init_Renderer = __esm({
 
 // src/components/BlockRender.tsx
 import { createContext } from "react";
-import { jsx as jsx19 } from "react/jsx-runtime";
+import { jsx as jsx20 } from "react/jsx-runtime";
 var defaultBlockOptionContext, BlockOptionContext;
 var init_BlockRender = __esm({
   "src/components/BlockRender.tsx"() {
@@ -572,20 +593,20 @@ import cn19 from "classnames";
 import { get as get6 } from "lodash";
 import Link from "next/link";
 import { useContext as useContext3 } from "react";
-import { Fragment as Fragment6, jsx as jsx20, jsxs as jsxs15 } from "react/jsx-runtime";
+import { Fragment as Fragment6, jsx as jsx21, jsxs as jsxs15 } from "react/jsx-runtime";
 function BlockText(props) {
   const ctx = useContext3(BlockOptionContext);
   if (props.richText.plain_text.includes("\n")) {
     const lines = props.richText.plain_text.split("\n");
-    return /* @__PURE__ */ jsx20(Fragment6, { children: lines.map((line, index) => /* @__PURE__ */ jsxs15("span", { children: [
+    return /* @__PURE__ */ jsx21(Fragment6, { children: lines.map((line, index) => /* @__PURE__ */ jsxs15("span", { children: [
       line,
-      index !== lines.length - 1 && /* @__PURE__ */ jsx20("br", {})
+      index !== lines.length - 1 && /* @__PURE__ */ jsx21("br", {})
     ] }, index)) });
   }
   if (props.richText.type === "text" && !props.ignore?.includes("hyperlink") && props.richText.href) {
     if (props.richText.href.includes(ctx?.siteDomain) && !props.richText.href.includes("@")) {
       const uri = getUriFromUrl(props.richText.href);
-      return /* @__PURE__ */ jsx20(
+      return /* @__PURE__ */ jsx21(
         Link,
         {
           className: generateTextAnnotationClasses(
@@ -597,7 +618,7 @@ function BlockText(props) {
         }
       );
     } else {
-      return /* @__PURE__ */ jsx20(
+      return /* @__PURE__ */ jsx21(
         "a",
         {
           className: cn19(
@@ -616,7 +637,7 @@ function BlockText(props) {
     }
   }
   if (!props.ignore?.includes("hyperlink") && props.richText.type === "mention" && props.richText.mention?.type === "page" && get6(props.richText, "mention.page.uri")) {
-    return /* @__PURE__ */ jsx20(
+    return /* @__PURE__ */ jsx21(
       Link,
       {
         className: generateTextAnnotationClasses(
@@ -629,7 +650,7 @@ function BlockText(props) {
     );
   }
   if (props.richText.type === "mention" && props.richText.mention?.type === "date") {
-    return /* @__PURE__ */ jsx20(
+    return /* @__PURE__ */ jsx21(
       "span",
       {
         className: generateTextAnnotationClasses(
@@ -643,7 +664,7 @@ function BlockText(props) {
   const noDecoration = !props.richText.annotations.bold && !props.richText.annotations.italic && !props.richText.annotations.underline && !props.richText.annotations.strikethrough && !props.richText.annotations.code && props.richText.annotations.color === "default" && !props.richText.href;
   if (noDecoration)
     return props.richText.plain_text;
-  return /* @__PURE__ */ jsx20(
+  return /* @__PURE__ */ jsx21(
     "span",
     {
       className: generateTextAnnotationClasses(
@@ -680,9 +701,9 @@ __export(BlockInlineEquation_exports, {
   default: () => BlockInlineEquation
 });
 import Katex2 from "@matejmazur/react-katex";
-import { jsx as jsx21 } from "react/jsx-runtime";
+import { jsx as jsx22 } from "react/jsx-runtime";
 function BlockInlineEquation(props) {
-  return /* @__PURE__ */ jsx21("span", { className: generateTextAnnotationClasses(props.equation.annotations), children: /* @__PURE__ */ jsx21(
+  return /* @__PURE__ */ jsx22("span", { className: generateTextAnnotationClasses(props.equation.annotations), children: /* @__PURE__ */ jsx22(
     Katex2,
     {
       className: props.fontSize ?? mathFontSize,
@@ -704,14 +725,14 @@ var init_BlockInlineEquation = __esm({
 
 // src/notion-blocks/BlockRichText.tsx
 import dynamic2 from "next/dynamic";
-import { jsx as jsx22 } from "react/jsx-runtime";
+import { jsx as jsx23 } from "react/jsx-runtime";
 function BlockRichText(props) {
   switch (props.richText.type) {
     case "text":
     case "mention":
-      return /* @__PURE__ */ jsx22(BlockText, { richText: props.richText, ignore: props.ignore });
+      return /* @__PURE__ */ jsx23(BlockText, { richText: props.richText, ignore: props.ignore });
     case "equation":
-      return /* @__PURE__ */ jsx22(
+      return /* @__PURE__ */ jsx23(
         DynamicInlineEquation,
         {
           equation: props.richText,
@@ -719,7 +740,7 @@ function BlockRichText(props) {
         }
       );
     default:
-      return /* @__PURE__ */ jsx22(BlockText, { richText: props.richText });
+      return /* @__PURE__ */ jsx23(BlockText, { richText: props.richText });
   }
 }
 var DynamicInlineEquation;
@@ -761,7 +782,7 @@ function useHeadsObserver() {
 
 // src/components/PostToc.tsx
 init_BlockRichText();
-import { jsx as jsx23, jsxs as jsxs16 } from "react/jsx-runtime";
+import { jsx as jsx24, jsxs as jsxs16 } from "react/jsx-runtime";
 function PostToc(props) {
   const [showContent, setShowContent] = useState4(true);
   const headingBlocks = props.contentBlocks.filter(
@@ -792,8 +813,8 @@ function PostToc(props) {
             ),
             onClick: () => setShowContent(!showContent),
             children: [
-              /* @__PURE__ */ jsx23("div", { children: "Trong b\xE0i n\xE0y" }),
-              /* @__PURE__ */ jsx23("div", { children: /* @__PURE__ */ jsx23(
+              /* @__PURE__ */ jsx24("div", { children: "Trong b\xE0i n\xE0y" }),
+              /* @__PURE__ */ jsx24("div", { children: /* @__PURE__ */ jsx24(
                 IoIosArrowDown,
                 {
                   className: cn20("text-2xl ease-in-out transition-all duration-[400ms]", {
@@ -805,7 +826,7 @@ function PostToc(props) {
             ]
           }
         ),
-        showContent && /* @__PURE__ */ jsx23(
+        showContent && /* @__PURE__ */ jsx24(
           "div",
           {
             className: cn20("pt-3 pl-1 overflow-auto m2it-scrollbar m2it-scrollbar-small border-t", {
@@ -827,10 +848,10 @@ function PostToc(props) {
                     "text-slate-700": activeId !== anchor || props.inPost
                   }),
                   children: [
-                    block.type === "heading_2" && /* @__PURE__ */ jsx23("span", { className: "text-[0.7rem] text-slate-400", children: "\u25C6" }),
-                    block.type === "heading_3" && /* @__PURE__ */ jsx23("span", { className: "text-[0.6rem] text-slate-400", children: "\u25CB" }),
-                    /* @__PURE__ */ jsx23("span", { className: "block", children: block[`${block.type}`].rich_text.map(
-                      (richText, index) => /* @__PURE__ */ jsx23(
+                    block.type === "heading_2" && /* @__PURE__ */ jsx24("span", { className: "text-[0.7rem] text-slate-400", children: "\u25C6" }),
+                    block.type === "heading_3" && /* @__PURE__ */ jsx24("span", { className: "text-[0.6rem] text-slate-400", children: "\u25CB" }),
+                    /* @__PURE__ */ jsx24("span", { className: "block", children: block[`${block.type}`].rich_text.map(
+                      (richText, index) => /* @__PURE__ */ jsx24(
                         BlockRichText,
                         {
                           richText,
