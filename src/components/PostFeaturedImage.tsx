@@ -3,7 +3,6 @@
 /**
  * This component is used for displaying featured image of a post IN A POST LIST ONLY.
  */
-
 import cn from 'classnames'
 import { StaticImageData } from 'next/image'
 

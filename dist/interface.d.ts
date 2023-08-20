@@ -42,6 +42,12 @@ type PostHeaderType = {
         img?: ImageType;
     };
 };
+interface Post extends PostHeaderType {
+    slug: string;
+    id?: string;
+    uri: string;
+    excerpt?: RichTextItemResponse[];
+}
 type Page = {
     id?: string;
     title: string;
@@ -85,12 +91,6 @@ type Author = {
     website?: string | null;
     posts?: Post[] | null;
 };
-interface Post extends PostHeaderType {
-    slug: string;
-    id?: string;
-    uri: string;
-    excerpt?: RichTextItemResponse[];
-}
 type NotionSorts = {
     property: string;
     direction: 'ascending' | 'descending';

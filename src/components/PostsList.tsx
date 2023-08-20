@@ -8,6 +8,7 @@ import PostCardWave, { PostCardWaveOpts } from '../post-types/PostCardWave'
 import PostCardWhiteBg, { PostCardWhiteBgOpts } from '../post-types/PostCardWhiteBg'
 import PostCardWhiteBgBig, { PostCardWhiteBgBigOpts } from '../post-types/PostCardWhiteBgBig'
 import PostImageBackground, { PostImageBackgroundOpts } from '../post-types/PostImageBackground'
+import PostSimple, { PostSimpleOpts } from '../post-types/PostSimple'
 import PostTitleCateDate, { PostTitleCateDateOpts } from '../post-types/PostTitleCateDate'
 import { Carousel, CarouselItem } from './Carousel'
 
@@ -17,6 +18,7 @@ export type PostType =
   | 'PostCardWhiteBgBig'
   | 'PostImageBackground'
   | 'PostCardWave'
+  | 'PostSimple'
 
 export type PostListStyle = 'default' | 'carousel'
 
@@ -26,6 +28,7 @@ export type PostTypeOpts =
   | PostCardWhiteBgBigOpts
   | PostImageBackgroundOpts
   | PostCardWaveOpts
+  | PostSimpleOpts
 
 type PostListProps = {
   listStyle?: PostListStyle
@@ -43,11 +46,10 @@ export const postListGridCLass = cn(
 )
 
 export default function PostList(props: PostListProps) {
-  const className = props.options?.className ? props.options.className : postListGridCLass
   return (
     <section>
       {(!props.listStyle || props.listStyle === 'default') && (
-        <div className={className}>
+        <div className={props.options?.className || postListGridCLass}>
           {props.posts.map((post, index) => (
             <React.Fragment key={post.uri}>
               {getPostTypeElement(props.postType, post, props.postTypeOpts, index)}
@@ -86,5 +88,7 @@ function getPostTypeElement(
       return <PostImageBackground post={post} options={postTypeOpts} />
     case 'PostCardWave':
       return <PostCardWave post={post} options={{ ...postTypeOpts, colorIndex: index }} />
+    case 'PostSimple':
+      return <PostSimple post={post} options={postTypeOpts} />
   }
 }

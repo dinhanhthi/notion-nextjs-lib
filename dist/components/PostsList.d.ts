@@ -24,15 +24,24 @@ type PostImageBackgroundOpts = {
     fontClassName?: string;
 };
 
+type PostSimpleOpts = {
+    hideDate?: boolean;
+    fontClassName?: string;
+    customIcon?: React.ReactNode;
+    updatedOnLabel?: string;
+};
+
 type PostTitleCateDateOpts = {
     hideCategory?: boolean;
     hideDate?: boolean;
     fontClassName?: string;
+    defaultCategoryBgColor?: string;
+    defaultCategoryTextColor?: string;
 };
 
-type PostType = 'PostTitleCateDate' | 'PostCardWhiteBg' | 'PostCardWhiteBgBig' | 'PostImageBackground' | 'PostCardWave';
+type PostType = 'PostTitleCateDate' | 'PostCardWhiteBg' | 'PostCardWhiteBgBig' | 'PostImageBackground' | 'PostCardWave' | 'PostSimple';
 type PostListStyle = 'default' | 'carousel';
-type PostTypeOpts = PostTitleCateDateOpts | PostCardWhiteBgOpts | PostCardWhiteBgBigOpts | PostImageBackgroundOpts | PostCardWaveOpts;
+type PostTypeOpts = PostTitleCateDateOpts | PostCardWhiteBgOpts | PostCardWhiteBgBigOpts | PostImageBackgroundOpts | PostCardWaveOpts | PostSimpleOpts;
 type PostListProps = {
     listStyle?: PostListStyle;
     posts: Post[];

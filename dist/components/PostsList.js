@@ -748,7 +748,7 @@ var init_BlockRichText = __esm({
 });
 
 // src/components/PostsList.tsx
-import cn27 from "classnames";
+import cn28 from "classnames";
 import React2 from "react";
 
 // src/post-types/PostCardWave.tsx
@@ -851,7 +851,7 @@ import Moment from "moment";
 import { jsx as jsx2 } from "react/jsx-runtime";
 function Date(props) {
   const date = Moment(props.dateString).format(props.format || "DD/MM/YYYY");
-  return /* @__PURE__ */ jsx2("span", { children: date });
+  return /* @__PURE__ */ jsx2("span", { className: props.className, children: date });
 }
 
 // src/components/PostFeaturedImage.tsx
@@ -990,25 +990,58 @@ function PostImageBackground(props) {
   ] }) }) }) });
 }
 
-// src/post-types/PostTitleCateDate.tsx
+// src/post-types/PostSimple.tsx
 import cn25 from "classnames";
 import Link6 from "next/link";
-import { IoBookOutline } from "react-icons/io5";
+import { HiOutlineDocumentText } from "react-icons/hi";
 import { jsx as jsx32, jsxs as jsxs20 } from "react/jsx-runtime";
+function PostSimple(props) {
+  const { post, options } = props;
+  return /* @__PURE__ */ jsx32("div", { className: "group py-2 hover:bg-gray-50", children: /* @__PURE__ */ jsxs20(Link6, { className: cn25(options?.fontClassName, "flex items-center gap-3"), href: post.uri || "/", children: [
+    /* @__PURE__ */ jsxs20("div", { className: "text-xl", children: [
+      !!options?.customIcon && options.customIcon,
+      !options?.customIcon && /* @__PURE__ */ jsx32(HiOutlineDocumentText, {})
+    ] }),
+    /* @__PURE__ */ jsx32("h3", { className: "flex-1", children: post.title }),
+    (post.createdDate || post.date) && /* @__PURE__ */ jsxs20("div", { className: "flex gap-2", children: [
+      post.date && /* @__PURE__ */ jsxs20(
+        "div",
+        {
+          className: cn25(
+            `bg-slate-200 text-slate-800 px-3 py-0.5 text-[0.8rem] items-start rounded-md
+                      whitespace-nowrap`
+          ),
+          children: [
+            options?.updatedOnLabel || "updated on",
+            " ",
+            /* @__PURE__ */ jsx32(Date, { dateString: post.date, format: "MMM DD, YYYY" })
+          ]
+        }
+      ),
+      post.createdDate && /* @__PURE__ */ jsx32(Date, { className: "text-[0.9rem] text-slate-800", dateString: post.createdDate, format: "MMM DD, YYYY" })
+    ] })
+  ] }) });
+}
+
+// src/post-types/PostTitleCateDate.tsx
+import cn26 from "classnames";
+import Link7 from "next/link";
+import { IoBookOutline } from "react-icons/io5";
+import { jsx as jsx33, jsxs as jsxs21 } from "react/jsx-runtime";
 var TCDFIHeightClass = "h-28";
 function PostTitleCateDate(props) {
   const { title, featuredImage, date, categories, uri } = props.post;
   const options = props.options;
   const category = categories ? categories[0] : null;
-  return /* @__PURE__ */ jsx32("div", { className: "group", children: /* @__PURE__ */ jsxs20(Link6, { className: cn25(options?.fontClassName, "text-center"), href: uri || "/", children: [
-    /* @__PURE__ */ jsxs20(
+  return /* @__PURE__ */ jsx33("div", { className: "group", children: /* @__PURE__ */ jsxs21(Link7, { className: cn26(options?.fontClassName, "text-center"), href: uri || "/", children: [
+    /* @__PURE__ */ jsxs21(
       "div",
       {
-        className: cn25("flex flex-col justify-center overflow-hidden rounded-t-md shadow-sm", {
+        className: cn26("flex flex-col justify-center overflow-hidden rounded-t-md shadow-sm", {
           "rounded-b-md": !category || options?.hideCategory
         }),
         children: [
-          /* @__PURE__ */ jsx32("div", { className: cn25("relative w-full overflow-hidden", TCDFIHeightClass), children: /* @__PURE__ */ jsx32(
+          /* @__PURE__ */ jsx33("div", { className: cn26("relative w-full overflow-hidden", TCDFIHeightClass), children: /* @__PURE__ */ jsx33(
             PostFeaturedImage,
             {
               className: "duration-300 group-hover:scale-110",
@@ -1016,58 +1049,58 @@ function PostTitleCateDate(props) {
               title
             }
           ) }),
-          !options?.hideCategory && category && /* @__PURE__ */ jsx32(
+          !options?.hideCategory && category && /* @__PURE__ */ jsx33(
             "div",
             {
               style: {
-                backgroundColor: `${category.style?.bgColor || props.defaultCategoryBgColor || "#eee"}`,
-                color: `${category.style?.textColor || props.defaultCategoryTextColor || "#222"}`
+                backgroundColor: `${category.style?.bgColor || options.defaultCategoryBgColor || "#eee"}`,
+                color: `${category.style?.textColor || options.defaultCategoryTextColor || "#222"}`
               },
-              className: cn25("rounded-b-md px-2 py-1 text-xs font-semibold"),
+              className: cn26("rounded-b-md px-2 py-1 text-xs font-semibold"),
               children: category?.name
             }
           )
         ]
       }
     ),
-    /* @__PURE__ */ jsxs20(
+    /* @__PURE__ */ jsxs21(
       "div",
       {
-        className: cn25(
+        className: cn26(
           "group-hover:m2it-link-hover p-2 text-[0.95rem] font-semibold leading-[1.35]"
         ),
         children: [
           title,
-          !!props.post.bookCover && /* @__PURE__ */ jsx32(IoBookOutline, { className: "group-hover:m2it-link-hover mb-[2px] ml-2 inline text-sm text-slate-700" })
+          !!props.post.bookCover && /* @__PURE__ */ jsx33(IoBookOutline, { className: "group-hover:m2it-link-hover mb-[2px] ml-2 inline text-sm text-slate-700" })
         ]
       }
     ),
-    !options?.hideDate && /* @__PURE__ */ jsxs20("div", { className: "text-sm opacity-80", children: [
-      /* @__PURE__ */ jsx32("i", { className: "icon-clock mr-1" }),
-      date && /* @__PURE__ */ jsx32(Date, { dateString: date })
+    !options?.hideDate && /* @__PURE__ */ jsxs21("div", { className: "text-sm opacity-80", children: [
+      /* @__PURE__ */ jsx33("i", { className: "icon-clock mr-1" }),
+      date && /* @__PURE__ */ jsx33(Date, { dateString: date })
     ] })
   ] }) });
 }
 
 // src/components/Carousel.tsx
-import cn26 from "classnames";
+import cn27 from "classnames";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useSnapCarousel } from "react-snap-carousel";
-import { jsx as jsx33, jsxs as jsxs21 } from "react/jsx-runtime";
+import { jsx as jsx34, jsxs as jsxs22 } from "react/jsx-runtime";
 var Carousel = ({ items, renderItem }) => {
   const { scrollRef, pages, activePageIndex, prev, next, goTo, snapPointIndexes } = useSnapCarousel();
-  const arrowBtnClasses = cn26(
+  const arrowBtnClasses = cn27(
     "absolute top-14 bg-white rounded-full p-1 shadow-md hover:shadow-lg transition-all"
   );
-  const arrowClasses = cn26(
+  const arrowClasses = cn27(
     "text-2xl hover:text-3xl transition-all text-slate-400 hover:text-slate-600"
   );
-  return /* @__PURE__ */ jsxs21("div", { className: "relative", children: [
-    /* @__PURE__ */ jsx33(
+  return /* @__PURE__ */ jsxs22("div", { className: "relative", children: [
+    /* @__PURE__ */ jsx34(
       "div",
       {
         ref: scrollRef,
-        className: cn26("no-scrollbar relative flex overflow-auto snap-mandatory gap-4 pb-4"),
+        className: cn27("no-scrollbar relative flex overflow-auto snap-mandatory gap-4 pb-4"),
         children: items.map(
           (item, i) => renderItem({
             item,
@@ -1077,30 +1110,30 @@ var Carousel = ({ items, renderItem }) => {
         )
       }
     ),
-    /* @__PURE__ */ jsx33(
+    /* @__PURE__ */ jsx34(
       "button",
       {
         onClick: () => prev(),
-        className: cn26("-left-4", arrowBtnClasses, {
+        className: cn27("-left-4", arrowBtnClasses, {
           "opacity-0": activePageIndex <= 0
         }),
-        children: /* @__PURE__ */ jsx33(FaChevronLeft, { className: arrowClasses })
+        children: /* @__PURE__ */ jsx34(FaChevronLeft, { className: arrowClasses })
       }
     ),
-    /* @__PURE__ */ jsx33(
+    /* @__PURE__ */ jsx34(
       "button",
       {
         onClick: () => next(),
-        className: cn26("-right-4", arrowBtnClasses, {
+        className: cn27("-right-4", arrowBtnClasses, {
           "opacity-0": activePageIndex === pages.length - 1
         }),
-        children: /* @__PURE__ */ jsx33(FaChevronRight, { className: arrowClasses })
+        children: /* @__PURE__ */ jsx34(FaChevronRight, { className: arrowClasses })
       }
     ),
-    /* @__PURE__ */ jsx33("div", { "aria-hidden": true, className: "flex items-center justify-center gap-2 mt-4", children: pages.map((_, i) => /* @__PURE__ */ jsx33(
+    /* @__PURE__ */ jsx34("div", { "aria-hidden": true, className: "flex items-center justify-center gap-2 mt-4", children: pages.map((_, i) => /* @__PURE__ */ jsx34(
       "button",
       {
-        className: cn26("h-2.5 rounded-full bg-slate-600 transition-all hover:opacity-60", {
+        className: cn27("h-2.5 rounded-full bg-slate-600 transition-all hover:opacity-60", {
           "opacity-40 w-2.5 hover:w-3.5": activePageIndex !== i,
           "w-5 opacity-70": activePageIndex === i
         }),
@@ -1110,10 +1143,10 @@ var Carousel = ({ items, renderItem }) => {
     )) })
   ] });
 };
-var CarouselItem = ({ isSnapPoint, children, widthClass }) => /* @__PURE__ */ jsx33(
+var CarouselItem = ({ isSnapPoint, children, widthClass }) => /* @__PURE__ */ jsx34(
   "div",
   {
-    className: cn26(
+    className: cn27(
       "shrink-0",
       {
         "snap-start": isSnapPoint
@@ -1125,19 +1158,18 @@ var CarouselItem = ({ isSnapPoint, children, widthClass }) => /* @__PURE__ */ js
 );
 
 // src/components/PostsList.tsx
-import { jsx as jsx34, jsxs as jsxs22 } from "react/jsx-runtime";
-var postListGridCLass = cn27(
+import { jsx as jsx35, jsxs as jsxs23 } from "react/jsx-runtime";
+var postListGridCLass = cn28(
   "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-x-4"
 );
 function PostList(props) {
-  const className = props.options?.className ? props.options.className : postListGridCLass;
-  return /* @__PURE__ */ jsxs22("section", { children: [
-    (!props.listStyle || props.listStyle === "default") && /* @__PURE__ */ jsx34("div", { className, children: props.posts.map((post, index) => /* @__PURE__ */ jsx34(React2.Fragment, { children: getPostTypeElement(props.postType, post, props.postTypeOpts, index) }, post.uri)) }),
-    props.listStyle === "carousel" && /* @__PURE__ */ jsx34(
+  return /* @__PURE__ */ jsxs23("section", { children: [
+    (!props.listStyle || props.listStyle === "default") && /* @__PURE__ */ jsx35("div", { className: props.options?.className || postListGridCLass, children: props.posts.map((post, index) => /* @__PURE__ */ jsx35(React2.Fragment, { children: getPostTypeElement(props.postType, post, props.postTypeOpts, index) }, post.uri)) }),
+    props.listStyle === "carousel" && /* @__PURE__ */ jsx35(
       Carousel,
       {
         items: props.posts,
-        renderItem: ({ item, isSnapPoint, index }) => /* @__PURE__ */ jsx34(CarouselItem, { isSnapPoint, widthClass: "w-80", children: getPostTypeElement(props.postType, item, props.postTypeOpts, index) }, item.id)
+        renderItem: ({ item, isSnapPoint, index }) => /* @__PURE__ */ jsx35(CarouselItem, { isSnapPoint, widthClass: "w-80", children: getPostTypeElement(props.postType, item, props.postTypeOpts, index) }, item.id)
       }
     )
   ] });
@@ -1145,15 +1177,17 @@ function PostList(props) {
 function getPostTypeElement(postType, post, postTypeOpts, index) {
   switch (postType) {
     case "PostTitleCateDate":
-      return /* @__PURE__ */ jsx34(PostTitleCateDate, { post, options: postTypeOpts });
+      return /* @__PURE__ */ jsx35(PostTitleCateDate, { post, options: postTypeOpts });
     case "PostCardWhiteBg":
-      return /* @__PURE__ */ jsx34(PostCardWhiteBg, { post, options: postTypeOpts });
+      return /* @__PURE__ */ jsx35(PostCardWhiteBg, { post, options: postTypeOpts });
     case "PostCardWhiteBgBig":
-      return /* @__PURE__ */ jsx34(PostCardWhiteBgBig, { post, options: postTypeOpts });
+      return /* @__PURE__ */ jsx35(PostCardWhiteBgBig, { post, options: postTypeOpts });
     case "PostImageBackground":
-      return /* @__PURE__ */ jsx34(PostImageBackground, { post, options: postTypeOpts });
+      return /* @__PURE__ */ jsx35(PostImageBackground, { post, options: postTypeOpts });
     case "PostCardWave":
-      return /* @__PURE__ */ jsx34(PostCardWave, { post, options: { ...postTypeOpts, colorIndex: index } });
+      return /* @__PURE__ */ jsx35(PostCardWave, { post, options: { ...postTypeOpts, colorIndex: index } });
+    case "PostSimple":
+      return /* @__PURE__ */ jsx35(PostSimple, { post, options: postTypeOpts });
   }
 }
 export {

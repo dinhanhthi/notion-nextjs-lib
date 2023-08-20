@@ -3,7 +3,6 @@
 // src/components/SearchModal.tsx
 import { Dialog, Transition } from "@headlessui/react";
 import cn from "classnames";
-import parse from "html-react-parser";
 import { debounce, get } from "lodash";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -186,13 +185,23 @@ function SearchModal(props) {
                                       "w-full text-base flex items-center justify-between"
                                     ),
                                     children: [
-                                      /* @__PURE__ */ jsx(
+                                      /* @__PURE__ */ jsxs(
                                         "div",
                                         {
                                           className: cn({
                                             "pr-4 pb-1 border-b border-dashed": item.textHighlighted
                                           }),
-                                          children: parse(item.titleHighlighted) || item.title
+                                          children: [
+                                            item.titleHighlighted && /* @__PURE__ */ jsx(
+                                              "span",
+                                              {
+                                                dangerouslySetInnerHTML: {
+                                                  __html: item.titleHighlighted
+                                                }
+                                              }
+                                            ),
+                                            !item.titleHighlighted && /* @__PURE__ */ jsx("span", { children: item.title })
+                                          ]
                                         }
                                       ),
                                       /* @__PURE__ */ jsx(
@@ -208,7 +217,13 @@ function SearchModal(props) {
                                     ]
                                   }
                                 ),
-                                item.textHighlighted && /* @__PURE__ */ jsx("div", { className: "text-sm opacity-80", children: parse(item.textHighlighted) })
+                                item.textHighlighted && /* @__PURE__ */ jsx(
+                                  "div",
+                                  {
+                                    className: "text-sm opacity-80",
+                                    dangerouslySetInnerHTML: { __html: item.textHighlighted }
+                                  }
+                                )
                               ] })
                             ]
                           },

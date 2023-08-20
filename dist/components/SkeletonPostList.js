@@ -748,7 +748,7 @@ var init_BlockRichText = __esm({
 });
 
 // src/components/SkeletonPostList.tsx
-import cn28 from "classnames";
+import cn29 from "classnames";
 
 // src/post-types/PostCardWhiteBgBig.tsx
 import cn21 from "classnames";
@@ -865,7 +865,7 @@ var CarouselItem = ({ isSnapPoint, children, widthClass }) => /* @__PURE__ */ js
 );
 
 // src/components/PostsList.tsx
-import cn27 from "classnames";
+import cn28 from "classnames";
 import React2 from "react";
 
 // src/post-types/PostCardWave.tsx
@@ -878,22 +878,28 @@ import cn26 from "classnames";
 import Link6 from "next/link";
 import { jsx as jsx33, jsxs as jsxs21 } from "react/jsx-runtime";
 
-// src/components/PostsList.tsx
+// src/post-types/PostSimple.tsx
+import cn27 from "classnames";
+import Link7 from "next/link";
+import { HiOutlineDocumentText } from "react-icons/hi";
 import { jsx as jsx34, jsxs as jsxs22 } from "react/jsx-runtime";
-var postListGridCLass = cn27(
+
+// src/components/PostsList.tsx
+import { jsx as jsx35, jsxs as jsxs23 } from "react/jsx-runtime";
+var postListGridCLass = cn28(
   "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-x-4"
 );
 
 // src/components/SkeletonPostList.tsx
-import { Fragment as Fragment10, jsx as jsx35, jsxs as jsxs23 } from "react/jsx-runtime";
+import { Fragment as Fragment10, jsx as jsx36, jsxs as jsxs24 } from "react/jsx-runtime";
 function SkeletonPostList(props) {
-  return /* @__PURE__ */ jsxs23(Fragment10, { children: [
-    (!props.listStyle || props.listStyle === "default") && /* @__PURE__ */ jsx35("div", { className: cn28(postListGridCLass, "animate-pulse"), children: Array.from({ length: props.count }).map((_, i) => getSkeleton(i, props.postType)) }),
-    props.listStyle === "carousel" && /* @__PURE__ */ jsx35(
+  return /* @__PURE__ */ jsxs24(Fragment10, { children: [
+    (!props.listStyle || props.listStyle === "default") && /* @__PURE__ */ jsx36("div", { className: cn29(postListGridCLass, "animate-pulse"), children: Array.from({ length: props.count }).map((_, i) => getSkeleton(i, props.postType)) }),
+    props.listStyle === "carousel" && /* @__PURE__ */ jsx36(
       Carousel,
       {
         items: Array.from({ length: props.count }).map((_, i) => ({ id: i })),
-        renderItem: ({ item, isSnapPoint }) => /* @__PURE__ */ jsx35(CarouselItem, { isSnapPoint, widthClass: "w-80", children: getSkeleton(item.id, props.postType) }, item.id)
+        renderItem: ({ item, isSnapPoint }) => /* @__PURE__ */ jsx36(CarouselItem, { isSnapPoint, widthClass: "w-80", children: getSkeleton(item.id, props.postType) }, item.id)
       }
     )
   ] });
@@ -901,42 +907,42 @@ function SkeletonPostList(props) {
 function getSkeleton(key, postType) {
   switch (postType) {
     case "PostTitleCateDate":
-      return /* @__PURE__ */ jsx35(PostTitleCateDateSkeleton, {}, key);
+      return /* @__PURE__ */ jsx36(PostTitleCateDateSkeleton, {}, key);
     case "PostCardWhiteBgBig":
-      return /* @__PURE__ */ jsx35(PostCardWhiteBgBigSkeleton, {}, key);
+      return /* @__PURE__ */ jsx36(PostCardWhiteBgBigSkeleton, {}, key);
     case "PostImageBackground":
-      return /* @__PURE__ */ jsx35(PostImageBackgroundSkeleton, {}, key);
+      return /* @__PURE__ */ jsx36(PostImageBackgroundSkeleton, {}, key);
     case "PostCardWave":
-      return /* @__PURE__ */ jsx35(PostCardWaveSkeleton, {}, key);
+      return /* @__PURE__ */ jsx36(PostCardWaveSkeleton, {}, key);
     default:
-      return /* @__PURE__ */ jsx35(PostTitleCateDateSkeleton, {}, key);
+      return /* @__PURE__ */ jsx36(PostTitleCateDateSkeleton, {}, key);
   }
 }
-var PostCardWaveSkeleton = () => /* @__PURE__ */ jsx35("div", { className: "flex flex-col justify-center", children: /* @__PURE__ */ jsx35("div", { className: cn28("flex items-center justify-center w-full rounded-md bg-slate-200", "h-32"), children: /* @__PURE__ */ jsxs23("div", { className: "w-full flex flex-col items-center gap-1 p-3", children: [
-  /* @__PURE__ */ jsx35("div", { className: "h-4 w-full rounded-md bg-slate-300" }),
-  /* @__PURE__ */ jsx35("div", { className: "h-4 w-3/4 rounded-md bg-slate-300" })
+var PostCardWaveSkeleton = () => /* @__PURE__ */ jsx36("div", { className: "flex flex-col justify-center", children: /* @__PURE__ */ jsx36("div", { className: cn29("flex items-center justify-center w-full rounded-md bg-slate-200", "h-32"), children: /* @__PURE__ */ jsxs24("div", { className: "w-full flex flex-col items-center gap-1 p-3", children: [
+  /* @__PURE__ */ jsx36("div", { className: "h-4 w-full rounded-md bg-slate-300" }),
+  /* @__PURE__ */ jsx36("div", { className: "h-4 w-3/4 rounded-md bg-slate-300" })
 ] }) }) });
-var PostTitleCateDateSkeleton = () => /* @__PURE__ */ jsxs23("div", { className: "flex flex-col justify-center", children: [
-  /* @__PURE__ */ jsx35("div", { className: cn28("w-full rounded-md bg-slate-200", TCDFIHeightClass) }),
-  /* @__PURE__ */ jsxs23("div", { className: "flex flex-col items-center gap-1 p-2", children: [
-    /* @__PURE__ */ jsx35("div", { className: "h-4 w-full rounded-md bg-slate-200" }),
-    /* @__PURE__ */ jsx35("div", { className: "h-4 w-3/4 rounded-md bg-slate-200" })
+var PostTitleCateDateSkeleton = () => /* @__PURE__ */ jsxs24("div", { className: "flex flex-col justify-center", children: [
+  /* @__PURE__ */ jsx36("div", { className: cn29("w-full rounded-md bg-slate-200", TCDFIHeightClass) }),
+  /* @__PURE__ */ jsxs24("div", { className: "flex flex-col items-center gap-1 p-2", children: [
+    /* @__PURE__ */ jsx36("div", { className: "h-4 w-full rounded-md bg-slate-200" }),
+    /* @__PURE__ */ jsx36("div", { className: "h-4 w-3/4 rounded-md bg-slate-200" })
   ] })
 ] });
-var PostCardWhiteBgBigSkeleton = () => /* @__PURE__ */ jsxs23("div", { className: "flex flex-col justify-center", children: [
-  /* @__PURE__ */ jsx35("div", { className: cn28("w-full rounded-md bg-slate-200", CWBBHeightClass) }),
-  /* @__PURE__ */ jsxs23("div", { className: "flex flex-col items-center gap-1 p-2", children: [
-    /* @__PURE__ */ jsx35("div", { className: "h-4 w-full rounded-md bg-slate-200" }),
-    /* @__PURE__ */ jsxs23("div", { className: "w-full mt-2 px-2 flex flex-col items-center gap-1", children: [
-      /* @__PURE__ */ jsx35("div", { className: "h-2 w-full rounded-md bg-slate-200" }),
-      /* @__PURE__ */ jsx35("div", { className: "h-2 w-full rounded-md bg-slate-200" }),
-      /* @__PURE__ */ jsx35("div", { className: "h-2 w-3/4 rounded-md bg-slate-200" })
+var PostCardWhiteBgBigSkeleton = () => /* @__PURE__ */ jsxs24("div", { className: "flex flex-col justify-center", children: [
+  /* @__PURE__ */ jsx36("div", { className: cn29("w-full rounded-md bg-slate-200", CWBBHeightClass) }),
+  /* @__PURE__ */ jsxs24("div", { className: "flex flex-col items-center gap-1 p-2", children: [
+    /* @__PURE__ */ jsx36("div", { className: "h-4 w-full rounded-md bg-slate-200" }),
+    /* @__PURE__ */ jsxs24("div", { className: "w-full mt-2 px-2 flex flex-col items-center gap-1", children: [
+      /* @__PURE__ */ jsx36("div", { className: "h-2 w-full rounded-md bg-slate-200" }),
+      /* @__PURE__ */ jsx36("div", { className: "h-2 w-full rounded-md bg-slate-200" }),
+      /* @__PURE__ */ jsx36("div", { className: "h-2 w-3/4 rounded-md bg-slate-200" })
     ] })
   ] })
 ] });
-var PostImageBackgroundSkeleton = () => /* @__PURE__ */ jsx35("div", { className: "flex flex-col justify-center", children: /* @__PURE__ */ jsx35("div", { className: cn28("relative w-full rounded-md bg-slate-200", PIBHeightClass), children: /* @__PURE__ */ jsxs23("div", { className: "absolute bottom-0 left-0 w-full flex flex-col items-center gap-1 p-3", children: [
-  /* @__PURE__ */ jsx35("div", { className: "h-4 w-full rounded-md bg-slate-300" }),
-  /* @__PURE__ */ jsx35("div", { className: "h-4 w-3/4 rounded-md bg-slate-300" })
+var PostImageBackgroundSkeleton = () => /* @__PURE__ */ jsx36("div", { className: "flex flex-col justify-center", children: /* @__PURE__ */ jsx36("div", { className: cn29("relative w-full rounded-md bg-slate-200", PIBHeightClass), children: /* @__PURE__ */ jsxs24("div", { className: "absolute bottom-0 left-0 w-full flex flex-col items-center gap-1 p-3", children: [
+  /* @__PURE__ */ jsx36("div", { className: "h-4 w-full rounded-md bg-slate-300" }),
+  /* @__PURE__ */ jsx36("div", { className: "h-4 w-3/4 rounded-md bg-slate-300" })
 ] }) }) });
 export {
   SkeletonPostList as default

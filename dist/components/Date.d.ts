@@ -4,6 +4,7 @@ type DateProps = {
     dateString: string;
     format?: string;
     toDuration?: boolean;
+    className?: string;
 };
 declare function Date(props: DateProps): react_jsx_runtime.JSX.Element;
 

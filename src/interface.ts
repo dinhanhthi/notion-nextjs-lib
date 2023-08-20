@@ -37,6 +37,13 @@ export type PostHeaderType = {
   }
 }
 
+export interface Post extends PostHeaderType {
+  slug: string
+  id?: string
+  uri: string
+  excerpt?: RichTextItemResponse[]
+}
+
 export type Page = {
   id?: string
   title: string
@@ -84,13 +91,6 @@ export type Author = {
   email?: string | null
   website?: string | null
   posts?: Post[] | null
-}
-
-export interface Post extends PostHeaderType {
-  slug: string
-  id?: string
-  uri: string
-  excerpt?: RichTextItemResponse[]
 }
 
 export type NotionSorts = {

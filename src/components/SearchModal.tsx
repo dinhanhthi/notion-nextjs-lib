@@ -2,7 +2,6 @@
 
 import { Dialog, Transition } from '@headlessui/react'
 import cn from 'classnames'
-import parse from 'html-react-parser'
 import { debounce, get } from 'lodash'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -245,7 +244,14 @@ export default function SearchModal(props: SearchModalProps) {
                                         'pr-4 pb-1 border-b border-dashed': item.textHighlighted
                                       })}
                                     >
-                                      {parse(item.titleHighlighted) || item.title}
+                                      {item.titleHighlighted && (
+                                        <span
+                                          dangerouslySetInnerHTML={{
+                                            __html: item.titleHighlighted
+                                          }}
+                                        ></span>
+                                      )}
+                                      {!item.titleHighlighted && <span>{item.title}</span>}
                                     </div>
                                     <div
                                       className={cn({
@@ -257,9 +263,10 @@ export default function SearchModal(props: SearchModalProps) {
                                     </div>
                                   </div>
                                   {item.textHighlighted && (
-                                    <div className="text-sm opacity-80">
-                                      {parse(item.textHighlighted)}
-                                    </div>
+                                    <div
+                                      className="text-sm opacity-80"
+                                      dangerouslySetInnerHTML={{ __html: item.textHighlighted }}
+                                    ></div>
                                   )}
                                 </div>
                               </Link>

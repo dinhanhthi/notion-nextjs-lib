@@ -10,13 +10,13 @@ export type PostTitleCateDateOpts = {
   hideCategory?: boolean
   hideDate?: boolean
   fontClassName?: string
+  defaultCategoryBgColor?: string
+  defaultCategoryTextColor?: string
 }
 
 type PostTitleCateDateProps = {
   post: Post
   options?: PostTitleCateDateOpts
-  defaultCategoryBgColor?: string
-  defaultCategoryTextColor?: string
 }
 
 export const TCDFIHeightClass = 'h-28'
@@ -44,9 +44,9 @@ export default function PostTitleCateDate(props: PostTitleCateDateProps) {
             <div
               style={{
                 backgroundColor: `${
-                  category.style?.bgColor || props.defaultCategoryBgColor || '#eee'
+                  category.style?.bgColor || options.defaultCategoryBgColor || '#eee'
                 }`,
-                color: `${category.style?.textColor || props.defaultCategoryTextColor || '#222'}`
+                color: `${category.style?.textColor || options.defaultCategoryTextColor || '#222'}`
               }}
               className={cn('rounded-b-md px-2 py-1 text-xs font-semibold')}
             >
