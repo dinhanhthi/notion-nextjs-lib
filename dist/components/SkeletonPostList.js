@@ -749,6 +749,7 @@ var init_BlockRichText = __esm({
 
 // src/components/SkeletonPostList.tsx
 import cn29 from "classnames";
+import { HiOutlineDocumentText as HiOutlineDocumentText2 } from "react-icons/hi";
 
 // src/post-types/PostCardWhiteBgBig.tsx
 import cn21 from "classnames";
@@ -881,6 +882,7 @@ import { jsx as jsx33, jsxs as jsxs21 } from "react/jsx-runtime";
 // src/post-types/PostSimple.tsx
 import cn27 from "classnames";
 import Link7 from "next/link";
+import { FaPenNib } from "react-icons/fa";
 import { HiOutlineDocumentText } from "react-icons/hi";
 import { jsx as jsx34, jsxs as jsxs22 } from "react/jsx-runtime";
 
@@ -894,7 +896,7 @@ var postListGridCLass = cn28(
 import { Fragment as Fragment10, jsx as jsx36, jsxs as jsxs24 } from "react/jsx-runtime";
 function SkeletonPostList(props) {
   return /* @__PURE__ */ jsxs24(Fragment10, { children: [
-    (!props.listStyle || props.listStyle === "default") && /* @__PURE__ */ jsx36("div", { className: cn29(postListGridCLass, "animate-pulse"), children: Array.from({ length: props.count }).map((_, i) => getSkeleton(i, props.postType)) }),
+    (!props.listStyle || props.listStyle === "default") && /* @__PURE__ */ jsx36("div", { className: cn29(props.options?.className || postListGridCLass, "animate-pulse"), children: Array.from({ length: props.count }).map((_, i) => getSkeleton(i, props.postType)) }),
     props.listStyle === "carousel" && /* @__PURE__ */ jsx36(
       Carousel,
       {
@@ -914,6 +916,8 @@ function getSkeleton(key, postType) {
       return /* @__PURE__ */ jsx36(PostImageBackgroundSkeleton, {}, key);
     case "PostCardWave":
       return /* @__PURE__ */ jsx36(PostCardWaveSkeleton, {}, key);
+    case "PostSimple":
+      return /* @__PURE__ */ jsx36(PostSimpleSkeleton, {}, key);
     default:
       return /* @__PURE__ */ jsx36(PostTitleCateDateSkeleton, {}, key);
   }
@@ -944,6 +948,11 @@ var PostImageBackgroundSkeleton = () => /* @__PURE__ */ jsx36("div", { className
   /* @__PURE__ */ jsx36("div", { className: "h-4 w-full rounded-md bg-slate-300" }),
   /* @__PURE__ */ jsx36("div", { className: "h-4 w-3/4 rounded-md bg-slate-300" })
 ] }) }) });
+var PostSimpleSkeleton = () => /* @__PURE__ */ jsxs24("div", { className: "flex items-center gap-3 py-3 px-2", children: [
+  /* @__PURE__ */ jsx36("div", { children: /* @__PURE__ */ jsx36(HiOutlineDocumentText2, { className: "text-xl text-slate-700" }) }),
+  /* @__PURE__ */ jsx36("div", { className: "flex-1 flex justify-start", children: /* @__PURE__ */ jsx36("div", { className: "h-6 w-3/4 rounded-md bg-slate-200" }) }),
+  /* @__PURE__ */ jsx36("div", { className: "h-4 w-[150px] rounded-md bg-slate-200" })
+] });
 export {
   SkeletonPostList as default
 };

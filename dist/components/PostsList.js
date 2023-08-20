@@ -993,14 +993,16 @@ function PostImageBackground(props) {
 // src/post-types/PostSimple.tsx
 import cn25 from "classnames";
 import Link6 from "next/link";
+import { FaPenNib } from "react-icons/fa";
 import { HiOutlineDocumentText } from "react-icons/hi";
 import { jsx as jsx32, jsxs as jsxs20 } from "react/jsx-runtime";
 function PostSimple(props) {
   const { post, options } = props;
-  return /* @__PURE__ */ jsx32("div", { className: "group py-2 hover:bg-gray-50", children: /* @__PURE__ */ jsxs20(Link6, { className: cn25(options?.fontClassName, "flex items-center gap-3"), href: post.uri || "/", children: [
-    /* @__PURE__ */ jsxs20("div", { className: "text-xl", children: [
+  return /* @__PURE__ */ jsx32("div", { className: "group py-3 px-2 hover:bg-gray-50", children: /* @__PURE__ */ jsxs20(Link6, { className: cn25(options?.fontClassName, "flex items-start gap-3"), href: post.uri || "/", children: [
+    /* @__PURE__ */ jsxs20("div", { className: "mt-[3px] text-slate-700", children: [
       !!options?.customIcon && options.customIcon,
-      !options?.customIcon && /* @__PURE__ */ jsx32(HiOutlineDocumentText, {})
+      !options?.customIcon && !post.isBlog && /* @__PURE__ */ jsx32(HiOutlineDocumentText, { className: "text-xl" }),
+      !options?.customIcon && post.isBlog && /* @__PURE__ */ jsx32(FaPenNib, { className: "text-lg" })
     ] }),
     /* @__PURE__ */ jsx32("h3", { className: "flex-1", children: post.title }),
     (post.createdDate || post.date) && /* @__PURE__ */ jsxs20("div", { className: "flex gap-2", children: [
@@ -1018,7 +1020,14 @@ function PostSimple(props) {
           ]
         }
       ),
-      post.createdDate && /* @__PURE__ */ jsx32(Date, { className: "text-[0.9rem] text-slate-800", dateString: post.createdDate, format: "MMM DD, YYYY" })
+      post.createdDate && /* @__PURE__ */ jsx32(
+        Date,
+        {
+          className: "text-[0.9rem] text-slate-800",
+          dateString: post.createdDate,
+          format: "MMM DD, YYYY"
+        }
+      )
     ] })
   ] }) });
 }

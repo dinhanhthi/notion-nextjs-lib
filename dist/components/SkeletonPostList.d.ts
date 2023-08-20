@@ -8,7 +8,11 @@ type SkeletonPostListProps = {
     count: number;
     postType?: PostType;
     listStyle?: PostListStyle;
+    options?: {
+        className?: string;
+    };
 };
 declare function SkeletonPostList(props: SkeletonPostListProps): react_jsx_runtime.JSX.Element;
+declare const PostSimpleSkeleton: () => react_jsx_runtime.JSX.Element;
 
-export { SkeletonPostList as default };
+export { PostSimpleSkeleton, SkeletonPostList as default };

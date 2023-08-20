@@ -1,6 +1,7 @@
 'use client'
 
 import cn from 'classnames'
+import { HiOutlineDocumentText } from 'react-icons/hi'
 
 import { CWBBHeightClass } from '../post-types/PostCardWhiteBgBig'
 import { PIBHeightClass } from '../post-types/PostImageBackground'
@@ -12,13 +13,16 @@ type SkeletonPostListProps = {
   count: number
   postType?: PostType
   listStyle?: PostListStyle
+  options?: {
+    className?: string
+  }
 }
 
 export default function SkeletonPostList(props: SkeletonPostListProps) {
   return (
     <>
       {(!props.listStyle || props.listStyle === 'default') && (
-        <div className={cn(postListGridCLass, 'animate-pulse')}>
+        <div className={cn(props.options?.className || postListGridCLass, 'animate-pulse')}>
           {Array.from({ length: props.count }).map((_, i) => getSkeleton(i, props.postType))}
         </div>
       )}
@@ -49,6 +53,9 @@ function getSkeleton(key: number | string, postType?: PostType) {
 
     case 'PostCardWave':
       return <PostCardWaveSkeleton key={key} />
+
+    case 'PostSimple':
+      return <PostSimpleSkeleton key={key} />
 
     default:
       return <PostTitleCateDateSkeleton key={key} />
@@ -100,5 +107,17 @@ const PostImageBackgroundSkeleton = () => (
         <div className="h-4 w-3/4 rounded-md bg-slate-300"></div>
       </div>
     </div>
+  </div>
+)
+
+const PostSimpleSkeleton = () => (
+  <div className="flex items-center gap-3 py-3 px-2">
+    <div>
+      <HiOutlineDocumentText className="text-xl text-slate-700" />
+    </div>
+    <div className="flex-1 flex justify-start">
+      <div className="h-6 w-3/4 rounded-md bg-slate-200"></div>
+    </div>
+    <div className="h-4 w-[150px] rounded-md bg-slate-200"></div>
   </div>
 )
