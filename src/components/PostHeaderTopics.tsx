@@ -1,5 +1,6 @@
 import cn from 'classnames'
 import Link from 'next/link'
+import { TiTag } from 'react-icons/ti'
 
 import { Category, Tag } from '../interface'
 
@@ -19,14 +20,14 @@ export default function PostHeaderTopics(props: PostHeaderTopicsProps) {
   const { categories, tags, className, selectedUri, selectedName } = props
   const usedTags = tags?.filter(tag => tag.uri !== props.selectedUri) || []
   return (
-    <div className={cn('flex flex-wrap gap-2', className)}>
+    <div className={cn('flex flex-wrap gap-2 items-center', className)}>
       {!!selectedUri && !!categories && (
         <Link
           className={`${topTagClass} border border-amber-300 bg-amber-50 !text-amber-600`}
           key={'selected'}
           href={selectedUri}
         >
-          <i className="icon-star-circled mr-1"></i> {selectedName || 'Selected' }
+          <i className="icon-star-circled mr-1"></i> {selectedName || 'Selected'}
         </Link>
       )}
       {!!categories?.length &&
@@ -50,11 +51,7 @@ export default function PostHeaderTopics(props: PostHeaderTopicsProps) {
               {category!.name}
             </Link>
           ))}
-      {usedTags.length > 0 && (
-        <span className="text-gray-600">
-          <i className="icon-tag-2"></i>
-        </span>
-      )}
+      {usedTags.length > 0 && <TiTag className="text-gray-600 text-lg" />}
       {usedTags.length > 0 &&
         usedTags.map(tag => (
           <Link

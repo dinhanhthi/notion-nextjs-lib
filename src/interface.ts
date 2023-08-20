@@ -20,7 +20,8 @@ export type ImageType = {
 export type PostHeaderType = {
   title: string
   featuredImage?: ImageType
-  date?: string
+  date?: string // as last modified date (or finalModified)
+  createdDate?: string // used to display "updated" badge
   categories?: Category[]
   tags?: Tag[]
   authors?: Author[]
@@ -28,6 +29,8 @@ export type PostHeaderType = {
   bookCover?: ImageType
   showToc?: boolean
   contentCheck?: boolean // content of this post has been checked after v4?
+  isBlog?: boolean // is this post a blog post?
+  isDraft?: boolean // is this post a draft?
   icon?: {
     emoji?: string
     img?: ImageType
@@ -65,6 +68,8 @@ export type Tag = {
   id?: string
   slug?: string
   uri?: string
+  icon?: ImageType
+  className?: string
 }
 
 export type Author = {

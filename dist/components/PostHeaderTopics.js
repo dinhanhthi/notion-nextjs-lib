@@ -1,6 +1,7 @@
 // src/components/PostHeaderTopics.tsx
 import cn from "classnames";
 import Link from "next/link";
+import { TiTag } from "react-icons/ti";
 import { jsx, jsxs } from "react/jsx-runtime";
 var topTagClass = `flex items-center justify-center rounded-2xl px-3 py-0.5 text-xs uppercase
 hover:-translate-y-0.5 transition-all duration-300 font-bold
@@ -8,7 +9,7 @@ whitespace-nowrap`;
 function PostHeaderTopics(props) {
   const { categories, tags, className, selectedUri, selectedName } = props;
   const usedTags = tags?.filter((tag) => tag.uri !== props.selectedUri) || [];
-  return /* @__PURE__ */ jsxs("div", { className: cn("flex flex-wrap gap-2", className), children: [
+  return /* @__PURE__ */ jsxs("div", { className: cn("flex flex-wrap gap-2 items-center", className), children: [
     !!selectedUri && !!categories && /* @__PURE__ */ jsxs(
       Link,
       {
@@ -39,7 +40,7 @@ function PostHeaderTopics(props) {
       },
       category.uri
     )),
-    usedTags.length > 0 && /* @__PURE__ */ jsx("span", { className: "text-gray-600", children: /* @__PURE__ */ jsx("i", { className: "icon-tag-2" }) }),
+    usedTags.length > 0 && /* @__PURE__ */ jsx(TiTag, { className: "text-gray-600 text-lg" }),
     usedTags.length > 0 && usedTags.map((tag) => /* @__PURE__ */ jsx(
       Link,
       {

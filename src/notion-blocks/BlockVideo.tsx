@@ -3,7 +3,6 @@
 import { VideoBlockObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 import cn from 'classnames'
 import { get } from 'lodash'
-// import YouTube from 'react-youtube'
 
 import { getJoinedRichText, getYoutubeVideoId } from '../helpers/block-helpers'
 import BlockRichText from './BlockRichText'

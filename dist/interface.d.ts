@@ -27,6 +27,7 @@ type PostHeaderType = {
     title: string;
     featuredImage?: ImageType;
     date?: string;
+    createdDate?: string;
     categories?: Category[];
     tags?: Tag[];
     authors?: Author[];
@@ -34,6 +35,8 @@ type PostHeaderType = {
     bookCover?: ImageType;
     showToc?: boolean;
     contentCheck?: boolean;
+    isBlog?: boolean;
+    isDraft?: boolean;
     icon?: {
         emoji?: string;
         img?: ImageType;
@@ -66,6 +69,8 @@ type Tag = {
     id?: string;
     slug?: string;
     uri?: string;
+    icon?: ImageType;
+    className?: string;
 };
 type Author = {
     slug?: string | null;

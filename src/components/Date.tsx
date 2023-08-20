@@ -3,6 +3,7 @@ import Moment from 'moment'
 type DateProps = {
   dateString: string
   format?: string
+  toDuration?: boolean
 }
 
 export default function Date(props: DateProps) {
