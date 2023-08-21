@@ -999,24 +999,23 @@ import { jsx as jsx32, jsxs as jsxs20 } from "react/jsx-runtime";
 function PostSimple(props) {
   const { post, options } = props;
   return /* @__PURE__ */ jsx32("div", { className: "group py-3 px-2 hover:bg-gray-50", children: /* @__PURE__ */ jsxs20(Link6, { className: cn25(options?.fontClassName, "flex items-start gap-3"), href: post.uri || "/", children: [
-    /* @__PURE__ */ jsxs20("div", { className: "mt-[3px] text-slate-700", children: [
+    /* @__PURE__ */ jsxs20("div", { className: "mt-[3px] text-slate-600", children: [
       !!options?.customIcon && options.customIcon,
       !options?.customIcon && !post.isBlog && /* @__PURE__ */ jsx32(HiOutlineDocumentText, { className: "text-xl" }),
       !options?.customIcon && post.isBlog && /* @__PURE__ */ jsx32(FaPenNib, { className: "text-lg" })
     ] }),
     /* @__PURE__ */ jsx32("h3", { className: "flex-1", children: post.title }),
-    (post.createdDate || post.date) && /* @__PURE__ */ jsxs20("div", { className: "flex gap-2", children: [
+    (post.createdDate || post.date) && /* @__PURE__ */ jsxs20("div", { className: "gap-2 hidden md:flex", children: [
       post.date && /* @__PURE__ */ jsxs20(
         "div",
         {
           className: cn25(
             `bg-slate-200 text-slate-800 px-3 py-0.5 text-[0.8rem] items-start rounded-md
-                      whitespace-nowrap`
+                      flex gap-1 flex-nowrap`
           ),
           children: [
-            options?.updatedOnLabel || "updated on",
-            " ",
-            /* @__PURE__ */ jsx32(Date, { dateString: post.date, format: "MMM DD, YYYY" })
+            options?.updatedOnLabel || "updated",
+            /* @__PURE__ */ jsx32(Date, { className: "hidden lg:block", dateString: post.date, format: "MMM DD, YYYY" })
           ]
         }
       ),
