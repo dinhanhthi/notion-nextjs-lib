@@ -77,6 +77,7 @@ type Tag = {
     uri?: string;
     icon?: ImageType;
     className?: string;
+    description?: string;
 };
 type Author = {
     slug?: string | null;

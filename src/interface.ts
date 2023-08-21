@@ -77,6 +77,7 @@ export type Tag = {
   uri?: string
   icon?: ImageType
   className?: string
+  description?: string
 }
 
 export type Author = {

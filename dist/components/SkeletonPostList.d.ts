@@ -13,6 +13,5 @@ type SkeletonPostListProps = {
     };
 };
 declare function SkeletonPostList(props: SkeletonPostListProps): react_jsx_runtime.JSX.Element;
-declare const PostSimpleSkeleton: () => react_jsx_runtime.JSX.Element;
 
-export { PostSimpleSkeleton, SkeletonPostList as default };
+export { SkeletonPostList as default };

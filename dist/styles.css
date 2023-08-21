@@ -140,7 +140,7 @@ pre[class*=language-] {
   content: attr(data-title);
   font-size: 0.85rem;
   padding: 2px 8px;
-  bottom: -35px;
+  bottom: -30px;
   left: 0;
   white-space: nowrap;
 }
