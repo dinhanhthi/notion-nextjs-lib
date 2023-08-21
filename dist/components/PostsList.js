@@ -1004,18 +1004,30 @@ function PostSimple(props) {
       !options?.customIcon && !post.isBlog && /* @__PURE__ */ jsx32(HiOutlineDocumentText, { className: "text-xl" }),
       !options?.customIcon && post.isBlog && /* @__PURE__ */ jsx32(FaPenNib, { className: "text-lg" })
     ] }),
-    /* @__PURE__ */ jsx32("h3", { className: "flex-1", children: post.title }),
+    /* @__PURE__ */ jsxs20("h3", { className: "flex-1", children: [
+      post.title,
+      " ",
+      post.isDraft && /* @__PURE__ */ jsx32("span", { className: "bg-slate-200 text-slate-800 px-2 py-0 text-[0.8rem] rounded-md", children: options.draftLabel || "draft" })
+    ] }),
     (post.createdDate || post.date) && /* @__PURE__ */ jsxs20("div", { className: "gap-2 hidden md:flex", children: [
       post.date && /* @__PURE__ */ jsxs20(
         "div",
         {
           className: cn25(
             `bg-slate-200 text-slate-800 px-3 py-0.5 text-[0.8rem] items-start rounded-md
-                      flex gap-1 flex-nowrap`
+                      whitespace-nowrap`
           ),
           children: [
             options?.updatedOnLabel || "updated",
-            /* @__PURE__ */ jsx32(Date, { className: "hidden lg:block", dateString: post.date, format: "MMM DD, YYYY" })
+            " ",
+            /* @__PURE__ */ jsx32(
+              Date,
+              {
+                className: "hidden lg:inline-block",
+                dateString: post.date,
+                format: "MMM DD, YYYY"
+              }
+            )
           ]
         }
       ),

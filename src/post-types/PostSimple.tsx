@@ -11,6 +11,7 @@ export type PostSimpleOpts = {
   fontClassName?: string
   customIcon?: React.ReactNode
   updatedOnLabel?: string
+  draftLabel?: string
 }
 
 type PostSimpleProps = {
@@ -28,18 +29,29 @@ export default function PostSimple(props: PostSimpleProps) {
           {!options?.customIcon && !post.isBlog && <HiOutlineDocumentText className="text-xl" />}
           {!options?.customIcon && post.isBlog && <FaPenNib className="text-lg" />}
         </div>
-        <h3 className="flex-1">{post.title}</h3>
+        <h3 className="flex-1">
+          {post.title}{' '}
+          {post.isDraft && (
+            <span className="bg-slate-200 text-slate-800 px-2 py-0 text-[0.8rem] rounded-md">
+              {options.draftLabel || 'draft'}
+            </span>
+          )}
+        </h3>
         {(post.createdDate || post.date) && (
           <div className="gap-2 hidden md:flex">
             {post.date && (
               <div
                 className={cn(
                   `bg-slate-200 text-slate-800 px-3 py-0.5 text-[0.8rem] items-start rounded-md
-                      flex gap-1 flex-nowrap`
+                      whitespace-nowrap`
                 )}
               >
-                {options?.updatedOnLabel || 'updated'}
-                <Date className='hidden lg:block' dateString={post.date} format="MMM DD, YYYY" />
+                {options?.updatedOnLabel || 'updated'}{' '}
+                <Date
+                  className="hidden lg:inline-block"
+                  dateString={post.date}
+                  format="MMM DD, YYYY"
+                />
               </div>
             )}
             {post.createdDate && (
