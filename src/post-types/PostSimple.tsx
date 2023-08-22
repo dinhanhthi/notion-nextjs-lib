@@ -1,5 +1,8 @@
+'use client'
+
 import cn from 'classnames'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
 import DateComponent from '../components/Date'
 import { isDateAfter } from '../helpers/helpers'
@@ -21,7 +24,20 @@ type PostSimpleProps = {
 }
 
 export default function PostSimple(props: PostSimpleProps) {
+  const [isIn7Days, setIsIn7Days] = useState(false)
   const { post, options } = props
+
+  // check if the last modified date is around 7 days
+  useEffect(() => {
+    const lastModifiedDate = new Date(post.date)
+    const today = new Date()
+    const diffTime = Math.abs(today.getTime() - lastModifiedDate.getTime())
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+    if (diffDays <= 7) {
+      setIsIn7Days(true)
+    }
+  }, [])
+
   return (
     <div className="group hover:bg-gray-50">
       <Link
@@ -46,8 +62,11 @@ export default function PostSimple(props: PostSimpleProps) {
             {post.date && post.createdDate && isDateAfter(post.date, post.createdDate) && (
               <div
                 className={cn(
-                  `bg-slate-200 text-slate-800 px-3 py-0.5 text-[0.8rem] items-start rounded-md
-                      whitespace-nowrap`
+                  'px-3 py-0.5 text-[0.8rem] items-start rounded-md whitespace-nowrap',
+                  {
+                    'bg-slate-200 text-slate-800': !isIn7Days,
+                    'bg-green-200 text-green-900': isIn7Days
+                  }
                 )}
               >
                 {options?.updatedOnLabel || 'updated'}{' '}

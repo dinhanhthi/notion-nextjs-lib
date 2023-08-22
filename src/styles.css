@@ -50,7 +50,7 @@
   .m2it-prose-img {
     @apply my-0; }
   .m2it-prose {
-    @apply prose max-w-none text-[1.05rem] leading-normal;
+    @apply prose max-w-none leading-normal;
     @apply prose-a:m2it-link;
     @apply prose-headings:m2it-prose-headings;
     @apply prose-img:m2it-prose-img; }

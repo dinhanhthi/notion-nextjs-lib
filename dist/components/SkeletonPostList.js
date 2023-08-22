@@ -1051,6 +1051,7 @@ import { jsx as jsx45, jsxs as jsxs21 } from "react/jsx-runtime";
 // src/post-types/PostSimple.tsx
 import cn27 from "classnames";
 import Link7 from "next/link";
+import { useEffect, useState as useState3 } from "react";
 
 // src/icons/FaPenNib.tsx
 import { jsx as jsx46 } from "react/jsx-runtime";

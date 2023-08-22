@@ -1093,6 +1093,7 @@ function PostImageBackground(props) {
 // src/post-types/PostSimple.tsx
 import cn25 from "classnames";
 import Link6 from "next/link";
+import { useEffect, useState as useState3 } from "react";
 
 // src/helpers/helpers.ts
 function isDateAfter(date1, date2) {
@@ -1152,7 +1153,17 @@ function HiOutlineDocumentText(props) {
 // src/post-types/PostSimple.tsx
 import { jsx as jsx42, jsxs as jsxs20 } from "react/jsx-runtime";
 function PostSimple(props) {
+  const [isIn7Days, setIsIn7Days] = useState3(false);
   const { post, options } = props;
+  useEffect(() => {
+    const lastModifiedDate = new Date(post.date);
+    const today = /* @__PURE__ */ new Date();
+    const diffTime = Math.abs(today.getTime() - lastModifiedDate.getTime());
+    const diffDays = Math.ceil(diffTime / (1e3 * 60 * 60 * 24));
+    if (diffDays <= 7) {
+      setIsIn7Days(true);
+    }
+  }, []);
   return /* @__PURE__ */ jsx42("div", { className: "group hover:bg-gray-50", children: /* @__PURE__ */ jsxs20(
     Link6,
     {
@@ -1174,8 +1185,11 @@ function PostSimple(props) {
             "div",
             {
               className: cn25(
-                `bg-slate-200 text-slate-800 px-3 py-0.5 text-[0.8rem] items-start rounded-md
-                      whitespace-nowrap`
+                "px-3 py-0.5 text-[0.8rem] items-start rounded-md whitespace-nowrap",
+                {
+                  "bg-slate-200 text-slate-800": !isIn7Days,
+                  "bg-green-200 text-green-900": isIn7Days
+                }
               ),
               children: [
                 options?.updatedOnLabel || "updated",
