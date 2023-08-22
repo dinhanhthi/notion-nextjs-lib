@@ -29,6 +29,7 @@ type PostSimpleOpts = {
     fontClassName?: string;
     customIcon?: React.ReactNode;
     updatedOnLabel?: string;
+    newLabel?: string;
     draftLabel?: string;
 };
 

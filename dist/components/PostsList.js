@@ -1154,6 +1154,7 @@ function HiOutlineDocumentText(props) {
 import { jsx as jsx42, jsxs as jsxs20 } from "react/jsx-runtime";
 function PostSimple(props) {
   const [isIn7Days, setIsIn7Days] = useState3(false);
+  const [isNew, setIsNew] = useState3(false);
   const { post, options } = props;
   useEffect(() => {
     const lastModifiedDate = new Date(post.date);
@@ -1162,6 +1163,12 @@ function PostSimple(props) {
     const diffDays = Math.ceil(diffTime / (1e3 * 60 * 60 * 24));
     if (diffDays <= 7) {
       setIsIn7Days(true);
+    }
+    const createdDate = new Date(post.createdDate);
+    const diffTime2 = Math.abs(today.getTime() - createdDate.getTime());
+    const diffDays2 = Math.ceil(diffTime2 / (1e3 * 60 * 60 * 24));
+    if (diffDays2 <= 7) {
+      setIsNew(true);
     }
   }, []);
   return /* @__PURE__ */ jsx42("div", { className: "group hover:bg-gray-50", children: /* @__PURE__ */ jsxs20(
@@ -1181,7 +1188,7 @@ function PostSimple(props) {
           post.isDraft && /* @__PURE__ */ jsx42("span", { className: "bg-slate-200 text-slate-800 px-2 py-0 text-[0.8rem] rounded-md", children: options.draftLabel || "draft" })
         ] }),
         (post.createdDate || post.date) && /* @__PURE__ */ jsxs20("div", { className: "gap-2 hidden md:flex", children: [
-          post.date && post.createdDate && isDateAfter(post.date, post.createdDate) && /* @__PURE__ */ jsxs20(
+          post.date && !isNew && post.createdDate && isDateAfter(post.date, post.createdDate) && /* @__PURE__ */ jsxs20(
             "div",
             {
               className: cn25(
@@ -1203,6 +1210,16 @@ function PostSimple(props) {
                   }
                 )
               ]
+            }
+          ),
+          isNew && /* @__PURE__ */ jsx42(
+            "div",
+            {
+              className: cn25(
+                "px-3 py-0.5 text-[0.8rem] rounded-md whitespace-nowrap",
+                "bg-amber-200 text-amber-900"
+              ),
+              children: options?.newLabel || "new"
             }
           ),
           post.createdDate && /* @__PURE__ */ jsx42(

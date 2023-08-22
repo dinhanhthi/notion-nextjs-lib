@@ -15,6 +15,7 @@ export type PostSimpleOpts = {
   fontClassName?: string
   customIcon?: React.ReactNode
   updatedOnLabel?: string
+  newLabel?: string
   draftLabel?: string
 }
 
@@ -25,6 +26,7 @@ type PostSimpleProps = {
 
 export default function PostSimple(props: PostSimpleProps) {
   const [isIn7Days, setIsIn7Days] = useState(false)
+  const [isNew, setIsNew] = useState(false)
   const { post, options } = props
 
   // check if the last modified date is around 7 days
@@ -35,6 +37,13 @@ export default function PostSimple(props: PostSimpleProps) {
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
     if (diffDays <= 7) {
       setIsIn7Days(true)
+    }
+
+    const createdDate = new Date(post.createdDate)
+    const diffTime2 = Math.abs(today.getTime() - createdDate.getTime())
+    const diffDays2 = Math.ceil(diffTime2 / (1000 * 60 * 60 * 24))
+    if (diffDays2 <= 7) {
+      setIsNew(true)
     }
   }, [])
 
@@ -59,22 +68,35 @@ export default function PostSimple(props: PostSimpleProps) {
         </h3>
         {(post.createdDate || post.date) && (
           <div className="gap-2 hidden md:flex">
-            {post.date && post.createdDate && isDateAfter(post.date, post.createdDate) && (
+            {post.date &&
+              !isNew &&
+              post.createdDate &&
+              isDateAfter(post.date, post.createdDate) && (
+                <div
+                  className={cn(
+                    'px-3 py-0.5 text-[0.8rem] items-start rounded-md whitespace-nowrap',
+                    {
+                      'bg-slate-200 text-slate-800': !isIn7Days,
+                      'bg-green-200 text-green-900': isIn7Days
+                    }
+                  )}
+                >
+                  {options?.updatedOnLabel || 'updated'}{' '}
+                  <DateComponent
+                    className="hidden lg:inline-block"
+                    dateString={post.date}
+                    format="MMM DD, YYYY"
+                  />
+                </div>
+              )}
+            {isNew && (
               <div
                 className={cn(
-                  'px-3 py-0.5 text-[0.8rem] items-start rounded-md whitespace-nowrap',
-                  {
-                    'bg-slate-200 text-slate-800': !isIn7Days,
-                    'bg-green-200 text-green-900': isIn7Days
-                  }
+                  'px-3 py-0.5 text-[0.8rem] rounded-md whitespace-nowrap',
+                  'bg-amber-200 text-amber-900'
                 )}
               >
-                {options?.updatedOnLabel || 'updated'}{' '}
-                <DateComponent
-                  className="hidden lg:inline-block"
-                  dateString={post.date}
-                  format="MMM DD, YYYY"
-                />
+                {options?.newLabel || 'new'}
               </div>
             )}
             {post.createdDate && (
