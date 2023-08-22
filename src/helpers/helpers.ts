@@ -68,3 +68,10 @@ export function getStartCursorForCurrentPage(
   if (currentPage > numPages) return undefined
   return posts[(currentPage - 1) * postsPerPage]?.id
 }
+
+export function isDateAfter(date1?: string, date2?: string): boolean {
+  if (!date1 || !date2) return false
+  const dateOne = new Date(date1).setHours(0,0,0,0)
+  const dateTwo = new Date(date2).setHours(0,0,0,0)
+  return dateOne > dateTwo
+}

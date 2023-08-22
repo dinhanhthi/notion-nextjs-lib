@@ -30,13 +30,16 @@ export default function PostToc(props: PostTocProps) {
 
   return (
     <nav
-      className={cn('h-fit w-full flex gap-2 flex-col px-4 py-3', {
-        '2xl:hidden': props.inPost, // hide on large screens
-        'max-h-full p-3': !props.inPost,
-        'bg-gray-100 rounded-xl m2it-box-shadow border-[0.5px]': !props.inPost,
-        'max-h-[350px] bg-slate-50 rounded-xl mt-8 mb-10 m2it-box-shadow': props.inPost,
-        border: props.inPost
-      })}
+      className={cn(
+        'h-fit w-full flex gap-2 flex-col px-4 py-3 bg-slate-50 rounded-xl m2it-box-shadow',
+        {
+          '2xl:hidden': props.inPost, // hide on large screens
+          'max-h-full p-3': !props.inPost,
+          'border-[0.5px]': !props.inPost,
+          'max-h-[350px] mt-8 mb-10': props.inPost,
+          border: props.inPost
+        }
+      )}
       aria-label="Table of contents"
     >
       <button

@@ -78,6 +78,7 @@ export type Tag = {
   icon?: ImageType
   className?: string
   description?: string
+  pinned?: boolean
 }
 
 export type Author = {

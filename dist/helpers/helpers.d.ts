@@ -21,5 +21,6 @@ declare function makeSlugText(text?: string | null): string | undefined;
  * Notion API doesn't accept `null` value for `start_cursor`)
  */
 declare function getStartCursorForCurrentPage(currentPage: number, posts: Post[], postsPerPage: number): string | undefined;
+declare function isDateAfter(date1?: string, date2?: string): boolean;
 
-export { cleanText, getStartCursorForCurrentPage, idToUuid, makeSlugText };
+export { cleanText, getStartCursorForCurrentPage, idToUuid, isDateAfter, makeSlugText };

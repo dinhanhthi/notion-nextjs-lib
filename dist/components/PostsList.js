@@ -949,7 +949,7 @@ import Link2 from "next/link";
 // src/components/Date.tsx
 import Moment from "moment";
 import { jsx as jsx2 } from "react/jsx-runtime";
-function Date(props) {
+function Date2(props) {
   const date = Moment(props.dateString).format(props.format || "DD/MM/YYYY");
   return /* @__PURE__ */ jsx2("span", { className: props.className, children: date });
 }
@@ -1016,7 +1016,7 @@ function PostCardWhiteBg(props) {
   return /* @__PURE__ */ jsx5("div", { className: "group overflow-hidden rounded-md bg-white shadow-lg", children: /* @__PURE__ */ jsxs2(Link2, { className: cn3(props.options?.fontClassName, "text-center"), href: uri || "/", children: [
     /* @__PURE__ */ jsx5("div", { className: "flex flex-col justify-center ", children: /* @__PURE__ */ jsx5("div", { className: "relative h-28 w-full overflow-hidden ", children: /* @__PURE__ */ jsx5(PostFeaturedImage, { featuredImage, title }) }) }),
     /* @__PURE__ */ jsx5("div", { className: "group-hover:m2it-link-hover px-4 py-3 text-base font-bold", children: title }),
-    !props.options?.hideDate && date && /* @__PURE__ */ jsx5("div", { className: "px-2 pb-4 text-sm opacity-80", children: /* @__PURE__ */ jsx5(Date, { dateString: date }) })
+    !props.options?.hideDate && date && /* @__PURE__ */ jsx5("div", { className: "px-2 pb-4 text-sm opacity-80", children: /* @__PURE__ */ jsx5(Date2, { dateString: date }) })
   ] }) });
 }
 
@@ -1049,7 +1049,7 @@ function PostCardWhiteBgBig(props) {
       (!options?.hideDate || !options?.hideAuthor) && /* @__PURE__ */ jsxs18("div", { className: "flex justify-center gap-2 p-2", children: [
         !options?.hideDate && date && /* @__PURE__ */ jsxs18("div", { className: "text-sm opacity-80", children: [
           /* @__PURE__ */ jsx38("i", { className: "icon-clock mr-1" }),
-          /* @__PURE__ */ jsx38(Date, { dateString: date })
+          /* @__PURE__ */ jsx38(Date2, { dateString: date })
         ] }),
         !options?.hideAuthor && authors?.length && /* @__PURE__ */ jsxs18("div", { className: "flex gap-1 text-sm opacity-80", children: [
           authors?.length > 1 && /* @__PURE__ */ jsxs18(Fragment9, { children: [
@@ -1093,6 +1093,15 @@ function PostImageBackground(props) {
 // src/post-types/PostSimple.tsx
 import cn25 from "classnames";
 import Link6 from "next/link";
+
+// src/helpers/helpers.ts
+function isDateAfter(date1, date2) {
+  if (!date1 || !date2)
+    return false;
+  const dateOne = new Date(date1).setHours(0, 0, 0, 0);
+  const dateTwo = new Date(date2).setHours(0, 0, 0, 0);
+  return dateOne > dateTwo;
+}
 
 // src/icons/FaPenNib.tsx
 import { jsx as jsx40 } from "react/jsx-runtime";
@@ -1144,49 +1153,56 @@ function HiOutlineDocumentText(props) {
 import { jsx as jsx42, jsxs as jsxs20 } from "react/jsx-runtime";
 function PostSimple(props) {
   const { post, options } = props;
-  return /* @__PURE__ */ jsx42("div", { className: "group py-3 px-2 hover:bg-gray-50", children: /* @__PURE__ */ jsxs20(Link6, { className: cn25(options?.fontClassName, "flex items-start gap-3"), href: post.uri || "/", children: [
-    /* @__PURE__ */ jsxs20("div", { className: "mt-[3px] text-slate-600", children: [
-      !!options?.customIcon && options.customIcon,
-      !options?.customIcon && !post.isBlog && /* @__PURE__ */ jsx42(HiOutlineDocumentText, { className: "text-xl" }),
-      !options?.customIcon && post.isBlog && /* @__PURE__ */ jsx42(FaPenNib, { className: "text-lg" })
-    ] }),
-    /* @__PURE__ */ jsxs20("h3", { className: "flex-1", children: [
-      post.title,
-      " ",
-      post.isDraft && /* @__PURE__ */ jsx42("span", { className: "bg-slate-200 text-slate-800 px-2 py-0 text-[0.8rem] rounded-md", children: options.draftLabel || "draft" })
-    ] }),
-    (post.createdDate || post.date) && /* @__PURE__ */ jsxs20("div", { className: "gap-2 hidden md:flex", children: [
-      post.date && /* @__PURE__ */ jsxs20(
-        "div",
-        {
-          className: cn25(
-            `bg-slate-200 text-slate-800 px-3 py-0.5 text-[0.8rem] items-start rounded-md
+  return /* @__PURE__ */ jsx42("div", { className: "group hover:bg-gray-50", children: /* @__PURE__ */ jsxs20(
+    Link6,
+    {
+      className: cn25(options?.fontClassName, "flex items-start gap-3 py-3 px-2"),
+      href: post.uri || "/",
+      children: [
+        /* @__PURE__ */ jsxs20("div", { className: "mt-[3px] text-slate-600", children: [
+          !!options?.customIcon && options.customIcon,
+          !options?.customIcon && !post.isBlog && /* @__PURE__ */ jsx42(HiOutlineDocumentText, { className: "text-xl" }),
+          !options?.customIcon && post.isBlog && /* @__PURE__ */ jsx42(FaPenNib, { className: "text-lg" })
+        ] }),
+        /* @__PURE__ */ jsxs20("h3", { className: "flex-1", children: [
+          post.title,
+          " ",
+          post.isDraft && /* @__PURE__ */ jsx42("span", { className: "bg-slate-200 text-slate-800 px-2 py-0 text-[0.8rem] rounded-md", children: options.draftLabel || "draft" })
+        ] }),
+        (post.createdDate || post.date) && /* @__PURE__ */ jsxs20("div", { className: "gap-2 hidden md:flex", children: [
+          post.date && post.createdDate && isDateAfter(post.date, post.createdDate) && /* @__PURE__ */ jsxs20(
+            "div",
+            {
+              className: cn25(
+                `bg-slate-200 text-slate-800 px-3 py-0.5 text-[0.8rem] items-start rounded-md
                       whitespace-nowrap`
+              ),
+              children: [
+                options?.updatedOnLabel || "updated",
+                " ",
+                /* @__PURE__ */ jsx42(
+                  Date2,
+                  {
+                    className: "hidden lg:inline-block",
+                    dateString: post.date,
+                    format: "MMM DD, YYYY"
+                  }
+                )
+              ]
+            }
           ),
-          children: [
-            options?.updatedOnLabel || "updated",
-            " ",
-            /* @__PURE__ */ jsx42(
-              Date,
-              {
-                className: "hidden lg:inline-block",
-                dateString: post.date,
-                format: "MMM DD, YYYY"
-              }
-            )
-          ]
-        }
-      ),
-      post.createdDate && /* @__PURE__ */ jsx42(
-        Date,
-        {
-          className: "text-[0.9rem] text-slate-800",
-          dateString: post.createdDate,
-          format: "MMM DD, YYYY"
-        }
-      )
-    ] })
-  ] }) });
+          post.createdDate && /* @__PURE__ */ jsx42(
+            Date2,
+            {
+              className: "text-[0.9rem] text-slate-800",
+              dateString: post.createdDate,
+              format: "MMM DD, YYYY"
+            }
+          )
+        ] })
+      ]
+    }
+  ) });
 }
 
 // src/post-types/PostTitleCateDate.tsx
@@ -1272,7 +1288,7 @@ function PostTitleCateDate(props) {
     ),
     !options?.hideDate && /* @__PURE__ */ jsxs21("div", { className: "text-sm opacity-80", children: [
       /* @__PURE__ */ jsx44("i", { className: "icon-clock mr-1" }),
-      date && /* @__PURE__ */ jsx44(Date, { dateString: date })
+      date && /* @__PURE__ */ jsx44(Date2, { dateString: date })
     ] })
   ] }) });
 }

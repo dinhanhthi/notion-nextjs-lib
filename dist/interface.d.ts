@@ -78,6 +78,7 @@ type Tag = {
     icon?: ImageType;
     className?: string;
     description?: string;
+    pinned?: boolean;
 };
 type Author = {
     slug?: string | null;
