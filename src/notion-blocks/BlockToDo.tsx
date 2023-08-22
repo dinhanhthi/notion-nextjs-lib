@@ -1,7 +1,8 @@
 import { ToDoBlockObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 import cn from 'classnames'
-import { BsCheckSquare, BsSquare } from 'react-icons/bs'
 
+import BsCheckSquare from '../icons/BsCheckSquare'
+import BsSquare from '../icons/BsSquare'
 import BlockRichText from './BlockRichText'
 
 export default function BlockToDo(props: {

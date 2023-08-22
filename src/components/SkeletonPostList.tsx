@@ -1,8 +1,8 @@
 'use client'
 
 import cn from 'classnames'
-import { HiOutlineDocumentText } from 'react-icons/hi'
 
+import HiOutlineDocumentText from '../icons/HiOutlineDocumentText'
 import { CWBBHeightClass } from '../post-types/PostCardWhiteBgBig'
 import { PIBHeightClass } from '../post-types/PostImageBackground'
 import { TCDFIHeightClass } from '../post-types/PostTitleCateDate'

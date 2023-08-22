@@ -1,8 +1,9 @@
 import { BulletedListItemBlockObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 import cn from 'classnames'
-import { GoSquareFill } from 'react-icons/go'
-import { RxDot, RxDotFilled } from 'react-icons/rx'
 
+import GoSquareFill from '../icons/GoSquareFill'
+import RxDot from '../icons/RxDot'
+import RxDotFilled from '../icons/RxDotFilled'
 import BlockRichText from './BlockRichText'
 
 export type BlockBulletedListItemType = BulletedListItemBlockObjectResponse & {

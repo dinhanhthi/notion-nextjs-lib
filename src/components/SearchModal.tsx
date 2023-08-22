@@ -6,12 +6,14 @@ import { debounce, get } from 'lodash'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, Fragment, useCallback, useLayoutEffect, useRef, useState } from 'react'
-import { AiOutlineLoading3Quarters } from 'react-icons/ai'
-import { BsArrowReturnLeft } from 'react-icons/bs'
-import { FiSearch } from 'react-icons/fi'
-import { IoBookOutline, IoCloseCircle, IoDocumentTextOutline } from 'react-icons/io5'
 import useSWR from 'swr'
 
+import AiOutlineLoading3Quarters from '../icons/AiOutlineLoading3Quarters'
+import BsArrowReturnLeft from '../icons/BsArrowReturnLeft'
+import FiSearch from '../icons/FiSearch'
+import IoBookOutline from '../icons/IoBookOutline'
+import IoCloseCircle from '../icons/IoCloseCircle'
+import IoDocumentTextOutline from '../icons/IoDocumentTextOutline'
 import { SearchResult } from '../interface'
 
 type SearchModalProps = {

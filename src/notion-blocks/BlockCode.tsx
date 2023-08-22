@@ -4,14 +4,14 @@ import { CodeBlockObjectResponse } from '@notionhq/client/build/src/api-endpoint
 import cn from 'classnames'
 import { useContext, useState } from 'react'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
-import { FiCheck } from 'react-icons/fi'
-import { RxCopy } from 'react-icons/rx'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { dracula } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
 import { BlockOptionContext } from '../components/BlockRender'
 import Mermaid from '../components/Mermaid'
 import { getJoinedRichText } from '../helpers/block-helpers'
+import FiCheck from '../icons/FiCheck'
+import RxCopy from '../icons/RxCopy'
 import { defaultCodeLanguage } from '../lib/config'
 import BlockRichText from './BlockRichText'
 

@@ -2,7 +2,8 @@
 
 import { Disclosure } from '@headlessui/react'
 import cn from 'classnames'
-import { BsFillCaretRightFill } from 'react-icons/bs'
+
+import BsFillCaretRightFill from '../icons/BsFillCaretRightFill'
 
 type BlockHeadingToggleProps = {
   headingElement: JSX.Element
@@ -14,10 +15,10 @@ export default function BlockHeadingToggle(props: BlockHeadingToggleProps) {
     <Disclosure defaultOpen={false}>
       {({ open }) => (
         <>
-          <div className="flex w-full items-center py-1 ml-[-10px]">
+          <div className="flex w-full items-center gap-1 ml-[-10px]">
             <Disclosure.Button className="rounded-md p-1 hover:bg-[#99989824]">
               <BsFillCaretRightFill
-                className={cn('transform ease-in-out transition-all duration-[400ms] text-lg', {
+                className={cn('text-lg transform ease-in-out transition-all duration-[400ms]', {
                   'rotate-90': open,
                   'rotate-0': !open
                 })}

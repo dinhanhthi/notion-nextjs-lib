@@ -1,9 +1,9 @@
 import cn from 'classnames'
 import Link from 'next/link'
-import { IoBookOutline } from 'react-icons/io5'
 
 import Date from '../components/Date'
 import PostFeaturedImage from '../components/PostFeaturedImage'
+import IoBookOutline from '../icons/IoBookOutline'
 import { Post } from '../interface'
 
 export type PostTitleCateDateOpts = {

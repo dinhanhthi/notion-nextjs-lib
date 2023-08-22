@@ -3,9 +3,9 @@
 import { Disclosure } from '@headlessui/react'
 import { ToggleBlockObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 import cn from 'classnames'
-import { BsFillCaretRightFill } from 'react-icons/bs'
 
 import { mapColorClass } from '../helpers/block-helpers'
+import BsFillCaretRightFill from '../icons/BsFillCaretRightFill'
 import BlockRichText from './BlockRichText'
 
 export default function BlockToggle(props: {
@@ -33,7 +33,7 @@ export default function BlockToggle(props: {
             >
               <BsFillCaretRightFill
                 className={cn(
-                  'text-base transform ease-in-out transition-all duration-[400ms] mt-[4px]',
+                  'mt-[4px] text-lg transform ease-in-out transition-all duration-[400ms]',
                   {
                     'rotate-90': open,
                     'rotate-0': !open

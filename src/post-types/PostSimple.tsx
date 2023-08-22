@@ -1,9 +1,9 @@
 import cn from 'classnames'
 import Link from 'next/link'
-import { FaPenNib } from 'react-icons/fa'
-import { HiOutlineDocumentText } from 'react-icons/hi'
 
 import Date from '../components/Date'
+import FaPenNib from '../icons/FaPenNib'
+import HiOutlineDocumentText from '../icons/HiOutlineDocumentText'
 import { Post } from '../interface'
 
 export type PostSimpleOpts = {

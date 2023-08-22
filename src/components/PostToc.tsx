@@ -3,9 +3,9 @@
 import { BlockObjectResponse, RichTextItemResponse } from '@notionhq/client/build/src/api-endpoints'
 import cn from 'classnames'
 import { useState } from 'react'
-import { IoIosArrowDown } from 'react-icons/io'
 
 import { convertHeadingIdToSlug } from '../helpers/block-helpers'
+import IoIosArrowDown from '../icons/IoIosArrowDown'
 import { useHeadsObserver } from '../lib/hooks'
 import BlockRichText from '../notion-blocks/BlockRichText'
 
