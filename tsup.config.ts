@@ -4,6 +4,7 @@ export default defineConfig({
   entry: [
     'src/index.tsx',
     'src/components/*.tsx',
+    'src/icons/*.tsx',
     'src/skeleton/*.tsx',
     'src/helpers/*.ts',
     'src/styles.css',
