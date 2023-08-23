@@ -14,6 +14,7 @@ type PostTocProps = {
   contentBlocks: BlockObjectResponse[]
   inPost?: boolean // This component is used in 2 places: post-body and [postSlug]
   minNumHeadingsToShowToc?: number
+  labelTocTitle?: string
 }
 
 export default function PostToc(props: PostTocProps) {
@@ -48,7 +49,7 @@ export default function PostToc(props: PostTocProps) {
         )}
         onClick={() => setShowContent(!showContent)}
       >
-        <div>Trong bài này</div>
+        <div>{props.labelTocTitle || 'In this post'}</div>
         <div>
           <IoIosArrowDown
             className={cn('text-2xl ease-in-out transition-all duration-[400ms]', {

@@ -21,7 +21,9 @@
       "**/CVS": true,
       "**/.DS_Store": true,
       "**/Thumbs.db": true,
-      "**/node_modules": false
+      "**/node_modules": false,
+      "**/dist": true,
+      "**/styles.css": true
     },
     "editor.rulers": [
       100

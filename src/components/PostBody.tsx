@@ -14,6 +14,7 @@ type PostBodyProps = {
   showToc?: boolean
   blockOptionsContext?: BlockOptionsContextType
   noContentMessage?: string
+  labelTocTitle?: string
 }
 
 export default function PostBody(props: PostBodyProps) {
@@ -24,6 +25,7 @@ export default function PostBody(props: PostBodyProps) {
         showToc={props.showToc}
         inPost={true}
         contentBlocks={contentBlocks as BlockObjectResponse[]}
+        labelTocTitle={props.labelTocTitle}
       />
       {!!contentBlocks.length &&
         contentBlocks.map(block => (

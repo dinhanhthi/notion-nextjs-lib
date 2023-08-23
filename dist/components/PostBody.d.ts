@@ -10,6 +10,7 @@ type PostBodyProps = {
     showToc?: boolean;
     blockOptionsContext?: BlockOptionsContextType;
     noContentMessage?: string;
+    labelTocTitle?: string;
 };
 declare function PostBody(props: PostBodyProps): react_jsx_runtime.JSX.Element;
 

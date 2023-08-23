@@ -933,7 +933,7 @@ function PostToc(props) {
             ),
             onClick: () => setShowContent(!showContent),
             children: [
-              /* @__PURE__ */ jsx33("div", { children: "Trong b\xE0i n\xE0y" }),
+              /* @__PURE__ */ jsx33("div", { children: props.labelTocTitle || "In this post" }),
               /* @__PURE__ */ jsx33("div", { children: /* @__PURE__ */ jsx33(
                 IoIosArrowDown,
                 {
