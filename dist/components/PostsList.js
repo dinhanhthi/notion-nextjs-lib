@@ -275,10 +275,10 @@ import cn16 from "classnames";
 import { get as get3 } from "lodash";
 import mediumZoom from "medium-zoom";
 import Image2 from "next/image";
-import { useRef, useState } from "react";
+import { useRef, useState as useState2 } from "react";
 import { jsx as jsx23, jsxs as jsxs13 } from "react/jsx-runtime";
 function BlockImage(props) {
-  const [isImageReady, setIsImageReady] = useState(false);
+  const [isImageReady, setIsImageReady] = useState2(false);
   const { block, className } = props;
   const width = Math.min(get3(block, "imageInfo.width", 1e3), 1e3);
   const height = Math.min(get3(block, "imageInfo.height", 700), 700);
@@ -418,7 +418,7 @@ __export(BlockCode_exports, {
   default: () => BlockCode
 });
 import cn17 from "classnames";
-import { useContext as useContext2, useState as useState2 } from "react";
+import { useContext as useContext2, useState as useState3 } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { prism } from "react-syntax-highlighter/dist/esm/styles/prism";
@@ -427,7 +427,7 @@ function BlockCode(props) {
   const ctx = useContext2(BlockOptionContext);
   const { block, className } = props;
   const language = block?.code?.language?.toLowerCase() || defaultCodeLanguage;
-  const [copied, setCopied] = useState2(false);
+  const [copied, setCopied] = useState3(false);
   const onSuccess = () => {
     setCopied(true);
     setTimeout(() => setCopied(false), 1e3);
@@ -948,8 +948,10 @@ import Link2 from "next/link";
 
 // src/components/Date.tsx
 import Moment from "moment";
+import { useState } from "react";
 import { jsx as jsx2 } from "react/jsx-runtime";
-function Date2(props) {
+function DateComponent(props) {
+  const [humanized, setHumanized] = useState("");
   const date = Moment(props.dateString).format(props.format || "DD/MM/YYYY");
   return /* @__PURE__ */ jsx2("span", { className: props.className, children: date });
 }
@@ -1016,7 +1018,7 @@ function PostCardWhiteBg(props) {
   return /* @__PURE__ */ jsx5("div", { className: "group overflow-hidden rounded-md bg-white shadow-lg", children: /* @__PURE__ */ jsxs2(Link2, { className: cn3(props.options?.fontClassName, "text-center"), href: uri || "/", children: [
     /* @__PURE__ */ jsx5("div", { className: "flex flex-col justify-center ", children: /* @__PURE__ */ jsx5("div", { className: "relative h-28 w-full overflow-hidden ", children: /* @__PURE__ */ jsx5(PostFeaturedImage, { featuredImage, title }) }) }),
     /* @__PURE__ */ jsx5("div", { className: "group-hover:m2it-link-hover px-4 py-3 text-base font-bold", children: title }),
-    !props.options?.hideDate && date && /* @__PURE__ */ jsx5("div", { className: "px-2 pb-4 text-sm opacity-80", children: /* @__PURE__ */ jsx5(Date2, { dateString: date }) })
+    !props.options?.hideDate && date && /* @__PURE__ */ jsx5("div", { className: "px-2 pb-4 text-sm opacity-80", children: /* @__PURE__ */ jsx5(DateComponent, { dateString: date }) })
   ] }) });
 }
 
@@ -1049,7 +1051,7 @@ function PostCardWhiteBgBig(props) {
       (!options?.hideDate || !options?.hideAuthor) && /* @__PURE__ */ jsxs18("div", { className: "flex justify-center gap-2 p-2", children: [
         !options?.hideDate && date && /* @__PURE__ */ jsxs18("div", { className: "text-sm opacity-80", children: [
           /* @__PURE__ */ jsx38("i", { className: "icon-clock mr-1" }),
-          /* @__PURE__ */ jsx38(Date2, { dateString: date })
+          /* @__PURE__ */ jsx38(DateComponent, { dateString: date })
         ] }),
         !options?.hideAuthor && authors?.length && /* @__PURE__ */ jsxs18("div", { className: "flex gap-1 text-sm opacity-80", children: [
           authors?.length > 1 && /* @__PURE__ */ jsxs18(Fragment9, { children: [
@@ -1093,7 +1095,7 @@ function PostImageBackground(props) {
 // src/post-types/PostSimple.tsx
 import cn25 from "classnames";
 import Link6 from "next/link";
-import { useEffect, useState as useState3 } from "react";
+import { useEffect as useEffect2, useState as useState4 } from "react";
 
 // src/helpers/helpers.ts
 function isDateAfter(date1, date2) {
@@ -1154,10 +1156,10 @@ function HiOutlineDocumentText(props) {
 init_config();
 import { jsx as jsx42, jsxs as jsxs20 } from "react/jsx-runtime";
 function PostSimple(props) {
-  const [isIn7Days, setIsIn7Days] = useState3(false);
-  const [isNew, setIsNew] = useState3(false);
+  const [isIn7Days, setIsIn7Days] = useState4(false);
+  const [isNew, setIsNew] = useState4(false);
   const { post, options } = props;
-  useEffect(() => {
+  useEffect2(() => {
     const lastModifiedDate = new Date(post.date);
     const today = /* @__PURE__ */ new Date();
     const diffTime = Math.abs(today.getTime() - lastModifiedDate.getTime());
@@ -1212,7 +1214,7 @@ function PostSimple(props) {
                 options?.updatedOnLabel || "updated",
                 " ",
                 /* @__PURE__ */ jsx42(
-                  Date2,
+                  DateComponent,
                   {
                     className: "hidden lg:inline-block",
                     dateString: post.date,
@@ -1233,7 +1235,7 @@ function PostSimple(props) {
             }
           ),
           post.createdDate && /* @__PURE__ */ jsx42(
-            Date2,
+            DateComponent,
             {
               className: "text-[0.9rem] text-slate-500 group-hover:text-slate-700",
               dateString: post.createdDate,
@@ -1329,7 +1331,7 @@ function PostTitleCateDate(props) {
     ),
     !options?.hideDate && /* @__PURE__ */ jsxs21("div", { className: "text-sm opacity-80", children: [
       /* @__PURE__ */ jsx44("i", { className: "icon-clock mr-1" }),
-      date && /* @__PURE__ */ jsx44(Date2, { dateString: date })
+      date && /* @__PURE__ */ jsx44(DateComponent, { dateString: date })
     ] })
   ] }) });
 }

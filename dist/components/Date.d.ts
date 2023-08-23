@@ -5,7 +5,8 @@ type DateProps = {
     format?: string;
     toDuration?: boolean;
     className?: string;
+    humanize?: boolean;
 };
-declare function Date(props: DateProps): react_jsx_runtime.JSX.Element;
+declare function DateComponent(props: DateProps): react_jsx_runtime.JSX.Element;
 
-export { Date as default };
+export { DateComponent as default };

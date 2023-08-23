@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import Link from 'next/link'
 
-import Date from '../components/Date'
+import DateComponent from '../components/Date'
 import PostFeaturedImage from '../components/PostFeaturedImage'
 import { Post } from '../interface'
 
@@ -28,7 +28,7 @@ export default function PostCardWhiteBg(props: PostTitleCateDateProps) {
         <div className="group-hover:m2it-link-hover px-4 py-3 text-base font-bold">{title}</div>
         {!props.options?.hideDate && date && (
           <div className="px-2 pb-4 text-sm opacity-80">
-            <Date dateString={date} />
+            <DateComponent dateString={date} />
           </div>
         )}
       </Link>

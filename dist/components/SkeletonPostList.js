@@ -274,10 +274,10 @@ import cn13 from "classnames";
 import { get as get3 } from "lodash";
 import mediumZoom from "medium-zoom";
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useRef, useState as useState2 } from "react";
 import { jsx as jsx20, jsxs as jsxs11 } from "react/jsx-runtime";
 function BlockImage(props) {
-  const [isImageReady, setIsImageReady] = useState(false);
+  const [isImageReady, setIsImageReady] = useState2(false);
   const { block, className } = props;
   const width = Math.min(get3(block, "imageInfo.width", 1e3), 1e3);
   const height = Math.min(get3(block, "imageInfo.height", 700), 700);
@@ -417,7 +417,7 @@ __export(BlockCode_exports, {
   default: () => BlockCode
 });
 import cn14 from "classnames";
-import { useContext as useContext2, useState as useState2 } from "react";
+import { useContext as useContext2, useState as useState3 } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { prism } from "react-syntax-highlighter/dist/esm/styles/prism";
@@ -426,7 +426,7 @@ function BlockCode(props) {
   const ctx = useContext2(BlockOptionContext);
   const { block, className } = props;
   const language = block?.code?.language?.toLowerCase() || defaultCodeLanguage;
-  const [copied, setCopied] = useState2(false);
+  const [copied, setCopied] = useState3(false);
   const onSuccess = () => {
     setCopied(true);
     setTimeout(() => setCopied(false), 1e3);
@@ -882,6 +882,7 @@ import Link2 from "next/link";
 
 // src/components/Date.tsx
 import Moment from "moment";
+import { useState } from "react";
 import { jsx as jsx2 } from "react/jsx-runtime";
 
 // src/components/Excerpt.tsx
@@ -1050,7 +1051,7 @@ import { jsx as jsx45, jsxs as jsxs21 } from "react/jsx-runtime";
 // src/post-types/PostSimple.tsx
 import cn27 from "classnames";
 import Link7 from "next/link";
-import { useEffect, useState as useState3 } from "react";
+import { useEffect as useEffect2, useState as useState4 } from "react";
 
 // src/icons/FaPenNib.tsx
 import { jsx as jsx46 } from "react/jsx-runtime";

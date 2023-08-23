@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import Link from 'next/link'
 
-import Date from '../components/Date'
+import DateComponent from '../components/Date'
 import PostFeaturedImage from '../components/PostFeaturedImage'
 import IoBookOutline from '../icons/IoBookOutline'
 import { Post } from '../interface'
@@ -67,7 +67,7 @@ export default function PostTitleCateDate(props: PostTitleCateDateProps) {
         {!options?.hideDate && (
           <div className="text-sm opacity-80">
             <i className="icon-clock mr-1"></i>
-            {date && <Date dateString={date} />}
+            {date && <DateComponent dateString={date} />}
           </div>
         )}
       </Link>

@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import Link from 'next/link'
 
-import Date from '../components/Date'
+import DateComponent from '../components/Date'
 import Excerpt from '../components/Excerpt'
 import PostFeaturedImage from '../components/PostFeaturedImage'
 import { Post } from '../interface'
@@ -40,7 +40,7 @@ export default function PostCardWhiteBgBig(props: PostTitleCateDateProps) {
               {!options?.hideDate && date && (
                 <div className="text-sm opacity-80">
                   <i className="icon-clock mr-1"></i>
-                  <Date dateString={date} />
+                  <DateComponent dateString={date} />
                 </div>
               )}
               {!options?.hideAuthor && authors?.length && (
