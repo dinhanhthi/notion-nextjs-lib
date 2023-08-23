@@ -45,7 +45,7 @@ function BsArrowReturnLeft(props) {
       children: /* @__PURE__ */ jsx2(
         "path",
         {
-          "fill-rule": "evenodd",
+          fillRule: "evenodd",
           d: "M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z"
         }
       )
@@ -97,7 +97,7 @@ function IoBookOutline(props) {
           fill: "none",
           strokeLinecap: "round",
           strokeLinejoin: "round",
-          "stroke-width": "32",
+          strokeWidth: "32",
           d: "M256 160c16-63.16 76.43-95.41 208-96a15.94 15.94 0 0116 16v288a16 16 0 01-16 16c-128 0-177.45 25.81-208 64-30.37-38-80-64-208-64-9.88 0-16-8.05-16-17.93V80a15.94 15.94 0 0116-16c131.57.59 192 32.84 208 96zm0 0v288"
         }
       )

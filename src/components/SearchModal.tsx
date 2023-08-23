@@ -43,6 +43,7 @@ export default function SearchModal(props: SearchModalProps) {
   } = useSWR<SearchResult[]>([props.url, { query: queryToSearch }], ([url, params]: any) =>
     fetcher(url, params)
   )
+
   const data = fullData ? fullData.filter(rs => rs.isPublished) : fullData
 
   if (error) console.log('🐞 Error in search modal: ', error)

@@ -9,6 +9,7 @@ import { isDateAfter } from '../helpers/helpers'
 import FaPenNib from '../icons/FaPenNib'
 import HiOutlineDocumentText from '../icons/HiOutlineDocumentText'
 import { Post } from '../interface'
+import { maxDays } from '../lib/config'
 
 export type PostSimpleOpts = {
   hideDate?: boolean
@@ -29,31 +30,35 @@ export default function PostSimple(props: PostSimpleProps) {
   const [isNew, setIsNew] = useState(false)
   const { post, options } = props
 
-  // check if the last modified date is around 7 days
   useEffect(() => {
     const lastModifiedDate = new Date(post.date)
     const today = new Date()
     const diffTime = Math.abs(today.getTime() - lastModifiedDate.getTime())
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
-    if (diffDays <= 7) {
+    if (diffDays <= maxDays) {
       setIsIn7Days(true)
     }
 
     const createdDate = new Date(post.createdDate)
     const diffTime2 = Math.abs(today.getTime() - createdDate.getTime())
     const diffDays2 = Math.ceil(diffTime2 / (1000 * 60 * 60 * 24))
-    if (diffDays2 <= 7) {
+    if (diffDays2 <= maxDays) {
       setIsNew(true)
     }
   }, [])
 
   return (
-    <div className="group hover:bg-gray-50">
+    <div className="group hover:bg-slate-50">
       <Link
-        className={cn(options?.fontClassName, 'flex items-start gap-3 py-3 px-2')}
+        className={cn(options?.fontClassName, 'flex items-start gap-3 p-4')}
         href={post.uri || '/'}
       >
-        <div className="mt-[3px] text-slate-600">
+        <div
+          className={cn('mt-[3px] text-slate-600', {
+            'tooltip-auto': post.isBlog
+          })}
+          data-title={post.isBlog ? 'Well-written, like a blog' : null}
+        >
           {!!options?.customIcon && options.customIcon}
           {!options?.customIcon && !post.isBlog && <HiOutlineDocumentText className="text-xl" />}
           {!options?.customIcon && post.isBlog && <FaPenNib className="text-lg" />}
@@ -61,7 +66,7 @@ export default function PostSimple(props: PostSimpleProps) {
         <h3 className="flex-1">
           {post.title}{' '}
           {post.isDraft && (
-            <span className="bg-slate-200 text-slate-800 px-2 py-0 text-[0.8rem] rounded-md">
+            <span className="bg-slate-100 text-slate-600 px-2 py-0 text-[0.8rem] rounded-md">
               {options.draftLabel || 'draft'}
             </span>
           )}
@@ -69,17 +74,16 @@ export default function PostSimple(props: PostSimpleProps) {
         {(post.createdDate || post.date) && (
           <div className="gap-2 hidden md:flex">
             {post.date &&
-              // !isNew &&
+              !isNew &&
               post.createdDate &&
               isDateAfter(post.date, post.createdDate) && (
                 <div
                   className={cn(
                     'px-3 py-0.5 text-[0.8rem] items-start rounded-md whitespace-nowrap',
-                    // {
-                    //   'bg-slate-200 text-slate-800': !isIn7Days,
-                    //   'bg-green-200 text-green-900': isIn7Days
-                    // }
-                    'bg-slate-200 text-slate-800'
+                    {
+                      'bg-slate-200 text-slate-800': !isIn7Days,
+                      'bg-green-200 text-green-900': isIn7Days
+                    }
                   )}
                 >
                   {options?.updatedOnLabel || 'updated'}{' '}
@@ -102,7 +106,7 @@ export default function PostSimple(props: PostSimpleProps) {
             )}
             {post.createdDate && (
               <DateComponent
-                className="text-[0.9rem] text-slate-800"
+                className="text-[0.9rem] text-slate-500 group-hover:text-slate-700"
                 dateString={post.createdDate}
                 format="MMM DD, YYYY"
               />

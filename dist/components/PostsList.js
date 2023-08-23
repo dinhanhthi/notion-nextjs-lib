@@ -257,11 +257,12 @@ var init_BlockToggle = __esm({
 });
 
 // src/lib/config.ts
-var defaultBlurDataURL, defaultCodeLanguage;
+var defaultBlurDataURL, defaultCodeLanguage, maxDays;
 var init_config = __esm({
   "src/lib/config.ts"() {
     defaultBlurDataURL = "data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN8XA8AAksBZG7LpHYAAAAASUVORK5CYII=";
     defaultCodeLanguage = "typescript";
+    maxDays = 7;
   }
 });
 
@@ -397,8 +398,8 @@ function RxCopy(props) {
       children: /* @__PURE__ */ jsx26(
         "path",
         {
-          "fill-rule": "evenodd",
-          "clip-rule": "evenodd",
+          fillRule: "evenodd",
+          clipRule: "evenodd",
           d: "M1 9.50006C1 10.3285 1.67157 11.0001 2.5 11.0001H4L4 10.0001H2.5C2.22386 10.0001 2 9.7762 2 9.50006L2 2.50006C2 2.22392 2.22386 2.00006 2.5 2.00006L9.5 2.00006C9.77614 2.00006 10 2.22392 10 2.50006V4.00002H5.5C4.67158 4.00002 4 4.67159 4 5.50002V12.5C4 13.3284 4.67158 14 5.5 14H12.5C13.3284 14 14 13.3284 14 12.5V5.50002C14 4.67159 13.3284 4.00002 12.5 4.00002H11V2.50006C11 1.67163 10.3284 1.00006 9.5 1.00006H2.5C1.67157 1.00006 1 1.67163 1 2.50006V9.50006ZM5 5.50002C5 5.22388 5.22386 5.00002 5.5 5.00002H12.5C12.7761 5.00002 13 5.22388 13 5.50002V12.5C13 12.7762 12.7761 13 12.5 13H5.5C5.22386 13 5 12.7762 5 12.5V5.50002Z",
           fill: "currentColor"
         }
@@ -1150,6 +1151,7 @@ function HiOutlineDocumentText(props) {
 }
 
 // src/post-types/PostSimple.tsx
+init_config();
 import { jsx as jsx42, jsxs as jsxs20 } from "react/jsx-runtime";
 function PostSimple(props) {
   const [isIn7Days, setIsIn7Days] = useState3(false);
@@ -1160,44 +1162,51 @@ function PostSimple(props) {
     const today = /* @__PURE__ */ new Date();
     const diffTime = Math.abs(today.getTime() - lastModifiedDate.getTime());
     const diffDays = Math.ceil(diffTime / (1e3 * 60 * 60 * 24));
-    if (diffDays <= 7) {
+    if (diffDays <= maxDays) {
       setIsIn7Days(true);
     }
     const createdDate = new Date(post.createdDate);
     const diffTime2 = Math.abs(today.getTime() - createdDate.getTime());
     const diffDays2 = Math.ceil(diffTime2 / (1e3 * 60 * 60 * 24));
-    if (diffDays2 <= 7) {
+    if (diffDays2 <= maxDays) {
       setIsNew(true);
     }
   }, []);
-  return /* @__PURE__ */ jsx42("div", { className: "group hover:bg-gray-50", children: /* @__PURE__ */ jsxs20(
+  return /* @__PURE__ */ jsx42("div", { className: "group hover:bg-slate-50", children: /* @__PURE__ */ jsxs20(
     Link6,
     {
-      className: cn25(options?.fontClassName, "flex items-start gap-3 py-3 px-2"),
+      className: cn25(options?.fontClassName, "flex items-start gap-3 p-4"),
       href: post.uri || "/",
       children: [
-        /* @__PURE__ */ jsxs20("div", { className: "mt-[3px] text-slate-600", children: [
-          !!options?.customIcon && options.customIcon,
-          !options?.customIcon && !post.isBlog && /* @__PURE__ */ jsx42(HiOutlineDocumentText, { className: "text-xl" }),
-          !options?.customIcon && post.isBlog && /* @__PURE__ */ jsx42(FaPenNib, { className: "text-lg" })
-        ] }),
+        /* @__PURE__ */ jsxs20(
+          "div",
+          {
+            className: cn25("mt-[3px] text-slate-600", {
+              "tooltip-auto": post.isBlog
+            }),
+            "data-title": post.isBlog ? "Well-written, like a blog" : null,
+            children: [
+              !!options?.customIcon && options.customIcon,
+              !options?.customIcon && !post.isBlog && /* @__PURE__ */ jsx42(HiOutlineDocumentText, { className: "text-xl" }),
+              !options?.customIcon && post.isBlog && /* @__PURE__ */ jsx42(FaPenNib, { className: "text-lg" })
+            ]
+          }
+        ),
         /* @__PURE__ */ jsxs20("h3", { className: "flex-1", children: [
           post.title,
           " ",
-          post.isDraft && /* @__PURE__ */ jsx42("span", { className: "bg-slate-200 text-slate-800 px-2 py-0 text-[0.8rem] rounded-md", children: options.draftLabel || "draft" })
+          post.isDraft && /* @__PURE__ */ jsx42("span", { className: "bg-slate-100 text-slate-600 px-2 py-0 text-[0.8rem] rounded-md", children: options.draftLabel || "draft" })
         ] }),
         (post.createdDate || post.date) && /* @__PURE__ */ jsxs20("div", { className: "gap-2 hidden md:flex", children: [
-          post.date && // !isNew &&
-          post.createdDate && isDateAfter(post.date, post.createdDate) && /* @__PURE__ */ jsxs20(
+          post.date && !isNew && post.createdDate && isDateAfter(post.date, post.createdDate) && /* @__PURE__ */ jsxs20(
             "div",
             {
               className: cn25(
                 "px-3 py-0.5 text-[0.8rem] items-start rounded-md whitespace-nowrap",
-                // {
-                //   'bg-slate-200 text-slate-800': !isIn7Days,
-                //   'bg-green-200 text-green-900': isIn7Days
-                // }
-                "bg-slate-200 text-slate-800"
+                {
+                  "bg-slate-200 text-slate-800": !isIn7Days,
+                  "bg-green-200 text-green-900": isIn7Days
+                }
               ),
               children: [
                 options?.updatedOnLabel || "updated",
@@ -1226,7 +1235,7 @@ function PostSimple(props) {
           post.createdDate && /* @__PURE__ */ jsx42(
             Date2,
             {
-              className: "text-[0.9rem] text-slate-800",
+              className: "text-[0.9rem] text-slate-500 group-hover:text-slate-700",
               dateString: post.createdDate,
               format: "MMM DD, YYYY"
             }
@@ -1261,7 +1270,7 @@ function IoBookOutline(props) {
           fill: "none",
           strokeLinecap: "round",
           strokeLinejoin: "round",
-          "stroke-width": "32",
+          strokeWidth: "32",
           d: "M256 160c16-63.16 76.43-95.41 208-96a15.94 15.94 0 0116 16v288a16 16 0 01-16 16c-128 0-177.45 25.81-208 64-30.37-38-80-64-208-64-9.88 0-16-8.05-16-17.93V80a15.94 15.94 0 0116-16c131.57.59 192 32.84 208 96zm0 0v288"
         }
       )

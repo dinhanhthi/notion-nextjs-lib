@@ -62,11 +62,14 @@ function PostHeaderTopics(props) {
       },
       category.uri
     )),
-    usedTags.length > 0 && /* @__PURE__ */ jsx2(TiTag, { className: "text-gray-600 text-lg" }),
+    usedTags.length > 0 && /* @__PURE__ */ jsx2(TiTag, { className: props.TiTagClass ?? "text-gray-600 text-lg" }),
     usedTags.length > 0 && usedTags.map((tag) => /* @__PURE__ */ jsx2(
       Link,
       {
-        className: cn(topTagClass, "boder-slate-300 border text-slate-600 bg-white"),
+        className: cn(
+          topTagClass,
+          props.tagClass ?? "boder-slate-300 border text-slate-600 bg-white"
+        ),
         href: tag.uri || "/",
         children: tag.name
       },

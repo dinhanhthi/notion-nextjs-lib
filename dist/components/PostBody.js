@@ -193,8 +193,8 @@ function RxDot(props) {
       children: /* @__PURE__ */ jsx3(
         "path",
         {
-          "fill-rule": "evenodd",
-          "clip-rule": "evenodd",
+          fillRule: "evenodd",
+          clipRule: "evenodd",
           d: "M7.5 9.125C8.39746 9.125 9.125 8.39746 9.125 7.5C9.125 6.60254 8.39746 5.875 7.5 5.875C6.60254 5.875 5.875 6.60254 5.875 7.5C5.875 8.39746 6.60254 9.125 7.5 9.125ZM7.5 10.125C8.94975 10.125 10.125 8.94975 10.125 7.5C10.125 6.05025 8.94975 4.875 7.5 4.875C6.05025 4.875 4.875 6.05025 4.875 7.5C4.875 8.94975 6.05025 10.125 7.5 10.125Z",
           fill: "currentColor"
         }
@@ -956,8 +956,8 @@ function RxCopy(props) {
       children: /* @__PURE__ */ jsx25(
         "path",
         {
-          "fill-rule": "evenodd",
-          "clip-rule": "evenodd",
+          fillRule: "evenodd",
+          clipRule: "evenodd",
           d: "M1 9.50006C1 10.3285 1.67157 11.0001 2.5 11.0001H4L4 10.0001H2.5C2.22386 10.0001 2 9.7762 2 9.50006L2 2.50006C2 2.22392 2.22386 2.00006 2.5 2.00006L9.5 2.00006C9.77614 2.00006 10 2.22392 10 2.50006V4.00002H5.5C4.67158 4.00002 4 4.67159 4 5.50002V12.5C4 13.3284 4.67158 14 5.5 14H12.5C13.3284 14 14 13.3284 14 12.5V5.50002C14 4.67159 13.3284 4.00002 12.5 4.00002H11V2.50006C11 1.67163 10.3284 1.00006 9.5 1.00006H2.5C1.67157 1.00006 1 1.67163 1 2.50006V9.50006ZM5 5.50002C5 5.22388 5.22386 5.00002 5.5 5.00002H12.5C12.7761 5.00002 13 5.22388 13 5.50002V12.5C13 12.7762 12.7761 13 12.5 13H5.5C5.22386 13 5 12.7762 5 12.5V5.50002Z",
           fill: "currentColor"
         }
@@ -1438,7 +1438,7 @@ function PostToc(props) {
                   className: cn20("flex items-baseline gap-2 hover:m2it-link text-sm py-1", {
                     "pl-4 border-l": block.type === "heading_3",
                     "-ml-1": block.type === "heading_2",
-                    "m2it-link-hover": activeId === anchor && !props.inPost,
+                    "m2it-link": activeId === anchor && !props.inPost,
                     "text-slate-700": activeId !== anchor || props.inPost
                   }),
                   children: [

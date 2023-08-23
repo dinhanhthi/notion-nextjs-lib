@@ -9,6 +9,8 @@ type PostHeaderTopicsProps = {
     tags?: Tag[];
     selectedUri?: string;
     selectedName?: string;
+    TiTagClass?: string;
+    tagClass?: string;
 };
 declare function PostHeaderTopics(props: PostHeaderTopicsProps): react_jsx_runtime.JSX.Element;
 

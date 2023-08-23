@@ -103,12 +103,12 @@ type SearchResult = {
     id: string;
     title: string;
     slug: string;
-    categoryNames: string[];
-    isPublished: boolean;
-    isSelected: boolean;
     titleHighlighted: string;
     textHighlighted: string;
-    isBookPost: boolean;
+    categoryNames?: string[];
+    isPublished: boolean;
+    isSelected?: boolean;
+    isBookPost?: boolean;
     isFake?: boolean;
 };
 type BookmarkPreview = {

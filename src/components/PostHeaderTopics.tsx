@@ -10,6 +10,8 @@ type PostHeaderTopicsProps = {
   tags?: Tag[]
   selectedUri?: string
   selectedName?: string
+  TiTagClass?: string
+  tagClass?: string
 }
 
 const topTagClass = `flex items-center justify-center rounded-2xl px-3 py-0.5 text-xs uppercase
@@ -51,11 +53,14 @@ export default function PostHeaderTopics(props: PostHeaderTopicsProps) {
               {category!.name}
             </Link>
           ))}
-      {usedTags.length > 0 && <TiTag className="text-gray-600 text-lg" />}
+      {usedTags.length > 0 && <TiTag className={props.TiTagClass ?? 'text-gray-600 text-lg'} />}
       {usedTags.length > 0 &&
         usedTags.map(tag => (
           <Link
-            className={cn(topTagClass, 'boder-slate-300 border text-slate-600 bg-white')}
+            className={cn(
+              topTagClass,
+              props.tagClass ?? 'boder-slate-300 border text-slate-600 bg-white'
+            )}
             key={tag.uri}
             href={tag.uri || '/'}
           >
