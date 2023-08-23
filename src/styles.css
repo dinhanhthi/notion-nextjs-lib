@@ -1,5 +1,6 @@
 @import url(katex/dist/katex.min.css);
-@import url(prismjs/themes/prism-tomorrow.css);
+/* @import url(prismjs/themes/prism-tomorrow.css); */
+/* @import url(prismjs/themes/prism.css); */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

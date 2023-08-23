@@ -424,7 +424,7 @@ import cn14 from "classnames";
 import { useContext as useContext2, useState as useState3 } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { vs } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { jsx as jsx23, jsxs as jsxs12 } from "react/jsx-runtime";
 function BlockCode(props) {
   const ctx = useContext2(BlockOptionContext);
@@ -436,13 +436,13 @@ function BlockCode(props) {
     setTimeout(() => setCopied(false), 1e3);
   };
   return /* @__PURE__ */ jsxs12("div", { className: cn14(className, "group"), children: [
-    /* @__PURE__ */ jsxs12("div", { className: `language-${formatCodeLang(language)} syntax-highlighter relative`, children: [
+    /* @__PURE__ */ jsxs12("div", { className: `language-${formatCodeLang(language)} syntax-highlighter relative text-[18px]`, children: [
       /* @__PURE__ */ jsx23(
         SyntaxHighlighter,
         {
           language: formatCodeLang(language),
-          style: dracula,
-          className: "syntax-highlighter-pre text-sm",
+          style: vs,
+          className: "syntax-highlighter-pre",
           showLineNumbers: true,
           children: getJoinedRichText(block?.code?.rich_text)
         }
@@ -458,8 +458,8 @@ function BlockCode(props) {
           ),
           "data-title": copied ? ctx?.blockCodeCopiedText || "Copied" : ctx?.blockCodeCopyText || "Copy",
           children: /* @__PURE__ */ jsx23(CopyToClipboard, { text: getJoinedRichText(block?.code?.rich_text), onCopy: onSuccess, children: /* @__PURE__ */ jsxs12("button", { children: [
-            !copied && /* @__PURE__ */ jsx23(RxCopy, { className: "text-lg text-slate-200 hover:text-pink-300" }),
-            copied && /* @__PURE__ */ jsx23(FiCheck, { className: "text-lg text-green-300" })
+            !copied && /* @__PURE__ */ jsx23(RxCopy, { className: "text-lg text-slate-300 hover:text-slate-600" }),
+            copied && /* @__PURE__ */ jsx23(FiCheck, { className: "text-lg text-green-600" })
           ] }) })
         }
       )
