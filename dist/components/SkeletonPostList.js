@@ -882,7 +882,7 @@ import Link2 from "next/link";
 
 // src/components/Date.tsx
 import Moment from "moment";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { jsx as jsx2 } from "react/jsx-runtime";
 
 // src/components/Excerpt.tsx

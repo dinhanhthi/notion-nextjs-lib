@@ -18,6 +18,7 @@ export type PostSimpleOpts = {
   updatedOnLabel?: string
   newLabel?: string
   draftLabel?: string
+  humanizeDate?: boolean
 }
 
 type PostSimpleProps = {
@@ -91,6 +92,7 @@ export default function PostSimple(props: PostSimpleProps) {
                     className="hidden lg:inline-block"
                     dateString={post.date}
                     format="MMM DD, YYYY"
+                    humanize={options?.humanizeDate}
                   />
                 </div>
               )}
@@ -109,6 +111,7 @@ export default function PostSimple(props: PostSimpleProps) {
                 className="text-[0.9rem] text-slate-500 group-hover:text-slate-700"
                 dateString={post.createdDate}
                 format="MMM DD, YYYY"
+                humanize={options?.humanizeDate}
               />
             )}
           </div>

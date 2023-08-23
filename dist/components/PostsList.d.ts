@@ -31,6 +31,7 @@ type PostSimpleOpts = {
     updatedOnLabel?: string;
     newLabel?: string;
     draftLabel?: string;
+    humanizeDate?: boolean;
 };
 
 type PostTitleCateDateOpts = {
