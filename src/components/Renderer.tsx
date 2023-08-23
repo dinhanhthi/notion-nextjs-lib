@@ -43,7 +43,7 @@ export default function Renderer(props: BlockRenderProps) {
       <Renderer
         key={(childBlock as BlockObjectResponse).id}
         block={childBlock}
-        level={block.type === 'synced_block' ? level : level + 1}
+        level={['synced_block', 'callout'].includes(block.type) ? level : level + 1}
         isInsideList={isList}
       />
     ))

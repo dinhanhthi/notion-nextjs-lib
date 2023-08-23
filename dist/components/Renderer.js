@@ -1016,7 +1016,7 @@ function BlockCode(props) {
         {
           language: formatCodeLang(language),
           style: prism,
-          className: "syntax-highlighter-pre m2it-scrollbar m2it-scrollbar-small",
+          className: "syntax-highlighter-pre m2it-scrollbar m2it-scrollbar-small border",
           showLineNumbers: true,
           children: getJoinedRichText(block?.code?.rich_text)
         }
@@ -1199,7 +1199,7 @@ function Renderer(props) {
       Renderer,
       {
         block: childBlock,
-        level: block.type === "synced_block" ? level : level + 1,
+        level: ["synced_block", "callout"].includes(block.type) ? level : level + 1,
         isInsideList: isList
       },
       childBlock.id

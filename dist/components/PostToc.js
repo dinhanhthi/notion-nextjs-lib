@@ -442,7 +442,7 @@ function BlockCode(props) {
         {
           language: formatCodeLang(language),
           style: prism,
-          className: "syntax-highlighter-pre m2it-scrollbar m2it-scrollbar-small",
+          className: "syntax-highlighter-pre m2it-scrollbar m2it-scrollbar-small border",
           showLineNumbers: true,
           children: getJoinedRichText(block?.code?.rich_text)
         }
