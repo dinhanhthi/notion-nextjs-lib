@@ -5,7 +5,7 @@ import cn from 'classnames'
 import { useContext, useState } from 'react'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { vs } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
 import { BlockOptionContext } from '../components/BlockRender'
 import Mermaid from '../components/Mermaid'
@@ -33,11 +33,11 @@ export default function BlockCode(props: BlockCodeProps) {
 
   return (
     <div className={cn(className, 'group')}>
-      <div className={`language-${formatCodeLang(language)} syntax-highlighter relative text-[18px]`}>
+      <div className={`language-${formatCodeLang(language)} syntax-highlighter relative text-[14px]`}>
         <SyntaxHighlighter
           language={formatCodeLang(language)}
-          style={vs}
-          className="syntax-highlighter-pre"
+          style={prism}
+          className="syntax-highlighter-pre m2it-scrollbar m2it-scrollbar-small"
           showLineNumbers={true}
         >
           {/* We don't use <BlockRichText> because the package react-syntax-highlighter requires a string. */}
@@ -56,7 +56,7 @@ export default function BlockCode(props: BlockCodeProps) {
         >
           <CopyToClipboard text={getJoinedRichText(block?.code?.rich_text)} onCopy={onSuccess}>
             <button>
-              {!copied && <RxCopy className="text-lg text-slate-300 hover:text-slate-600" />}
+              {!copied && <RxCopy className="text-lg text-slate-400 hover:text-slate-700" />}
               {copied && <FiCheck className="text-lg text-green-600" />}
             </button>
           </CopyToClipboard>

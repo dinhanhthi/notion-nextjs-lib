@@ -998,7 +998,7 @@ import cn16 from "classnames";
 import { useContext as useContext3, useState as useState2 } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { vs } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { prism } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { jsx as jsx27, jsxs as jsxs13 } from "react/jsx-runtime";
 function BlockCode(props) {
   const ctx = useContext3(BlockOptionContext);
@@ -1010,13 +1010,13 @@ function BlockCode(props) {
     setTimeout(() => setCopied(false), 1e3);
   };
   return /* @__PURE__ */ jsxs13("div", { className: cn16(className, "group"), children: [
-    /* @__PURE__ */ jsxs13("div", { className: `language-${formatCodeLang(language)} syntax-highlighter relative text-[18px]`, children: [
+    /* @__PURE__ */ jsxs13("div", { className: `language-${formatCodeLang(language)} syntax-highlighter relative text-[14px]`, children: [
       /* @__PURE__ */ jsx27(
         SyntaxHighlighter,
         {
           language: formatCodeLang(language),
-          style: vs,
-          className: "syntax-highlighter-pre",
+          style: prism,
+          className: "syntax-highlighter-pre m2it-scrollbar m2it-scrollbar-small",
           showLineNumbers: true,
           children: getJoinedRichText(block?.code?.rich_text)
         }
@@ -1032,7 +1032,7 @@ function BlockCode(props) {
           ),
           "data-title": copied ? ctx?.blockCodeCopiedText || "Copied" : ctx?.blockCodeCopyText || "Copy",
           children: /* @__PURE__ */ jsx27(CopyToClipboard, { text: getJoinedRichText(block?.code?.rich_text), onCopy: onSuccess, children: /* @__PURE__ */ jsxs13("button", { children: [
-            !copied && /* @__PURE__ */ jsx27(RxCopy, { className: "text-lg text-slate-300 hover:text-slate-600" }),
+            !copied && /* @__PURE__ */ jsx27(RxCopy, { className: "text-lg text-slate-400 hover:text-slate-700" }),
             copied && /* @__PURE__ */ jsx27(FiCheck, { className: "text-lg text-green-600" })
           ] }) })
         }
