@@ -447,11 +447,10 @@ function BlockCode(props) {
         "div",
         {
           className: cn17(
-            "absolute right-2 top-2 duration-100 hover:cursor-pointer group-hover:opacity-100",
+            "tooltip-auto !absolute right-2 top-2 duration-100 hover:cursor-pointer group-hover:opacity-100",
             {
               "opacity-0": !copied
-            },
-            "tooltip-auto"
+            }
           ),
           "data-title": copied ? ctx?.blockCodeCopiedText || "Copied" : ctx?.blockCodeCopyText || "Copy",
           children: /* @__PURE__ */ jsx27(CopyToClipboard, { text: getJoinedRichText(block?.code?.rich_text), onCopy: onSuccess, children: /* @__PURE__ */ jsxs14("button", { children: [
@@ -1188,15 +1187,17 @@ function PostSimple(props) {
           post.isDraft && /* @__PURE__ */ jsx42("span", { className: "bg-slate-200 text-slate-800 px-2 py-0 text-[0.8rem] rounded-md", children: options.draftLabel || "draft" })
         ] }),
         (post.createdDate || post.date) && /* @__PURE__ */ jsxs20("div", { className: "gap-2 hidden md:flex", children: [
-          post.date && !isNew && post.createdDate && isDateAfter(post.date, post.createdDate) && /* @__PURE__ */ jsxs20(
+          post.date && // !isNew &&
+          post.createdDate && isDateAfter(post.date, post.createdDate) && /* @__PURE__ */ jsxs20(
             "div",
             {
               className: cn25(
                 "px-3 py-0.5 text-[0.8rem] items-start rounded-md whitespace-nowrap",
-                {
-                  "bg-slate-200 text-slate-800": !isIn7Days,
-                  "bg-green-200 text-green-900": isIn7Days
-                }
+                // {
+                //   'bg-slate-200 text-slate-800': !isIn7Days,
+                //   'bg-green-200 text-green-900': isIn7Days
+                // }
+                "bg-slate-200 text-slate-800"
               ),
               children: [
                 options?.updatedOnLabel || "updated",

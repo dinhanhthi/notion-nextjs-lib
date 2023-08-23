@@ -35,7 +35,7 @@ export default function BadgeInfos(props: BadgeInfosProps) {
     )
   }
   return (
-    <Link className={aLinkClass} href={props.url} target="_blank" rel="noopener noreferrer">
+    <Link className={aLinkClass} href={props.url}>
       {props.icon && <span className="mr-3">{props.icon}</span>}
       <span>{props.title}</span>
     </Link>

@@ -26,7 +26,7 @@ function BadgeInfos(props) {
       }
     );
   }
-  return /* @__PURE__ */ jsxs(Link, { className: aLinkClass, href: props.url, target: "_blank", rel: "noopener noreferrer", children: [
+  return /* @__PURE__ */ jsxs(Link, { className: aLinkClass, href: props.url, children: [
     props.icon && /* @__PURE__ */ jsx("span", { className: "mr-3", children: props.icon }),
     /* @__PURE__ */ jsx("span", { children: props.title })
   ] });

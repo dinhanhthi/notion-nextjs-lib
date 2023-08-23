@@ -447,11 +447,10 @@ function BlockCode(props) {
         "div",
         {
           className: cn14(
-            "absolute right-2 top-2 duration-100 hover:cursor-pointer group-hover:opacity-100",
+            "tooltip-auto !absolute right-2 top-2 duration-100 hover:cursor-pointer group-hover:opacity-100",
             {
               "opacity-0": !copied
-            },
-            "tooltip-auto"
+            }
           ),
           "data-title": copied ? ctx?.blockCodeCopiedText || "Copied" : ctx?.blockCodeCopyText || "Copy",
           children: /* @__PURE__ */ jsx24(CopyToClipboard, { text: getJoinedRichText(block?.code?.rich_text), onCopy: onSuccess, children: /* @__PURE__ */ jsxs12("button", { children: [

@@ -27,7 +27,7 @@ import { jsx as jsx2, jsxs } from "react/jsx-runtime";
 function SkeletonPostHeaderTopics(props) {
   return /* @__PURE__ */ jsxs("div", { className: cn("flex items-center gap-2", props.className), children: [
     /* @__PURE__ */ jsx2(TiTag, { className: "text-slate-400 text-lg" }),
-    /* @__PURE__ */ jsx2("div", { className: "h-6 w-20 rounded-2xl bg-slate-200", children: "I" }),
+    /* @__PURE__ */ jsx2("div", { className: "h-6 w-20 rounded-2xl bg-slate-200" }),
     /* @__PURE__ */ jsx2("div", { className: "h-6 w-32 rounded-2xl bg-slate-200" }),
     /* @__PURE__ */ jsx2("div", { className: "h-6 w-20 rounded-2xl bg-slate-200" })
   ] });

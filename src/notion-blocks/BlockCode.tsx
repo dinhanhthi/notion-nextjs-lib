@@ -45,11 +45,10 @@ export default function BlockCode(props: BlockCodeProps) {
         </SyntaxHighlighter>
         <div
           className={cn(
-            'absolute right-2 top-2 duration-100 hover:cursor-pointer group-hover:opacity-100',
+            'tooltip-auto !absolute right-2 top-2 duration-100 hover:cursor-pointer group-hover:opacity-100',
             {
               'opacity-0': !copied
-            },
-            'tooltip-auto'
+            }
           )}
           data-title={
             copied ? ctx?.blockCodeCopiedText || 'Copied' : ctx?.blockCodeCopyText || 'Copy'

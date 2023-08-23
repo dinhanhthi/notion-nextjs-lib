@@ -69,16 +69,17 @@ export default function PostSimple(props: PostSimpleProps) {
         {(post.createdDate || post.date) && (
           <div className="gap-2 hidden md:flex">
             {post.date &&
-              !isNew &&
+              // !isNew &&
               post.createdDate &&
               isDateAfter(post.date, post.createdDate) && (
                 <div
                   className={cn(
                     'px-3 py-0.5 text-[0.8rem] items-start rounded-md whitespace-nowrap',
-                    {
-                      'bg-slate-200 text-slate-800': !isIn7Days,
-                      'bg-green-200 text-green-900': isIn7Days
-                    }
+                    // {
+                    //   'bg-slate-200 text-slate-800': !isIn7Days,
+                    //   'bg-green-200 text-green-900': isIn7Days
+                    // }
+                    'bg-slate-200 text-slate-800'
                   )}
                 >
                   {options?.updatedOnLabel || 'updated'}{' '}
