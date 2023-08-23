@@ -16,31 +16,42 @@ export type TechItem = {
 type BadgeTechProps = {
   tech: TechItem
   hideText?: boolean
+  useLink?: boolean
 }
 
 export default function BadgeTech(props: BadgeTechProps) {
+  const containerClass =
+    cn(`flex h-6 w-fit items-center justify-center rounded-md border bg-slate-100 px-1
+  align-baseline text-base text-[#1e293b] shadow-sm transition
+  duration-200 ease-in-out hover:-translate-y-0.5 dark:border-[#3b3e54]
+  dark:bg-[#343e4c] dark:text-[#f8fafc] tooltip-auto`)
+
+  const children = () => (
+    <>
+      <ImageComponent
+        image={props.tech.icon}
+        alt={props.tech.name}
+        className={cn('w-[18px] h-[18px]', props.tech.imgClass)}
+        imageProps={{ width: 32, height: 32 }}
+      />
+      {!props.hideText && (
+        <span className="ml-1.5 whitespace-nowrap text-[81%] tracking-wide">{props.tech.name}</span>
+      )}
+    </>
+  )
+
   return (
     <>
-      <a
-        className={`flex h-6 w-fit items-center justify-center rounded-md border bg-slate-100 px-1
-        align-baseline text-base text-[#1e293b] shadow-sm transition
-        duration-200 ease-in-out hover:-translate-y-0.5 dark:border-[#3b3e54]
-        dark:bg-[#343e4c] dark:text-[#f8fafc] tooltip-auto`}
-        href={props.tech.url}
-        data-title={props.tech.name}
-      >
-        <ImageComponent
-          image={props.tech.icon}
-          alt={props.tech.name}
-          className={cn('w-[18px] h-[18px]', props.tech.imgClass)}
-          imageProps={{ width: 32, height: 32 }}
-        />
-        {!props.hideText && (
-          <span className="ml-1.5 whitespace-nowrap text-[81%] tracking-wide">
-            {props.tech.name}
-          </span>
-        )}
-      </a>
+      {props.useLink && (
+        <a className={containerClass} href={props.tech.url} data-title={props.tech.name}>
+          {children()}
+        </a>
+      )}
+      {!props.useLink && (
+        <div className={containerClass} data-title={props.tech.name}>
+          {children()}
+        </div>
+      )}
     </>
   )
 }

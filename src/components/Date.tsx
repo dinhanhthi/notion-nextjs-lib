@@ -18,6 +18,7 @@ type DateProps = {
 }
 
 export default function DateComponent(props: DateProps) {
+  const [hydrated, setHydrated] = useState(false);
   const [humanized, setHumanized] = useState('')
   const fullDate = Moment(props.dateString).format(props.format || 'DD/MM/YYYY')
 
@@ -40,6 +41,11 @@ export default function DateComponent(props: DateProps) {
     } else {
       setHumanized(fullDate)
     }
+
+    setHydrated(true)
   }, [])
+
+  if (!hydrated) return 'loading...'
+
   return <span className={props.className}>{props.humanize ? humanized : fullDate}</span>
 }
