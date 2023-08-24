@@ -7,7 +7,7 @@ import {
 } from '@notionhq/client/build/src/api-endpoints'
 import { get, set } from 'lodash'
 import { getPlaiceholder } from 'plaiceholder'
-import { unfurl } from 'unfurl.js'
+import ogs from 'open-graph-scraper'
 
 import { cleanText } from '../helpers/helpers'
 import { BookmarkPreview, NotionSorts } from '../interface'
@@ -233,13 +233,13 @@ export async function getBlocks(
     if (block.type === 'bookmark') {
       const url = get(block, 'bookmark.url')
       if (url) {
-        const unfurled = await unfurl(url)
+        const { result } = await ogs({ url })
         const bookmark: BookmarkPreview = {
           url,
-          title: cleanText(unfurled.title),
-          description: cleanText(unfurled.description) ?? null,
-          favicon: unfurled.favicon,
-          imageSrc: unfurled.open_graph?.images?.[0]?.url ?? null
+          title: cleanText(result.ogTitle),
+          description: cleanText(result.ogDescription) ?? null,
+          favicon: result.favicon,
+          imageSrc: result.ogImage?.[0]?.url ?? null
         }
         block['bookmark'] = bookmark as any
       }
