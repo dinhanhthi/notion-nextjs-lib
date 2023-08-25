@@ -6,13 +6,17 @@ import { createContext } from 'react'
 import Renderer from './Renderer'
 
 export type BlockOptionsContextType = {
-  disableAnchorHeading?: boolean // used in BlockHeading
+  headingStyle?: 'hash' | 'borderLeft'
+  showAnchorRight?: boolean // useful when headingStyle === 'borderLeft'
+  disableAnchorHeading?: boolean // used in BlockHeading (when headingStyle === 'hash')
   siteDomain?: string // used in BlockText to recognize external links (eg. math2it.com -> alike @mention)
   blockCodeCopyText?: string // used in BlockCode to customize copy text
   blockCodeCopiedText?: string // used in BlockCode to customize copied text
 }
 
 const defaultBlockOptionContext: BlockOptionsContextType = {
+  headingStyle: 'hash',
+  showAnchorRight: false,
   disableAnchorHeading: false,
   siteDomain: 'dinhanhthi.com'
 }

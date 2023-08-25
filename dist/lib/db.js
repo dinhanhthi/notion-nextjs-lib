@@ -182,7 +182,11 @@ async function parseMention(richText, getPageUri) {
   return newRichText;
 }
 var getPlaceholderImage = async function getPlaceholderImage2(src) {
-  const buffer = await fetch(src).then(async (res) => Buffer.from(await res.arrayBuffer()));
+  const res = await fetch(src);
+  const arrayBuffer = await res.arrayBuffer();
+  if (arrayBuffer.byteLength === 0)
+    return { base64: "", width: 0, height: 0 };
+  const buffer = await fetch(src).then(async (res2) => Buffer.from(await res2.arrayBuffer()));
   const { base64, metadata } = await getPlaiceholder(buffer);
   return { base64, width: metadata.width, height: metadata.height };
 };

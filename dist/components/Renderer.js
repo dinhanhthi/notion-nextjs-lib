@@ -248,6 +248,8 @@ var init_BlockRender = __esm({
     "use client";
     init_Renderer();
     defaultBlockOptionContext = {
+      headingStyle: "hash",
+      showAnchorRight: false,
       disableAnchorHeading: false,
       siteDomain: "dinhanhthi.com"
     };
@@ -535,10 +537,36 @@ var init_BlockColumnList = __esm({
   }
 });
 
-// src/icons/BsFillCaretRightFill.tsx
-import { jsx as jsx13 } from "react/jsx-runtime";
-function BsFillCaretRightFill(props) {
+// src/icons/CiLink.tsx
+import { jsx as jsx13, jsxs as jsxs5 } from "react/jsx-runtime";
+function CiLink(props) {
   return /* @__PURE__ */ jsx13(
+    "svg",
+    {
+      className: props.className,
+      stroke: "currentColor",
+      fill: "currentColor",
+      strokeWidth: "0",
+      viewBox: "0 0 24 24",
+      height: "1em",
+      width: "1em",
+      xmlns: "http://www.w3.org/2000/svg",
+      children: /* @__PURE__ */ jsx13("g", { id: "Link", children: /* @__PURE__ */ jsxs5("g", { children: [
+        /* @__PURE__ */ jsx13("path", { d: "M10.9,8a4.055,4.055,0,0,1,1.352.135,2.511,2.511,0,0,1-.7,4.863.5.5,0,0,0,0,1,3.508,3.508,0,0,0,2.944-5.2A3.557,3.557,0,0,0,11.434,7H5.59A3.5,3.5,0,0,0,5.4,14c.724.041,1.458,0,2.183,0a.5.5,0,0,0,0-1h0c-1.323,0-2.915.262-3.891-.843A2.522,2.522,0,0,1,5.59,8Z" }),
+        /* @__PURE__ */ jsx13("path", { d: "M18.41,17a3.5,3.5,0,0,0,.192-6.994c-.724-.041-1.458,0-2.183,0a.5.5,0,0,0,0,1h0c1.323,0,2.915-.262,3.891.843A2.522,2.522,0,0,1,18.41,16H13.1a4.055,4.055,0,0,1-1.352-.135,2.511,2.511,0,0,1,.7-4.863.5.5,0,0,0,0-1,3.508,3.508,0,0,0-2.944,5.2A3.557,3.557,0,0,0,12.566,17Z" })
+      ] }) })
+    }
+  );
+}
+var init_CiLink = __esm({
+  "src/icons/CiLink.tsx"() {
+  }
+});
+
+// src/icons/BsFillCaretRightFill.tsx
+import { jsx as jsx14 } from "react/jsx-runtime";
+function BsFillCaretRightFill(props) {
+  return /* @__PURE__ */ jsx14(
     "svg",
     {
       stroke: "currentColor",
@@ -549,7 +577,7 @@ function BsFillCaretRightFill(props) {
       height: "1em",
       width: "1em",
       xmlns: "http://www.w3.org/2000/svg",
-      children: /* @__PURE__ */ jsx13("path", { d: "m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" })
+      children: /* @__PURE__ */ jsx14("path", { d: "m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" })
     }
   );
 }
@@ -561,11 +589,13 @@ var init_BsFillCaretRightFill = __esm({
 // src/notion-blocks/BlockHeadingToggle.tsx
 import { Disclosure } from "@headlessui/react";
 import cn8 from "classnames";
-import { Fragment as Fragment3, jsx as jsx14, jsxs as jsxs5 } from "react/jsx-runtime";
+import { useContext as useContext2 } from "react";
+import { Fragment as Fragment3, jsx as jsx15, jsxs as jsxs6 } from "react/jsx-runtime";
 function BlockHeadingToggle(props) {
-  return /* @__PURE__ */ jsx14(Disclosure, { defaultOpen: false, children: ({ open }) => /* @__PURE__ */ jsxs5(Fragment3, { children: [
-    /* @__PURE__ */ jsxs5("div", { className: "flex w-full items-center gap-1 ml-[-10px]", children: [
-      /* @__PURE__ */ jsx14(Disclosure.Button, { className: "rounded-md p-1 hover:bg-[#99989824]", children: /* @__PURE__ */ jsx14(
+  const ctx = useContext2(BlockOptionContext);
+  return /* @__PURE__ */ jsx15(Disclosure, { defaultOpen: false, children: ({ open }) => /* @__PURE__ */ jsxs6(Fragment3, { children: [
+    /* @__PURE__ */ jsxs6("div", { className: cn8("flex w-full items-center gap-1 ml-[-10px]", props.className), children: [
+      /* @__PURE__ */ jsx15(Disclosure.Button, { className: "rounded-md p-1 hover:bg-[#99989824]", children: /* @__PURE__ */ jsx15(
         BsFillCaretRightFill,
         {
           className: cn8("text-lg transform ease-in-out transition-all duration-[400ms]", {
@@ -574,14 +604,16 @@ function BlockHeadingToggle(props) {
           })
         }
       ) }),
-      props.headingElement
+      props.headingElement,
+      ctx?.showAnchorRight && props.anchorRight
     ] }),
-    /* @__PURE__ */ jsx14(Disclosure.Panel, { children: /* @__PURE__ */ jsx14("div", { children: props.children }) })
+    /* @__PURE__ */ jsx15(Disclosure.Panel, { children: /* @__PURE__ */ jsx15("div", { children: props.children }) })
   ] }) });
 }
 var init_BlockHeadingToggle = __esm({
   "src/notion-blocks/BlockHeadingToggle.tsx"() {
     "use client";
+    init_BlockRender();
     init_BsFillCaretRightFill();
   }
 });
@@ -589,74 +621,146 @@ var init_BlockHeadingToggle = __esm({
 // src/notion-blocks/BlockHeading.tsx
 import cn9 from "classnames";
 import { get as get3 } from "lodash";
-import { useContext as useContext2 } from "react";
-import { Fragment as Fragment4, jsx as jsx15, jsxs as jsxs6 } from "react/jsx-runtime";
+import { useContext as useContext3 } from "react";
+import { Fragment as Fragment4, jsx as jsx16, jsxs as jsxs7 } from "react/jsx-runtime";
 function BlockHeading(props) {
-  const ctx = useContext2(BlockOptionContext);
+  const ctx = useContext3(BlockOptionContext);
   const { type, block, className, children } = props;
   let heading;
   let headingElement;
-  let anchorElement;
+  let anchorHashEl;
   const h1Size = "text-3xl";
   const h2Size = "text-2xl";
   const h3Size = "text-xl";
-  const headingClass = "scroll-mt-[70px] mt-0";
+  const headingClass = cn9("scroll-mt-[70px] mt-0");
   const id = convertHeadingIdToSlug(block.id, block[`${block.type}`]?.rich_text);
+  const anchorRight = /* @__PURE__ */ jsx16(
+    "a",
+    {
+      href: `#${id}`,
+      className: cn9(
+        "opacity-0 group-hover:opacity-100 text-slate-400 hover:m2it-link-hover text-[25px] mt-[3px]"
+      ),
+      children: /* @__PURE__ */ jsx16(CiLink, {})
+    }
+  );
   switch (type) {
     case "h1":
       heading = block?.heading_1;
-      headingElement = /* @__PURE__ */ jsx15("h1", { id, className: cn9(h1Size, headingClass), children: insideHeading(heading) });
-      anchorElement = /* @__PURE__ */ jsx15("a", { href: `#${id}`, className: cn9("text-sky-600 lg:-ml-6", h1Size), children: "#" });
+      headingElement = /* @__PURE__ */ jsx16(
+        "h1",
+        {
+          id,
+          className: cn9(
+            h1Size,
+            headingClass,
+            boderLeftClass("h1", ctx, get3(heading, "is_toggleable"))
+          ),
+          children: insideHeading(heading)
+        }
+      );
+      anchorHashEl = /* @__PURE__ */ jsx16("a", { href: `#${id}`, className: cn9("text-sky-600 lg:-ml-6", h1Size), children: "#" });
       break;
     case "h2":
       heading = block?.heading_2;
-      headingElement = /* @__PURE__ */ jsx15("h2", { id, className: cn9(h2Size, headingClass), children: insideHeading(heading) });
-      anchorElement = /* @__PURE__ */ jsx15("a", { href: `#${id}`, className: cn9("text-sky-600 lg:-ml-6", h2Size), children: "#" });
+      headingElement = /* @__PURE__ */ jsx16(
+        "h2",
+        {
+          id,
+          className: cn9(
+            h2Size,
+            headingClass,
+            boderLeftClass("h2", ctx, get3(heading, "is_toggleable"))
+          ),
+          children: insideHeading(heading)
+        }
+      );
+      anchorHashEl = /* @__PURE__ */ jsx16("a", { href: `#${id}`, className: cn9("text-sky-600 lg:-ml-6", h2Size), children: "#" });
       break;
     case "h3":
       heading = block?.heading_3;
-      headingElement = /* @__PURE__ */ jsx15("h3", { id, className: cn9(h3Size, headingClass), children: insideHeading(heading) });
-      anchorElement = /* @__PURE__ */ jsx15("a", { href: `#${id}`, className: cn9("text-orange-700 lg:-ml-8", h3Size), children: "##" });
+      headingElement = /* @__PURE__ */ jsx16(
+        "h3",
+        {
+          id,
+          className: cn9(
+            h3Size,
+            headingClass,
+            boderLeftClass("h3", ctx, get3(heading, "is_toggleable"))
+          ),
+          children: insideHeading(heading)
+        }
+      );
+      anchorHashEl = /* @__PURE__ */ jsx16("a", { href: `#${id}`, className: cn9("text-orange-700 lg:-ml-8", h3Size), children: "##" });
       break;
   }
-  return /* @__PURE__ */ jsx15("div", { className: props.outerClassName, children: /* @__PURE__ */ jsxs6(
+  return /* @__PURE__ */ jsx16("div", { className: props.outerClassName, children: /* @__PURE__ */ jsxs7(
     "div",
     {
-      className: cn9(mapColorClass(heading?.color), className, {
-        "flex items-start gap-2": !get3(heading, "is_toggleable") && !ctx?.disableAnchorHeading
-      }),
+      className: cn9(
+        mapColorClass(heading?.color),
+        className,
+        {
+          "flex items-start gap-2": !get3(heading, "is_toggleable") && !ctx?.disableAnchorHeading
+        },
+        "group"
+      ),
       children: [
-        get3(heading, "is_toggleable") && children && /* @__PURE__ */ jsx15(BlockHeadingToggle, { headingElement, children }),
-        !get3(heading, "is_toggleable") && /* @__PURE__ */ jsxs6(Fragment4, { children: [
-          !ctx?.disableAnchorHeading && anchorElement,
-          headingElement
+        get3(heading, "is_toggleable") && children && /* @__PURE__ */ jsx16(
+          BlockHeadingToggle,
+          {
+            headingElement,
+            anchorRight,
+            className: cn9(boderLeftClass(type, ctx, false), "!pl-0 !ml-0"),
+            children
+          }
+        ),
+        !get3(heading, "is_toggleable") && /* @__PURE__ */ jsxs7(Fragment4, { children: [
+          !ctx?.disableAnchorHeading && (!ctx?.headingStyle || ctx?.headingStyle === "hash") && anchorHashEl,
+          headingElement,
+          ctx?.showAnchorRight && anchorRight
         ] })
       ]
     }
   ) });
 }
 function insideHeading(heading) {
-  return /* @__PURE__ */ jsx15(Fragment4, { children: heading?.rich_text.map((richText, index) => /* @__PURE__ */ jsx15(BlockRichText, { richText }, index)) });
+  return /* @__PURE__ */ jsx16(Fragment4, { children: heading?.rich_text.map((richText, index) => /* @__PURE__ */ jsx16(BlockRichText, { richText }, index)) });
 }
+var boderLeftClass;
 var init_BlockHeading = __esm({
   "src/notion-blocks/BlockHeading.tsx"() {
     "use client";
     init_BlockRender();
     init_block_helpers();
+    init_CiLink();
     init_BlockHeadingToggle();
     init_BlockRichText();
+    boderLeftClass = (type, ctx, isToggle) => {
+      if (ctx?.headingStyle !== "borderLeft" || isToggle)
+        return "";
+      const common = " border-l-[4px] pl-2";
+      switch (type) {
+        case "h1":
+          return "border-sky-600" + common;
+        case "h2":
+          return "border-sky-600" + common;
+        case "h3":
+          return "border-orange-700" + common;
+      }
+    };
   }
 });
 
 // src/notion-blocks/BlockNumberedListItem.tsx
 import cn10 from "classnames";
-import { jsx as jsx16, jsxs as jsxs7 } from "react/jsx-runtime";
+import { jsx as jsx17, jsxs as jsxs8 } from "react/jsx-runtime";
 function BlockNumberedListItem(props) {
   const { block, className, children } = props;
-  return /* @__PURE__ */ jsxs7("div", { className: cn10(className), children: [
-    /* @__PURE__ */ jsxs7("div", { className: "flex items-baseline gap-2", children: [
-      /* @__PURE__ */ jsx16("div", { className: "flex items-center justify-center", children: block["list_item"] }),
-      /* @__PURE__ */ jsx16("div", { className: "block", children: block?.numbered_list_item?.rich_text.map((richText, index) => /* @__PURE__ */ jsx16(BlockRichText, { richText }, index)) })
+  return /* @__PURE__ */ jsxs8("div", { className: cn10(className), children: [
+    /* @__PURE__ */ jsxs8("div", { className: "flex items-baseline gap-2", children: [
+      /* @__PURE__ */ jsx17("div", { className: "flex items-center justify-center", children: block["list_item"] }),
+      /* @__PURE__ */ jsx17("div", { className: "block", children: block?.numbered_list_item?.rich_text.map((richText, index) => /* @__PURE__ */ jsx17(BlockRichText, { richText }, index)) })
     ] }),
     children
   ] });
@@ -669,13 +773,13 @@ var init_BlockNumberedListItem = __esm({
 
 // src/notion-blocks/BlockParagraph.tsx
 import cn11 from "classnames";
-import { jsx as jsx17, jsxs as jsxs8 } from "react/jsx-runtime";
+import { jsx as jsx18, jsxs as jsxs9 } from "react/jsx-runtime";
 function BlockParagraph(props) {
   const { block, children, className } = props;
   return (
     // We don't use <p> here because there may be other not-supported tags in the <p> tag.
-    /* @__PURE__ */ jsxs8("div", { className: cn11(mapColorClass(block?.paragraph?.color), className), children: [
-      block?.paragraph?.rich_text.map((richText, index) => /* @__PURE__ */ jsx17(BlockRichText, { richText }, index)),
+    /* @__PURE__ */ jsxs9("div", { className: cn11(mapColorClass(block?.paragraph?.color), className), children: [
+      block?.paragraph?.rich_text.map((richText, index) => /* @__PURE__ */ jsx18(BlockRichText, { richText }, index)),
       children
     ] })
   );
@@ -689,10 +793,10 @@ var init_BlockParagraph = __esm({
 
 // src/notion-blocks/BlockQuote.tsx
 import cn12 from "classnames";
-import { jsx as jsx18, jsxs as jsxs9 } from "react/jsx-runtime";
+import { jsx as jsx19, jsxs as jsxs10 } from "react/jsx-runtime";
 function BlockQuote(props) {
   const { block, children, className } = props;
-  return /* @__PURE__ */ jsx18("div", { className: cn12(className), children: /* @__PURE__ */ jsxs9(
+  return /* @__PURE__ */ jsx19("div", { className: cn12(className), children: /* @__PURE__ */ jsxs10(
     "div",
     {
       className: cn12(
@@ -700,7 +804,7 @@ function BlockQuote(props) {
         "border border-y-0 border-r-0 border-l-4 border-slate-500"
       ),
       children: [
-        /* @__PURE__ */ jsx18("div", { className: cn12("py-1 pl-4"), children: block?.quote?.rich_text.map((richText, index) => /* @__PURE__ */ jsx18(BlockRichText, { richText }, index)) }),
+        /* @__PURE__ */ jsx19("div", { className: cn12("py-1 pl-4"), children: block?.quote?.rich_text.map((richText, index) => /* @__PURE__ */ jsx19(BlockRichText, { richText }, index)) }),
         children
       ]
     }
@@ -714,31 +818,8 @@ var init_BlockQuote = __esm({
 });
 
 // src/icons/BsCheckSquare.tsx
-import { jsx as jsx19 } from "react/jsx-runtime";
-function BsCheckSquare(props) {
-  return /* @__PURE__ */ jsx19(
-    "svg",
-    {
-      className: props.className,
-      stroke: "currentColor",
-      fill: "currentColor",
-      strokeWidth: "0",
-      viewBox: "0 0 16 16",
-      height: "1em",
-      width: "1em",
-      xmlns: "http://www.w3.org/2000/svg",
-      children: /* @__PURE__ */ jsx19("path", { d: "M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z" })
-    }
-  );
-}
-var init_BsCheckSquare = __esm({
-  "src/icons/BsCheckSquare.tsx"() {
-  }
-});
-
-// src/icons/BsSquare.tsx
 import { jsx as jsx20 } from "react/jsx-runtime";
-function BsSquare(props) {
+function BsCheckSquare(props) {
   return /* @__PURE__ */ jsx20(
     "svg",
     {
@@ -750,7 +831,30 @@ function BsSquare(props) {
       height: "1em",
       width: "1em",
       xmlns: "http://www.w3.org/2000/svg",
-      children: /* @__PURE__ */ jsx20("path", { d: "M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" })
+      children: /* @__PURE__ */ jsx20("path", { d: "M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z" })
+    }
+  );
+}
+var init_BsCheckSquare = __esm({
+  "src/icons/BsCheckSquare.tsx"() {
+  }
+});
+
+// src/icons/BsSquare.tsx
+import { jsx as jsx21 } from "react/jsx-runtime";
+function BsSquare(props) {
+  return /* @__PURE__ */ jsx21(
+    "svg",
+    {
+      className: props.className,
+      stroke: "currentColor",
+      fill: "currentColor",
+      strokeWidth: "0",
+      viewBox: "0 0 16 16",
+      height: "1em",
+      width: "1em",
+      xmlns: "http://www.w3.org/2000/svg",
+      children: /* @__PURE__ */ jsx21("path", { d: "M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" })
     }
   );
 }
@@ -761,14 +865,14 @@ var init_BsSquare = __esm({
 
 // src/notion-blocks/BlockToDo.tsx
 import cn13 from "classnames";
-import { jsx as jsx21, jsxs as jsxs10 } from "react/jsx-runtime";
+import { jsx as jsx22, jsxs as jsxs11 } from "react/jsx-runtime";
 function BlockToDo(props) {
   const { block, className, children } = props;
-  return /* @__PURE__ */ jsxs10("div", { className: cn13(className), children: [
-    /* @__PURE__ */ jsxs10("div", { className: "flex items-center gap-2", children: [
-      block?.to_do?.checked && /* @__PURE__ */ jsx21(BsCheckSquare, {}),
-      !block?.to_do?.checked && /* @__PURE__ */ jsx21(BsSquare, {}),
-      block?.to_do?.rich_text.map((richText, index) => /* @__PURE__ */ jsx21(BlockRichText, { richText }, index))
+  return /* @__PURE__ */ jsxs11("div", { className: cn13(className), children: [
+    /* @__PURE__ */ jsxs11("div", { className: "flex items-center gap-2", children: [
+      block?.to_do?.checked && /* @__PURE__ */ jsx22(BsCheckSquare, {}),
+      !block?.to_do?.checked && /* @__PURE__ */ jsx22(BsSquare, {}),
+      block?.to_do?.rich_text.map((richText, index) => /* @__PURE__ */ jsx22(BlockRichText, { richText }, index))
     ] }),
     children
   ] });
@@ -784,10 +888,10 @@ var init_BlockToDo = __esm({
 // src/notion-blocks/BlockToggle.tsx
 import { Disclosure as Disclosure2 } from "@headlessui/react";
 import cn14 from "classnames";
-import { Fragment as Fragment5, jsx as jsx22, jsxs as jsxs11 } from "react/jsx-runtime";
+import { Fragment as Fragment5, jsx as jsx23, jsxs as jsxs12 } from "react/jsx-runtime";
 function BlockToggle(props) {
   const { block, children, className } = props;
-  return /* @__PURE__ */ jsx22(
+  return /* @__PURE__ */ jsx23(
     "div",
     {
       className: cn14(
@@ -795,8 +899,8 @@ function BlockToggle(props) {
         "rounded-md border-[0.5px] border-slate-200",
         className
       ),
-      children: /* @__PURE__ */ jsx22(Disclosure2, { defaultOpen: false, children: ({ open }) => /* @__PURE__ */ jsxs11(Fragment5, { children: [
-        /* @__PURE__ */ jsxs11(
+      children: /* @__PURE__ */ jsx23(Disclosure2, { defaultOpen: false, children: ({ open }) => /* @__PURE__ */ jsxs12(Fragment5, { children: [
+        /* @__PURE__ */ jsxs12(
           Disclosure2.Button,
           {
             className: cn14("flex gap-2 w-full items-start p-2 rounded-md", {
@@ -804,7 +908,7 @@ function BlockToggle(props) {
               "bg-gray-50 hover:bg-gray-100": !open
             }),
             children: [
-              /* @__PURE__ */ jsx22(
+              /* @__PURE__ */ jsx23(
                 BsFillCaretRightFill,
                 {
                   className: cn14(
@@ -816,11 +920,11 @@ function BlockToggle(props) {
                   )
                 }
               ),
-              /* @__PURE__ */ jsx22("div", { className: "text-start", children: block?.toggle?.rich_text.map((richText, index) => /* @__PURE__ */ jsx22(BlockRichText, { richText }, index)) })
+              /* @__PURE__ */ jsx23("div", { className: "text-start", children: block?.toggle?.rich_text.map((richText, index) => /* @__PURE__ */ jsx23(BlockRichText, { richText }, index)) })
             ]
           }
         ),
-        !!children && /* @__PURE__ */ jsx22(Disclosure2.Panel, { className: "rounded-b-md py-4 pr-4 m2it-inside-box", children })
+        !!children && /* @__PURE__ */ jsx23(Disclosure2.Panel, { className: "rounded-b-md py-4 pr-4 m2it-inside-box", children })
       ] }) })
     }
   );
@@ -853,7 +957,7 @@ import { get as get4 } from "lodash";
 import mediumZoom from "medium-zoom";
 import Image from "next/image";
 import { useRef, useState } from "react";
-import { jsx as jsx23, jsxs as jsxs12 } from "react/jsx-runtime";
+import { jsx as jsx24, jsxs as jsxs13 } from "react/jsx-runtime";
 function BlockImage(props) {
   const [isImageReady, setIsImageReady] = useState(false);
   const { block, className } = props;
@@ -878,8 +982,8 @@ function BlockImage(props) {
       zoom.detach();
     }
   }
-  return /* @__PURE__ */ jsxs12("div", { className: cn15(className, "flex flex-col justify-center items-center gap-2"), children: [
-    block.imgUrl && /* @__PURE__ */ jsx23("div", { className: "relative flex w-full items-center justify-center overflow-hidden", children: /* @__PURE__ */ jsx23(
+  return /* @__PURE__ */ jsxs13("div", { className: cn15(className, "flex flex-col justify-center items-center gap-2"), children: [
+    block.imgUrl && /* @__PURE__ */ jsx24("div", { className: "relative flex w-full items-center justify-center overflow-hidden", children: /* @__PURE__ */ jsx24(
       Image,
       {
         className: cn15({
@@ -897,7 +1001,7 @@ function BlockImage(props) {
         ref: attachZoom
       }
     ) }),
-    caption && caption.length > 0 && /* @__PURE__ */ jsx23("div", { className: "text-sm italic opacity-90", children: caption.map((richText, index) => /* @__PURE__ */ jsx23(BlockRichText, { richText }, index)) })
+    caption && caption.length > 0 && /* @__PURE__ */ jsx24("div", { className: "text-sm italic opacity-90", children: caption.map((richText, index) => /* @__PURE__ */ jsx24(BlockRichText, { richText }, index)) })
   ] });
 }
 var init_BlockImage = __esm({
@@ -912,7 +1016,7 @@ var init_BlockImage = __esm({
 // src/components/Mermaid.tsx
 import mermaid from "mermaid";
 import React from "react";
-import { jsx as jsx24 } from "react/jsx-runtime";
+import { jsx as jsx25 } from "react/jsx-runtime";
 var Mermaid;
 var init_Mermaid = __esm({
   "src/components/Mermaid.tsx"() {
@@ -927,16 +1031,16 @@ var init_Mermaid = __esm({
         mermaid.contentLoaded();
       }
       render() {
-        return /* @__PURE__ */ jsx24("div", { className: "mermaid flex justify-center", children: this.props.chart });
+        return /* @__PURE__ */ jsx25("div", { className: "mermaid flex justify-center", children: this.props.chart });
       }
     };
   }
 });
 
 // src/icons/FiCheck.tsx
-import { jsx as jsx25 } from "react/jsx-runtime";
+import { jsx as jsx26 } from "react/jsx-runtime";
 function FiCheck(props) {
-  return /* @__PURE__ */ jsx25(
+  return /* @__PURE__ */ jsx26(
     "svg",
     {
       className: props.className,
@@ -949,7 +1053,7 @@ function FiCheck(props) {
       height: "1em",
       width: "1em",
       xmlns: "http://www.w3.org/2000/svg",
-      children: /* @__PURE__ */ jsx25("polyline", { points: "20 6 9 17 4 12" })
+      children: /* @__PURE__ */ jsx26("polyline", { points: "20 6 9 17 4 12" })
     }
   );
 }
@@ -959,9 +1063,9 @@ var init_FiCheck = __esm({
 });
 
 // src/icons/RxCopy.tsx
-import { jsx as jsx26 } from "react/jsx-runtime";
+import { jsx as jsx27 } from "react/jsx-runtime";
 function RxCopy(props) {
-  return /* @__PURE__ */ jsx26(
+  return /* @__PURE__ */ jsx27(
     "svg",
     {
       className: props.className,
@@ -972,7 +1076,7 @@ function RxCopy(props) {
       height: "1em",
       width: "1em",
       xmlns: "http://www.w3.org/2000/svg",
-      children: /* @__PURE__ */ jsx26(
+      children: /* @__PURE__ */ jsx27(
         "path",
         {
           fillRule: "evenodd",
@@ -995,13 +1099,13 @@ __export(BlockCode_exports, {
   default: () => BlockCode
 });
 import cn16 from "classnames";
-import { useContext as useContext3, useState as useState2 } from "react";
+import { useContext as useContext4, useState as useState2 } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { prism } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { jsx as jsx27, jsxs as jsxs13 } from "react/jsx-runtime";
+import { jsx as jsx28, jsxs as jsxs14 } from "react/jsx-runtime";
 function BlockCode(props) {
-  const ctx = useContext3(BlockOptionContext);
+  const ctx = useContext4(BlockOptionContext);
   const { block, className } = props;
   const language = block?.code?.language?.toLowerCase() || defaultCodeLanguage;
   const [copied, setCopied] = useState2(false);
@@ -1009,9 +1113,9 @@ function BlockCode(props) {
     setCopied(true);
     setTimeout(() => setCopied(false), 1e3);
   };
-  return /* @__PURE__ */ jsxs13("div", { className: cn16(className, "group"), children: [
-    /* @__PURE__ */ jsxs13("div", { className: `language-${formatCodeLang(language)} syntax-highlighter relative text-[14px]`, children: [
-      /* @__PURE__ */ jsx27(
+  return /* @__PURE__ */ jsxs14("div", { className: cn16(className, "group"), children: [
+    /* @__PURE__ */ jsxs14("div", { className: `language-${formatCodeLang(language)} syntax-highlighter relative text-[14px]`, children: [
+      /* @__PURE__ */ jsx28(
         SyntaxHighlighter,
         {
           language: formatCodeLang(language),
@@ -1021,7 +1125,7 @@ function BlockCode(props) {
           children: getJoinedRichText(block?.code?.rich_text)
         }
       ),
-      /* @__PURE__ */ jsx27(
+      /* @__PURE__ */ jsx28(
         "div",
         {
           className: cn16(
@@ -1031,15 +1135,15 @@ function BlockCode(props) {
             }
           ),
           "data-title": copied ? ctx?.blockCodeCopiedText || "Copied" : ctx?.blockCodeCopyText || "Copy",
-          children: /* @__PURE__ */ jsx27(CopyToClipboard, { text: getJoinedRichText(block?.code?.rich_text), onCopy: onSuccess, children: /* @__PURE__ */ jsxs13("button", { children: [
-            !copied && /* @__PURE__ */ jsx27(RxCopy, { className: "text-lg text-slate-400 hover:text-slate-700" }),
-            copied && /* @__PURE__ */ jsx27(FiCheck, { className: "text-lg text-green-600" })
+          children: /* @__PURE__ */ jsx28(CopyToClipboard, { text: getJoinedRichText(block?.code?.rich_text), onCopy: onSuccess, children: /* @__PURE__ */ jsxs14("button", { children: [
+            !copied && /* @__PURE__ */ jsx28(RxCopy, { className: "text-lg text-slate-400 hover:text-slate-700" }),
+            copied && /* @__PURE__ */ jsx28(FiCheck, { className: "text-lg text-green-600" })
           ] }) })
         }
       )
     ] }),
-    block?.code?.caption && /* @__PURE__ */ jsx27("div", { className: "italic opacity-60", children: block?.code?.caption?.map((richText, index) => /* @__PURE__ */ jsx27(BlockRichText, { richText }, index)) }),
-    block?.code?.language === "mermaid" && /* @__PURE__ */ jsx27(Mermaid, { chart: getJoinedRichText(block?.code?.rich_text) })
+    block?.code?.caption && /* @__PURE__ */ jsx28("div", { className: "italic opacity-60", children: block?.code?.caption?.map((richText, index) => /* @__PURE__ */ jsx28(BlockRichText, { richText }, index)) }),
+    block?.code?.language === "mermaid" && /* @__PURE__ */ jsx28(Mermaid, { chart: getJoinedRichText(block?.code?.rich_text) })
   ] });
 }
 var formatCodeLang;
@@ -1072,17 +1176,17 @@ __export(BlockTable_exports, {
   default: () => BlockTable
 });
 import cn17 from "classnames";
-import { jsx as jsx28, jsxs as jsxs14 } from "react/jsx-runtime";
+import { jsx as jsx29, jsxs as jsxs15 } from "react/jsx-runtime";
 function BlockTable(props) {
   const { block, className } = props;
   const bodyRows = block?.table.has_row_header ? block?.["children"]?.slice(1) : block?.["children"];
-  return /* @__PURE__ */ jsx28("div", { className: cn17(className, "w-full overflow-auto md:overflow-visible"), children: /* @__PURE__ */ jsxs14("table", { className: "table-auto", children: [
-    block?.table?.has_row_header && /* @__PURE__ */ jsx28("thead", { children: trBlock({
+  return /* @__PURE__ */ jsx29("div", { className: cn17(className, "w-full overflow-auto md:overflow-visible"), children: /* @__PURE__ */ jsxs15("table", { className: "table-auto", children: [
+    block?.table?.has_row_header && /* @__PURE__ */ jsx29("thead", { children: trBlock({
       cells: block?.["children"]?.[0]?.table_row?.cells,
       isRowHeader: true,
       key: 0
     }) }),
-    /* @__PURE__ */ jsx28("tbody", { children: bodyRows?.map(
+    /* @__PURE__ */ jsx29("tbody", { children: bodyRows?.map(
       (row, index) => trBlock({
         cells: row?.table_row?.cells,
         isRowHeader: false,
@@ -1096,7 +1200,7 @@ function trBlock(options) {
   const { cells, isRowHeader, key, hasColumnHeader } = options;
   if (!cells)
     return null;
-  return /* @__PURE__ */ jsx28("tr", { children: cells.map((cell, index, _cells) => {
+  return /* @__PURE__ */ jsx29("tr", { children: cells.map((cell, index, _cells) => {
     if (hasColumnHeader && index === 0) {
       return cellBlock({
         cell,
@@ -1124,9 +1228,9 @@ function cellBlock(options) {
       "bg-sky-100": headerType === "row",
       "bg-gray-100": headerType === "column"
     };
-    return /* @__PURE__ */ jsx28("th", { className: cn17(cellClass, headerClass), children: cell.map((richText, index2) => /* @__PURE__ */ jsx28(BlockRichText, { richText }, index2)) }, key);
+    return /* @__PURE__ */ jsx29("th", { className: cn17(cellClass, headerClass), children: cell.map((richText, index2) => /* @__PURE__ */ jsx29(BlockRichText, { richText }, index2)) }, key);
   } else {
-    return /* @__PURE__ */ jsx28("td", { className: cn17(cellClass), children: cell.map((richText, index2) => /* @__PURE__ */ jsx28(BlockRichText, { richText }, index2)) }, key);
+    return /* @__PURE__ */ jsx29("td", { className: cn17(cellClass), children: cell.map((richText, index2) => /* @__PURE__ */ jsx29(BlockRichText, { richText }, index2)) }, key);
   }
 }
 var init_BlockTable = __esm({
@@ -1136,9 +1240,9 @@ var init_BlockTable = __esm({
 });
 
 // src/components/YoutubeEmbed.tsx
-import { jsx as jsx29 } from "react/jsx-runtime";
+import { jsx as jsx30 } from "react/jsx-runtime";
 function YoutubeEmbed(props) {
-  return /* @__PURE__ */ jsx29("div", { className: props.className, children: /* @__PURE__ */ jsx29(
+  return /* @__PURE__ */ jsx30("div", { className: props.className, children: /* @__PURE__ */ jsx30(
     "iframe",
     {
       width: props.width || 853,
@@ -1163,7 +1267,7 @@ __export(BlockVideo_exports, {
 });
 import cn18 from "classnames";
 import { get as get5 } from "lodash";
-import { jsx as jsx30, jsxs as jsxs15 } from "react/jsx-runtime";
+import { jsx as jsx31, jsxs as jsxs16 } from "react/jsx-runtime";
 function BlockVideo(props) {
   const videoUrl = get5(props.block, "video.external.url");
   const videoId = getYoutubeVideoId(videoUrl);
@@ -1171,9 +1275,9 @@ function BlockVideo(props) {
     return null;
   const caption = get5(props.block, "video.caption");
   const title = caption ? getJoinedRichText(caption) : "";
-  return /* @__PURE__ */ jsxs15("div", { className: cn18(props.className, "flex flex-col justify-center items-center gap-2"), children: [
-    /* @__PURE__ */ jsx30("div", { className: "w-full", children: /* @__PURE__ */ jsx30(YoutubeEmbed, { id: videoId, title, className: "aspect-video w-full" }) }),
-    caption && caption.length > 0 && /* @__PURE__ */ jsx30("div", { className: "text-sm italic opacity-90", children: caption.map((richText, index) => /* @__PURE__ */ jsx30(BlockRichText, { richText }, index)) })
+  return /* @__PURE__ */ jsxs16("div", { className: cn18(props.className, "flex flex-col justify-center items-center gap-2"), children: [
+    /* @__PURE__ */ jsx31("div", { className: "w-full", children: /* @__PURE__ */ jsx31(YoutubeEmbed, { id: videoId, title, className: "aspect-video w-full" }) }),
+    caption && caption.length > 0 && /* @__PURE__ */ jsx31("div", { className: "text-sm italic opacity-90", children: caption.map((richText, index) => /* @__PURE__ */ jsx31(BlockRichText, { richText }, index)) })
   ] });
 }
 var init_BlockVideo = __esm({
@@ -1189,13 +1293,13 @@ var init_BlockVideo = __esm({
 import cn19 from "classnames";
 import { get as get6 } from "lodash";
 import dynamic2 from "next/dynamic";
-import { Fragment as Fragment6, jsx as jsx31 } from "react/jsx-runtime";
+import { Fragment as Fragment6, jsx as jsx32 } from "react/jsx-runtime";
 function Renderer(props) {
   const { block, level } = props;
   let children;
   const isList = block.type === "bulleted_list_item" || block.type === "numbered_list_item";
   if (block.has_children) {
-    children = get6(block, "children", [])?.map((childBlock) => /* @__PURE__ */ jsx31(
+    children = get6(block, "children", [])?.map((childBlock) => /* @__PURE__ */ jsx32(
       Renderer,
       {
         block: childBlock,
@@ -1209,13 +1313,13 @@ function Renderer(props) {
   const basicBlockGapHeading = "mt-6";
   switch (block.type) {
     case "synced_block":
-      return /* @__PURE__ */ jsx31(Fragment6, { children });
+      return /* @__PURE__ */ jsx32(Fragment6, { children });
     case "divider":
-      return /* @__PURE__ */ jsx31("hr", { className: basicBlockGap });
+      return /* @__PURE__ */ jsx32("hr", { className: basicBlockGap });
     case "paragraph":
-      return /* @__PURE__ */ jsx31(BlockParagraph, { block, className: cn19(basicBlockGap), children });
+      return /* @__PURE__ */ jsx32(BlockParagraph, { block, className: cn19(basicBlockGap), children });
     case "numbered_list_item":
-      return /* @__PURE__ */ jsx31(
+      return /* @__PURE__ */ jsx32(
         BlockNumberedListItem,
         {
           block,
@@ -1224,7 +1328,7 @@ function Renderer(props) {
         }
       );
     case "bulleted_list_item":
-      return /* @__PURE__ */ jsx31(
+      return /* @__PURE__ */ jsx32(
         BlockBulletedListItem,
         {
           block,
@@ -1233,9 +1337,9 @@ function Renderer(props) {
         }
       );
     case "to_do":
-      return /* @__PURE__ */ jsx31(BlockToDo, { block, className: cn19(basicBlockGap), children });
+      return /* @__PURE__ */ jsx32(BlockToDo, { block, className: cn19(basicBlockGap), children });
     case "heading_1":
-      return /* @__PURE__ */ jsx31(
+      return /* @__PURE__ */ jsx32(
         BlockHeading,
         {
           type: "h1",
@@ -1246,7 +1350,7 @@ function Renderer(props) {
         }
       );
     case "heading_2":
-      return /* @__PURE__ */ jsx31(
+      return /* @__PURE__ */ jsx32(
         BlockHeading,
         {
           type: "h2",
@@ -1257,7 +1361,7 @@ function Renderer(props) {
         }
       );
     case "heading_3":
-      return /* @__PURE__ */ jsx31(
+      return /* @__PURE__ */ jsx32(
         BlockHeading,
         {
           type: "h3",
@@ -1268,25 +1372,25 @@ function Renderer(props) {
         }
       );
     case "quote":
-      return /* @__PURE__ */ jsx31(BlockQuote, { block, className: cn19(basicBlockGap), children });
+      return /* @__PURE__ */ jsx32(BlockQuote, { block, className: cn19(basicBlockGap), children });
     case "code":
-      return /* @__PURE__ */ jsx31(DynamicCode, { block, className: cn19(basicBlockGap) });
+      return /* @__PURE__ */ jsx32(DynamicCode, { block, className: cn19(basicBlockGap) });
     case "equation":
-      return /* @__PURE__ */ jsx31(DynamicEquation, { block, className: cn19(basicBlockGap) });
+      return /* @__PURE__ */ jsx32(DynamicEquation, { block, className: cn19(basicBlockGap) });
     case "column_list":
-      return /* @__PURE__ */ jsx31(BlockColumnList, { block, className: cn19(basicBlockGap) });
+      return /* @__PURE__ */ jsx32(BlockColumnList, { block, className: cn19(basicBlockGap) });
     case "table":
-      return /* @__PURE__ */ jsx31(DynamicTable, { block, className: cn19(basicBlockGap) });
+      return /* @__PURE__ */ jsx32(DynamicTable, { block, className: cn19(basicBlockGap) });
     case "toggle":
-      return /* @__PURE__ */ jsx31(BlockToggle, { block, className: cn19(basicBlockGap), children });
+      return /* @__PURE__ */ jsx32(BlockToggle, { block, className: cn19(basicBlockGap), children });
     case "callout":
-      return /* @__PURE__ */ jsx31(BlockCallout, { block, className: cn19(basicBlockGap), children });
+      return /* @__PURE__ */ jsx32(BlockCallout, { block, className: cn19(basicBlockGap), children });
     case "image":
-      return /* @__PURE__ */ jsx31(DynamicImage, { block, className: cn19(basicBlockGap) });
+      return /* @__PURE__ */ jsx32(DynamicImage, { block, className: cn19(basicBlockGap) });
     case "video":
-      return /* @__PURE__ */ jsx31(DynamicVideo, { block, className: cn19(basicBlockGap) });
+      return /* @__PURE__ */ jsx32(DynamicVideo, { block, className: cn19(basicBlockGap) });
     case "bookmark":
-      return /* @__PURE__ */ jsx31(
+      return /* @__PURE__ */ jsx32(
         BlockBookmark,
         {
           block,

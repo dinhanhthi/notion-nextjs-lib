@@ -156,8 +156,15 @@ var init_BlockColumnList = __esm({
   }
 });
 
+// src/icons/CiLink.tsx
+import { jsx as jsx10, jsxs as jsxs4 } from "react/jsx-runtime";
+var init_CiLink = __esm({
+  "src/icons/CiLink.tsx"() {
+  }
+});
+
 // src/icons/BsFillCaretRightFill.tsx
-import { jsx as jsx10 } from "react/jsx-runtime";
+import { jsx as jsx11 } from "react/jsx-runtime";
 var init_BsFillCaretRightFill = __esm({
   "src/icons/BsFillCaretRightFill.tsx"() {
   }
@@ -166,10 +173,12 @@ var init_BsFillCaretRightFill = __esm({
 // src/notion-blocks/BlockHeadingToggle.tsx
 import { Disclosure } from "@headlessui/react";
 import cn6 from "classnames";
-import { Fragment as Fragment2, jsx as jsx11, jsxs as jsxs4 } from "react/jsx-runtime";
+import { useContext } from "react";
+import { Fragment as Fragment2, jsx as jsx12, jsxs as jsxs5 } from "react/jsx-runtime";
 var init_BlockHeadingToggle = __esm({
   "src/notion-blocks/BlockHeadingToggle.tsx"() {
     "use client";
+    init_BlockRender();
     init_BsFillCaretRightFill();
   }
 });
@@ -177,13 +186,14 @@ var init_BlockHeadingToggle = __esm({
 // src/notion-blocks/BlockHeading.tsx
 import cn7 from "classnames";
 import { get as get2 } from "lodash";
-import { useContext } from "react";
-import { Fragment as Fragment3, jsx as jsx12, jsxs as jsxs5 } from "react/jsx-runtime";
+import { useContext as useContext2 } from "react";
+import { Fragment as Fragment3, jsx as jsx13, jsxs as jsxs6 } from "react/jsx-runtime";
 var init_BlockHeading = __esm({
   "src/notion-blocks/BlockHeading.tsx"() {
     "use client";
     init_BlockRender();
     init_block_helpers();
+    init_CiLink();
     init_BlockHeadingToggle();
     init_BlockRichText();
   }
@@ -191,7 +201,7 @@ var init_BlockHeading = __esm({
 
 // src/notion-blocks/BlockNumberedListItem.tsx
 import cn8 from "classnames";
-import { jsx as jsx13, jsxs as jsxs6 } from "react/jsx-runtime";
+import { jsx as jsx14, jsxs as jsxs7 } from "react/jsx-runtime";
 var init_BlockNumberedListItem = __esm({
   "src/notion-blocks/BlockNumberedListItem.tsx"() {
     init_BlockRichText();
@@ -200,7 +210,7 @@ var init_BlockNumberedListItem = __esm({
 
 // src/notion-blocks/BlockParagraph.tsx
 import cn9 from "classnames";
-import { jsx as jsx14, jsxs as jsxs7 } from "react/jsx-runtime";
+import { jsx as jsx15, jsxs as jsxs8 } from "react/jsx-runtime";
 var init_BlockParagraph = __esm({
   "src/notion-blocks/BlockParagraph.tsx"() {
     init_block_helpers();
@@ -210,7 +220,7 @@ var init_BlockParagraph = __esm({
 
 // src/notion-blocks/BlockQuote.tsx
 import cn10 from "classnames";
-import { jsx as jsx15, jsxs as jsxs8 } from "react/jsx-runtime";
+import { jsx as jsx16, jsxs as jsxs9 } from "react/jsx-runtime";
 var init_BlockQuote = __esm({
   "src/notion-blocks/BlockQuote.tsx"() {
     init_block_helpers();
@@ -219,14 +229,14 @@ var init_BlockQuote = __esm({
 });
 
 // src/icons/BsCheckSquare.tsx
-import { jsx as jsx16 } from "react/jsx-runtime";
+import { jsx as jsx17 } from "react/jsx-runtime";
 var init_BsCheckSquare = __esm({
   "src/icons/BsCheckSquare.tsx"() {
   }
 });
 
 // src/icons/BsSquare.tsx
-import { jsx as jsx17 } from "react/jsx-runtime";
+import { jsx as jsx18 } from "react/jsx-runtime";
 var init_BsSquare = __esm({
   "src/icons/BsSquare.tsx"() {
   }
@@ -234,7 +244,7 @@ var init_BsSquare = __esm({
 
 // src/notion-blocks/BlockToDo.tsx
 import cn11 from "classnames";
-import { jsx as jsx18, jsxs as jsxs9 } from "react/jsx-runtime";
+import { jsx as jsx19, jsxs as jsxs10 } from "react/jsx-runtime";
 var init_BlockToDo = __esm({
   "src/notion-blocks/BlockToDo.tsx"() {
     init_BsCheckSquare();
@@ -246,7 +256,7 @@ var init_BlockToDo = __esm({
 // src/notion-blocks/BlockToggle.tsx
 import { Disclosure as Disclosure2 } from "@headlessui/react";
 import cn12 from "classnames";
-import { Fragment as Fragment4, jsx as jsx19, jsxs as jsxs10 } from "react/jsx-runtime";
+import { Fragment as Fragment4, jsx as jsx20, jsxs as jsxs11 } from "react/jsx-runtime";
 var init_BlockToggle = __esm({
   "src/notion-blocks/BlockToggle.tsx"() {
     "use client";
@@ -275,7 +285,7 @@ import { get as get3 } from "lodash";
 import mediumZoom from "medium-zoom";
 import Image from "next/image";
 import { useRef, useState as useState2 } from "react";
-import { jsx as jsx20, jsxs as jsxs11 } from "react/jsx-runtime";
+import { jsx as jsx21, jsxs as jsxs12 } from "react/jsx-runtime";
 function BlockImage(props) {
   const [isImageReady, setIsImageReady] = useState2(false);
   const { block, className } = props;
@@ -300,8 +310,8 @@ function BlockImage(props) {
       zoom.detach();
     }
   }
-  return /* @__PURE__ */ jsxs11("div", { className: cn13(className, "flex flex-col justify-center items-center gap-2"), children: [
-    block.imgUrl && /* @__PURE__ */ jsx20("div", { className: "relative flex w-full items-center justify-center overflow-hidden", children: /* @__PURE__ */ jsx20(
+  return /* @__PURE__ */ jsxs12("div", { className: cn13(className, "flex flex-col justify-center items-center gap-2"), children: [
+    block.imgUrl && /* @__PURE__ */ jsx21("div", { className: "relative flex w-full items-center justify-center overflow-hidden", children: /* @__PURE__ */ jsx21(
       Image,
       {
         className: cn13({
@@ -319,7 +329,7 @@ function BlockImage(props) {
         ref: attachZoom
       }
     ) }),
-    caption && caption.length > 0 && /* @__PURE__ */ jsx20("div", { className: "text-sm italic opacity-90", children: caption.map((richText, index) => /* @__PURE__ */ jsx20(BlockRichText, { richText }, index)) })
+    caption && caption.length > 0 && /* @__PURE__ */ jsx21("div", { className: "text-sm italic opacity-90", children: caption.map((richText, index) => /* @__PURE__ */ jsx21(BlockRichText, { richText }, index)) })
   ] });
 }
 var init_BlockImage = __esm({
@@ -334,7 +344,7 @@ var init_BlockImage = __esm({
 // src/components/Mermaid.tsx
 import mermaid from "mermaid";
 import React from "react";
-import { jsx as jsx21 } from "react/jsx-runtime";
+import { jsx as jsx22 } from "react/jsx-runtime";
 var Mermaid;
 var init_Mermaid = __esm({
   "src/components/Mermaid.tsx"() {
@@ -349,16 +359,16 @@ var init_Mermaid = __esm({
         mermaid.contentLoaded();
       }
       render() {
-        return /* @__PURE__ */ jsx21("div", { className: "mermaid flex justify-center", children: this.props.chart });
+        return /* @__PURE__ */ jsx22("div", { className: "mermaid flex justify-center", children: this.props.chart });
       }
     };
   }
 });
 
 // src/icons/FiCheck.tsx
-import { jsx as jsx22 } from "react/jsx-runtime";
+import { jsx as jsx23 } from "react/jsx-runtime";
 function FiCheck(props) {
-  return /* @__PURE__ */ jsx22(
+  return /* @__PURE__ */ jsx23(
     "svg",
     {
       className: props.className,
@@ -371,7 +381,7 @@ function FiCheck(props) {
       height: "1em",
       width: "1em",
       xmlns: "http://www.w3.org/2000/svg",
-      children: /* @__PURE__ */ jsx22("polyline", { points: "20 6 9 17 4 12" })
+      children: /* @__PURE__ */ jsx23("polyline", { points: "20 6 9 17 4 12" })
     }
   );
 }
@@ -381,9 +391,9 @@ var init_FiCheck = __esm({
 });
 
 // src/icons/RxCopy.tsx
-import { jsx as jsx23 } from "react/jsx-runtime";
+import { jsx as jsx24 } from "react/jsx-runtime";
 function RxCopy(props) {
-  return /* @__PURE__ */ jsx23(
+  return /* @__PURE__ */ jsx24(
     "svg",
     {
       className: props.className,
@@ -394,7 +404,7 @@ function RxCopy(props) {
       height: "1em",
       width: "1em",
       xmlns: "http://www.w3.org/2000/svg",
-      children: /* @__PURE__ */ jsx23(
+      children: /* @__PURE__ */ jsx24(
         "path",
         {
           fillRule: "evenodd",
@@ -417,13 +427,13 @@ __export(BlockCode_exports, {
   default: () => BlockCode
 });
 import cn14 from "classnames";
-import { useContext as useContext2, useState as useState3 } from "react";
+import { useContext as useContext3, useState as useState3 } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { prism } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { jsx as jsx24, jsxs as jsxs12 } from "react/jsx-runtime";
+import { jsx as jsx25, jsxs as jsxs13 } from "react/jsx-runtime";
 function BlockCode(props) {
-  const ctx = useContext2(BlockOptionContext);
+  const ctx = useContext3(BlockOptionContext);
   const { block, className } = props;
   const language = block?.code?.language?.toLowerCase() || defaultCodeLanguage;
   const [copied, setCopied] = useState3(false);
@@ -431,9 +441,9 @@ function BlockCode(props) {
     setCopied(true);
     setTimeout(() => setCopied(false), 1e3);
   };
-  return /* @__PURE__ */ jsxs12("div", { className: cn14(className, "group"), children: [
-    /* @__PURE__ */ jsxs12("div", { className: `language-${formatCodeLang(language)} syntax-highlighter relative text-[14px]`, children: [
-      /* @__PURE__ */ jsx24(
+  return /* @__PURE__ */ jsxs13("div", { className: cn14(className, "group"), children: [
+    /* @__PURE__ */ jsxs13("div", { className: `language-${formatCodeLang(language)} syntax-highlighter relative text-[14px]`, children: [
+      /* @__PURE__ */ jsx25(
         SyntaxHighlighter,
         {
           language: formatCodeLang(language),
@@ -443,7 +453,7 @@ function BlockCode(props) {
           children: getJoinedRichText(block?.code?.rich_text)
         }
       ),
-      /* @__PURE__ */ jsx24(
+      /* @__PURE__ */ jsx25(
         "div",
         {
           className: cn14(
@@ -453,15 +463,15 @@ function BlockCode(props) {
             }
           ),
           "data-title": copied ? ctx?.blockCodeCopiedText || "Copied" : ctx?.blockCodeCopyText || "Copy",
-          children: /* @__PURE__ */ jsx24(CopyToClipboard, { text: getJoinedRichText(block?.code?.rich_text), onCopy: onSuccess, children: /* @__PURE__ */ jsxs12("button", { children: [
-            !copied && /* @__PURE__ */ jsx24(RxCopy, { className: "text-lg text-slate-400 hover:text-slate-700" }),
-            copied && /* @__PURE__ */ jsx24(FiCheck, { className: "text-lg text-green-600" })
+          children: /* @__PURE__ */ jsx25(CopyToClipboard, { text: getJoinedRichText(block?.code?.rich_text), onCopy: onSuccess, children: /* @__PURE__ */ jsxs13("button", { children: [
+            !copied && /* @__PURE__ */ jsx25(RxCopy, { className: "text-lg text-slate-400 hover:text-slate-700" }),
+            copied && /* @__PURE__ */ jsx25(FiCheck, { className: "text-lg text-green-600" })
           ] }) })
         }
       )
     ] }),
-    block?.code?.caption && /* @__PURE__ */ jsx24("div", { className: "italic opacity-60", children: block?.code?.caption?.map((richText, index) => /* @__PURE__ */ jsx24(BlockRichText, { richText }, index)) }),
-    block?.code?.language === "mermaid" && /* @__PURE__ */ jsx24(Mermaid, { chart: getJoinedRichText(block?.code?.rich_text) })
+    block?.code?.caption && /* @__PURE__ */ jsx25("div", { className: "italic opacity-60", children: block?.code?.caption?.map((richText, index) => /* @__PURE__ */ jsx25(BlockRichText, { richText }, index)) }),
+    block?.code?.language === "mermaid" && /* @__PURE__ */ jsx25(Mermaid, { chart: getJoinedRichText(block?.code?.rich_text) })
   ] });
 }
 var formatCodeLang;
@@ -496,10 +506,10 @@ __export(BlockEquation_exports, {
 });
 import Katex from "@matejmazur/react-katex";
 import cn15 from "classnames";
-import { jsx as jsx25 } from "react/jsx-runtime";
+import { jsx as jsx26 } from "react/jsx-runtime";
 function BlockEquation(props) {
   const { block, className } = props;
-  return /* @__PURE__ */ jsx25("div", { className: cn15(className, "text-center overflow-auto md:overflow-visible"), children: /* @__PURE__ */ jsx25(
+  return /* @__PURE__ */ jsx26("div", { className: cn15(className, "text-center overflow-auto md:overflow-visible"), children: /* @__PURE__ */ jsx26(
     Katex,
     {
       className: mathFontSize,
@@ -526,17 +536,17 @@ __export(BlockTable_exports, {
   default: () => BlockTable
 });
 import cn16 from "classnames";
-import { jsx as jsx26, jsxs as jsxs13 } from "react/jsx-runtime";
+import { jsx as jsx27, jsxs as jsxs14 } from "react/jsx-runtime";
 function BlockTable(props) {
   const { block, className } = props;
   const bodyRows = block?.table.has_row_header ? block?.["children"]?.slice(1) : block?.["children"];
-  return /* @__PURE__ */ jsx26("div", { className: cn16(className, "w-full overflow-auto md:overflow-visible"), children: /* @__PURE__ */ jsxs13("table", { className: "table-auto", children: [
-    block?.table?.has_row_header && /* @__PURE__ */ jsx26("thead", { children: trBlock({
+  return /* @__PURE__ */ jsx27("div", { className: cn16(className, "w-full overflow-auto md:overflow-visible"), children: /* @__PURE__ */ jsxs14("table", { className: "table-auto", children: [
+    block?.table?.has_row_header && /* @__PURE__ */ jsx27("thead", { children: trBlock({
       cells: block?.["children"]?.[0]?.table_row?.cells,
       isRowHeader: true,
       key: 0
     }) }),
-    /* @__PURE__ */ jsx26("tbody", { children: bodyRows?.map(
+    /* @__PURE__ */ jsx27("tbody", { children: bodyRows?.map(
       (row, index) => trBlock({
         cells: row?.table_row?.cells,
         isRowHeader: false,
@@ -550,7 +560,7 @@ function trBlock(options) {
   const { cells, isRowHeader, key, hasColumnHeader } = options;
   if (!cells)
     return null;
-  return /* @__PURE__ */ jsx26("tr", { children: cells.map((cell, index, _cells) => {
+  return /* @__PURE__ */ jsx27("tr", { children: cells.map((cell, index, _cells) => {
     if (hasColumnHeader && index === 0) {
       return cellBlock({
         cell,
@@ -578,9 +588,9 @@ function cellBlock(options) {
       "bg-sky-100": headerType === "row",
       "bg-gray-100": headerType === "column"
     };
-    return /* @__PURE__ */ jsx26("th", { className: cn16(cellClass, headerClass), children: cell.map((richText, index2) => /* @__PURE__ */ jsx26(BlockRichText, { richText }, index2)) }, key);
+    return /* @__PURE__ */ jsx27("th", { className: cn16(cellClass, headerClass), children: cell.map((richText, index2) => /* @__PURE__ */ jsx27(BlockRichText, { richText }, index2)) }, key);
   } else {
-    return /* @__PURE__ */ jsx26("td", { className: cn16(cellClass), children: cell.map((richText, index2) => /* @__PURE__ */ jsx26(BlockRichText, { richText }, index2)) }, key);
+    return /* @__PURE__ */ jsx27("td", { className: cn16(cellClass), children: cell.map((richText, index2) => /* @__PURE__ */ jsx27(BlockRichText, { richText }, index2)) }, key);
   }
 }
 var init_BlockTable = __esm({
@@ -590,9 +600,9 @@ var init_BlockTable = __esm({
 });
 
 // src/components/YoutubeEmbed.tsx
-import { jsx as jsx27 } from "react/jsx-runtime";
+import { jsx as jsx28 } from "react/jsx-runtime";
 function YoutubeEmbed(props) {
-  return /* @__PURE__ */ jsx27("div", { className: props.className, children: /* @__PURE__ */ jsx27(
+  return /* @__PURE__ */ jsx28("div", { className: props.className, children: /* @__PURE__ */ jsx28(
     "iframe",
     {
       width: props.width || 853,
@@ -617,7 +627,7 @@ __export(BlockVideo_exports, {
 });
 import cn17 from "classnames";
 import { get as get4 } from "lodash";
-import { jsx as jsx28, jsxs as jsxs14 } from "react/jsx-runtime";
+import { jsx as jsx29, jsxs as jsxs15 } from "react/jsx-runtime";
 function BlockVideo(props) {
   const videoUrl = get4(props.block, "video.external.url");
   const videoId = getYoutubeVideoId(videoUrl);
@@ -625,9 +635,9 @@ function BlockVideo(props) {
     return null;
   const caption = get4(props.block, "video.caption");
   const title = caption ? getJoinedRichText(caption) : "";
-  return /* @__PURE__ */ jsxs14("div", { className: cn17(props.className, "flex flex-col justify-center items-center gap-2"), children: [
-    /* @__PURE__ */ jsx28("div", { className: "w-full", children: /* @__PURE__ */ jsx28(YoutubeEmbed, { id: videoId, title, className: "aspect-video w-full" }) }),
-    caption && caption.length > 0 && /* @__PURE__ */ jsx28("div", { className: "text-sm italic opacity-90", children: caption.map((richText, index) => /* @__PURE__ */ jsx28(BlockRichText, { richText }, index)) })
+  return /* @__PURE__ */ jsxs15("div", { className: cn17(props.className, "flex flex-col justify-center items-center gap-2"), children: [
+    /* @__PURE__ */ jsx29("div", { className: "w-full", children: /* @__PURE__ */ jsx29(YoutubeEmbed, { id: videoId, title, className: "aspect-video w-full" }) }),
+    caption && caption.length > 0 && /* @__PURE__ */ jsx29("div", { className: "text-sm italic opacity-90", children: caption.map((richText, index) => /* @__PURE__ */ jsx29(BlockRichText, { richText }, index)) })
   ] });
 }
 var init_BlockVideo = __esm({
@@ -643,7 +653,7 @@ var init_BlockVideo = __esm({
 import cn18 from "classnames";
 import { get as get5 } from "lodash";
 import dynamic from "next/dynamic";
-import { Fragment as Fragment5, jsx as jsx29 } from "react/jsx-runtime";
+import { Fragment as Fragment5, jsx as jsx30 } from "react/jsx-runtime";
 var DynamicImage, DynamicCode, DynamicEquation, DynamicTable, DynamicVideo;
 var init_Renderer = __esm({
   "src/components/Renderer.tsx"() {
@@ -669,13 +679,15 @@ var init_Renderer = __esm({
 
 // src/components/BlockRender.tsx
 import { createContext } from "react";
-import { jsx as jsx30 } from "react/jsx-runtime";
+import { jsx as jsx31 } from "react/jsx-runtime";
 var defaultBlockOptionContext, BlockOptionContext;
 var init_BlockRender = __esm({
   "src/components/BlockRender.tsx"() {
     "use client";
     init_Renderer();
     defaultBlockOptionContext = {
+      headingStyle: "hash",
+      showAnchorRight: false,
       disableAnchorHeading: false,
       siteDomain: "dinhanhthi.com"
     };
@@ -687,21 +699,21 @@ var init_BlockRender = __esm({
 import cn19 from "classnames";
 import { get as get6 } from "lodash";
 import Link from "next/link";
-import { useContext as useContext3 } from "react";
-import { Fragment as Fragment6, jsx as jsx31, jsxs as jsxs15 } from "react/jsx-runtime";
+import { useContext as useContext4 } from "react";
+import { Fragment as Fragment6, jsx as jsx32, jsxs as jsxs16 } from "react/jsx-runtime";
 function BlockText(props) {
-  const ctx = useContext3(BlockOptionContext);
+  const ctx = useContext4(BlockOptionContext);
   if (props.richText.plain_text.includes("\n")) {
     const lines = props.richText.plain_text.split("\n");
-    return /* @__PURE__ */ jsx31(Fragment6, { children: lines.map((line, index) => /* @__PURE__ */ jsxs15("span", { children: [
+    return /* @__PURE__ */ jsx32(Fragment6, { children: lines.map((line, index) => /* @__PURE__ */ jsxs16("span", { children: [
       line,
-      index !== lines.length - 1 && /* @__PURE__ */ jsx31("br", {})
+      index !== lines.length - 1 && /* @__PURE__ */ jsx32("br", {})
     ] }, index)) });
   }
   if (props.richText.type === "text" && !props.ignore?.includes("hyperlink") && props.richText.href) {
     if (props.richText.href.includes(ctx?.siteDomain) && !props.richText.href.includes("@")) {
       const uri = getUriFromUrl(props.richText.href);
-      return /* @__PURE__ */ jsx31(
+      return /* @__PURE__ */ jsx32(
         Link,
         {
           className: generateTextAnnotationClasses(
@@ -713,7 +725,7 @@ function BlockText(props) {
         }
       );
     } else {
-      return /* @__PURE__ */ jsx31(
+      return /* @__PURE__ */ jsx32(
         "a",
         {
           className: cn19(
@@ -732,7 +744,7 @@ function BlockText(props) {
     }
   }
   if (!props.ignore?.includes("hyperlink") && props.richText.type === "mention" && props.richText.mention?.type === "page" && get6(props.richText, "mention.page.uri")) {
-    return /* @__PURE__ */ jsx31(
+    return /* @__PURE__ */ jsx32(
       Link,
       {
         className: generateTextAnnotationClasses(
@@ -745,7 +757,7 @@ function BlockText(props) {
     );
   }
   if (props.richText.type === "mention" && props.richText.mention?.type === "date") {
-    return /* @__PURE__ */ jsx31(
+    return /* @__PURE__ */ jsx32(
       "span",
       {
         className: generateTextAnnotationClasses(
@@ -759,7 +771,7 @@ function BlockText(props) {
   const noDecoration = !props.richText.annotations.bold && !props.richText.annotations.italic && !props.richText.annotations.underline && !props.richText.annotations.strikethrough && !props.richText.annotations.code && props.richText.annotations.color === "default" && !props.richText.href;
   if (noDecoration)
     return props.richText.plain_text;
-  return /* @__PURE__ */ jsx31(
+  return /* @__PURE__ */ jsx32(
     "span",
     {
       className: generateTextAnnotationClasses(
@@ -796,9 +808,9 @@ __export(BlockInlineEquation_exports, {
   default: () => BlockInlineEquation
 });
 import Katex2 from "@matejmazur/react-katex";
-import { jsx as jsx32 } from "react/jsx-runtime";
+import { jsx as jsx33 } from "react/jsx-runtime";
 function BlockInlineEquation(props) {
-  return /* @__PURE__ */ jsx32("span", { className: generateTextAnnotationClasses(props.equation.annotations), children: /* @__PURE__ */ jsx32(
+  return /* @__PURE__ */ jsx33("span", { className: generateTextAnnotationClasses(props.equation.annotations), children: /* @__PURE__ */ jsx33(
     Katex2,
     {
       className: props.fontSize ?? mathFontSize,
@@ -820,14 +832,14 @@ var init_BlockInlineEquation = __esm({
 
 // src/notion-blocks/BlockRichText.tsx
 import dynamic2 from "next/dynamic";
-import { jsx as jsx33 } from "react/jsx-runtime";
+import { jsx as jsx34 } from "react/jsx-runtime";
 function BlockRichText(props) {
   switch (props.richText.type) {
     case "text":
     case "mention":
-      return /* @__PURE__ */ jsx33(BlockText, { richText: props.richText, ignore: props.ignore });
+      return /* @__PURE__ */ jsx34(BlockText, { richText: props.richText, ignore: props.ignore });
     case "equation":
-      return /* @__PURE__ */ jsx33(
+      return /* @__PURE__ */ jsx34(
         DynamicInlineEquation,
         {
           equation: props.richText,
@@ -835,7 +847,7 @@ function BlockRichText(props) {
         }
       );
     default:
-      return /* @__PURE__ */ jsx33(BlockText, { richText: props.richText });
+      return /* @__PURE__ */ jsx34(BlockText, { richText: props.richText });
   }
 }
 var DynamicInlineEquation;
@@ -887,26 +899,26 @@ import { jsx as jsx2 } from "react/jsx-runtime";
 
 // src/components/Excerpt.tsx
 init_BlockRichText();
-import { jsx as jsx34 } from "react/jsx-runtime";
+import { jsx as jsx35 } from "react/jsx-runtime";
 
 // src/components/PostFeaturedImage.tsx
 import cn20 from "classnames";
 
 // src/components/ImageComponent.tsx
 import Image2 from "next/image";
-import { Fragment as Fragment7, jsx as jsx35 } from "react/jsx-runtime";
+import { Fragment as Fragment7, jsx as jsx36 } from "react/jsx-runtime";
 
 // src/components/PostFeaturedImage.tsx
-import { Fragment as Fragment8, jsx as jsx36 } from "react/jsx-runtime";
+import { Fragment as Fragment8, jsx as jsx37 } from "react/jsx-runtime";
 
 // src/post-types/PostCardWhiteBgBig.tsx
-import { Fragment as Fragment9, jsx as jsx37, jsxs as jsxs16 } from "react/jsx-runtime";
+import { Fragment as Fragment9, jsx as jsx38, jsxs as jsxs17 } from "react/jsx-runtime";
 var CWBBHeightClass = "h-36";
 
 // src/post-types/PostImageBackground.tsx
 import cn22 from "classnames";
 import Link3 from "next/link";
-import { jsx as jsx38, jsxs as jsxs17 } from "react/jsx-runtime";
+import { jsx as jsx39, jsxs as jsxs18 } from "react/jsx-runtime";
 var PIBHeightClass = "h-36";
 
 // src/post-types/PostTitleCateDate.tsx
@@ -914,10 +926,10 @@ import cn23 from "classnames";
 import Link4 from "next/link";
 
 // src/icons/IoBookOutline.tsx
-import { jsx as jsx39 } from "react/jsx-runtime";
+import { jsx as jsx40 } from "react/jsx-runtime";
 
 // src/post-types/PostTitleCateDate.tsx
-import { jsx as jsx40, jsxs as jsxs18 } from "react/jsx-runtime";
+import { jsx as jsx41, jsxs as jsxs19 } from "react/jsx-runtime";
 var TCDFIHeightClass = "h-28";
 
 // src/components/Carousel.tsx
@@ -925,27 +937,8 @@ import cn24 from "classnames";
 import { useSnapCarousel } from "react-snap-carousel";
 
 // src/icons/FaChevronLeft.tsx
-import { jsx as jsx41 } from "react/jsx-runtime";
-function FaChevronLeft(props) {
-  return /* @__PURE__ */ jsx41(
-    "svg",
-    {
-      className: props.className,
-      stroke: "currentColor",
-      fill: "currentColor",
-      strokeWidth: "0",
-      viewBox: "0 0 320 512",
-      height: "1em",
-      width: "1em",
-      xmlns: "http://www.w3.org/2000/svg",
-      children: /* @__PURE__ */ jsx41("path", { d: "M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z" })
-    }
-  );
-}
-
-// src/icons/FaChevronRight.tsx
 import { jsx as jsx42 } from "react/jsx-runtime";
-function FaChevronRight(props) {
+function FaChevronLeft(props) {
   return /* @__PURE__ */ jsx42(
     "svg",
     {
@@ -957,13 +950,32 @@ function FaChevronRight(props) {
       height: "1em",
       width: "1em",
       xmlns: "http://www.w3.org/2000/svg",
-      children: /* @__PURE__ */ jsx42("path", { d: "M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z" })
+      children: /* @__PURE__ */ jsx42("path", { d: "M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z" })
+    }
+  );
+}
+
+// src/icons/FaChevronRight.tsx
+import { jsx as jsx43 } from "react/jsx-runtime";
+function FaChevronRight(props) {
+  return /* @__PURE__ */ jsx43(
+    "svg",
+    {
+      className: props.className,
+      stroke: "currentColor",
+      fill: "currentColor",
+      strokeWidth: "0",
+      viewBox: "0 0 320 512",
+      height: "1em",
+      width: "1em",
+      xmlns: "http://www.w3.org/2000/svg",
+      children: /* @__PURE__ */ jsx43("path", { d: "M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z" })
     }
   );
 }
 
 // src/components/Carousel.tsx
-import { jsx as jsx43, jsxs as jsxs19 } from "react/jsx-runtime";
+import { jsx as jsx44, jsxs as jsxs20 } from "react/jsx-runtime";
 var Carousel = ({ items, renderItem }) => {
   const { scrollRef, pages, activePageIndex, prev, next, goTo, snapPointIndexes } = useSnapCarousel();
   const arrowBtnClasses = cn24(
@@ -972,8 +984,8 @@ var Carousel = ({ items, renderItem }) => {
   const arrowClasses = cn24(
     "text-2xl hover:text-3xl transition-all text-slate-400 hover:text-slate-600"
   );
-  return /* @__PURE__ */ jsxs19("div", { className: "relative", children: [
-    /* @__PURE__ */ jsx43(
+  return /* @__PURE__ */ jsxs20("div", { className: "relative", children: [
+    /* @__PURE__ */ jsx44(
       "div",
       {
         ref: scrollRef,
@@ -987,27 +999,27 @@ var Carousel = ({ items, renderItem }) => {
         )
       }
     ),
-    /* @__PURE__ */ jsx43(
+    /* @__PURE__ */ jsx44(
       "button",
       {
         onClick: () => prev(),
         className: cn24("-left-4", arrowBtnClasses, {
           "opacity-0": activePageIndex <= 0
         }),
-        children: /* @__PURE__ */ jsx43(FaChevronLeft, { className: arrowClasses })
+        children: /* @__PURE__ */ jsx44(FaChevronLeft, { className: arrowClasses })
       }
     ),
-    /* @__PURE__ */ jsx43(
+    /* @__PURE__ */ jsx44(
       "button",
       {
         onClick: () => next(),
         className: cn24("-right-4", arrowBtnClasses, {
           "opacity-0": activePageIndex === pages.length - 1
         }),
-        children: /* @__PURE__ */ jsx43(FaChevronRight, { className: arrowClasses })
+        children: /* @__PURE__ */ jsx44(FaChevronRight, { className: arrowClasses })
       }
     ),
-    /* @__PURE__ */ jsx43("div", { "aria-hidden": true, className: "flex items-center justify-center gap-2 mt-4", children: pages.map((_, i) => /* @__PURE__ */ jsx43(
+    /* @__PURE__ */ jsx44("div", { "aria-hidden": true, className: "flex items-center justify-center gap-2 mt-4", children: pages.map((_, i) => /* @__PURE__ */ jsx44(
       "button",
       {
         className: cn24("h-2.5 rounded-full bg-slate-600 transition-all hover:opacity-60", {
@@ -1020,7 +1032,7 @@ var Carousel = ({ items, renderItem }) => {
     )) })
   ] });
 };
-var CarouselItem = ({ isSnapPoint, children, widthClass }) => /* @__PURE__ */ jsx43(
+var CarouselItem = ({ isSnapPoint, children, widthClass }) => /* @__PURE__ */ jsx44(
   "div",
   {
     className: cn24(
@@ -1041,12 +1053,12 @@ import React2 from "react";
 // src/post-types/PostCardWave.tsx
 import cn25 from "classnames";
 import Link5 from "next/link";
-import { jsx as jsx44, jsxs as jsxs20 } from "react/jsx-runtime";
+import { jsx as jsx45, jsxs as jsxs21 } from "react/jsx-runtime";
 
 // src/post-types/PostCardWhiteBg.tsx
 import cn26 from "classnames";
 import Link6 from "next/link";
-import { jsx as jsx45, jsxs as jsxs21 } from "react/jsx-runtime";
+import { jsx as jsx46, jsxs as jsxs22 } from "react/jsx-runtime";
 
 // src/post-types/PostSimple.tsx
 import cn27 from "classnames";
@@ -1054,28 +1066,28 @@ import Link7 from "next/link";
 import { useEffect as useEffect2, useState as useState4 } from "react";
 
 // src/icons/FaPenNib.tsx
-import { jsx as jsx46 } from "react/jsx-runtime";
+import { jsx as jsx47 } from "react/jsx-runtime";
 
 // src/post-types/PostSimple.tsx
 init_config();
-import { jsx as jsx47, jsxs as jsxs22 } from "react/jsx-runtime";
+import { jsx as jsx48, jsxs as jsxs23 } from "react/jsx-runtime";
 
 // src/components/PostsList.tsx
-import { jsx as jsx48, jsxs as jsxs23 } from "react/jsx-runtime";
+import { jsx as jsx49, jsxs as jsxs24 } from "react/jsx-runtime";
 var postListGridCLass = cn28(
   "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-x-4"
 );
 
 // src/components/SkeletonPostList.tsx
-import { Fragment as Fragment10, jsx as jsx49, jsxs as jsxs24 } from "react/jsx-runtime";
+import { Fragment as Fragment10, jsx as jsx50, jsxs as jsxs25 } from "react/jsx-runtime";
 function SkeletonPostList(props) {
-  return /* @__PURE__ */ jsxs24(Fragment10, { children: [
-    (!props.listStyle || props.listStyle === "default") && /* @__PURE__ */ jsx49("div", { className: cn29(props.options?.className || postListGridCLass, "animate-pulse"), children: Array.from({ length: props.count }).map((_, i) => getSkeleton(i, props.postType)) }),
-    props.listStyle === "carousel" && /* @__PURE__ */ jsx49(
+  return /* @__PURE__ */ jsxs25(Fragment10, { children: [
+    (!props.listStyle || props.listStyle === "default") && /* @__PURE__ */ jsx50("div", { className: cn29(props.options?.className || postListGridCLass, "animate-pulse"), children: Array.from({ length: props.count }).map((_, i) => getSkeleton(i, props.postType)) }),
+    props.listStyle === "carousel" && /* @__PURE__ */ jsx50(
       Carousel,
       {
         items: Array.from({ length: props.count }).map((_, i) => ({ id: i })),
-        renderItem: ({ item, isSnapPoint }) => /* @__PURE__ */ jsx49(CarouselItem, { isSnapPoint, widthClass: "w-80", children: getSkeleton(item.id, props.postType) }, item.id)
+        renderItem: ({ item, isSnapPoint }) => /* @__PURE__ */ jsx50(CarouselItem, { isSnapPoint, widthClass: "w-80", children: getSkeleton(item.id, props.postType) }, item.id)
       }
     )
   ] });
@@ -1083,49 +1095,49 @@ function SkeletonPostList(props) {
 function getSkeleton(key, postType) {
   switch (postType) {
     case "PostTitleCateDate":
-      return /* @__PURE__ */ jsx49(PostTitleCateDateSkeleton, {}, key);
+      return /* @__PURE__ */ jsx50(PostTitleCateDateSkeleton, {}, key);
     case "PostCardWhiteBgBig":
-      return /* @__PURE__ */ jsx49(PostCardWhiteBgBigSkeleton, {}, key);
+      return /* @__PURE__ */ jsx50(PostCardWhiteBgBigSkeleton, {}, key);
     case "PostImageBackground":
-      return /* @__PURE__ */ jsx49(PostImageBackgroundSkeleton, {}, key);
+      return /* @__PURE__ */ jsx50(PostImageBackgroundSkeleton, {}, key);
     case "PostCardWave":
-      return /* @__PURE__ */ jsx49(PostCardWaveSkeleton, {}, key);
+      return /* @__PURE__ */ jsx50(PostCardWaveSkeleton, {}, key);
     case "PostSimple":
-      return /* @__PURE__ */ jsx49(PostSimpleSkeleton, {}, key);
+      return /* @__PURE__ */ jsx50(PostSimpleSkeleton, {}, key);
     default:
-      return /* @__PURE__ */ jsx49(PostTitleCateDateSkeleton, {}, key);
+      return /* @__PURE__ */ jsx50(PostTitleCateDateSkeleton, {}, key);
   }
 }
-var PostCardWaveSkeleton = () => /* @__PURE__ */ jsx49("div", { className: "flex flex-col justify-center", children: /* @__PURE__ */ jsx49("div", { className: cn29("flex items-center justify-center w-full rounded-md bg-slate-200", "h-32"), children: /* @__PURE__ */ jsxs24("div", { className: "w-full flex flex-col items-center gap-1 p-3", children: [
-  /* @__PURE__ */ jsx49("div", { className: "h-4 w-full rounded-md bg-slate-300" }),
-  /* @__PURE__ */ jsx49("div", { className: "h-4 w-3/4 rounded-md bg-slate-300" })
+var PostCardWaveSkeleton = () => /* @__PURE__ */ jsx50("div", { className: "flex flex-col justify-center", children: /* @__PURE__ */ jsx50("div", { className: cn29("flex items-center justify-center w-full rounded-md bg-slate-200", "h-32"), children: /* @__PURE__ */ jsxs25("div", { className: "w-full flex flex-col items-center gap-1 p-3", children: [
+  /* @__PURE__ */ jsx50("div", { className: "h-4 w-full rounded-md bg-slate-300" }),
+  /* @__PURE__ */ jsx50("div", { className: "h-4 w-3/4 rounded-md bg-slate-300" })
 ] }) }) });
-var PostTitleCateDateSkeleton = () => /* @__PURE__ */ jsxs24("div", { className: "flex flex-col justify-center", children: [
-  /* @__PURE__ */ jsx49("div", { className: cn29("w-full rounded-md bg-slate-200", TCDFIHeightClass) }),
-  /* @__PURE__ */ jsxs24("div", { className: "flex flex-col items-center gap-1 p-2", children: [
-    /* @__PURE__ */ jsx49("div", { className: "h-4 w-full rounded-md bg-slate-200" }),
-    /* @__PURE__ */ jsx49("div", { className: "h-4 w-3/4 rounded-md bg-slate-200" })
+var PostTitleCateDateSkeleton = () => /* @__PURE__ */ jsxs25("div", { className: "flex flex-col justify-center", children: [
+  /* @__PURE__ */ jsx50("div", { className: cn29("w-full rounded-md bg-slate-200", TCDFIHeightClass) }),
+  /* @__PURE__ */ jsxs25("div", { className: "flex flex-col items-center gap-1 p-2", children: [
+    /* @__PURE__ */ jsx50("div", { className: "h-4 w-full rounded-md bg-slate-200" }),
+    /* @__PURE__ */ jsx50("div", { className: "h-4 w-3/4 rounded-md bg-slate-200" })
   ] })
 ] });
-var PostCardWhiteBgBigSkeleton = () => /* @__PURE__ */ jsxs24("div", { className: "flex flex-col justify-center", children: [
-  /* @__PURE__ */ jsx49("div", { className: cn29("w-full rounded-md bg-slate-200", CWBBHeightClass) }),
-  /* @__PURE__ */ jsxs24("div", { className: "flex flex-col items-center gap-1 p-2", children: [
-    /* @__PURE__ */ jsx49("div", { className: "h-4 w-full rounded-md bg-slate-200" }),
-    /* @__PURE__ */ jsxs24("div", { className: "w-full mt-2 px-2 flex flex-col items-center gap-1", children: [
-      /* @__PURE__ */ jsx49("div", { className: "h-2 w-full rounded-md bg-slate-200" }),
-      /* @__PURE__ */ jsx49("div", { className: "h-2 w-full rounded-md bg-slate-200" }),
-      /* @__PURE__ */ jsx49("div", { className: "h-2 w-3/4 rounded-md bg-slate-200" })
+var PostCardWhiteBgBigSkeleton = () => /* @__PURE__ */ jsxs25("div", { className: "flex flex-col justify-center", children: [
+  /* @__PURE__ */ jsx50("div", { className: cn29("w-full rounded-md bg-slate-200", CWBBHeightClass) }),
+  /* @__PURE__ */ jsxs25("div", { className: "flex flex-col items-center gap-1 p-2", children: [
+    /* @__PURE__ */ jsx50("div", { className: "h-4 w-full rounded-md bg-slate-200" }),
+    /* @__PURE__ */ jsxs25("div", { className: "w-full mt-2 px-2 flex flex-col items-center gap-1", children: [
+      /* @__PURE__ */ jsx50("div", { className: "h-2 w-full rounded-md bg-slate-200" }),
+      /* @__PURE__ */ jsx50("div", { className: "h-2 w-full rounded-md bg-slate-200" }),
+      /* @__PURE__ */ jsx50("div", { className: "h-2 w-3/4 rounded-md bg-slate-200" })
     ] })
   ] })
 ] });
-var PostImageBackgroundSkeleton = () => /* @__PURE__ */ jsx49("div", { className: "flex flex-col justify-center", children: /* @__PURE__ */ jsx49("div", { className: cn29("relative w-full rounded-md bg-slate-200", PIBHeightClass), children: /* @__PURE__ */ jsxs24("div", { className: "absolute bottom-0 left-0 w-full flex flex-col items-center gap-1 p-3", children: [
-  /* @__PURE__ */ jsx49("div", { className: "h-4 w-full rounded-md bg-slate-300" }),
-  /* @__PURE__ */ jsx49("div", { className: "h-4 w-3/4 rounded-md bg-slate-300" })
+var PostImageBackgroundSkeleton = () => /* @__PURE__ */ jsx50("div", { className: "flex flex-col justify-center", children: /* @__PURE__ */ jsx50("div", { className: cn29("relative w-full rounded-md bg-slate-200", PIBHeightClass), children: /* @__PURE__ */ jsxs25("div", { className: "absolute bottom-0 left-0 w-full flex flex-col items-center gap-1 p-3", children: [
+  /* @__PURE__ */ jsx50("div", { className: "h-4 w-full rounded-md bg-slate-300" }),
+  /* @__PURE__ */ jsx50("div", { className: "h-4 w-3/4 rounded-md bg-slate-300" })
 ] }) }) });
-var PostSimpleSkeleton = () => /* @__PURE__ */ jsxs24("div", { className: "flex items-center gap-3 py-3 px-2", children: [
-  /* @__PURE__ */ jsx49("div", { children: /* @__PURE__ */ jsx49(HiOutlineDocumentText, { className: "text-xl text-slate-700" }) }),
-  /* @__PURE__ */ jsx49("div", { className: "flex-1 flex justify-start", children: /* @__PURE__ */ jsx49("div", { className: "h-6 w-3/4 rounded-md bg-slate-200" }) }),
-  /* @__PURE__ */ jsx49("div", { className: "h-4 w-[150px] rounded-md bg-slate-200" })
+var PostSimpleSkeleton = () => /* @__PURE__ */ jsxs25("div", { className: "flex items-center gap-3 py-3 px-2", children: [
+  /* @__PURE__ */ jsx50("div", { children: /* @__PURE__ */ jsx50(HiOutlineDocumentText, { className: "text-xl text-slate-700" }) }),
+  /* @__PURE__ */ jsx50("div", { className: "flex-1 flex justify-start", children: /* @__PURE__ */ jsx50("div", { className: "h-6 w-3/4 rounded-md bg-slate-200" }) }),
+  /* @__PURE__ */ jsx50("div", { className: "h-4 w-[150px] rounded-md bg-slate-200" })
 ] });
 export {
   SkeletonPostList as default
