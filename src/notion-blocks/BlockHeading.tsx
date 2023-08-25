@@ -24,14 +24,14 @@ export const boderLeftClass = (
   isToggle?: boolean
 ): string => {
   if (ctx?.headingStyle !== 'borderLeft' || isToggle) return ''
-  const common = ' border-l-[4px] pl-2'
+  const common = ' border-l-[4px] pl-2 bg-gradient-to-r py-1'
   switch (type) {
     case 'h1':
-      return 'border-sky-600' + common
+      return 'border-sky-600 from-sky-100 to-white' + common
     case 'h2':
-      return 'border-sky-600' + common
+      return 'border-sky-600 from-sky-100 to-white' + common
     case 'h3':
-      return 'border-orange-700' + common
+      return 'border-orange-700 from-orange-100 to-white' + common
   }
 }
 
@@ -60,7 +60,8 @@ export default function BlockHeading(props: {
     <a
       href={`#${id}`}
       className={cn(
-        'opacity-0 group-hover:opacity-100 text-slate-400 hover:m2it-link-hover text-[25px] mt-[3px]'
+        'inline-block',
+        'opacity-0 group-hover:opacity-100 text-slate-500 hover:m2it-link-hover text-[25px]'
       )}
     >
       <CiLink />
@@ -71,14 +72,7 @@ export default function BlockHeading(props: {
     case 'h1':
       heading = (block as Heading1BlockObjectResponse)?.heading_1
       headingElement = (
-        <h1
-          id={id}
-          className={cn(
-            h1Size,
-            headingClass,
-            boderLeftClass('h1', ctx, get(heading, 'is_toggleable'))
-          )}
-        >
+        <h1 id={id} className={cn(h1Size, headingClass)}>
           {insideHeading(heading)}
         </h1>
       )
@@ -92,14 +86,7 @@ export default function BlockHeading(props: {
     case 'h2':
       heading = (block as Heading2BlockObjectResponse)?.heading_2
       headingElement = (
-        <h2
-          id={id}
-          className={cn(
-            h2Size,
-            headingClass,
-            boderLeftClass('h2', ctx, get(heading, 'is_toggleable'))
-          )}
-        >
+        <h2 id={id} className={cn(h2Size, headingClass)}>
           {insideHeading(heading)}
         </h2>
       )
@@ -113,14 +100,7 @@ export default function BlockHeading(props: {
     case 'h3':
       heading = (block as Heading3BlockObjectResponse)?.heading_3
       headingElement = (
-        <h3
-          id={id}
-          className={cn(
-            h3Size,
-            headingClass,
-            boderLeftClass('h3', ctx, get(heading, 'is_toggleable'))
-          )}
-        >
+        <h3 id={id} className={cn(h3Size, headingClass)}>
           {insideHeading(heading)}
         </h3>
       )
@@ -141,7 +121,8 @@ export default function BlockHeading(props: {
           {
             'flex items-start gap-2': !get(heading, 'is_toggleable') && !ctx?.disableAnchorHeading
           },
-          'group'
+          'group',
+          boderLeftClass(type, ctx, get(heading, 'is_toggleable'))
         )}
       >
         {get(heading, 'is_toggleable') && children && (
@@ -154,13 +135,13 @@ export default function BlockHeading(props: {
           </BlockHeadingToggle>
         )}
         {!get(heading, 'is_toggleable') && (
-          <>
+          <div className="w-full flex items-center gap-2">
             {!ctx?.disableAnchorHeading &&
               (!ctx?.headingStyle || ctx?.headingStyle === 'hash') &&
               anchorHashEl}
             {headingElement}
             {ctx?.showAnchorRight && anchorRight}
-          </>
+          </div>
         )}
       </div>
     </div>

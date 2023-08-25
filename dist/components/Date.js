@@ -29,7 +29,7 @@ function DateComponent(props) {
     setHydrated(true);
   }, []);
   if (!hydrated)
-    return "loading...";
+    return /* @__PURE__ */ jsx("span", { className: "animate-ping opacity-70 font-semibold", children: "..." });
   return /* @__PURE__ */ jsx("span", { className: props.className, children: props.humanize ? humanized : fullDate });
 }
 export {

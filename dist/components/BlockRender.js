@@ -618,7 +618,8 @@ function BlockHeading(props) {
     {
       href: `#${id}`,
       className: cn9(
-        "opacity-0 group-hover:opacity-100 text-slate-400 hover:m2it-link-hover text-[25px] mt-[3px]"
+        "inline-block",
+        "opacity-0 group-hover:opacity-100 text-slate-500 hover:m2it-link-hover text-[25px]"
       ),
       children: /* @__PURE__ */ jsx15(CiLink, {})
     }
@@ -626,50 +627,17 @@ function BlockHeading(props) {
   switch (type) {
     case "h1":
       heading = block?.heading_1;
-      headingElement = /* @__PURE__ */ jsx15(
-        "h1",
-        {
-          id,
-          className: cn9(
-            h1Size,
-            headingClass,
-            boderLeftClass("h1", ctx, get3(heading, "is_toggleable"))
-          ),
-          children: insideHeading(heading)
-        }
-      );
+      headingElement = /* @__PURE__ */ jsx15("h1", { id, className: cn9(h1Size, headingClass), children: insideHeading(heading) });
       anchorHashEl = /* @__PURE__ */ jsx15("a", { href: `#${id}`, className: cn9("text-sky-600 lg:-ml-6", h1Size), children: "#" });
       break;
     case "h2":
       heading = block?.heading_2;
-      headingElement = /* @__PURE__ */ jsx15(
-        "h2",
-        {
-          id,
-          className: cn9(
-            h2Size,
-            headingClass,
-            boderLeftClass("h2", ctx, get3(heading, "is_toggleable"))
-          ),
-          children: insideHeading(heading)
-        }
-      );
+      headingElement = /* @__PURE__ */ jsx15("h2", { id, className: cn9(h2Size, headingClass), children: insideHeading(heading) });
       anchorHashEl = /* @__PURE__ */ jsx15("a", { href: `#${id}`, className: cn9("text-sky-600 lg:-ml-6", h2Size), children: "#" });
       break;
     case "h3":
       heading = block?.heading_3;
-      headingElement = /* @__PURE__ */ jsx15(
-        "h3",
-        {
-          id,
-          className: cn9(
-            h3Size,
-            headingClass,
-            boderLeftClass("h3", ctx, get3(heading, "is_toggleable"))
-          ),
-          children: insideHeading(heading)
-        }
-      );
+      headingElement = /* @__PURE__ */ jsx15("h3", { id, className: cn9(h3Size, headingClass), children: insideHeading(heading) });
       anchorHashEl = /* @__PURE__ */ jsx15("a", { href: `#${id}`, className: cn9("text-orange-700 lg:-ml-8", h3Size), children: "##" });
       break;
   }
@@ -682,7 +650,8 @@ function BlockHeading(props) {
         {
           "flex items-start gap-2": !get3(heading, "is_toggleable") && !ctx?.disableAnchorHeading
         },
-        "group"
+        "group",
+        boderLeftClass(type, ctx, get3(heading, "is_toggleable"))
       ),
       children: [
         get3(heading, "is_toggleable") && children && /* @__PURE__ */ jsx15(
@@ -694,7 +663,7 @@ function BlockHeading(props) {
             children
           }
         ),
-        !get3(heading, "is_toggleable") && /* @__PURE__ */ jsxs7(Fragment4, { children: [
+        !get3(heading, "is_toggleable") && /* @__PURE__ */ jsxs7("div", { className: "w-full flex items-center gap-2", children: [
           !ctx?.disableAnchorHeading && (!ctx?.headingStyle || ctx?.headingStyle === "hash") && anchorHashEl,
           headingElement,
           ctx?.showAnchorRight && anchorRight
@@ -718,14 +687,14 @@ var init_BlockHeading = __esm({
     boderLeftClass = (type, ctx, isToggle) => {
       if (ctx?.headingStyle !== "borderLeft" || isToggle)
         return "";
-      const common = " border-l-[4px] pl-2";
+      const common = " border-l-[4px] pl-2 bg-gradient-to-r py-1";
       switch (type) {
         case "h1":
-          return "border-sky-600" + common;
+          return "border-sky-600 from-sky-100 to-white" + common;
         case "h2":
-          return "border-sky-600" + common;
+          return "border-sky-600 from-sky-100 to-white" + common;
         case "h3":
-          return "border-orange-700" + common;
+          return "border-orange-700 from-orange-100 to-white" + common;
       }
     };
   }

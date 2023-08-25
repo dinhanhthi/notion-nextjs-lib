@@ -13,6 +13,6 @@ type DateProps = {
         monthsAgo?: string;
     };
 };
-declare function DateComponent(props: DateProps): react_jsx_runtime.JSX.Element | "loading...";
+declare function DateComponent(props: DateProps): react_jsx_runtime.JSX.Element;
 
 export { DateComponent as default };

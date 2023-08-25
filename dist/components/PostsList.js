@@ -988,7 +988,7 @@ function DateComponent(props) {
     setHydrated(true);
   }, []);
   if (!hydrated)
-    return "loading...";
+    return /* @__PURE__ */ jsx2("span", { className: "animate-ping opacity-70 font-semibold", children: "..." });
   return /* @__PURE__ */ jsx2("span", { className: props.className, children: props.humanize ? humanized : fullDate });
 }
 
