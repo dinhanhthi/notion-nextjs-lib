@@ -276,6 +276,9 @@ async function parseMention(
  * REMARK: This method MUST be placed in this file, otherwise, there will be an error of "Can't resolve 'fs'"
  */
 export const getPlaceholderImage = async function getPlaceholderImage(src: string) {
+  const res = await fetch(src)
+  const arrayBuffer = await res.arrayBuffer()
+  if (arrayBuffer.byteLength === 0) return { base64: '', width: 0, height: 0 }
   const buffer = await fetch(src).then(async res => Buffer.from(await res.arrayBuffer()))
 
   const { base64, metadata } = await getPlaiceholder(buffer)
