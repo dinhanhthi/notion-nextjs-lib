@@ -29,7 +29,8 @@ export default function BlockImage(props: {
   function getZoom() {
     if (zoomRef.current === null) {
       zoomRef.current = mediumZoom({
-        background: '#00000080'
+        background: '#000000a6',
+        margin: 20
       })
     }
 
