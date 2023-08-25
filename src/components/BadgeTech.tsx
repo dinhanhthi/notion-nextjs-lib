@@ -17,6 +17,7 @@ type BadgeTechProps = {
   tech: TechItem
   hideText?: boolean
   useLink?: boolean
+  hideTooltip?: boolean
 }
 
 export default function BadgeTech(props: BadgeTechProps) {
@@ -24,7 +25,9 @@ export default function BadgeTech(props: BadgeTechProps) {
     cn(`flex h-6 w-fit items-center justify-center rounded-md border bg-slate-100 px-1
   align-baseline text-base text-[#1e293b] shadow-sm transition
   duration-200 ease-in-out hover:-translate-y-0.5 dark:border-[#3b3e54]
-  dark:bg-[#343e4c] dark:text-[#f8fafc] tooltip-auto`)
+  dark:bg-[#343e4c] dark:text-[#f8fafc]`, {
+    'tooltip-auto': !props.hideTooltip,
+  })
 
   const children = () => (
     <>

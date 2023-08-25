@@ -14,6 +14,7 @@ type BadgeTechProps = {
     tech: TechItem;
     hideText?: boolean;
     useLink?: boolean;
+    hideTooltip?: boolean;
 };
 declare function BadgeTech(props: BadgeTechProps): react_jsx_runtime.JSX.Element;
 

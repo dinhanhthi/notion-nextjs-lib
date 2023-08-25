@@ -694,7 +694,7 @@ var init_BlockHeading = __esm({
         case "h2":
           return "border-sky-600 from-sky-100 to-white" + common;
         case "h3":
-          return "border-orange-700 from-orange-100 to-white" + common;
+          return "border-orange-700 from-orange-50 to-white" + common;
       }
     };
   }
