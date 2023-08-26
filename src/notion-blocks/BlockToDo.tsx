@@ -14,7 +14,7 @@ export default function BlockToDo(props: {
   return (
     <div className={cn(className)}>
       <div className="flex items-center gap-2">
-        {block?.to_do?.checked && <BsCheckSquare />}
+        {block?.to_do?.checked && <BsCheckSquare className='text-slate-500' />}
         {!block?.to_do?.checked && <BsSquare />}
         {block?.to_do?.rich_text.map((richText, index) => (
           <BlockRichText key={index} richText={richText} />

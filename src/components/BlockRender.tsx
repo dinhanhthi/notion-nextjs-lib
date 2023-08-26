@@ -6,7 +6,7 @@ import { createContext } from 'react'
 import Renderer from './Renderer'
 
 export type BlockOptionsContextType = {
-  headingStyle?: 'hash' | 'borderLeft'
+  headingStyle?: 'hash' | 'borderLeft' | 'borderLeftH2Only'
   showAnchorRight?: boolean // useful when headingStyle === 'borderLeft'
   disableAnchorHeading?: boolean // used in BlockHeading (when headingStyle === 'hash')
   siteDomain?: string // used in BlockText to recognize external links (eg. math2it.com -> alike @mention)

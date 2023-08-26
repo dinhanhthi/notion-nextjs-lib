@@ -3,7 +3,7 @@ import * as React from 'react';
 import { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 
 type BlockOptionsContextType = {
-    headingStyle?: 'hash' | 'borderLeft';
+    headingStyle?: 'hash' | 'borderLeft' | 'borderLeftH2Only';
     showAnchorRight?: boolean;
     disableAnchorHeading?: boolean;
     siteDomain?: string;

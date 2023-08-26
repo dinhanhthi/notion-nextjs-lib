@@ -715,16 +715,16 @@ var init_BlockHeading = __esm({
     init_BlockHeadingToggle();
     init_BlockRichText();
     boderLeftClass = (type, ctx, isToggle) => {
-      if (ctx?.headingStyle !== "borderLeft" || isToggle)
+      if (!["borderLeft", "borderLeftH2Only"].includes(ctx?.headingStyle) || isToggle)
         return "";
-      const common = " border-l-[2px] pl-2 bg-gradient-to-r py-1";
+      const common = "border-l-[2px] rounded-l-sm pl-2 bg-gradient-to-r py-1";
       switch (type) {
         case "h1":
-          return "border-sky-300 from-sky-50 to-white" + common;
+          return "border-sky-300 from-sky-50 to-white " + common;
         case "h2":
-          return "border-sky-300 from-sky-50 to-white" + common;
+          return "border-sky-300 from-sky-50 to-white " + common;
         case "h3":
-          return "border-orange-300 from-orange-50 to-white" + common;
+          return ctx?.headingStyle === "borderLeftH2Only" ? "" : "border-orange-300 from-orange-50 to-white " + common;
       }
     };
   }
@@ -848,7 +848,7 @@ function BlockToDo(props) {
   const { block, className, children } = props;
   return /* @__PURE__ */ jsxs11("div", { className: cn13(className), children: [
     /* @__PURE__ */ jsxs11("div", { className: "flex items-center gap-2", children: [
-      block?.to_do?.checked && /* @__PURE__ */ jsx22(BsCheckSquare, {}),
+      block?.to_do?.checked && /* @__PURE__ */ jsx22(BsCheckSquare, { className: "text-slate-500" }),
       !block?.to_do?.checked && /* @__PURE__ */ jsx22(BsSquare, {}),
       block?.to_do?.rich_text.map((richText, index) => /* @__PURE__ */ jsx22(BlockRichText, { richText }, index))
     ] }),
