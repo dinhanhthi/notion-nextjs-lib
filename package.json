@@ -1,6 +1,6 @@
 {
   "name": "notion-nextjs-lib",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "A basic blocks/renderer/components for building nextjs site based on notion and tailwind.",
   "main": "./dist/index.js",
   "scripts": {
