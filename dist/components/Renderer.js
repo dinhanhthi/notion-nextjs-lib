@@ -640,7 +640,7 @@ function BlockHeading(props) {
   let anchorHashEl;
   const h1Size = "text-3xl";
   const h2Size = "text-2xl";
-  const h3Size = "text-xl";
+  const h3Size = "text-[1.35rem]";
   const headingClass = cn9("scroll-mt-[70px] mt-0");
   const id = convertHeadingIdToSlug(block.id, block[`${block.type}`]?.rich_text);
   const anchorRight = /* @__PURE__ */ jsx16(

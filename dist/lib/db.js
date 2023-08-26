@@ -1,7 +1,7 @@
 // src/lib/db.ts
 import { get, set } from "lodash";
-import { getPlaiceholder } from "plaiceholder";
 import ogs from "open-graph-scraper";
+import { getPlaiceholder } from "plaiceholder";
 
 // src/helpers/helpers.ts
 function cleanText(text) {
@@ -62,10 +62,12 @@ var getNotionPageWithoutCache = async (pageId, notionToken, notionVersion) => {
 };
 var getNotionBlocksWithoutCache = async (pageId, notionToken, notionVersion, pageSize, startCursor) => {
   let url = `https://api.notion.com/v1/blocks/${pageId}/children`;
-  if (pageSize)
+  if (pageSize) {
     url += `?page_size=${pageSize}`;
-  if (startCursor)
-    url += `&start_cursor=${startCursor}`;
+    if (startCursor)
+      url += `&start_cursor=${startCursor}`;
+  } else if (startCursor)
+    url += `?start_cursor=${startCursor}`;
   const res = await fetch(url, {
     method: "GET",
     headers: {

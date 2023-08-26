@@ -6,14 +6,16 @@ import {
   RichTextItemResponse
 } from '@notionhq/client/build/src/api-endpoints'
 import { get, set } from 'lodash'
-import { getPlaiceholder } from 'plaiceholder'
 import ogs from 'open-graph-scraper'
+import { getPlaiceholder } from 'plaiceholder'
 
 import { cleanText } from '../helpers/helpers'
 import { BookmarkPreview, NotionSorts } from '../interface'
 
 /**
  * We needs this method to be used in outside-nextjs environment. For example, in ./scripts/ud_images.ts
+ *
+ * TODO: if there is has_more, we need to get the next_cursor and call the API again
  */
 export async function getNotionDatabaseWithoutCache(
   dataId: string,
@@ -93,8 +95,12 @@ export const getNotionBlocksWithoutCache = async (
   startCursor?: string
 ) => {
   let url = `https://api.notion.com/v1/blocks/${pageId}/children`
-  if (pageSize) url += `?page_size=${pageSize}`
-  if (startCursor) url += `&start_cursor=${startCursor}`
+
+  if (pageSize) {
+    url += `?page_size=${pageSize}`
+    if (startCursor) url += `&start_cursor=${startCursor}`
+  } else if (startCursor) url += `?start_cursor=${startCursor}`
+
   const res = await fetch(url, {
     method: 'GET',
     headers: {

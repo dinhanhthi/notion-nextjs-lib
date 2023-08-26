@@ -4,6 +4,8 @@ import 'next/image';
 
 /**
  * We needs this method to be used in outside-nextjs environment. For example, in ./scripts/ud_images.ts
+ *
+ * TODO: if there is has_more, we need to get the next_cursor and call the API again
  */
 declare function getNotionDatabaseWithoutCache(dataId: string, notionToken: string, notionVersion: string, filter?: QueryDatabaseParameters['filter'], startCursor?: string, pageSize?: number, sorts?: NotionSorts[]): Promise<QueryDatabaseResponse | undefined>;
 /**

@@ -51,7 +51,7 @@ export default function BlockHeading(props: {
   let anchorHashEl: JSX.Element
   const h1Size = 'text-3xl'
   const h2Size = 'text-2xl'
-  const h3Size = 'text-xl'
+  const h3Size = 'text-[1.35rem]'
   const headingClass = cn('scroll-mt-[70px] mt-0')
 
   const id = convertHeadingIdToSlug(block.id, (block as any)[`${block.type}`]?.rich_text)
