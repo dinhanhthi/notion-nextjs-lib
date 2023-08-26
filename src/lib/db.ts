@@ -238,7 +238,7 @@ export async function getBlocks(
           url,
           title: cleanText(result.ogTitle),
           description: cleanText(result.ogDescription) ?? null,
-          favicon: result.favicon,
+          favicon: result.ogUrl + result.favicon.replace('/', ''),
           imageSrc: result.ogImage?.[0]?.url ?? null
         }
         block['bookmark'] = bookmark as any
