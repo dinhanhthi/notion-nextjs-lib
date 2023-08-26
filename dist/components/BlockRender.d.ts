@@ -14,6 +14,7 @@ type BlockRenderProps = {
     block: BlockObjectResponse;
     level: number;
     isInsideList?: boolean;
+    isInsideColumn?: boolean;
     blockOptionsContext?: BlockOptionsContextType;
 };
 declare const BlockOptionContext: React.Context<BlockOptionsContextType>;

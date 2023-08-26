@@ -58,17 +58,18 @@ function mapColorClass(color) {
       return "";
   }
 }
-function getIndentLevelClass(level, isList, isInsideList) {
+function getIndentLevelClass(level, isList, isInsideList, isInsideColumn) {
   switch (level) {
     case 0:
       return cn("pl-0", {
-        "my-4": !isList,
-        "my-1.5": isList
+        "my-4": !isList && !isInsideColumn,
+        "my-1.5": isList && !isInsideColumn,
+        "my-0": isInsideColumn
       });
     case 1:
-      return isInsideList ? "pl-4 my-1.5" : "pl-4 my-3";
+      return isInsideList ? "pl-4 mb-1.5" : "pl-4 my-3";
     case 2:
-      return isInsideList ? "pl-8 my-1.5" : "pl-8 my-3";
+      return isInsideList ? "pl-8 mb-1.5" : "pl-8 my-3";
     default:
       return cn("pl-0", {
         "my-4": !isList,

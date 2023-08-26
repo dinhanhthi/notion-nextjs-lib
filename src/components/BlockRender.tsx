@@ -25,6 +25,7 @@ export type BlockRenderProps = {
   block: BlockObjectResponse
   level: number
   isInsideList?: boolean
+  isInsideColumn?: boolean
   blockOptionsContext?: BlockOptionsContextType
 }
 
@@ -33,7 +34,12 @@ export const BlockOptionContext = createContext<BlockOptionsContextType>(default
 export default function BlockRender(props: BlockRenderProps) {
   return (
     <BlockOptionContext.Provider value={props.blockOptionsContext}>
-      <Renderer block={props.block} level={props.level} isInsideList={props.isInsideList} />
+      <Renderer
+        block={props.block}
+        level={props.level}
+        isInsideList={props.isInsideList}
+        isInsideColumn={props.isInsideColumn}
+      />
     </BlockOptionContext.Provider>
   )
 }

@@ -69,17 +69,18 @@ function mapColorClass(color) {
       return "";
   }
 }
-function getIndentLevelClass(level, isList, isInsideList) {
+function getIndentLevelClass(level, isList, isInsideList, isInsideColumn) {
   switch (level) {
     case 0:
       return cn("pl-0", {
-        "my-4": !isList,
-        "my-1.5": isList
+        "my-4": !isList && !isInsideColumn,
+        "my-1.5": isList && !isInsideColumn,
+        "my-0": isInsideColumn
       });
     case 1:
-      return isInsideList ? "pl-4 my-1.5" : "pl-4 my-3";
+      return isInsideList ? "pl-4 mb-1.5" : "pl-4 my-3";
     case 2:
-      return isInsideList ? "pl-8 my-1.5" : "pl-8 my-3";
+      return isInsideList ? "pl-8 mb-1.5" : "pl-8 my-3";
     default:
       return cn("pl-0", {
         "my-4": !isList,
@@ -240,7 +241,15 @@ var init_RxDotFilled = __esm({
 import { createContext } from "react";
 import { jsx as jsx5 } from "react/jsx-runtime";
 function BlockRender(props) {
-  return /* @__PURE__ */ jsx5(BlockOptionContext.Provider, { value: props.blockOptionsContext, children: /* @__PURE__ */ jsx5(Renderer, { block: props.block, level: props.level, isInsideList: props.isInsideList }) });
+  return /* @__PURE__ */ jsx5(BlockOptionContext.Provider, { value: props.blockOptionsContext, children: /* @__PURE__ */ jsx5(
+    Renderer,
+    {
+      block: props.block,
+      level: props.level,
+      isInsideList: props.isInsideList,
+      isInsideColumn: props.isInsideColumn
+    }
+  ) });
 }
 var defaultBlockOptionContext, BlockOptionContext;
 var init_BlockRender = __esm({
@@ -513,8 +522,8 @@ function BlockColumnList(props) {
   const children = block["children"];
   if (children?.length === 0)
     return null;
-  return /* @__PURE__ */ jsx12("div", { className: cn7("w-full grid gap-3 !my-0", parseColumnClasses(children.length), className), children: children.map((col, index1) => {
-    return /* @__PURE__ */ jsx12("div", { className: cn7("w-full flex flex-col"), children: col["children"].map((child, index2) => /* @__PURE__ */ jsx12(BlockRender, { block: child, level: 0 }, index2)) }, index1);
+  return /* @__PURE__ */ jsx12("div", { className: cn7("w-full grid !my-0 gap-3", parseColumnClasses(children.length), className), children: children.map((col, index1) => {
+    return /* @__PURE__ */ jsx12("div", { className: cn7("w-full flex flex-col gap-3"), children: col["children"].map((child, index2) => /* @__PURE__ */ jsx12(BlockRender, { block: child, level: 0, isInsideColumn: true }, index2)) }, index1);
   }) });
 }
 function parseColumnClasses(numCols) {
@@ -1279,7 +1288,7 @@ function Renderer(props) {
       childBlock.id
     ));
   }
-  const basicBlockGap = cn19(getIndentLevelClass(level, isList, props.isInsideList));
+  const basicBlockGap = cn19(getIndentLevelClass(level, isList, props.isInsideList, props.isInsideColumn));
   const basicBlockGapHeading = "mt-6";
   switch (block.type) {
     case "synced_block":

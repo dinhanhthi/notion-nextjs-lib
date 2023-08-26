@@ -20,12 +20,12 @@ export default function BlockColumnList(props: { block: BlockColumnListType; cla
   const children = block['children']
   if (children?.length === 0) return null
   return (
-    <div className={cn('w-full grid gap-3 !my-0', parseColumnClasses(children.length), className)}>
+    <div className={cn('w-full grid !my-0 gap-3', parseColumnClasses(children.length), className)}>
       {children.map((col, index1: number) => {
         return (
-          <div key={index1} className={cn('w-full flex flex-col')}>
+          <div key={index1} className={cn('w-full flex flex-col gap-3')}>
             {col['children'].map((child: BlockObjectResponse, index2: number) => (
-              <BlockRender key={index2} block={child} level={0} />
+              <BlockRender key={index2} block={child} level={0} isInsideColumn={true} />
             ))}
           </div>
         )

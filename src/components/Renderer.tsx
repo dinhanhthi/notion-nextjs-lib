@@ -49,7 +49,7 @@ export default function Renderer(props: BlockRenderProps) {
     ))
   }
 
-  const basicBlockGap = cn(getIndentLevelClass(level, isList, props.isInsideList))
+  const basicBlockGap = cn(getIndentLevelClass(level, isList, props.isInsideList, props.isInsideColumn))
   const basicBlockGapHeading = 'mt-6'
 
   switch (block.type) {
