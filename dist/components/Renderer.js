@@ -522,7 +522,7 @@ function BlockColumnList(props) {
   const children = block["children"];
   if (children?.length === 0)
     return null;
-  return /* @__PURE__ */ jsx12("div", { className: cn7("w-full grid !my-0 gap-3", parseColumnClasses(children.length), className), children: children.map((col, index1) => {
+  return /* @__PURE__ */ jsx12("div", { className: cn7("w-full grid gap-3", parseColumnClasses(children.length), className), children: children.map((col, index1) => {
     return /* @__PURE__ */ jsx12("div", { className: cn7("w-full flex flex-col gap-3"), children: col["children"].map((child, index2) => /* @__PURE__ */ jsx12(BlockRender, { block: child, level: 0, isInsideColumn: true }, index2)) }, index1);
   }) });
 }
