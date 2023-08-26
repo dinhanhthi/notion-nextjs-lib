@@ -65,7 +65,7 @@ export default function PostTitleCateDate(props: PostTitleCateDateProps) {
           )}
         </div>
         {!options?.hideDate && (
-          <div className="text-sm opacity-80">
+          <div className="text-sm opacity-80 flex items-center gap-1">
             <i className="icon-clock mr-1"></i>
             {date && <DateComponent dateString={date} />}
           </div>
