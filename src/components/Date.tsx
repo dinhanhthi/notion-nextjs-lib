@@ -3,6 +3,8 @@
 import Moment from 'moment'
 import { useEffect, useState } from 'react'
 
+import BiDotsHorizontalRounded from '../icons/BiDotsHorizontalRounded'
+
 type DateProps = {
   dateString: string
   format?: string
@@ -45,7 +47,7 @@ export default function DateComponent(props: DateProps) {
     setHydrated(true)
   }, [])
 
-  if (!hydrated) return <span className="animate-ping opacity-70 font-semibold">...</span>
+  if (!hydrated) return <BiDotsHorizontalRounded className="opacity-70 animate-ping" />
 
   return <span className={props.className}>{props.humanize ? humanized : fullDate}</span>
 }

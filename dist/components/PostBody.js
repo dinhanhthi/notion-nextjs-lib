@@ -687,14 +687,14 @@ var init_BlockHeading = __esm({
     boderLeftClass = (type, ctx, isToggle) => {
       if (ctx?.headingStyle !== "borderLeft" || isToggle)
         return "";
-      const common = " border-l-[4px] pl-2 bg-gradient-to-r py-1";
+      const common = " border-l-[2px] pl-2 bg-gradient-to-r py-1";
       switch (type) {
         case "h1":
-          return "border-sky-600 from-sky-100 to-white" + common;
+          return "border-sky-300 from-sky-50 to-white" + common;
         case "h2":
-          return "border-sky-600 from-sky-100 to-white" + common;
+          return "border-sky-300 from-sky-50 to-white" + common;
         case "h3":
-          return "border-orange-700 from-orange-50 to-white" + common;
+          return "border-orange-300 from-orange-50 to-white" + common;
       }
     };
   }

@@ -73,7 +73,7 @@ export default function PostSimple(props: PostSimpleProps) {
           )}
         </h3>
         {(post.createdDate || post.date) && (
-          <div className="gap-2 hidden md:flex">
+          <div className="gap-2 hidden md:flex items-center">
             {post.date &&
               !isNew &&
               post.createdDate &&
@@ -84,7 +84,8 @@ export default function PostSimple(props: PostSimpleProps) {
                     {
                       'bg-slate-200 text-slate-800': !isIn7Days,
                       'bg-green-200 text-green-900': isIn7Days
-                    }
+                    },
+                    'flex gap-1 items-center'
                   )}
                 >
                   {options?.updatedOnLabel || 'updated'}{' '}
