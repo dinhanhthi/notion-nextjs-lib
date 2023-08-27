@@ -5,9 +5,23 @@ import 'next/image';
 /**
  * We needs this method to be used in outside-nextjs environment. For example, in ./scripts/ud_images.ts
  *
- * TODO: if there is has_more, we need to get the next_cursor and call the API again
  */
 declare function getNotionDatabaseWithoutCache(dataId: string, notionToken: string, notionVersion: string, filter?: QueryDatabaseParameters['filter'], startCursor?: string, pageSize?: number, sorts?: NotionSorts[]): Promise<QueryDatabaseResponse | undefined>;
+/**
+ * This methods will get all posts from a Notion database. Especially, when the number of posts is
+ * greater than 100, we need to use the "has_more" and "next_cursor" to get all posts.
+ *
+ * TODO: Update the client's usage to use this method instead of getNotionDatabaseWithoutCache()
+ */
+declare function getPostsWithoutCache(options: {
+    dbId: string;
+    notionToken: string;
+    notionVersion: string;
+    filter?: QueryDatabaseParameters['filter'];
+    startCursor?: string;
+    pageSize?: number;
+    sorts?: NotionSorts[];
+}): Promise<any[]>;
 /**
  * We needs this method to be used in outside-nextjs environment. For example, in ./scripts/ud_images.ts
  */
@@ -36,4 +50,4 @@ declare const getPlaceholderImage: (src: string) => Promise<{
     height: number;
 }>;
 
-export { getBlocks, getNotionBlocksWithoutCache, getNotionDatabaseWithoutCache, getNotionPageWithoutCache, getPlaceholderImage, retrieveNotionDatabaseWithoutCache };
+export { getBlocks, getNotionBlocksWithoutCache, getNotionDatabaseWithoutCache, getNotionPageWithoutCache, getPlaceholderImage, getPostsWithoutCache, retrieveNotionDatabaseWithoutCache };

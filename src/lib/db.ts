@@ -10,12 +10,12 @@ import ogs from 'open-graph-scraper'
 import { getPlaiceholder } from 'plaiceholder'
 
 import { cleanText } from '../helpers/helpers'
-import { BookmarkPreview, NotionSorts } from '../interface'
+import { BookmarkPreview, NotionSorts, Post } from '../interface'
+import { notionMaxRequest } from './config'
 
 /**
  * We needs this method to be used in outside-nextjs environment. For example, in ./scripts/ud_images.ts
  *
- * TODO: if there is has_more, we need to get the next_cursor and call the API again
  */
 export async function getNotionDatabaseWithoutCache(
   dataId: string,
@@ -32,7 +32,7 @@ export async function getNotionDatabaseWithoutCache(
       filter,
       sorts,
       start_cursor: startCursor,
-      page_size: pageSize ?? 50
+      page_size: pageSize
     }
     const res = await fetch(url, {
       method: 'POST',
@@ -63,6 +63,57 @@ export async function getNotionDatabaseWithoutCache(
     }
     return
   }
+}
+
+/**
+ * This methods will get all posts from a Notion database. Especially, when the number of posts is
+ * greater than 100, we need to use the "has_more" and "next_cursor" to get all posts.
+ *
+ * TODO: Update the client's usage to use this method instead of getNotionDatabaseWithoutCache()
+ */
+export async function getPostsWithoutCache(options: {
+  dbId: string
+  notionToken: string
+  notionVersion: string
+  filter?: QueryDatabaseParameters['filter']
+  startCursor?: string
+  pageSize?: number
+  sorts?: NotionSorts[]
+}): Promise<any[]> {
+  const { dbId, notionToken, notionVersion, filter, startCursor, pageSize, sorts } = options
+
+  let data = await getNotionDatabaseWithoutCache(
+    dbId,
+    notionToken,
+    notionVersion,
+    filter,
+    startCursor,
+    pageSize,
+    sorts
+  )
+  let postsList = get(data, 'results', []) as any[]
+
+  if (data && data['has_more']) {
+    let newStartCursor = startCursor
+    while (data!['has_more']) {
+      newStartCursor = data!['next_cursor'] as string
+      data = await getNotionDatabaseWithoutCache(
+        dbId,
+        notionToken,
+        notionVersion,
+        filter,
+        startCursor,
+        pageSize,
+        sorts
+      )
+      if (get(data, 'results')) {
+        const lst = data!['results'] as any[]
+        postsList = [...postsList, ...lst]
+      }
+    }
+  }
+
+  return postsList
 }
 
 /**

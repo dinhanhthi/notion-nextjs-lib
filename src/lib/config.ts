@@ -5,3 +5,5 @@ export const defaultBlurDataURL =
 export const defaultCodeLanguage = 'typescript'
 
 export const maxDays = 7
+
+export const notionMaxRequest = 100

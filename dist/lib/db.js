@@ -18,7 +18,7 @@ async function getNotionDatabaseWithoutCache(dataId, notionToken, notionVersion,
       filter,
       sorts,
       start_cursor: startCursor,
-      page_size: pageSize ?? 50
+      page_size: pageSize
     };
     const res = await fetch(url, {
       method: "POST",
@@ -48,6 +48,39 @@ async function getNotionDatabaseWithoutCache(dataId, notionToken, notionVersion,
     }
     return;
   }
+}
+async function getPostsWithoutCache(options) {
+  const { dbId, notionToken, notionVersion, filter, startCursor, pageSize, sorts } = options;
+  let data = await getNotionDatabaseWithoutCache(
+    dbId,
+    notionToken,
+    notionVersion,
+    filter,
+    startCursor,
+    pageSize,
+    sorts
+  );
+  let postsList = get(data, "results", []);
+  if (data && data["has_more"]) {
+    let newStartCursor = startCursor;
+    while (data["has_more"]) {
+      newStartCursor = data["next_cursor"];
+      data = await getNotionDatabaseWithoutCache(
+        dbId,
+        notionToken,
+        notionVersion,
+        filter,
+        startCursor,
+        pageSize,
+        sorts
+      );
+      if (get(data, "results")) {
+        const lst = data["results"];
+        postsList = [...postsList, ...lst];
+      }
+    }
+  }
+  return postsList;
 }
 var getNotionPageWithoutCache = async (pageId, notionToken, notionVersion) => {
   const url = `https://api.notion.com/v1/pages/${pageId}`;
@@ -198,6 +231,7 @@ export {
   getNotionDatabaseWithoutCache,
   getNotionPageWithoutCache,
   getPlaceholderImage,
+  getPostsWithoutCache,
   retrieveNotionDatabaseWithoutCache
 };
 //# sourceMappingURL=db.js.map
