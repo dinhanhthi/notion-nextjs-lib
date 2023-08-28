@@ -91,12 +91,12 @@ export async function getPostsWithoutCache(options: {
     pageSize,
     sorts
   )
+
   let postsList = get(data, 'results', []) as any[]
 
-  if (data && data['has_more']) {
-    let newStartCursor = startCursor
+  if (data && data['has_more'] && data['next_cursor'] && pageSize >= notionMaxRequest) {
     while (data!['has_more']) {
-      newStartCursor = data!['next_cursor'] as string
+      const newStartCursor = data['next_cursor'] as string
       data = await getNotionDatabaseWithoutCache(
         dbId,
         notionToken,
@@ -112,7 +112,6 @@ export async function getPostsWithoutCache(options: {
       }
     }
   }
-
   return postsList
 }
 
