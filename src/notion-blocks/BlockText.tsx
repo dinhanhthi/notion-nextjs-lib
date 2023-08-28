@@ -42,7 +42,7 @@ export default function BlockText(props: TextProps) {
     // Link contains "domain.com" and does not contain "@
     // This is the link coming from the current version of domain, not the old ones
     if (props.richText.href.includes(ctx?.siteDomain) && !props.richText.href.includes('@')) {
-      const uri = getUriFromUrl(props.richText.href)
+      const uri = getUriFromUrl(props.richText.href, ctx?.siteDomain)
       return (
         <Link
           className={generateTextAnnotationClasses(
@@ -131,7 +131,7 @@ export default function BlockText(props: TextProps) {
   )
 }
 
-function getUriFromUrl(url: string) {
+function getUriFromUrl(url: string, domainSite: string) {
   // Remove the protocol (http:// or https://)
   const withoutProtocol = url.replace(/^(https?:\/\/)/, '')
 
@@ -141,11 +141,14 @@ function getUriFromUrl(url: string) {
   // Remove trailing slashes
   const withoutTrailingSlashes = withoutWWW.replace(/\/+$/, '')
 
-  // Remove "math2it.com" if present
-  const withoutDomain = withoutTrailingSlashes.replace(/math2it.com/, '')
+  // Remove domainSite if present
+  const withoutDomain = withoutTrailingSlashes.replace(new RegExp(`^${domainSite}`), '')
+
+  // Remove localhost:3000 if present
+  const withoutLocalhost = withoutDomain.replace(/^localhost:3000/, '')
 
   // Add "/" at the beginning and the end
-  const slug = `${withoutDomain}/`
+  const slug = `${withoutLocalhost}`
 
   return slug
 }
