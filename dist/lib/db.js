@@ -10,6 +10,9 @@ function cleanText(text) {
   return text.replace(/\n/g, " ").replace(/\s+/g, " ").trim();
 }
 
+// src/lib/config.ts
+var notionMaxRequest = 100;
+
 // src/lib/db.ts
 async function getNotionDatabaseWithoutCache(dataId, notionToken, notionVersion, filter, startCursor, pageSize, sorts) {
   try {
@@ -61,10 +64,9 @@ async function getPostsWithoutCache(options) {
     sorts
   );
   let postsList = get(data, "results", []);
-  if (data && data["has_more"]) {
-    let newStartCursor = startCursor;
+  if (data && data["has_more"] && data["next_cursor"] && pageSize >= notionMaxRequest) {
     while (data["has_more"]) {
-      newStartCursor = data["next_cursor"];
+      const newStartCursor = data["next_cursor"];
       data = await getNotionDatabaseWithoutCache(
         dbId,
         notionToken,
