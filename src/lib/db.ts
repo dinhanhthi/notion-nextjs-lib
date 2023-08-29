@@ -5,12 +5,13 @@ import {
   QueryDatabaseResponse,
   RichTextItemResponse
 } from '@notionhq/client/build/src/api-endpoints'
+import got from 'got'
 import { get, set } from 'lodash'
 import ogs from 'open-graph-scraper'
 import { getPlaiceholder } from 'plaiceholder'
 
-import { cleanText } from '../helpers/helpers'
-import { BookmarkPreview, NotionSorts, Post } from '../interface'
+import { cleanText, idToUuid } from '../helpers/helpers'
+import { BookmarkPreview, NotionSorts, Post, SearchParams } from '../interface'
 import { notionMaxRequest } from './config'
 
 /**
@@ -339,4 +340,55 @@ export const getPlaceholderImage = async function getPlaceholderImage(src: strin
 
   const { base64, metadata } = await getPlaiceholder(buffer)
   return { base64, width: metadata.width, height: metadata.height }
+}
+
+// Used for unofficial APIs
+export async function searchNotion(
+  params: SearchParams,
+  apiUrl: string,
+  tokenV2: string,
+  activeUser: string,
+  dbId: string
+): Promise<any> {
+  const headers: any = {
+    'Content-Type': 'application/json',
+    cookie: `token_v2=${tokenV2}`,
+    'x-notion-active-user-header': activeUser
+  }
+
+  if (!dbId) {
+    throw new Error('dbId is not defined')
+  }
+
+  const body = {
+    type: 'BlocksInAncestor',
+    source: 'quick_find_public',
+    ancestorId: idToUuid(dbId),
+    sort: {
+      field: 'relevance'
+    },
+    limit: params.limit || 20,
+    query: params.query,
+    filters: {
+      isDeletedOnly: false,
+      isNavigableOnly: false,
+      excludeTemplates: true,
+      requireEditPermissions: false,
+      ancestors: [],
+      createdBy: [],
+      editedBy: [],
+      lastEditedTime: {},
+      createdTime: {},
+      ...params.filters
+    }
+  }
+
+  const url = `${apiUrl}/search`
+
+  return got
+    .post(url, {
+      body: JSON.stringify(body),
+      headers
+    })
+    .json()
 }

@@ -130,3 +130,9 @@ export type BookmarkPreview = {
   favicon?: string
   imageSrc: string | null
 }
+
+export type SearchParams = {
+  query: string
+  limit?: number
+  filters?: any
+}

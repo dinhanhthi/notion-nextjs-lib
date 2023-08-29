@@ -2,7 +2,7 @@
 
 A collection of basic blocks/renderer/components for building nextjs site based on [Notion](https://www.notion.so/) and [Tailwind CSS](https://tailwindcss.com/).
 
-👉 An example of using this library: [dinhanhthi-com-v6.vercel.app](https://dinhanhthi-com-v6.vercel.app). You can [fork this repo](https://github.com/dinhanhthi/dinhanhthi.com) to make the same site.
+👉 An example of using this library: [dinhanhthi-com-v6.vercel.app](https://dinhanhthi-com-v6.vercel.app). You can [fork this repo](https://github.com/dinhanhthi/dinhanhthi.com-v6) to make the same site.
 
 > 🚨 I created this library for building my 2 websites - [math2it.com](https://www.math2it.com/) (a Vietnamese website for math and IT) and [dinhanhthi.com](https://dinhanhthi.com/) (my personal website for taking notes). **This library isn't for public use...yet!** I don't have enough time to help you use this library. Please forgive me if I don't answer your questions.
 

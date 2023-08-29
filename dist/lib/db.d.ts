@@ -1,5 +1,5 @@
 import { QueryDatabaseParameters, QueryDatabaseResponse, ListBlockChildrenResponse } from '@notionhq/client/build/src/api-endpoints';
-import { NotionSorts } from '../interface.js';
+import { NotionSorts, SearchParams } from '../interface.js';
 import 'next/image';
 
 /**
@@ -49,5 +49,6 @@ declare const getPlaceholderImage: (src: string) => Promise<{
     width: number;
     height: number;
 }>;
+declare function searchNotion(params: SearchParams, apiUrl: string, tokenV2: string, activeUser: string, dbId: string): Promise<any>;
 
-export { getBlocks, getNotionBlocksWithoutCache, getNotionDatabaseWithoutCache, getNotionPageWithoutCache, getPlaceholderImage, getPostsWithoutCache, retrieveNotionDatabaseWithoutCache };
+export { getBlocks, getNotionBlocksWithoutCache, getNotionDatabaseWithoutCache, getNotionPageWithoutCache, getPlaceholderImage, getPostsWithoutCache, retrieveNotionDatabaseWithoutCache, searchNotion };

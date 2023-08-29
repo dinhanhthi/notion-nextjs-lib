@@ -118,5 +118,10 @@ type BookmarkPreview = {
     favicon?: string;
     imageSrc: string | null;
 };
+type SearchParams = {
+    query: string;
+    limit?: number;
+    filters?: any;
+};
 
-export { AnnotationIgnoreField, Author, BookmarkPreview, Category, DynamicSegmentParams, DynamicSegmentParamsProps, ImageType, NotionSorts, OptionalCatchAllParams, OptionalCatchAllProps, Page, Post, PostHeaderType, SearchResult, Tag, TextIgnoreField };
+export { AnnotationIgnoreField, Author, BookmarkPreview, Category, DynamicSegmentParams, DynamicSegmentParamsProps, ImageType, NotionSorts, OptionalCatchAllParams, OptionalCatchAllProps, Page, Post, PostHeaderType, SearchParams, SearchResult, Tag, TextIgnoreField };

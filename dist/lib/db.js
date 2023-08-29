@@ -1,4 +1,5 @@
 // src/lib/db.ts
+import got from "got";
 import { get, set } from "lodash";
 import ogs from "open-graph-scraper";
 import { getPlaiceholder } from "plaiceholder";
@@ -8,6 +9,24 @@ function cleanText(text) {
   if (!text)
     return void 0;
   return text.replace(/\n/g, " ").replace(/\s+/g, " ").trim();
+}
+function idToUuid(id) {
+  if (!id) {
+    return null;
+  }
+  id = id.split("?")[0];
+  const match = id.match(/\b([a-f0-9]{32})\b/);
+  if (match) {
+    return `${id.slice(0, 8)}-${id.slice(8, 4 + 8)}-${id.slice(12, 4 + 12)}-${id.slice(
+      16,
+      4 + 16
+    )}-${id.slice(20)}`;
+  }
+  const match2 = id.match(/\b([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})\b/);
+  if (match2) {
+    return match2[1];
+  }
+  return null;
 }
 
 // src/lib/config.ts
@@ -227,6 +246,43 @@ var getPlaceholderImage = async function getPlaceholderImage2(src) {
   const { base64, metadata } = await getPlaiceholder(buffer);
   return { base64, width: metadata.width, height: metadata.height };
 };
+async function searchNotion(params, apiUrl, tokenV2, activeUser, dbId) {
+  const headers = {
+    "Content-Type": "application/json",
+    cookie: `token_v2=${tokenV2}`,
+    "x-notion-active-user-header": activeUser
+  };
+  if (!dbId) {
+    throw new Error("dbId is not defined");
+  }
+  const body = {
+    type: "BlocksInAncestor",
+    source: "quick_find_public",
+    ancestorId: idToUuid(dbId),
+    sort: {
+      field: "relevance"
+    },
+    limit: params.limit || 20,
+    query: params.query,
+    filters: {
+      isDeletedOnly: false,
+      isNavigableOnly: false,
+      excludeTemplates: true,
+      requireEditPermissions: false,
+      ancestors: [],
+      createdBy: [],
+      editedBy: [],
+      lastEditedTime: {},
+      createdTime: {},
+      ...params.filters
+    }
+  };
+  const url = `${apiUrl}/search`;
+  return got.post(url, {
+    body: JSON.stringify(body),
+    headers
+  }).json();
+}
 export {
   getBlocks,
   getNotionBlocksWithoutCache,
@@ -234,6 +290,7 @@ export {
   getNotionPageWithoutCache,
   getPlaceholderImage,
   getPostsWithoutCache,
-  retrieveNotionDatabaseWithoutCache
+  retrieveNotionDatabaseWithoutCache,
+  searchNotion
 };
 //# sourceMappingURL=db.js.map
