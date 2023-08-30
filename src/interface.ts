@@ -116,9 +116,7 @@ export type SearchResult = {
   slug: string
   titleHighlighted: string
   textHighlighted: string
-  categoryNames?: string[]
   isPublished: boolean
-  isSelected?: boolean
   isBookPost?: boolean
   isFake?: boolean // used to not perform the request
 }
