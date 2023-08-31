@@ -994,9 +994,9 @@ function DateComponent(props) {
     const today = /* @__PURE__ */ new Date();
     const diffTime = Math.abs(today.getTime() - date.getTime());
     const diffDays = Math.ceil(diffTime / (1e3 * 60 * 60 * 24));
-    if (diffDays <= 0) {
+    if (diffDays <= 1) {
       setHumanized(props.humanizeOpts?.today || "today");
-    } else if (diffDays <= 1) {
+    } else if (diffDays <= 2) {
       setHumanized(props.humanizeOpts?.yesterday || "yesterday");
     } else if (diffDays <= 7) {
       setHumanized(`${diffDays} ${props.humanizeOpts?.daysAgo || "days ago"}`);
@@ -1156,6 +1156,7 @@ import Link6 from "next/link";
 import { useEffect as useEffect2, useState as useState4 } from "react";
 
 // src/helpers/helpers.ts
+import slugify from "slugify";
 function isDateAfter(date1, date2) {
   if (!date1 || !date2)
     return false;

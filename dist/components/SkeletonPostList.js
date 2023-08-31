@@ -1072,6 +1072,9 @@ import cn27 from "classnames";
 import Link7 from "next/link";
 import { useEffect as useEffect2, useState as useState4 } from "react";
 
+// src/helpers/helpers.ts
+import slugify from "slugify";
+
 // src/icons/FaPenNib.tsx
 import { jsx as jsx48 } from "react/jsx-runtime";
 

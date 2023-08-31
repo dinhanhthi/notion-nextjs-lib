@@ -1,3 +1,5 @@
+import slugify from 'slugify'
+
 import { Post } from '../interface'
 
 export function cleanText(text?: string) {
@@ -37,16 +39,11 @@ export function idToUuid(id: string): string | null {
  */
 export function makeSlugText(text?: string | null): string | undefined {
   if (!text) return undefined
-  return text
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .replace(/đ/g, 'd')
-    .replace(/Đ/g, 'D')
-    .replace(':', '')
-    .split(' ')
-    .join('-')
-    .replace(/^\/|\/$/g, '') // remove "/" at the beginning and the end
+  return slugify(text, {
+    lower: true,
+    locale: 'vi',
+    remove: /[:?&".,/\\]/g
+  })
 }
 
 /**
@@ -71,7 +68,7 @@ export function getStartCursorForCurrentPage(
 
 export function isDateAfter(date1?: string, date2?: string): boolean {
   if (!date1 || !date2) return false
-  const dateOne = new Date(date1).setHours(0,0,0,0)
-  const dateTwo = new Date(date2).setHours(0,0,0,0)
+  const dateOne = new Date(date1).setHours(0, 0, 0, 0)
+  const dateTwo = new Date(date2).setHours(0, 0, 0, 0)
   return dateOne > dateTwo
 }

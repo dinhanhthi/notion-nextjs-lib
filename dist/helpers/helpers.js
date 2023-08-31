@@ -1,4 +1,5 @@
 // src/helpers/helpers.ts
+import slugify from "slugify";
 function cleanText(text) {
   if (!text)
     return void 0;
@@ -25,7 +26,11 @@ function idToUuid(id) {
 function makeSlugText(text) {
   if (!text)
     return void 0;
-  return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d").replace(/Đ/g, "D").replace(":", "").split(" ").join("-").replace(/^\/|\/$/g, "");
+  return slugify(text, {
+    lower: true,
+    locale: "vi",
+    remove: /[:?&".,/\\]/g
+  });
 }
 function getStartCursorForCurrentPage(currentPage, posts, postsPerPage) {
   if (posts?.length === 0)

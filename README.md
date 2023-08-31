@@ -58,6 +58,14 @@ rm yarn.lock
 yarn install --check-files
 ```
 
+### In case Notion unofficial APIs change for `searchNotion()`
+
+Method `searchNotion()` uses the api of Notion on the notion page/app, this is not [the official notion api](https://developers.notion.com/). In case there are changes from their side, we can adapt the changes by checking:
+
+1. Open the notion page and open developer mode, go to the Network tab and type "seach" in the filter.
+2. On the Notion page, in the root database, press Search (or `cmd` + `K`), type something.
+3. On the Network panel, there will be a new "search" item which appears. All the neccessary information are there!
+
 ## How to use?
 
 ```bash

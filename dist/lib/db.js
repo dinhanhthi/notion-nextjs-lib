@@ -5,6 +5,7 @@ import ogs from "open-graph-scraper";
 import { getPlaiceholder } from "plaiceholder";
 
 // src/helpers/helpers.ts
+import slugify from "slugify";
 function cleanText(text) {
   if (!text)
     return void 0;
