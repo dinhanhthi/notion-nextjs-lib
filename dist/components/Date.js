@@ -34,9 +34,9 @@ function DateComponent(props) {
     const today = /* @__PURE__ */ new Date();
     const diffTime = Math.abs(today.getTime() - date.getTime());
     const diffDays = Math.ceil(diffTime / (1e3 * 60 * 60 * 24));
-    if (diffDays <= 0) {
+    if (diffDays <= 1) {
       setHumanized(props.humanizeOpts?.today || "today");
-    } else if (diffDays <= 1) {
+    } else if (diffDays <= 2) {
       setHumanized(props.humanizeOpts?.yesterday || "yesterday");
     } else if (diffDays <= 7) {
       setHumanized(`${diffDays} ${props.humanizeOpts?.daysAgo || "days ago"}`);
