@@ -40,12 +40,14 @@ function ImageComponent(props) {
 // src/components/BadgeTech.tsx
 import { Fragment as Fragment2, jsx as jsx2, jsxs } from "react/jsx-runtime";
 function BadgeTech(props) {
-  const containerClass = cn(`flex h-6 w-fit items-center justify-center rounded-md border bg-slate-100 px-1
+  const containerClass = cn(
+    `flex h-6 w-fit items-center justify-center rounded-md border bg-slate-100 px-1
   align-baseline text-base text-[#1e293b] shadow-sm transition
-  duration-200 ease-in-out hover:-translate-y-0.5 dark:border-[#3b3e54]
-  dark:bg-[#343e4c] dark:text-[#f8fafc]`, {
-    "tooltip-auto": !props.hideTooltip
-  });
+  duration-200 ease-in-out hover:-translate-y-0.5`,
+    {
+      "tooltip-auto": !props.hideTooltip
+    }
+  );
   const children = () => /* @__PURE__ */ jsxs(Fragment2, { children: [
     /* @__PURE__ */ jsx2(
       ImageComponent,
