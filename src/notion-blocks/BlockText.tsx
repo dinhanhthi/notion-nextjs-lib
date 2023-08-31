@@ -41,7 +41,10 @@ export default function BlockText(props: TextProps) {
   ) {
     // Link contains "domain.com" and does not contain "@
     // This is the link coming from the current version of domain, not the old ones
-    if (props.richText.href.includes(ctx?.siteDomain) && !props.richText.href.includes('@')) {
+    if (
+      new URL(props.richText.href).hostname.includes(ctx?.siteDomain) &&
+      !props.richText.href.includes('@')
+    ) {
       const uri = getUriFromUrl(props.richText.href, ctx?.siteDomain)
       return (
         <Link

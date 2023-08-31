@@ -716,7 +716,7 @@ function BlockText(props) {
     ] }, index)) });
   }
   if (props.richText.type === "text" && !props.ignore?.includes("hyperlink") && props.richText.href) {
-    if (props.richText.href.includes(ctx?.siteDomain) && !props.richText.href.includes("@")) {
+    if (new URL(props.richText.href).hostname.includes(ctx?.siteDomain) && !props.richText.href.includes("@")) {
       const uri = getUriFromUrl(props.richText.href, ctx?.siteDomain);
       return /* @__PURE__ */ jsx31(
         Link,
