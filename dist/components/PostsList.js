@@ -784,11 +784,11 @@ function BlockText(props) {
     }
   );
 }
-function getUriFromUrl(url, domainSite) {
+function getUriFromUrl(url, siteDomain) {
   const withoutProtocol = url.replace(/^(https?:\/\/)/, "");
   const withoutWWW = withoutProtocol.replace(/^www\./, "");
   const withoutTrailingSlashes = withoutWWW.replace(/\/+$/, "");
-  const withoutDomain = withoutTrailingSlashes.replace(new RegExp(`^${domainSite}`), "");
+  const withoutDomain = withoutTrailingSlashes.replace(new RegExp(`^${siteDomain}`), "");
   const withoutLocalhost = withoutDomain.replace(/^localhost:3000/, "");
   const slug = `${withoutLocalhost}`;
   return slug;

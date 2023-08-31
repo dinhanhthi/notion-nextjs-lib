@@ -135,7 +135,7 @@ export default function BlockText(props: TextProps) {
   )
 }
 
-function getUriFromUrl(url: string, domainSite: string) {
+function getUriFromUrl(url: string, siteDomain: string) {
   // Remove the protocol (http:// or https://)
   const withoutProtocol = url.replace(/^(https?:\/\/)/, '')
 
@@ -145,8 +145,8 @@ function getUriFromUrl(url: string, domainSite: string) {
   // Remove trailing slashes
   const withoutTrailingSlashes = withoutWWW.replace(/\/+$/, '')
 
-  // Remove domainSite if present
-  const withoutDomain = withoutTrailingSlashes.replace(new RegExp(`^${domainSite}`), '')
+  // Remove siteDomain if present
+  const withoutDomain = withoutTrailingSlashes.replace(new RegExp(`^${siteDomain}`), '')
 
   // Remove localhost:3000 if present
   const withoutLocalhost = withoutDomain.replace(/^localhost:3000/, '')
