@@ -37,7 +37,8 @@ export default function BlockText(props: TextProps) {
   if (
     props.richText.type === 'text' &&
     !props.ignore?.includes('hyperlink') &&
-    props.richText.href
+    props.richText.href &&
+    isValidUrl(props.richText.href)
   ) {
     // Link contains "domain.com" and does not contain "@
     // This is the link coming from the current version of domain, not the old ones
@@ -164,4 +165,14 @@ function formatDate(inputString: string) {
   const formattedDate = `${day}/${month}/${year}`
 
   return formattedDate
+}
+
+// Check if the string is a valid URL
+function isValidUrl(string: string) {
+  try {
+    new URL(string)
+  } catch (_) {
+    return false
+  }
+  return true
 }

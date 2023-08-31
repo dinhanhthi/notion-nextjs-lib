@@ -252,7 +252,7 @@ function BlockText(props) {
       index !== lines.length - 1 && /* @__PURE__ */ jsx5("br", {})
     ] }, index)) });
   }
-  if (props.richText.type === "text" && !props.ignore?.includes("hyperlink") && props.richText.href) {
+  if (props.richText.type === "text" && !props.ignore?.includes("hyperlink") && props.richText.href && isValidUrl(props.richText.href)) {
     if (new URL(props.richText.href).hostname.includes(ctx?.siteDomain) && !props.richText.href.includes("@")) {
       const uri = getUriFromUrl(props.richText.href, ctx?.siteDomain);
       return /* @__PURE__ */ jsx5(
@@ -337,6 +337,14 @@ function formatDate(inputString) {
   const [year, month, day] = inputString.split("-");
   const formattedDate = `${day}/${month}/${year}`;
   return formattedDate;
+}
+function isValidUrl(string) {
+  try {
+    new URL(string);
+  } catch (_) {
+    return false;
+  }
+  return true;
 }
 var init_BlockText = __esm({
   "src/notion-blocks/BlockText.tsx"() {
