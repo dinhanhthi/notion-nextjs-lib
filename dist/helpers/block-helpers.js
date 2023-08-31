@@ -6,7 +6,7 @@ function generateTextAnnotationClasses(annotations, ignore) {
     italic: annotations.italic && !ignore?.includes("italic"),
     "underline underline-offset-4": annotations.underline && !ignore?.includes("underline"),
     "line-through": annotations.strikethrough && !ignore?.includes("strikethrough"),
-    "font-mono text-[85%] bg-slate-200 text-[#067b26] p-[1px_4px_2px_4px] rounded": annotations.code && !ignore?.includes("code"),
+    "font-mono text-[85%] bg-[#ececec] text-[#067b26] p-[1px_4px_2px_4px] rounded break-words border-[1px_solid_#ddd]": annotations.code && !ignore?.includes("code"),
     [mapColorClass(annotations.color)]: !ignore?.includes("color")
   });
 }
@@ -58,22 +58,34 @@ function mapColorClass(color) {
       return "";
   }
 }
-function getIndentLevelClass(level, isList, isInsideList, isInsideColumn) {
+function getIndentLevelClass(opts) {
+  const { level, isList, insideList, insideColumn, insideQuote } = opts;
+  const reduceVSpace = insideList || insideColumn || insideQuote;
+  const reducedVSpaceClass = "my-2";
   switch (level) {
     case 0:
       return cn("pl-0", {
-        "my-4": !isList && !isInsideColumn,
-        "my-1.5": isList && !isInsideColumn,
-        "my-0": isInsideColumn
+        "my-3": !insideList && !insideColumn,
+        [reducedVSpaceClass]: insideList && !insideColumn,
+        "my-0": insideColumn
       });
     case 1:
-      return isInsideList ? "pl-4 mb-1.5" : "pl-4 my-3";
+      return cn("pl-4", {
+        [reducedVSpaceClass]: reduceVSpace,
+        "my-3": !reduceVSpace,
+        "!pl-6": insideList && !isList
+      });
     case 2:
-      return isInsideList ? "pl-8 mb-1.5" : "pl-8 my-3";
-    default:
-      return cn("pl-0", {
-        "my-4": !isList,
-        "my-1.5": isList
+      return cn("pl-6", {
+        [reducedVSpaceClass]: reduceVSpace,
+        "my-3": !reduceVSpace,
+        "!pl-4": insideList && insideQuote
+      });
+    case 3:
+      return cn("pl-8", {
+        [reducedVSpaceClass]: reduceVSpace,
+        "my-3": !reduceVSpace,
+        "!pl-6": insideList && insideQuote
       });
   }
 }

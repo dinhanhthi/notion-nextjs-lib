@@ -19,10 +19,14 @@ export default function BlockQuote(props: {
       <div
         className={cn(
           mapColorClass(block?.quote?.color),
-          'border border-y-0 border-r-0 border-l-4 border-slate-500'
+          'border border-y-0 border-r-0 border-l-4 border-slate-500',
+          {
+            'py-2': !children,
+            'pt-2 pb-[0.1px]': children,
+          }
         )}
       >
-        <div className={cn('py-1 pl-4')}>
+        <div className={cn('pl-4')}>
           {block?.quote?.rich_text.map((richText, index) => (
             <BlockRichText key={index} richText={richText} />
           ))}

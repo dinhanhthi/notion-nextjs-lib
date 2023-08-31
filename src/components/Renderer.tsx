@@ -36,7 +36,9 @@ const DynamicVideo = dynamic(() => import('../notion-blocks/BlockVideo'))
 export default function Renderer(props: BlockRenderProps) {
   const { block, level } = props
   let children: React.ReactNode
-  const isList = block.type === 'bulleted_list_item' || block.type === 'numbered_list_item'
+
+  const isList = ['bulleted_list_item', 'numbered_list_item'].includes(block.type)
+  const isQuote = ['quote', 'callout'].includes(block.type) // also for callout
 
   if (block.has_children) {
     children = get(block, 'children', [])?.map(childBlock => (
@@ -44,12 +46,21 @@ export default function Renderer(props: BlockRenderProps) {
         key={(childBlock as BlockObjectResponse).id}
         block={childBlock}
         level={['synced_block', 'callout'].includes(block.type) ? level : level + 1}
-        isInsideList={isList}
+        insideList={isList}
+        insideQuote={isQuote || props.insideQuote}
       />
     ))
   }
 
-  const basicBlockGap = cn(getIndentLevelClass(level, isList, props.isInsideList, props.isInsideColumn))
+  const basicBlockGap = cn(
+    getIndentLevelClass({
+      level,
+      isList,
+      insideList: props.insideList,
+      insideColumn: props.insideColumn,
+      insideQuote: props.insideQuote
+    })
+  )
   const basicBlockGapHeading = 'mt-6'
 
   switch (block.type) {
@@ -98,7 +109,9 @@ export default function Renderer(props: BlockRenderProps) {
         <BlockHeading
           type={'h1'}
           block={block}
-          outerClassName={getIndentLevelClass(level, false, props.isInsideList)}
+          outerClassName={getIndentLevelClass({
+            level
+          })}
           className={cn(basicBlockGap, basicBlockGapHeading)}
         >
           {children}
@@ -110,7 +123,9 @@ export default function Renderer(props: BlockRenderProps) {
         <BlockHeading
           type={'h2'}
           block={block}
-          outerClassName={getIndentLevelClass(level, false, props.isInsideList)}
+          outerClassName={getIndentLevelClass({
+            level
+          })}
           className={cn(basicBlockGap, basicBlockGapHeading)}
         >
           {children}
@@ -122,7 +137,9 @@ export default function Renderer(props: BlockRenderProps) {
         <BlockHeading
           type={'h3'}
           block={block}
-          outerClassName={getIndentLevelClass(level, false, props.isInsideList)}
+          outerClassName={getIndentLevelClass({
+            level
+          })}
           className={cn(basicBlockGap, basicBlockGapHeading)}
         >
           {children}

@@ -17,7 +17,7 @@ function generateTextAnnotationClasses(annotations, ignore) {
     italic: annotations.italic && !ignore?.includes("italic"),
     "underline underline-offset-4": annotations.underline && !ignore?.includes("underline"),
     "line-through": annotations.strikethrough && !ignore?.includes("strikethrough"),
-    "font-mono text-[85%] bg-slate-200 text-[#067b26] p-[1px_4px_2px_4px] rounded": annotations.code && !ignore?.includes("code"),
+    "font-mono text-[85%] bg-[#ececec] text-[#067b26] p-[1px_4px_2px_4px] rounded break-words border-[1px_solid_#ddd]": annotations.code && !ignore?.includes("code"),
     [mapColorClass(annotations.color)]: !ignore?.includes("color")
   });
 }
@@ -69,22 +69,34 @@ function mapColorClass(color) {
       return "";
   }
 }
-function getIndentLevelClass(level, isList, isInsideList, isInsideColumn) {
+function getIndentLevelClass(opts) {
+  const { level, isList, insideList, insideColumn, insideQuote } = opts;
+  const reduceVSpace = insideList || insideColumn || insideQuote;
+  const reducedVSpaceClass = "my-2";
   switch (level) {
     case 0:
       return cn("pl-0", {
-        "my-4": !isList && !isInsideColumn,
-        "my-1.5": isList && !isInsideColumn,
-        "my-0": isInsideColumn
+        "my-3": !insideList && !insideColumn,
+        [reducedVSpaceClass]: insideList && !insideColumn,
+        "my-0": insideColumn
       });
     case 1:
-      return isInsideList ? "pl-4 mb-1.5" : "pl-4 my-3";
+      return cn("pl-4", {
+        [reducedVSpaceClass]: reduceVSpace,
+        "my-3": !reduceVSpace,
+        "!pl-6": insideList && !isList
+      });
     case 2:
-      return isInsideList ? "pl-8 mb-1.5" : "pl-8 my-3";
-    default:
-      return cn("pl-0", {
-        "my-4": !isList,
-        "my-1.5": isList
+      return cn("pl-6", {
+        [reducedVSpaceClass]: reduceVSpace,
+        "my-3": !reduceVSpace,
+        "!pl-4": insideList && insideQuote
+      });
+    case 3:
+      return cn("pl-8", {
+        [reducedVSpaceClass]: reduceVSpace,
+        "my-3": !reduceVSpace,
+        "!pl-6": insideList && insideQuote
       });
   }
 }
@@ -246,8 +258,9 @@ function BlockRender(props) {
     {
       block: props.block,
       level: props.level,
-      isInsideList: props.isInsideList,
-      isInsideColumn: props.isInsideColumn
+      insideColumn: props.insideColumn,
+      insideList: props.insideList,
+      insideQuote: props.insideQuote
     }
   ) });
 }
@@ -532,7 +545,7 @@ function BlockColumnList(props) {
   if (children?.length === 0)
     return null;
   return /* @__PURE__ */ jsx12("div", { className: cn7("w-full grid gap-3", parseColumnClasses(children.length), className), children: children.map((col, index1) => {
-    return /* @__PURE__ */ jsx12("div", { className: cn7("w-full flex flex-col gap-3"), children: col["children"].map((child, index2) => /* @__PURE__ */ jsx12(BlockRender, { block: child, level: 0, isInsideColumn: true }, index2)) }, index1);
+    return /* @__PURE__ */ jsx12("div", { className: cn7("w-full flex flex-col gap-3"), children: col["children"].map((child, index2) => /* @__PURE__ */ jsx12(BlockRender, { block: child, level: 0, insideColumn: true }, index2)) }, index1);
   }) });
 }
 function parseColumnClasses(numCols) {
@@ -746,7 +759,7 @@ function BlockNumberedListItem(props) {
   const { block, className, children } = props;
   return /* @__PURE__ */ jsxs8("div", { className: cn10(className), children: [
     /* @__PURE__ */ jsxs8("div", { className: "flex items-baseline gap-2", children: [
-      /* @__PURE__ */ jsx17("div", { className: "flex items-center justify-center", children: block["list_item"] }),
+      /* @__PURE__ */ jsx17("div", { className: "flex items-center justify-center pl-1", children: block["list_item"] }),
       /* @__PURE__ */ jsx17("div", { className: "block", children: block?.numbered_list_item?.rich_text.map((richText, index) => /* @__PURE__ */ jsx17(BlockRichText, { richText }, index)) })
     ] }),
     children
@@ -788,10 +801,14 @@ function BlockQuote(props) {
     {
       className: cn12(
         mapColorClass(block?.quote?.color),
-        "border border-y-0 border-r-0 border-l-4 border-slate-500"
+        "border border-y-0 border-r-0 border-l-4 border-slate-500",
+        {
+          "py-2": !children,
+          "pt-2 pb-[0.1px]": children
+        }
       ),
       children: [
-        /* @__PURE__ */ jsx19("div", { className: cn12("py-1 pl-4"), children: block?.quote?.rich_text.map((richText, index) => /* @__PURE__ */ jsx19(BlockRichText, { richText }, index)) }),
+        /* @__PURE__ */ jsx19("div", { className: cn12("pl-4"), children: block?.quote?.rich_text.map((richText, index) => /* @__PURE__ */ jsx19(BlockRichText, { richText }, index)) }),
         children
       ]
     }
@@ -1285,19 +1302,29 @@ import { Fragment as Fragment6, jsx as jsx32 } from "react/jsx-runtime";
 function Renderer(props) {
   const { block, level } = props;
   let children;
-  const isList = block.type === "bulleted_list_item" || block.type === "numbered_list_item";
+  const isList = ["bulleted_list_item", "numbered_list_item"].includes(block.type);
+  const isQuote = ["quote", "callout"].includes(block.type);
   if (block.has_children) {
     children = get6(block, "children", [])?.map((childBlock) => /* @__PURE__ */ jsx32(
       Renderer,
       {
         block: childBlock,
         level: ["synced_block", "callout"].includes(block.type) ? level : level + 1,
-        isInsideList: isList
+        insideList: isList,
+        insideQuote: isQuote || props.insideQuote
       },
       childBlock.id
     ));
   }
-  const basicBlockGap = cn19(getIndentLevelClass(level, isList, props.isInsideList, props.isInsideColumn));
+  const basicBlockGap = cn19(
+    getIndentLevelClass({
+      level,
+      isList,
+      insideList: props.insideList,
+      insideColumn: props.insideColumn,
+      insideQuote: props.insideQuote
+    })
+  );
   const basicBlockGapHeading = "mt-6";
   switch (block.type) {
     case "synced_block":
@@ -1332,7 +1359,9 @@ function Renderer(props) {
         {
           type: "h1",
           block,
-          outerClassName: getIndentLevelClass(level, false, props.isInsideList),
+          outerClassName: getIndentLevelClass({
+            level
+          }),
           className: cn19(basicBlockGap, basicBlockGapHeading),
           children
         }
@@ -1343,7 +1372,9 @@ function Renderer(props) {
         {
           type: "h2",
           block,
-          outerClassName: getIndentLevelClass(level, false, props.isInsideList),
+          outerClassName: getIndentLevelClass({
+            level
+          }),
           className: cn19(basicBlockGap, basicBlockGapHeading),
           children
         }
@@ -1354,7 +1385,9 @@ function Renderer(props) {
         {
           type: "h3",
           block,
-          outerClassName: getIndentLevelClass(level, false, props.isInsideList),
+          outerClassName: getIndentLevelClass({
+            level
+          }),
           className: cn19(basicBlockGap, basicBlockGapHeading),
           children
         }

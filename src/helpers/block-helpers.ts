@@ -15,7 +15,7 @@ export function generateTextAnnotationClasses(
     italic: annotations.italic && !ignore?.includes('italic'),
     'underline underline-offset-4': annotations.underline && !ignore?.includes('underline'),
     'line-through': annotations.strikethrough && !ignore?.includes('strikethrough'),
-    'font-mono text-[85%] bg-slate-200 text-[#067b26] p-[1px_4px_2px_4px] rounded':
+    'font-mono text-[85%] bg-[#ececec] text-[#067b26] p-[1px_4px_2px_4px] rounded break-words border-[1px_solid_#ddd]':
       annotations.code && !ignore?.includes('code'),
     [mapColorClass(annotations.color)]: true && !ignore?.includes('color')
   })
@@ -71,27 +71,41 @@ export function mapColorClass(color: string): string {
   }
 }
 
-export function getIndentLevelClass(
-  level: number,
-  isList: boolean,
-  isInsideList?: boolean,
-  isInsideColumn?: boolean
-): string {
+export function getIndentLevelClass(opts: {
+  level: number
+  isList?: boolean
+  insideList?: boolean
+  insideColumn?: boolean
+  insideQuote?: boolean // also applied for callout
+}): string {
+  const { level, isList, insideList, insideColumn, insideQuote } = opts
+  const reduceVSpace = insideList || insideColumn || insideQuote
+  const reducedVSpaceClass = 'my-2'
+
   switch (level) {
     case 0:
       return cn('pl-0', {
-        'my-4': !isList && !isInsideColumn,
-        'my-1.5': isList && !isInsideColumn,
-        'my-0': isInsideColumn
+        'my-3': !insideList && !insideColumn,
+        [reducedVSpaceClass]: insideList && !insideColumn,
+        'my-0': insideColumn
       })
     case 1:
-      return isInsideList ? 'pl-4 mb-1.5' : 'pl-4 my-3'
+      return cn('pl-4', {
+        [reducedVSpaceClass]: reduceVSpace,
+        'my-3': !reduceVSpace,
+        '!pl-6': insideList && !isList
+      })
     case 2:
-      return isInsideList ? 'pl-8 mb-1.5' : 'pl-8 my-3'
-    default:
-      return cn('pl-0', {
-        'my-4': !isList,
-        'my-1.5': isList
+      return cn('pl-6', {
+        [reducedVSpaceClass]: reduceVSpace,
+        'my-3': !reduceVSpace,
+        '!pl-4': insideList && insideQuote
+      })
+    case 3:
+      return cn('pl-8', {
+        [reducedVSpaceClass]: reduceVSpace,
+        'my-3': !reduceVSpace,
+        '!pl-6': insideList && insideQuote
       })
   }
 }

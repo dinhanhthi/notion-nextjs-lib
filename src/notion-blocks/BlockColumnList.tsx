@@ -25,7 +25,7 @@ export default function BlockColumnList(props: { block: BlockColumnListType; cla
         return (
           <div key={index1} className={cn('w-full flex flex-col gap-3')}>
             {col['children'].map((child: BlockObjectResponse, index2: number) => (
-              <BlockRender key={index2} block={child} level={0} isInsideColumn={true} />
+              <BlockRender key={index2} block={child} level={0} insideColumn={true} />
             ))}
           </div>
         )

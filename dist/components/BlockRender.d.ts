@@ -13,8 +13,9 @@ type BlockOptionsContextType = {
 type BlockRenderProps = {
     block: BlockObjectResponse;
     level: number;
-    isInsideList?: boolean;
-    isInsideColumn?: boolean;
+    insideColumn?: boolean;
+    insideList?: boolean;
+    insideQuote?: boolean;
     blockOptionsContext?: BlockOptionsContextType;
 };
 declare const BlockOptionContext: React.Context<BlockOptionsContextType>;

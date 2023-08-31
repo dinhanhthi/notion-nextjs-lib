@@ -16,7 +16,7 @@ function generateTextAnnotationClasses(annotations, ignore) {
     italic: annotations.italic && !ignore?.includes("italic"),
     "underline underline-offset-4": annotations.underline && !ignore?.includes("underline"),
     "line-through": annotations.strikethrough && !ignore?.includes("strikethrough"),
-    "font-mono text-[85%] bg-slate-200 text-[#067b26] p-[1px_4px_2px_4px] rounded": annotations.code && !ignore?.includes("code"),
+    "font-mono text-[85%] bg-[#ececec] text-[#067b26] p-[1px_4px_2px_4px] rounded break-words border-[1px_solid_#ddd]": annotations.code && !ignore?.includes("code"),
     [mapColorClass(annotations.color)]: !ignore?.includes("color")
   });
 }

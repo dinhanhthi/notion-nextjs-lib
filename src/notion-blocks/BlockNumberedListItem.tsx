@@ -14,7 +14,7 @@ export default function BlockNumberedListItem(props: {
   return (
     <div className={cn(className)}>
       <div className="flex items-baseline gap-2">
-        <div className="flex items-center justify-center">{block['list_item']}</div>
+        <div className="flex items-center justify-center pl-1">{block['list_item']}</div>
         <div className="block">
           {block?.numbered_list_item?.rich_text.map((richText, index) => (
             <BlockRichText key={index} richText={richText} />
