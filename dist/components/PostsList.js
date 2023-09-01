@@ -444,34 +444,43 @@ function BlockCode(props) {
     setTimeout(() => setCopied(false), 1e3);
   };
   return /* @__PURE__ */ jsxs15("div", { className: cn17(className, "group"), children: [
-    /* @__PURE__ */ jsxs15("div", { className: `language-${formatCodeLang(language)} syntax-highlighter relative text-[14px]`, children: [
-      /* @__PURE__ */ jsx29(
-        SyntaxHighlighter,
-        {
-          language: formatCodeLang(language),
-          style: prism,
-          className: "!my-0 syntax-highlighter-pre m2it-scrollbar m2it-scrollbar-small border !bg-slate-50",
-          showLineNumbers: true,
-          children: getJoinedRichText(block?.code?.rich_text)
-        }
-      ),
-      /* @__PURE__ */ jsx29(
-        "div",
-        {
-          className: cn17(
-            "tooltip-auto !absolute right-2 top-2 duration-100 hover:cursor-pointer group-hover:opacity-100",
+    /* @__PURE__ */ jsxs15(
+      "div",
+      {
+        className: `language-${formatCodeLang(language)} syntax-highlighter relative text-[14px]`,
+        children: [
+          /* @__PURE__ */ jsx29(
+            SyntaxHighlighter,
             {
-              "opacity-0": !copied
+              language: formatCodeLang(language),
+              style: prism,
+              className: cn17(
+                "!my-0 syntax-highlighter-pre m2it-scrollbar m2it-scrollbar-small border !bg-slate-50",
+                "max-h-[400px]"
+              ),
+              showLineNumbers: true,
+              children: getJoinedRichText(block?.code?.rich_text)
             }
           ),
-          "data-title": copied ? ctx?.blockCodeCopiedText || "Copied" : ctx?.blockCodeCopyText || "Copy",
-          children: /* @__PURE__ */ jsx29(CopyToClipboard, { text: getJoinedRichText(block?.code?.rich_text), onCopy: onSuccess, children: /* @__PURE__ */ jsxs15("button", { children: [
-            !copied && /* @__PURE__ */ jsx29(RxCopy, { className: "text-lg text-slate-400 hover:text-slate-700" }),
-            copied && /* @__PURE__ */ jsx29(FiCheck, { className: "text-lg text-green-600" })
-          ] }) })
-        }
-      )
-    ] }),
+          /* @__PURE__ */ jsx29(
+            "div",
+            {
+              className: cn17(
+                "tooltip-auto !absolute right-2 top-2 duration-100 hover:cursor-pointer group-hover:opacity-100",
+                {
+                  "opacity-0": !copied
+                }
+              ),
+              "data-title": copied ? ctx?.blockCodeCopiedText || "Copied" : ctx?.blockCodeCopyText || "Copy",
+              children: /* @__PURE__ */ jsx29(CopyToClipboard, { text: getJoinedRichText(block?.code?.rich_text), onCopy: onSuccess, children: /* @__PURE__ */ jsxs15("button", { children: [
+                !copied && /* @__PURE__ */ jsx29(RxCopy, { className: "text-lg text-slate-400 hover:text-slate-700" }),
+                copied && /* @__PURE__ */ jsx29(FiCheck, { className: "text-lg text-green-600" })
+              ] }) })
+            }
+          )
+        ]
+      }
+    ),
     block?.code?.caption && /* @__PURE__ */ jsx29("div", { className: "italic opacity-60", children: block?.code?.caption?.map((richText, index) => /* @__PURE__ */ jsx29(BlockRichText, { richText }, index)) }),
     block?.code?.language === "mermaid" && /* @__PURE__ */ jsx29(Mermaid, { chart: getJoinedRichText(block?.code?.rich_text) })
   ] });
@@ -542,7 +551,7 @@ import { jsx as jsx31, jsxs as jsxs16 } from "react/jsx-runtime";
 function BlockTable(props) {
   const { block, className } = props;
   const bodyRows = block?.table.has_row_header ? block?.["children"]?.slice(1) : block?.["children"];
-  return /* @__PURE__ */ jsx31("div", { className: cn19(className, "w-full overflow-auto md:overflow-visible"), children: /* @__PURE__ */ jsxs16("table", { className: "table-auto", children: [
+  return /* @__PURE__ */ jsx31("div", { className: cn19(className, "w-full overflow-auto md:overflow-visible"), children: /* @__PURE__ */ jsxs16("table", { className: "table-auto my-0", children: [
     block?.table?.has_row_header && /* @__PURE__ */ jsx31("thead", { children: trBlock({
       cells: block?.["children"]?.[0]?.table_row?.cells,
       isRowHeader: true,
@@ -1253,7 +1262,7 @@ function PostSimple(props) {
             className: cn25("mt-[3px] text-slate-600", {
               "tooltip-auto": post.isBlog
             }),
-            "data-title": post.isBlog ? "Well-written, like a blog" : null,
+            "data-title": post.isBlog ? props.options.wellWrittenLabel || "Well-written, like a blog" : null,
             children: [
               !!options?.customIcon && options.customIcon,
               !options?.customIcon && !post.isBlog && /* @__PURE__ */ jsx44(HiOutlineDocumentText, { className: "text-xl" }),
@@ -1264,7 +1273,14 @@ function PostSimple(props) {
         /* @__PURE__ */ jsxs21("h3", { className: "flex-1", children: [
           post.title,
           " ",
-          post.isDraft && /* @__PURE__ */ jsx44("span", { className: "bg-slate-100 text-slate-600 px-2 py-0 text-[0.8rem] rounded-md", children: options.draftLabel || "draft" })
+          post.isDraft && /* @__PURE__ */ jsx44(
+            "span",
+            {
+              className: cn25("bg-slate-100 text-slate-600 px-2 py-0 text-[0.8rem] rounded-md tooltip-auto"),
+              "data-title": options.tooltipDraftLabel || "The content is not so good yet",
+              children: options.draftLabel || "draft"
+            }
+          )
         ] }),
         (post.createdDate || post.date) && /* @__PURE__ */ jsxs21("div", { className: "gap-2 hidden md:flex items-center", children: [
           post.date && !isNew && post.createdDate && isDateAfter(post.date, post.createdDate) && /* @__PURE__ */ jsxs21(

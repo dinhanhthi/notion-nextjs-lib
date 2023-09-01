@@ -1090,34 +1090,43 @@ function BlockCode(props) {
     setTimeout(() => setCopied(false), 1e3);
   };
   return /* @__PURE__ */ jsxs14("div", { className: cn16(className, "group"), children: [
-    /* @__PURE__ */ jsxs14("div", { className: `language-${formatCodeLang(language)} syntax-highlighter relative text-[14px]`, children: [
-      /* @__PURE__ */ jsx27(
-        SyntaxHighlighter,
-        {
-          language: formatCodeLang(language),
-          style: prism,
-          className: "!my-0 syntax-highlighter-pre m2it-scrollbar m2it-scrollbar-small border !bg-slate-50",
-          showLineNumbers: true,
-          children: getJoinedRichText(block?.code?.rich_text)
-        }
-      ),
-      /* @__PURE__ */ jsx27(
-        "div",
-        {
-          className: cn16(
-            "tooltip-auto !absolute right-2 top-2 duration-100 hover:cursor-pointer group-hover:opacity-100",
+    /* @__PURE__ */ jsxs14(
+      "div",
+      {
+        className: `language-${formatCodeLang(language)} syntax-highlighter relative text-[14px]`,
+        children: [
+          /* @__PURE__ */ jsx27(
+            SyntaxHighlighter,
             {
-              "opacity-0": !copied
+              language: formatCodeLang(language),
+              style: prism,
+              className: cn16(
+                "!my-0 syntax-highlighter-pre m2it-scrollbar m2it-scrollbar-small border !bg-slate-50",
+                "max-h-[400px]"
+              ),
+              showLineNumbers: true,
+              children: getJoinedRichText(block?.code?.rich_text)
             }
           ),
-          "data-title": copied ? ctx?.blockCodeCopiedText || "Copied" : ctx?.blockCodeCopyText || "Copy",
-          children: /* @__PURE__ */ jsx27(CopyToClipboard, { text: getJoinedRichText(block?.code?.rich_text), onCopy: onSuccess, children: /* @__PURE__ */ jsxs14("button", { children: [
-            !copied && /* @__PURE__ */ jsx27(RxCopy, { className: "text-lg text-slate-400 hover:text-slate-700" }),
-            copied && /* @__PURE__ */ jsx27(FiCheck, { className: "text-lg text-green-600" })
-          ] }) })
-        }
-      )
-    ] }),
+          /* @__PURE__ */ jsx27(
+            "div",
+            {
+              className: cn16(
+                "tooltip-auto !absolute right-2 top-2 duration-100 hover:cursor-pointer group-hover:opacity-100",
+                {
+                  "opacity-0": !copied
+                }
+              ),
+              "data-title": copied ? ctx?.blockCodeCopiedText || "Copied" : ctx?.blockCodeCopyText || "Copy",
+              children: /* @__PURE__ */ jsx27(CopyToClipboard, { text: getJoinedRichText(block?.code?.rich_text), onCopy: onSuccess, children: /* @__PURE__ */ jsxs14("button", { children: [
+                !copied && /* @__PURE__ */ jsx27(RxCopy, { className: "text-lg text-slate-400 hover:text-slate-700" }),
+                copied && /* @__PURE__ */ jsx27(FiCheck, { className: "text-lg text-green-600" })
+              ] }) })
+            }
+          )
+        ]
+      }
+    ),
     block?.code?.caption && /* @__PURE__ */ jsx27("div", { className: "italic opacity-60", children: block?.code?.caption?.map((richText, index) => /* @__PURE__ */ jsx27(BlockRichText, { richText }, index)) }),
     block?.code?.language === "mermaid" && /* @__PURE__ */ jsx27(Mermaid, { chart: getJoinedRichText(block?.code?.rich_text) })
   ] });
@@ -1156,7 +1165,7 @@ import { jsx as jsx28, jsxs as jsxs15 } from "react/jsx-runtime";
 function BlockTable(props) {
   const { block, className } = props;
   const bodyRows = block?.table.has_row_header ? block?.["children"]?.slice(1) : block?.["children"];
-  return /* @__PURE__ */ jsx28("div", { className: cn17(className, "w-full overflow-auto md:overflow-visible"), children: /* @__PURE__ */ jsxs15("table", { className: "table-auto", children: [
+  return /* @__PURE__ */ jsx28("div", { className: cn17(className, "w-full overflow-auto md:overflow-visible"), children: /* @__PURE__ */ jsxs15("table", { className: "table-auto my-0", children: [
     block?.table?.has_row_header && /* @__PURE__ */ jsx28("thead", { children: trBlock({
       cells: block?.["children"]?.[0]?.table_row?.cells,
       isRowHeader: true,

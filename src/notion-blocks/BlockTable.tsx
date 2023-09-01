@@ -16,7 +16,7 @@ export default function BlockTable(props: { block: BlockTableType; className?: s
     : block?.['children']
   return (
     <div className={cn(className, 'w-full overflow-auto md:overflow-visible')}>
-      <table className="table-auto">
+      <table className="table-auto my-0">
         {block?.table?.has_row_header && (
           <thead>
             {trBlock({

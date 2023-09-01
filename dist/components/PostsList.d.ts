@@ -31,7 +31,9 @@ type PostSimpleOpts = {
     updatedOnLabel?: string;
     newLabel?: string;
     draftLabel?: string;
+    tooltipDraftLabel?: string;
     humanizeDate?: boolean;
+    wellWrittenLabel?: string;
 };
 
 type PostTitleCateDateOpts = {
