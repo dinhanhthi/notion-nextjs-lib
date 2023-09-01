@@ -33,11 +33,16 @@ export default function BlockCode(props: BlockCodeProps) {
 
   return (
     <div className={cn(className, 'group')}>
-      <div className={`language-${formatCodeLang(language)} syntax-highlighter relative text-[14px]`}>
+      <div
+        className={`language-${formatCodeLang(language)} syntax-highlighter relative text-[14px]`}
+      >
         <SyntaxHighlighter
           language={formatCodeLang(language)}
           style={prism}
-          className="!my-0 syntax-highlighter-pre m2it-scrollbar m2it-scrollbar-small border !bg-slate-50"
+          className={cn(
+            '!my-0 syntax-highlighter-pre m2it-scrollbar m2it-scrollbar-small border !bg-slate-50',
+            'max-h-[400px]'
+          )}
           showLineNumbers={true}
         >
           {/* We don't use <BlockRichText> because the package react-syntax-highlighter requires a string. */}
