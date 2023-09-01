@@ -71,31 +71,32 @@ function mapColorClass(color) {
 }
 function getIndentLevelClass(opts) {
   const { level, isList, insideList, insideColumn, insideQuote } = opts;
-  const reduceVSpace = insideList || insideColumn || insideQuote;
+  const reduceVSpace = insideList || insideColumn || insideQuote || isList;
   const reducedVSpaceClass = "my-2";
+  const normalVSpaceClass = "my-3";
   switch (level) {
     case 0:
       return cn("pl-0", {
-        "my-3": !insideList && !insideColumn,
-        [reducedVSpaceClass]: insideList && !insideColumn,
+        [normalVSpaceClass]: !reduceVSpace && !insideColumn,
+        [reducedVSpaceClass]: reduceVSpace && !insideColumn,
         "my-0": insideColumn
       });
     case 1:
       return cn("pl-4", {
         [reducedVSpaceClass]: reduceVSpace,
-        "my-3": !reduceVSpace,
+        [normalVSpaceClass]: !reduceVSpace,
         "!pl-6": insideList && !isList
       });
     case 2:
       return cn("pl-6", {
         [reducedVSpaceClass]: reduceVSpace,
-        "my-3": !reduceVSpace,
+        [normalVSpaceClass]: !reduceVSpace,
         "!pl-4": insideList && insideQuote
       });
     case 3:
       return cn("pl-8", {
         [reducedVSpaceClass]: reduceVSpace,
-        "my-3": !reduceVSpace,
+        [normalVSpaceClass]: !reduceVSpace,
         "!pl-6": insideList && insideQuote
       });
   }
@@ -525,7 +526,7 @@ function BlockCallout(props) {
     get2(block, "callout.icon.emoji") && /* @__PURE__ */ jsx11("div", { className: "text-2xl pl-4 pr-2 py-3", children: get2(block, "callout.icon.emoji") }),
     /* @__PURE__ */ jsxs4("div", { className: "py-4 pl-2 pr-4 w-full", children: [
       block?.callout?.rich_text.map((richText, index) => /* @__PURE__ */ jsx11(BlockRichText, { richText }, index)),
-      !!children && /* @__PURE__ */ jsx11("div", { className: "-ml-4 pt-3 m2it-inside-box", children })
+      !!children && /* @__PURE__ */ jsx11("div", { className: "pt-2 m2it-inside-box", children })
     ] })
   ] }) });
 }
@@ -928,7 +929,7 @@ function BlockToggle(props) {
             ]
           }
         ),
-        !!children && /* @__PURE__ */ jsx23(Disclosure2.Panel, { className: "rounded-b-md py-4 pr-4 m2it-inside-box", children })
+        !!children && /* @__PURE__ */ jsx23(Disclosure2.Panel, { className: "pr-4", children })
       ] }) })
     }
   );

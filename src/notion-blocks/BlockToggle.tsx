@@ -47,7 +47,7 @@ export default function BlockToggle(props: {
               </div>
             </Disclosure.Button>
             {!!children && (
-              <Disclosure.Panel className="rounded-b-md py-4 pr-4 m2it-inside-box">
+              <Disclosure.Panel className={'pr-4'}>
                 {children}
               </Disclosure.Panel>
             )}

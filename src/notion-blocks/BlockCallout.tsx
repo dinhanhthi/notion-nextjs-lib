@@ -22,7 +22,7 @@ export default function BlockCallout(props: {
           {block?.callout?.rich_text.map((richText, index) => (
             <BlockRichText key={index} richText={richText} />
           ))}
-          {!!children && <div className="-ml-4 pt-3 m2it-inside-box">{children}</div>}
+          {!!children && <div className="pt-2 m2it-inside-box">{children}</div>}
         </div>
       </div>
     </div>
