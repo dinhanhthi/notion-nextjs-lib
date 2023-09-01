@@ -18,7 +18,9 @@ export type PostSimpleOpts = {
   updatedOnLabel?: string
   newLabel?: string
   draftLabel?: string
+  tooltipDraftLabel?: string
   humanizeDate?: boolean
+  wellWrittenLabel?: string
 }
 
 type PostSimpleProps = {
@@ -58,7 +60,9 @@ export default function PostSimple(props: PostSimpleProps) {
           className={cn('mt-[3px] text-slate-600', {
             'tooltip-auto': post.isBlog
           })}
-          data-title={post.isBlog ? 'Well-written, like a blog' : null}
+          data-title={
+            post.isBlog ? props.options.wellWrittenLabel || 'Well-written, like a blog' : null
+          }
         >
           {!!options?.customIcon && options.customIcon}
           {!options?.customIcon && !post.isBlog && <HiOutlineDocumentText className="text-xl" />}
@@ -67,7 +71,10 @@ export default function PostSimple(props: PostSimpleProps) {
         <h3 className="flex-1">
           {post.title}{' '}
           {post.isDraft && (
-            <span className="bg-slate-100 text-slate-600 px-2 py-0 text-[0.8rem] rounded-md">
+            <span
+              className={cn('bg-slate-100 text-slate-600 px-2 py-0 text-[0.8rem] rounded-md tooltip-auto')}
+              data-title={options.tooltipDraftLabel || 'The content is not so good yet'}
+            >
               {options.draftLabel || 'draft'}
             </span>
           )}
