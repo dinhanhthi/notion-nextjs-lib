@@ -95,12 +95,12 @@ export default function PostSimple(props: PostSimpleProps) {
                     'flex gap-1 items-center'
                   )}
                 >
-                  {options?.updatedOnLabel || 'updated'}{' '}
                   <DateComponent
                     className="hidden lg:inline-block"
                     dateString={post.date}
                     format="MMM DD, YYYY"
                     humanize={options?.humanizeDate}
+                    dateLabel={options?.updatedOnLabel || 'updated'}
                   />
                 </div>
               )}

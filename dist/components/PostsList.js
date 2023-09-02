@@ -96,7 +96,7 @@ var init_block_helpers = __esm({
 
 // src/notion-blocks/BlockBookmark.tsx
 import cn5 from "classnames";
-import { Fragment as Fragment3, jsx as jsx7, jsxs as jsxs3 } from "react/jsx-runtime";
+import { Fragment as Fragment3, jsx as jsx7, jsxs as jsxs4 } from "react/jsx-runtime";
 var init_BlockBookmark = __esm({
   "src/notion-blocks/BlockBookmark.tsx"() {
     "use client";
@@ -126,7 +126,7 @@ var init_RxDotFilled = __esm({
 
 // src/notion-blocks/BlockBulletedListItem.tsx
 import cn6 from "classnames";
-import { jsx as jsx11, jsxs as jsxs4 } from "react/jsx-runtime";
+import { jsx as jsx11, jsxs as jsxs5 } from "react/jsx-runtime";
 var init_BlockBulletedListItem = __esm({
   "src/notion-blocks/BlockBulletedListItem.tsx"() {
     init_GoSquareFill();
@@ -139,7 +139,7 @@ var init_BlockBulletedListItem = __esm({
 // src/notion-blocks/BlockCallout.tsx
 import cn7 from "classnames";
 import { get } from "lodash";
-import { jsx as jsx12, jsxs as jsxs5 } from "react/jsx-runtime";
+import { jsx as jsx12, jsxs as jsxs6 } from "react/jsx-runtime";
 var init_BlockCallout = __esm({
   "src/notion-blocks/BlockCallout.tsx"() {
     init_block_helpers();
@@ -157,7 +157,7 @@ var init_BlockColumnList = __esm({
 });
 
 // src/icons/CiLink.tsx
-import { jsx as jsx14, jsxs as jsxs6 } from "react/jsx-runtime";
+import { jsx as jsx14, jsxs as jsxs7 } from "react/jsx-runtime";
 var init_CiLink = __esm({
   "src/icons/CiLink.tsx"() {
   }
@@ -174,7 +174,7 @@ var init_BsFillCaretRightFill = __esm({
 import { Disclosure } from "@headlessui/react";
 import cn9 from "classnames";
 import { useContext } from "react";
-import { Fragment as Fragment4, jsx as jsx16, jsxs as jsxs7 } from "react/jsx-runtime";
+import { Fragment as Fragment4, jsx as jsx16, jsxs as jsxs8 } from "react/jsx-runtime";
 var init_BlockHeadingToggle = __esm({
   "src/notion-blocks/BlockHeadingToggle.tsx"() {
     "use client";
@@ -187,7 +187,7 @@ var init_BlockHeadingToggle = __esm({
 import cn10 from "classnames";
 import { get as get2 } from "lodash";
 import { useContext as useContext2 } from "react";
-import { Fragment as Fragment5, jsx as jsx17, jsxs as jsxs8 } from "react/jsx-runtime";
+import { Fragment as Fragment5, jsx as jsx17, jsxs as jsxs9 } from "react/jsx-runtime";
 var init_BlockHeading = __esm({
   "src/notion-blocks/BlockHeading.tsx"() {
     "use client";
@@ -201,7 +201,7 @@ var init_BlockHeading = __esm({
 
 // src/notion-blocks/BlockNumberedListItem.tsx
 import cn11 from "classnames";
-import { jsx as jsx18, jsxs as jsxs9 } from "react/jsx-runtime";
+import { jsx as jsx18, jsxs as jsxs10 } from "react/jsx-runtime";
 var init_BlockNumberedListItem = __esm({
   "src/notion-blocks/BlockNumberedListItem.tsx"() {
     init_BlockRichText();
@@ -210,7 +210,7 @@ var init_BlockNumberedListItem = __esm({
 
 // src/notion-blocks/BlockParagraph.tsx
 import cn12 from "classnames";
-import { jsx as jsx19, jsxs as jsxs10 } from "react/jsx-runtime";
+import { jsx as jsx19, jsxs as jsxs11 } from "react/jsx-runtime";
 var init_BlockParagraph = __esm({
   "src/notion-blocks/BlockParagraph.tsx"() {
     init_block_helpers();
@@ -220,7 +220,7 @@ var init_BlockParagraph = __esm({
 
 // src/notion-blocks/BlockQuote.tsx
 import cn13 from "classnames";
-import { jsx as jsx20, jsxs as jsxs11 } from "react/jsx-runtime";
+import { jsx as jsx20, jsxs as jsxs12 } from "react/jsx-runtime";
 var init_BlockQuote = __esm({
   "src/notion-blocks/BlockQuote.tsx"() {
     init_block_helpers();
@@ -244,7 +244,7 @@ var init_BsSquare = __esm({
 
 // src/notion-blocks/BlockToDo.tsx
 import cn14 from "classnames";
-import { jsx as jsx23, jsxs as jsxs12 } from "react/jsx-runtime";
+import { jsx as jsx23, jsxs as jsxs13 } from "react/jsx-runtime";
 var init_BlockToDo = __esm({
   "src/notion-blocks/BlockToDo.tsx"() {
     init_BsCheckSquare();
@@ -256,7 +256,7 @@ var init_BlockToDo = __esm({
 // src/notion-blocks/BlockToggle.tsx
 import { Disclosure as Disclosure2 } from "@headlessui/react";
 import cn15 from "classnames";
-import { Fragment as Fragment6, jsx as jsx24, jsxs as jsxs13 } from "react/jsx-runtime";
+import { Fragment as Fragment6, jsx as jsx24, jsxs as jsxs14 } from "react/jsx-runtime";
 var init_BlockToggle = __esm({
   "src/notion-blocks/BlockToggle.tsx"() {
     "use client";
@@ -286,7 +286,7 @@ import { get as get3 } from "lodash";
 import mediumZoom from "medium-zoom";
 import Image2 from "next/image";
 import { useRef, useState as useState2 } from "react";
-import { jsx as jsx25, jsxs as jsxs14 } from "react/jsx-runtime";
+import { jsx as jsx25, jsxs as jsxs15 } from "react/jsx-runtime";
 function BlockImage(props) {
   const [isImageReady, setIsImageReady] = useState2(false);
   const { block, className } = props;
@@ -312,7 +312,7 @@ function BlockImage(props) {
       zoom.detach();
     }
   }
-  return /* @__PURE__ */ jsxs14("div", { className: cn16(className, "flex flex-col justify-center items-center gap-2"), children: [
+  return /* @__PURE__ */ jsxs15("div", { className: cn16(className, "flex flex-col justify-center items-center gap-2"), children: [
     block.imgUrl && /* @__PURE__ */ jsx25("div", { className: "relative flex w-full items-center justify-center overflow-hidden", children: /* @__PURE__ */ jsx25(
       Image2,
       {
@@ -433,7 +433,7 @@ import { useContext as useContext3, useState as useState3 } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { prism } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { jsx as jsx29, jsxs as jsxs15 } from "react/jsx-runtime";
+import { jsx as jsx29, jsxs as jsxs16 } from "react/jsx-runtime";
 function BlockCode(props) {
   const ctx = useContext3(BlockOptionContext);
   const { block, className } = props;
@@ -443,8 +443,8 @@ function BlockCode(props) {
     setCopied(true);
     setTimeout(() => setCopied(false), 1e3);
   };
-  return /* @__PURE__ */ jsxs15("div", { className: cn17(className, "group"), children: [
-    /* @__PURE__ */ jsxs15(
+  return /* @__PURE__ */ jsxs16("div", { className: cn17(className, "group"), children: [
+    /* @__PURE__ */ jsxs16(
       "div",
       {
         className: `language-${formatCodeLang(language)} syntax-highlighter relative text-[14px]`,
@@ -472,7 +472,7 @@ function BlockCode(props) {
                 }
               ),
               "data-title": copied ? ctx?.blockCodeCopiedText || "Copied" : ctx?.blockCodeCopyText || "Copy",
-              children: /* @__PURE__ */ jsx29(CopyToClipboard, { text: getJoinedRichText(block?.code?.rich_text), onCopy: onSuccess, children: /* @__PURE__ */ jsxs15("button", { children: [
+              children: /* @__PURE__ */ jsx29(CopyToClipboard, { text: getJoinedRichText(block?.code?.rich_text), onCopy: onSuccess, children: /* @__PURE__ */ jsxs16("button", { children: [
                 !copied && /* @__PURE__ */ jsx29(RxCopy, { className: "text-lg text-slate-400 hover:text-slate-700" }),
                 copied && /* @__PURE__ */ jsx29(FiCheck, { className: "text-lg text-green-600" })
               ] }) })
@@ -547,11 +547,11 @@ __export(BlockTable_exports, {
   default: () => BlockTable
 });
 import cn19 from "classnames";
-import { jsx as jsx31, jsxs as jsxs16 } from "react/jsx-runtime";
+import { jsx as jsx31, jsxs as jsxs17 } from "react/jsx-runtime";
 function BlockTable(props) {
   const { block, className } = props;
   const bodyRows = block?.table.has_row_header ? block?.["children"]?.slice(1) : block?.["children"];
-  return /* @__PURE__ */ jsx31("div", { className: cn19(className, "w-full overflow-auto md:overflow-visible"), children: /* @__PURE__ */ jsxs16("table", { className: "table-auto my-0", children: [
+  return /* @__PURE__ */ jsx31("div", { className: cn19(className, "w-full overflow-auto md:overflow-visible"), children: /* @__PURE__ */ jsxs17("table", { className: "table-auto my-0", children: [
     block?.table?.has_row_header && /* @__PURE__ */ jsx31("thead", { children: trBlock({
       cells: block?.["children"]?.[0]?.table_row?.cells,
       isRowHeader: true,
@@ -638,7 +638,7 @@ __export(BlockVideo_exports, {
 });
 import cn20 from "classnames";
 import { get as get4 } from "lodash";
-import { jsx as jsx33, jsxs as jsxs17 } from "react/jsx-runtime";
+import { jsx as jsx33, jsxs as jsxs18 } from "react/jsx-runtime";
 function BlockVideo(props) {
   const videoUrl = get4(props.block, "video.external.url");
   const videoId = getYoutubeVideoId(videoUrl);
@@ -646,7 +646,7 @@ function BlockVideo(props) {
     return null;
   const caption = get4(props.block, "video.caption");
   const title = caption ? getJoinedRichText(caption) : "";
-  return /* @__PURE__ */ jsxs17("div", { className: cn20(props.className, "flex flex-col justify-center items-center gap-2"), children: [
+  return /* @__PURE__ */ jsxs18("div", { className: cn20(props.className, "flex flex-col justify-center items-center gap-2"), children: [
     /* @__PURE__ */ jsx33("div", { className: "w-full", children: /* @__PURE__ */ jsx33(YoutubeEmbed, { id: videoId, title, className: "aspect-video w-full" }) }),
     caption && caption.length > 0 && /* @__PURE__ */ jsx33("div", { className: "text-sm italic opacity-90", children: caption.map((richText, index) => /* @__PURE__ */ jsx33(BlockRichText, { richText }, index)) })
   ] });
@@ -711,12 +711,12 @@ import cn22 from "classnames";
 import { get as get6 } from "lodash";
 import Link3 from "next/link";
 import { useContext as useContext4 } from "react";
-import { Fragment as Fragment8, jsx as jsx36, jsxs as jsxs18 } from "react/jsx-runtime";
+import { Fragment as Fragment8, jsx as jsx36, jsxs as jsxs19 } from "react/jsx-runtime";
 function BlockText(props) {
   const ctx = useContext4(BlockOptionContext);
   if (props.richText.plain_text.includes("\n")) {
     const lines = props.richText.plain_text.split("\n");
-    return /* @__PURE__ */ jsx36(Fragment8, { children: lines.map((line, index) => /* @__PURE__ */ jsxs18("span", { children: [
+    return /* @__PURE__ */ jsx36(Fragment8, { children: lines.map((line, index) => /* @__PURE__ */ jsxs19("span", { children: [
       line,
       index !== lines.length - 1 && /* @__PURE__ */ jsx36("br", {})
     ] }, index)) });
@@ -1001,7 +1001,7 @@ function BiDotsHorizontalRounded(props) {
 }
 
 // src/components/Date.tsx
-import { jsx as jsx3 } from "react/jsx-runtime";
+import { jsx as jsx3, jsxs as jsxs2 } from "react/jsx-runtime";
 function DateComponent(props) {
   const [hydrated, setHydrated] = useState(false);
   const [humanized, setHumanized] = useState("");
@@ -1028,7 +1028,10 @@ function DateComponent(props) {
   }, []);
   if (!hydrated)
     return /* @__PURE__ */ jsx3(BiDotsHorizontalRounded, { className: "opacity-70 animate-ping" });
-  return /* @__PURE__ */ jsx3("span", { className: props.className, children: props.humanize ? humanized : fullDate });
+  return /* @__PURE__ */ jsxs2("span", { className: props.className, children: [
+    props.dateLabel ? props.dateLabel + " " : "",
+    props.humanize ? humanized : fullDate
+  ] });
 }
 
 // src/components/PostFeaturedImage.tsx
@@ -1087,10 +1090,10 @@ function PostFeaturedImage(props) {
 }
 
 // src/post-types/PostCardWhiteBg.tsx
-import { jsx as jsx6, jsxs as jsxs2 } from "react/jsx-runtime";
+import { jsx as jsx6, jsxs as jsxs3 } from "react/jsx-runtime";
 function PostCardWhiteBg(props) {
   const { title, featuredImage, date, uri } = props.post;
-  return /* @__PURE__ */ jsx6("div", { className: "group overflow-hidden rounded-md bg-white shadow-lg", children: /* @__PURE__ */ jsxs2(Link2, { className: cn3(props.options?.fontClassName, "text-center"), href: uri || "/", children: [
+  return /* @__PURE__ */ jsx6("div", { className: "group overflow-hidden rounded-md bg-white shadow-lg", children: /* @__PURE__ */ jsxs3(Link2, { className: cn3(props.options?.fontClassName, "text-center"), href: uri || "/", children: [
     /* @__PURE__ */ jsx6("div", { className: "flex flex-col justify-center ", children: /* @__PURE__ */ jsx6("div", { className: "relative h-28 w-full overflow-hidden ", children: /* @__PURE__ */ jsx6(PostFeaturedImage, { featuredImage, title }) }) }),
     /* @__PURE__ */ jsx6("div", { className: "group-hover:m2it-link-hover px-4 py-3 text-base font-bold", children: title }),
     !props.options?.hideDate && date && /* @__PURE__ */ jsx6("div", { className: "px-2 pb-4 text-sm opacity-80", children: /* @__PURE__ */ jsx6(DateComponent, { dateString: date }) })
@@ -1114,26 +1117,26 @@ function Excerpt(props) {
 }
 
 // src/post-types/PostCardWhiteBgBig.tsx
-import { Fragment as Fragment9, jsx as jsx40, jsxs as jsxs19 } from "react/jsx-runtime";
+import { Fragment as Fragment9, jsx as jsx40, jsxs as jsxs20 } from "react/jsx-runtime";
 var CWBBHeightClass = "h-36";
 function PostCardWhiteBgBig(props) {
   const { title, featuredImage, date, uri, excerpt, authors } = props.post;
   const options = props.options;
-  return /* @__PURE__ */ jsx40("div", { className: "group overflow-hidden rounded-md bg-white shadow-lg h-full", children: /* @__PURE__ */ jsxs19(Link4, { className: cn23(options?.fontClassName, "text-center"), href: uri || "/", children: [
+  return /* @__PURE__ */ jsx40("div", { className: "group overflow-hidden rounded-md bg-white shadow-lg h-full", children: /* @__PURE__ */ jsxs20(Link4, { className: cn23(options?.fontClassName, "text-center"), href: uri || "/", children: [
     /* @__PURE__ */ jsx40("div", { className: "flex flex-col justify-center", children: /* @__PURE__ */ jsx40("div", { className: cn23("relative w-full overflow-hidden", CWBBHeightClass), children: /* @__PURE__ */ jsx40(PostFeaturedImage, { featuredImage, title }) }) }),
-    /* @__PURE__ */ jsxs19("div", { className: "p-4", children: [
+    /* @__PURE__ */ jsxs20("div", { className: "p-4", children: [
       /* @__PURE__ */ jsx40("div", { className: "group-hover:m2it-link-hover text-base font-bold leading-[1.35]", children: title }),
-      (!options?.hideDate || !options?.hideAuthor) && /* @__PURE__ */ jsxs19("div", { className: "flex justify-center gap-2 p-2", children: [
-        !options?.hideDate && date && /* @__PURE__ */ jsxs19("div", { className: "text-sm opacity-80", children: [
+      (!options?.hideDate || !options?.hideAuthor) && /* @__PURE__ */ jsxs20("div", { className: "flex justify-center gap-2 p-2", children: [
+        !options?.hideDate && date && /* @__PURE__ */ jsxs20("div", { className: "text-sm opacity-80", children: [
           /* @__PURE__ */ jsx40("i", { className: "icon-clock mr-1" }),
           /* @__PURE__ */ jsx40(DateComponent, { dateString: date })
         ] }),
-        !options?.hideAuthor && authors?.length && /* @__PURE__ */ jsxs19("div", { className: "flex gap-1 text-sm opacity-80", children: [
-          authors?.length > 1 && /* @__PURE__ */ jsxs19(Fragment9, { children: [
+        !options?.hideAuthor && authors?.length && /* @__PURE__ */ jsxs20("div", { className: "flex gap-1 text-sm opacity-80", children: [
+          authors?.length > 1 && /* @__PURE__ */ jsxs20(Fragment9, { children: [
             /* @__PURE__ */ jsx40("i", { className: "icon-users-outline" }),
             /* @__PURE__ */ jsx40("span", { children: "Nhi\u1EC1u t\xE1c gi\u1EA3" })
           ] }),
-          authors?.length <= 1 && /* @__PURE__ */ jsxs19(Fragment9, { children: [
+          authors?.length <= 1 && /* @__PURE__ */ jsxs20(Fragment9, { children: [
             /* @__PURE__ */ jsx40("i", { className: "icon-user-outline -mr-1" }),
             /* @__PURE__ */ jsx40("span", { children: authors[0].name })
           ] })
@@ -1147,11 +1150,11 @@ function PostCardWhiteBgBig(props) {
 // src/post-types/PostImageBackground.tsx
 import cn24 from "classnames";
 import Link5 from "next/link";
-import { jsx as jsx41, jsxs as jsxs20 } from "react/jsx-runtime";
+import { jsx as jsx41, jsxs as jsxs21 } from "react/jsx-runtime";
 var PIBHeightClass = "h-36";
 function PostImageBackground(props) {
   const { title, featuredImage, uri } = props.post;
-  return /* @__PURE__ */ jsx41("div", { className: "group overflow-hidden rounded-md shadow-lg", children: /* @__PURE__ */ jsx41(Link5, { className: cn24(props.options?.fontClassName, "text-center"), href: uri || "/", children: /* @__PURE__ */ jsx41("div", { className: "flex flex-col justify-center", children: /* @__PURE__ */ jsxs20("div", { className: cn24("relative w-full overflow-hidden mix-blend-overlay", PIBHeightClass), children: [
+  return /* @__PURE__ */ jsx41("div", { className: "group overflow-hidden rounded-md shadow-lg", children: /* @__PURE__ */ jsx41(Link5, { className: cn24(props.options?.fontClassName, "text-center"), href: uri || "/", children: /* @__PURE__ */ jsx41("div", { className: "flex flex-col justify-center", children: /* @__PURE__ */ jsxs21("div", { className: cn24("relative w-full overflow-hidden mix-blend-overlay", PIBHeightClass), children: [
     /* @__PURE__ */ jsx41(PostFeaturedImage, { featuredImage, title }),
     /* @__PURE__ */ jsx41(
       "div",
@@ -1230,7 +1233,7 @@ function HiOutlineDocumentText(props) {
 
 // src/post-types/PostSimple.tsx
 init_config();
-import { jsx as jsx44, jsxs as jsxs21 } from "react/jsx-runtime";
+import { jsx as jsx44, jsxs as jsxs22 } from "react/jsx-runtime";
 function PostSimple(props) {
   const [isIn7Days, setIsIn7Days] = useState4(false);
   const [isNew, setIsNew] = useState4(false);
@@ -1250,13 +1253,13 @@ function PostSimple(props) {
       setIsNew(true);
     }
   }, []);
-  return /* @__PURE__ */ jsx44("div", { className: "group hover:bg-slate-50", children: /* @__PURE__ */ jsxs21(
+  return /* @__PURE__ */ jsx44("div", { className: "group hover:bg-slate-50", children: /* @__PURE__ */ jsxs22(
     Link6,
     {
       className: cn25(options?.fontClassName, "flex items-start gap-3 p-4"),
       href: post.uri || "/",
       children: [
-        /* @__PURE__ */ jsxs21(
+        /* @__PURE__ */ jsxs22(
           "div",
           {
             className: cn25("mt-[3px] text-slate-600", {
@@ -1270,7 +1273,7 @@ function PostSimple(props) {
             ]
           }
         ),
-        /* @__PURE__ */ jsxs21("h3", { className: "flex-1", children: [
+        /* @__PURE__ */ jsxs22("h3", { className: "flex-1", children: [
           post.title,
           " ",
           post.isDraft && /* @__PURE__ */ jsx44(
@@ -1282,8 +1285,8 @@ function PostSimple(props) {
             }
           )
         ] }),
-        (post.createdDate || post.date) && /* @__PURE__ */ jsxs21("div", { className: "gap-2 hidden md:flex items-center", children: [
-          post.date && !isNew && post.createdDate && isDateAfter(post.date, post.createdDate) && /* @__PURE__ */ jsxs21(
+        (post.createdDate || post.date) && /* @__PURE__ */ jsxs22("div", { className: "gap-2 hidden md:flex items-center", children: [
+          post.date && !isNew && post.createdDate && isDateAfter(post.date, post.createdDate) && /* @__PURE__ */ jsx44(
             "div",
             {
               className: cn25(
@@ -1294,19 +1297,16 @@ function PostSimple(props) {
                 },
                 "flex gap-1 items-center"
               ),
-              children: [
-                options?.updatedOnLabel || "updated",
-                " ",
-                /* @__PURE__ */ jsx44(
-                  DateComponent,
-                  {
-                    className: "hidden lg:inline-block",
-                    dateString: post.date,
-                    format: "MMM DD, YYYY",
-                    humanize: options?.humanizeDate
-                  }
-                )
-              ]
+              children: /* @__PURE__ */ jsx44(
+                DateComponent,
+                {
+                  className: "hidden lg:inline-block",
+                  dateString: post.date,
+                  format: "MMM DD, YYYY",
+                  humanize: options?.humanizeDate,
+                  dateLabel: options?.updatedOnLabel || "updated"
+                }
+              )
             }
           ),
           isNew && /* @__PURE__ */ jsx44(
@@ -1367,14 +1367,14 @@ function IoBookOutline(props) {
 }
 
 // src/post-types/PostTitleCateDate.tsx
-import { jsx as jsx46, jsxs as jsxs22 } from "react/jsx-runtime";
+import { jsx as jsx46, jsxs as jsxs23 } from "react/jsx-runtime";
 var TCDFIHeightClass = "h-28";
 function PostTitleCateDate(props) {
   const { title, featuredImage, date, categories, uri } = props.post;
   const options = props.options;
   const category = categories ? categories[0] : null;
-  return /* @__PURE__ */ jsx46("div", { className: "group", children: /* @__PURE__ */ jsxs22(Link7, { className: cn26(options?.fontClassName, "text-center"), href: uri || "/", children: [
-    /* @__PURE__ */ jsxs22(
+  return /* @__PURE__ */ jsx46("div", { className: "group", children: /* @__PURE__ */ jsxs23(Link7, { className: cn26(options?.fontClassName, "text-center"), href: uri || "/", children: [
+    /* @__PURE__ */ jsxs23(
       "div",
       {
         className: cn26("flex flex-col justify-center overflow-hidden rounded-t-md shadow-sm", {
@@ -1403,7 +1403,7 @@ function PostTitleCateDate(props) {
         ]
       }
     ),
-    /* @__PURE__ */ jsxs22(
+    /* @__PURE__ */ jsxs23(
       "div",
       {
         className: cn26(
@@ -1415,7 +1415,7 @@ function PostTitleCateDate(props) {
         ]
       }
     ),
-    !options?.hideDate && /* @__PURE__ */ jsxs22("div", { className: "text-sm opacity-80 flex items-center gap-1", children: [
+    !options?.hideDate && /* @__PURE__ */ jsxs23("div", { className: "text-sm opacity-80 flex items-center gap-1", children: [
       /* @__PURE__ */ jsx46("i", { className: "icon-clock mr-1" }),
       date && /* @__PURE__ */ jsx46(DateComponent, { dateString: date })
     ] })
@@ -1465,7 +1465,7 @@ function FaChevronRight(props) {
 }
 
 // src/components/Carousel.tsx
-import { jsx as jsx49, jsxs as jsxs23 } from "react/jsx-runtime";
+import { jsx as jsx49, jsxs as jsxs24 } from "react/jsx-runtime";
 var Carousel = ({ items, renderItem }) => {
   const { scrollRef, pages, activePageIndex, prev, next, goTo, snapPointIndexes } = useSnapCarousel();
   const arrowBtnClasses = cn27(
@@ -1474,7 +1474,7 @@ var Carousel = ({ items, renderItem }) => {
   const arrowClasses = cn27(
     "text-2xl hover:text-3xl transition-all text-slate-400 hover:text-slate-600"
   );
-  return /* @__PURE__ */ jsxs23("div", { className: "relative", children: [
+  return /* @__PURE__ */ jsxs24("div", { className: "relative", children: [
     /* @__PURE__ */ jsx49(
       "div",
       {
@@ -1537,12 +1537,12 @@ var CarouselItem = ({ isSnapPoint, children, widthClass }) => /* @__PURE__ */ js
 );
 
 // src/components/PostsList.tsx
-import { jsx as jsx50, jsxs as jsxs24 } from "react/jsx-runtime";
+import { jsx as jsx50, jsxs as jsxs25 } from "react/jsx-runtime";
 var postListGridCLass = cn28(
   "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-x-4"
 );
 function PostList(props) {
-  return /* @__PURE__ */ jsxs24("section", { children: [
+  return /* @__PURE__ */ jsxs25("section", { children: [
     (!props.listStyle || props.listStyle === "default") && /* @__PURE__ */ jsx50("div", { className: props.options?.className || postListGridCLass, children: props.posts.map((post, index) => /* @__PURE__ */ jsx50(React2.Fragment, { children: getPostTypeElement(props.postType, post, props.postTypeOpts, index) }, post.uri)) }),
     props.listStyle === "carousel" && /* @__PURE__ */ jsx50(
       Carousel,

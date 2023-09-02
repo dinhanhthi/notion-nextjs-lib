@@ -2,6 +2,7 @@ import * as react_jsx_runtime from 'react/jsx-runtime';
 
 type DateProps = {
     dateString: string;
+    dateLabel?: string;
     format?: string;
     className?: string;
     humanize?: boolean;

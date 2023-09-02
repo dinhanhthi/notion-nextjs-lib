@@ -7,6 +7,7 @@ import BiDotsHorizontalRounded from '../icons/BiDotsHorizontalRounded'
 
 type DateProps = {
   dateString: string
+  dateLabel?: string // Eg: 'Updated at:'
   format?: string
   className?: string
   humanize?: boolean
@@ -49,5 +50,10 @@ export default function DateComponent(props: DateProps) {
 
   if (!hydrated) return <BiDotsHorizontalRounded className="opacity-70 animate-ping" />
 
-  return <span className={props.className}>{props.humanize ? humanized : fullDate}</span>
+  return (
+    <span className={props.className}>
+      {props.dateLabel ? props.dateLabel + ' ' : ''}
+      {props.humanize ? humanized : fullDate}
+    </span>
+  )
 }

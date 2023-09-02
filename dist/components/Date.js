@@ -24,7 +24,7 @@ function BiDotsHorizontalRounded(props) {
 }
 
 // src/components/Date.tsx
-import { jsx as jsx2 } from "react/jsx-runtime";
+import { jsx as jsx2, jsxs } from "react/jsx-runtime";
 function DateComponent(props) {
   const [hydrated, setHydrated] = useState(false);
   const [humanized, setHumanized] = useState("");
@@ -51,7 +51,10 @@ function DateComponent(props) {
   }, []);
   if (!hydrated)
     return /* @__PURE__ */ jsx2(BiDotsHorizontalRounded, { className: "opacity-70 animate-ping" });
-  return /* @__PURE__ */ jsx2("span", { className: props.className, children: props.humanize ? humanized : fullDate });
+  return /* @__PURE__ */ jsxs("span", { className: props.className, children: [
+    props.dateLabel ? props.dateLabel + " " : "",
+    props.humanize ? humanized : fullDate
+  ] });
 }
 export {
   DateComponent as default
