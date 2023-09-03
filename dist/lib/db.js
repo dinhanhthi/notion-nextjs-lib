@@ -211,7 +211,7 @@ async function getBlocks(blockId, notionToken, notionVersion, initNumbering, get
           url,
           title: cleanText(result.ogTitle),
           description: cleanText(result.ogDescription) ?? null,
-          favicon: result.ogUrl?.includes("http") ? result.ogUrl : result.ogUrl + result.favicon.replace("/", ""),
+          favicon: result.favicon?.includes("http") ? result.favicon : result.ogUrl + result.favicon.replace("/", ""),
           imageSrc: result.ogImage?.[0]?.url ?? null
         };
         block["bookmark"] = bookmark;
