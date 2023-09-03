@@ -139,7 +139,7 @@ function BlockBookmark(props) {
     "a",
     {
       className: cn2(
-        "flex w-full overflow-hidden rounded-md border border-slate-200 p-3",
+        "flex gap-4 w-full overflow-hidden rounded-md border border-slate-200 p-3",
         "hover:cursor-pointer hover:border-sky-300 hover:shadow-sm"
       ),
       href: data.url,
@@ -152,8 +152,8 @@ function BlockBookmark(props) {
             /* @__PURE__ */ jsx("div", { className: "truncate text-sm font-normal text-slate-600", children: data.description })
           ] }),
           /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-1", children: [
-            /* @__PURE__ */ jsx("div", { className: "relative h-4 w-4", children: /* @__PURE__ */ jsx("img", { className: "h-full w-full", src: data.favicon, alt: data.title }) }),
-            /* @__PURE__ */ jsx("div", { className: "text-sm font-normal text-slate-500", children: data.url })
+            /* @__PURE__ */ jsx("div", { className: "relative h-4 w-4 shrink-0", children: /* @__PURE__ */ jsx("img", { className: "h-full w-full", src: data.favicon, alt: data.title }) }),
+            /* @__PURE__ */ jsx("div", { className: "text-sm font-normal text-slate-500 truncate", children: data.url })
           ] })
         ] }),
         data.imageSrc && /* @__PURE__ */ jsx("div", { className: "relative hidden flex-[1_1_100px] sm:block", children: /* @__PURE__ */ jsx("img", { className: "h-full w-full", src: data.imageSrc, alt: data.title }) })

@@ -18,7 +18,7 @@ export default function BlockBookmark(props: {
       {data && (
         <a
           className={cn(
-            'flex w-full overflow-hidden rounded-md border border-slate-200 p-3',
+            'flex gap-4 w-full overflow-hidden rounded-md border border-slate-200 p-3',
             'hover:cursor-pointer hover:border-sky-300 hover:shadow-sm'
           )}
           href={data.url}
@@ -31,10 +31,10 @@ export default function BlockBookmark(props: {
               <div className="truncate text-sm font-normal text-slate-600">{data.description}</div>
             </div>
             <div className="flex items-center gap-1">
-              <div className="relative h-4 w-4">
+              <div className="relative h-4 w-4 shrink-0">
                 <img className="h-full w-full" src={data.favicon} alt={data.title} />
               </div>
-              <div className="text-sm font-normal text-slate-500">{data.url}</div>
+              <div className="text-sm font-normal text-slate-500 truncate">{data.url}</div>
             </div>
           </div>
           {data.imageSrc && (
