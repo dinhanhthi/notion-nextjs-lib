@@ -11,13 +11,13 @@ export type BlockTableType = TableBlockObjectResponse & { children: TableRowBloc
 
 export default function BlockTable(props: { block: BlockTableType; className?: string }) {
   const { block, className } = props
-  const bodyRows: TableRowBlockObjectResponse[] = block?.table.has_row_header
+  const bodyRows: TableRowBlockObjectResponse[] = block?.table.has_column_header
     ? block?.['children']?.slice(1)
     : block?.['children']
   return (
     <div className={cn(className, 'w-full overflow-auto md:overflow-visible')}>
       <table className="table-auto my-0">
-        {block?.table?.has_row_header && (
+        {block?.table?.has_column_header && (
           <thead>
             {trBlock({
               cells: block?.['children']?.[0]?.table_row?.cells,
@@ -32,7 +32,7 @@ export default function BlockTable(props: { block: BlockTableType; className?: s
               cells: row?.table_row?.cells,
               isRowHeader: false,
               key: index,
-              hasColumnHeader: block?.table?.has_column_header
+              hasColumnHeader: block?.table?.has_row_header
             })
           )}
         </tbody>

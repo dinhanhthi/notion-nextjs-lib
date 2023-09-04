@@ -1196,9 +1196,9 @@ import cn17 from "classnames";
 import { jsx as jsx29, jsxs as jsxs15 } from "react/jsx-runtime";
 function BlockTable(props) {
   const { block, className } = props;
-  const bodyRows = block?.table.has_row_header ? block?.["children"]?.slice(1) : block?.["children"];
+  const bodyRows = block?.table.has_column_header ? block?.["children"]?.slice(1) : block?.["children"];
   return /* @__PURE__ */ jsx29("div", { className: cn17(className, "w-full overflow-auto md:overflow-visible"), children: /* @__PURE__ */ jsxs15("table", { className: "table-auto my-0", children: [
-    block?.table?.has_row_header && /* @__PURE__ */ jsx29("thead", { children: trBlock({
+    block?.table?.has_column_header && /* @__PURE__ */ jsx29("thead", { children: trBlock({
       cells: block?.["children"]?.[0]?.table_row?.cells,
       isRowHeader: true,
       key: 0
@@ -1208,7 +1208,7 @@ function BlockTable(props) {
         cells: row?.table_row?.cells,
         isRowHeader: false,
         key: index,
-        hasColumnHeader: block?.table?.has_column_header
+        hasColumnHeader: block?.table?.has_row_header
       })
     ) })
   ] }) });
