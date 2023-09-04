@@ -12,7 +12,7 @@ export default function BlockEquation(props: {
 }) {
   const { block, className } = props
   return (
-    <div className={cn(className, 'text-center overflow-auto md:overflow-visible')}>
+    <div className={cn(className, 'text-center overflow-auto m2it-scrollbar m2it-scrollbar-small')}>
       <Katex
         className={mathFontSize}
         math={block?.equation?.expression}
