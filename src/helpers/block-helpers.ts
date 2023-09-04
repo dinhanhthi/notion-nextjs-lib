@@ -76,10 +76,11 @@ export function getIndentLevelClass(opts: {
   isList?: boolean
   insideList?: boolean
   insideColumn?: boolean
-  insideQuote?: boolean // also applied for callout
+  insideQuoteCallout?: boolean
+  insideToggle?: boolean
 }): string {
-  const { level, isList, insideList, insideColumn, insideQuote } = opts
-  const reduceVSpace = insideList || insideColumn || insideQuote || isList
+  const { level, isList, insideList, insideColumn, insideQuoteCallout, insideToggle } = opts
+  const reduceVSpace = insideList || insideColumn || insideQuoteCallout || isList
   const reducedVSpaceClass = 'my-2'
   const normalVSpaceClass = 'my-3'
 
@@ -94,19 +95,20 @@ export function getIndentLevelClass(opts: {
       return cn('pl-4', {
         [reducedVSpaceClass]: reduceVSpace,
         [normalVSpaceClass]: !reduceVSpace,
-        '!pl-6': insideList && !isList
+        '!pl-6': insideList && !isList,
+        '!pl-0': insideQuoteCallout && insideToggle,
       })
     case 2:
       return cn('pl-6', {
         [reducedVSpaceClass]: reduceVSpace,
         [normalVSpaceClass]: !reduceVSpace,
-        '!pl-4': insideList && insideQuote
+        '!pl-4': insideList && insideQuoteCallout
       })
     case 3:
       return cn('pl-8', {
         [reducedVSpaceClass]: reduceVSpace,
         [normalVSpaceClass]: !reduceVSpace,
-        '!pl-6': insideList && insideQuote
+        '!pl-6': insideList && insideQuoteCallout
       })
   }
 }

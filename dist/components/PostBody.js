@@ -70,8 +70,8 @@ function mapColorClass(color) {
   }
 }
 function getIndentLevelClass(opts) {
-  const { level, isList, insideList, insideColumn, insideQuote } = opts;
-  const reduceVSpace = insideList || insideColumn || insideQuote || isList;
+  const { level, isList, insideList, insideColumn, insideQuoteCallout, insideToggle } = opts;
+  const reduceVSpace = insideList || insideColumn || insideQuoteCallout || isList;
   const reducedVSpaceClass = "my-2";
   const normalVSpaceClass = "my-3";
   switch (level) {
@@ -85,19 +85,20 @@ function getIndentLevelClass(opts) {
       return cn("pl-4", {
         [reducedVSpaceClass]: reduceVSpace,
         [normalVSpaceClass]: !reduceVSpace,
-        "!pl-6": insideList && !isList
+        "!pl-6": insideList && !isList,
+        "!pl-0": insideQuoteCallout && insideToggle
       });
     case 2:
       return cn("pl-6", {
         [reducedVSpaceClass]: reduceVSpace,
         [normalVSpaceClass]: !reduceVSpace,
-        "!pl-4": insideList && insideQuote
+        "!pl-4": insideList && insideQuoteCallout
       });
     case 3:
       return cn("pl-8", {
         [reducedVSpaceClass]: reduceVSpace,
         [normalVSpaceClass]: !reduceVSpace,
-        "!pl-6": insideList && insideQuote
+        "!pl-6": insideList && insideQuoteCallout
       });
   }
 }
@@ -377,7 +378,7 @@ import cn4 from "classnames";
 import { jsx as jsx6 } from "react/jsx-runtime";
 function BlockEquation(props) {
   const { block, className } = props;
-  return /* @__PURE__ */ jsx6("div", { className: cn4(className, "text-center overflow-auto md:overflow-visible"), children: /* @__PURE__ */ jsx6(
+  return /* @__PURE__ */ jsx6("div", { className: cn4(className, "text-center overflow-auto m2it-scrollbar m2it-scrollbar-small"), children: /* @__PURE__ */ jsx6(
     Katex,
     {
       className: mathFontSize,
@@ -1283,7 +1284,8 @@ function Renderer(props) {
   const { block, level } = props;
   let children;
   const isList = ["bulleted_list_item", "numbered_list_item"].includes(block.type);
-  const isQuote = ["quote", "callout"].includes(block.type);
+  const isQuoteCallout = ["quote", "callout"].includes(block.type);
+  const isToggle = block.type === "toggle";
   if (block.has_children) {
     children = get6(block, "children", [])?.map((childBlock) => /* @__PURE__ */ jsx31(
       Renderer,
@@ -1291,7 +1293,8 @@ function Renderer(props) {
         block: childBlock,
         level: ["synced_block", "callout"].includes(block.type) ? level : level + 1,
         insideList: isList,
-        insideQuote: isQuote || props.insideQuote
+        insideQuoteCallout: isQuoteCallout || props.insideQuoteCallout,
+        insideToggle: isToggle || props.insideToggle
       },
       childBlock.id
     ));
@@ -1302,7 +1305,8 @@ function Renderer(props) {
       isList,
       insideList: props.insideList,
       insideColumn: props.insideColumn,
-      insideQuote: props.insideQuote
+      insideQuoteCallout: props.insideQuoteCallout,
+      insideToggle: props.insideToggle
     })
   );
   const basicBlockGapHeading = "mt-6";
@@ -1436,7 +1440,7 @@ function BlockRender(props) {
       level: props.level,
       insideColumn: props.insideColumn,
       insideList: props.insideList,
-      insideQuote: props.insideQuote
+      insideQuoteCallout: props.insideQuoteCallout
     }
   ) });
 }

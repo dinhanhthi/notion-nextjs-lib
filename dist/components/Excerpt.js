@@ -518,7 +518,7 @@ import cn15 from "classnames";
 import { jsx as jsx24 } from "react/jsx-runtime";
 function BlockEquation(props) {
   const { block, className } = props;
-  return /* @__PURE__ */ jsx24("div", { className: cn15(className, "text-center overflow-auto md:overflow-visible"), children: /* @__PURE__ */ jsx24(
+  return /* @__PURE__ */ jsx24("div", { className: cn15(className, "text-center overflow-auto m2it-scrollbar m2it-scrollbar-small"), children: /* @__PURE__ */ jsx24(
     Katex,
     {
       className: mathFontSize,

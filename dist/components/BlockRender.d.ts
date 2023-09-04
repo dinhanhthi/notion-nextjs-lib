@@ -16,7 +16,8 @@ type BlockRenderProps = {
     level: number;
     insideColumn?: boolean;
     insideList?: boolean;
-    insideQuote?: boolean;
+    insideQuoteCallout?: boolean;
+    insideToggle?: boolean;
     blockOptionsContext?: BlockOptionsContextType;
 };
 declare const BlockOptionContext: React.Context<BlockOptionsContextType>;

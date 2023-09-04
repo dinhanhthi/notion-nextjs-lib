@@ -38,7 +38,8 @@ export default function Renderer(props: BlockRenderProps) {
   let children: React.ReactNode
 
   const isList = ['bulleted_list_item', 'numbered_list_item'].includes(block.type)
-  const isQuote = ['quote', 'callout'].includes(block.type) // also for callout
+  const isQuoteCallout = ['quote', 'callout'].includes(block.type)
+  const isToggle = block.type === 'toggle'
 
   if (block.has_children) {
     children = get(block, 'children', [])?.map(childBlock => (
@@ -47,7 +48,8 @@ export default function Renderer(props: BlockRenderProps) {
         block={childBlock}
         level={['synced_block', 'callout'].includes(block.type) ? level : level + 1}
         insideList={isList}
-        insideQuote={isQuote || props.insideQuote}
+        insideQuoteCallout={isQuoteCallout || props.insideQuoteCallout}
+        insideToggle={isToggle || props.insideToggle}
       />
     ))
   }
@@ -58,7 +60,8 @@ export default function Renderer(props: BlockRenderProps) {
       isList,
       insideList: props.insideList,
       insideColumn: props.insideColumn,
-      insideQuote: props.insideQuote
+      insideQuoteCallout: props.insideQuoteCallout,
+      insideToggle: props.insideToggle
     })
   )
   const basicBlockGapHeading = 'mt-6'

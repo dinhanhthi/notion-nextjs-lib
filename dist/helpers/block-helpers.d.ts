@@ -10,7 +10,8 @@ declare function getIndentLevelClass(opts: {
     isList?: boolean;
     insideList?: boolean;
     insideColumn?: boolean;
-    insideQuote?: boolean;
+    insideQuoteCallout?: boolean;
+    insideToggle?: boolean;
 }): string;
 declare function convertHeadingIdToSlug(headingId: string, richTextArr: RichTextItemResponse[]): string;
 declare function getYoutubeVideoId(url?: string): string | null;

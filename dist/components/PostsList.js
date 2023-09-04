@@ -520,7 +520,7 @@ import cn18 from "classnames";
 import { jsx as jsx30 } from "react/jsx-runtime";
 function BlockEquation(props) {
   const { block, className } = props;
-  return /* @__PURE__ */ jsx30("div", { className: cn18(className, "text-center overflow-auto md:overflow-visible"), children: /* @__PURE__ */ jsx30(
+  return /* @__PURE__ */ jsx30("div", { className: cn18(className, "text-center overflow-auto m2it-scrollbar m2it-scrollbar-small"), children: /* @__PURE__ */ jsx30(
     Katex,
     {
       className: mathFontSize,

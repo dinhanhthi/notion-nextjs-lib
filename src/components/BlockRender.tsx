@@ -28,7 +28,8 @@ export type BlockRenderProps = {
   level: number
   insideColumn?: boolean
   insideList?: boolean
-  insideQuote?: boolean // also for callout
+  insideQuoteCallout?: boolean
+  insideToggle?: boolean
   blockOptionsContext?: BlockOptionsContextType
 }
 
@@ -42,7 +43,7 @@ export default function BlockRender(props: BlockRenderProps) {
         level={props.level}
         insideColumn={props.insideColumn}
         insideList={props.insideList}
-        insideQuote={props.insideQuote}
+        insideQuoteCallout={props.insideQuoteCallout}
       />
     </BlockOptionContext.Provider>
   )
