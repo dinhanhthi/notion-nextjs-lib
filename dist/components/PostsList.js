@@ -698,6 +698,7 @@ var init_BlockRender = __esm({
     init_Renderer();
     defaultBlockOptionContext = {
       headingStyle: "hash",
+      headingScrollMarginTopClass: "scroll-mt-[70px]",
       showAnchorRight: false,
       disableAnchorHeading: false,
       siteDomain: "dinhanhthi.com"

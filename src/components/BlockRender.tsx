@@ -7,6 +7,7 @@ import Renderer from './Renderer'
 
 export type BlockOptionsContextType = {
   headingStyle?: 'hash' | 'borderLeft' | 'borderLeftH2Only'
+  headingScrollMarginTopClass?: string // anchor scroll margin top class, depend on the height of nav
   showAnchorRight?: boolean // useful when headingStyle === 'borderLeft'
   disableAnchorHeading?: boolean // used in BlockHeading (when headingStyle === 'hash')
   siteDomain?: string // used in BlockText to recognize external links (eg. math2it.com -> alike @mention)
@@ -16,6 +17,7 @@ export type BlockOptionsContextType = {
 
 const defaultBlockOptionContext: BlockOptionsContextType = {
   headingStyle: 'hash',
+  headingScrollMarginTopClass: 'scroll-mt-[70px]',
   showAnchorRight: false,
   disableAnchorHeading: false,
   siteDomain: 'dinhanhthi.com'

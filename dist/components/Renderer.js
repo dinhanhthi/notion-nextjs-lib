@@ -272,6 +272,7 @@ var init_BlockRender = __esm({
     init_Renderer();
     defaultBlockOptionContext = {
       headingStyle: "hash",
+      headingScrollMarginTopClass: "scroll-mt-[70px]",
       showAnchorRight: false,
       disableAnchorHeading: false,
       siteDomain: "dinhanhthi.com"
@@ -664,7 +665,7 @@ function BlockHeading(props) {
   const h1Size = "text-3xl";
   const h2Size = "text-2xl";
   const h3Size = "text-[1.35rem]";
-  const headingClass = cn9("scroll-mt-[70px] mt-0");
+  const headingClass = cn9("mt-0", ctx?.headingScrollMarginTopClass || "scroll-mt-[70px]");
   const id = convertHeadingIdToSlug(block.id, block[`${block.type}`]?.rich_text);
   const anchorRight = /* @__PURE__ */ jsx16(
     "a",

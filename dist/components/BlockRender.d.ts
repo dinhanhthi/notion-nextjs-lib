@@ -4,6 +4,7 @@ import { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 
 type BlockOptionsContextType = {
     headingStyle?: 'hash' | 'borderLeft' | 'borderLeftH2Only';
+    headingScrollMarginTopClass?: string;
     showAnchorRight?: boolean;
     disableAnchorHeading?: boolean;
     siteDomain?: string;

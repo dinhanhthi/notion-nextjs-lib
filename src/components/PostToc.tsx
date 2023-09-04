@@ -15,7 +15,12 @@ type PostTocProps = {
   inPost?: boolean // This component is used in 2 places: post-body and [postSlug]
   minNumHeadingsToShowToc?: number
   labelTocTitle?: string
+  labelTocClassName?: string
 }
+
+/**
+ * IMPORTANT: Add class "scroll-mt-[70px]" to the heading elements!
+ */
 
 export default function PostToc(props: PostTocProps) {
   const [showContent, setShowContent] = useState(true)
@@ -49,7 +54,7 @@ export default function PostToc(props: PostTocProps) {
         )}
         onClick={() => setShowContent(!showContent)}
       >
-        <div>{props.labelTocTitle || 'In this post'}</div>
+        <div className={props.labelTocClassName}>{props.labelTocTitle || 'In this post'}</div>
         <div>
           <IoIosArrowDown
             className={cn('text-2xl ease-in-out transition-all duration-[400ms]', {

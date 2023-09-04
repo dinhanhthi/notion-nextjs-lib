@@ -701,6 +701,7 @@ var init_BlockRender = __esm({
     init_Renderer();
     defaultBlockOptionContext = {
       headingStyle: "hash",
+      headingScrollMarginTopClass: "scroll-mt-[70px]",
       showAnchorRight: false,
       disableAnchorHeading: false,
       siteDomain: "dinhanhthi.com"
@@ -964,7 +965,7 @@ function PostToc(props) {
             ),
             onClick: () => setShowContent(!showContent),
             children: [
-              /* @__PURE__ */ jsx34("div", { children: props.labelTocTitle || "In this post" }),
+              /* @__PURE__ */ jsx34("div", { className: props.labelTocClassName, children: props.labelTocTitle || "In this post" }),
               /* @__PURE__ */ jsx34("div", { children: /* @__PURE__ */ jsx34(
                 IoIosArrowDown,
                 {

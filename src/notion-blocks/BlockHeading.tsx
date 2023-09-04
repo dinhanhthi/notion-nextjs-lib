@@ -29,9 +29,11 @@ export const boderLeftClass = (
     case 'h1':
       return 'border-sky-300 from-sky-50 to-white' + ' ' + common
     case 'h2':
-      return 'border-sky-300 from-sky-50 to-white'+ ' ' + common
+      return 'border-sky-300 from-sky-50 to-white' + ' ' + common
     case 'h3':
-      return ctx?.headingStyle === 'borderLeftH2Only' ? '' : 'border-orange-300 from-orange-50 to-white' + ' ' + common
+      return ctx?.headingStyle === 'borderLeftH2Only'
+        ? ''
+        : 'border-orange-300 from-orange-50 to-white' + ' ' + common
   }
 }
 
@@ -52,7 +54,7 @@ export default function BlockHeading(props: {
   const h1Size = 'text-3xl'
   const h2Size = 'text-2xl'
   const h3Size = 'text-[1.35rem]'
-  const headingClass = cn('scroll-mt-[70px] mt-0')
+  const headingClass = cn('mt-0', ctx?.headingScrollMarginTopClass || 'scroll-mt-[70px]')
 
   const id = convertHeadingIdToSlug(block.id, (block as any)[`${block.type}`]?.rich_text)
 
