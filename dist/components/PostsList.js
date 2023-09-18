@@ -1416,7 +1416,7 @@ function PostTitleCateDate(props) {
         ]
       }
     ),
-    !options?.hideDate && /* @__PURE__ */ jsxs23("div", { className: "text-sm opacity-80 flex items-center gap-1", children: [
+    !options?.hideDate && /* @__PURE__ */ jsxs23("div", { className: "text-sm opacity-80 flex items-center justify-center gap-1", children: [
       /* @__PURE__ */ jsx46("i", { className: "icon-clock mr-1" }),
       date && /* @__PURE__ */ jsx46(DateComponent, { dateString: date })
     ] })
